@@ -1,0 +1,28 @@
+name: 'Publish Storybook to Chromatic'
+
+on: push
+
+jobs:
+  publish-storybook-to-chromatic:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      # setup-node의 pnpm 지원을 위한 Action
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8.15.1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'pnpm'
+      - run: pnpm install
+      - uses: chromaui/action@v1
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          exitZeroOnChanges: true
+        env:
+          STORYBOOK_API_BASE_URL: ${{ vars.STORYBOOK_API_BASE_URL }}
+          STORYBOOK_KAKAO_MAP_ACCESS_KEY: ${{ secrets.STORYBOOK_KAKAO_MAP_ACCESS_KEY }}
