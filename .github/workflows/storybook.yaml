@@ -25,4 +25,3 @@ jobs:
           exitZeroOnChanges: true
         env:
           STORYBOOK_API_BASE_URL: ${{ vars.STORYBOOK_API_BASE_URL }}
-          STORYBOOK_KAKAO_MAP_ACCESS_KEY: ${{ secrets.STORYBOOK_KAKAO_MAP_ACCESS_KEY }}
