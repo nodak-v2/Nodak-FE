@@ -1,10 +1,9 @@
 ---
-name: "[Feat] 작업내용"
-about: Suggest an idea for this project
-title: ''
-labels: ''
-assignees: ''
-
+name: "이슈 템플릿"
+about: Issue Template
+title: "[Feat] 작업내용"
+labels: ""
+assignees: ""
 ---
 
 ## 🤷‍♂️ 내용 요약
