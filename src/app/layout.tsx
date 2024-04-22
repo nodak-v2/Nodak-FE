@@ -1,9 +1,7 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 
 import '../style/globals.css';
-
-const inter = Inter({ subsets: ['latin'] });
+import Introduction from './_components/Introduction';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,8 +14,17 @@ const RootLayout = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <html lang='en'>
-      <body className={inter.className}>{children}</body>
+    <html lang='ko'>
+      <body>
+        <div className='flex h-screen w-screen flex-row items-center justify-center gap-10'>
+          <div className='hidden shrink sm:flex'>
+            <Introduction />
+          </div>
+          <div className='relative flex h-full max-h-[950px] min-h-[600px] w-full min-w-[350px] max-w-[450px] shrink-0 flex-col shadow-xl'>
+            {children}
+          </div>
+        </div>
+      </body>
     </html>
   );
 };
