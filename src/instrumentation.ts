@@ -6,9 +6,9 @@ export async function register() {
   );
 
   if (process.env.NEXT_RUNTIME === 'nodejs') {
-    console.log('MOCKING ENABLED FOR:', process.pid);
-
     const { server } = await import('@/src/mocks/node');
-    server.listen();
+    server.listen({
+      onUnhandledRequest: 'bypass',
+    });
   }
 }

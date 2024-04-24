@@ -1,6 +1,6 @@
 import { HttpResponse, http } from 'msw';
 
-const getPostList = http.get(`${process.env.NEXT_DOMAIN}/posts`, () => {
+const getPostList = http.get(`${process.env.NEXT_PUBLIC_URL}/posts`, () => {
   return HttpResponse.json({
     content: [
       {

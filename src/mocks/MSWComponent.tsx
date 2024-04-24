@@ -9,8 +9,7 @@ export const MSWComponent = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     if (!isInit) {
-      initMsw();
-      isSetInit(true);
+      initMsw().then(() => isSetInit(true));
     }
   }, [isInit]);
 
