@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 
 import { MSWComponent } from '@/src/mocks/MSWComponent';
 
-import '../style/globals.css';
 import Introduction from './_components/Introduction';
+import './globals.css';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
