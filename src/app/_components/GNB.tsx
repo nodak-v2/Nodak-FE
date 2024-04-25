@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import Icon from '@/src/components/Icon';
 
 const GNB = () => {
@@ -10,27 +12,25 @@ const GNB = () => {
   ];
 
   return (
-    <div className='w-full'>
-      <div className='bg-[#212529]'>
-        <div className='flex justify-between px-4'>
-          {navItems.map(({ href, icon, subText }, index) => (
-            <div key={index}>
-              <a
-                href={href}
-                className='mx-auto flex w-full items-end justify-center px-4 pt-2 text-center text-white'
-              >
-                <span className='flex flex-col items-center'>
-                  <span className='mx-auto mb-1 block pt-1 text-2xl '>
-                    {icon}
-                  </span>
-                  <span className='block pb-2 text-xs'>{subText}</span>
+    <nav className=' w-full bg-[#212529] px-4'>
+      <ul className='flex justify-between'>
+        {navItems.map(({ href, icon, subText }, index) => (
+          <li key={index}>
+            <Link
+              href={href}
+              className='mx-auto flex w-full items-end justify-center px-4 pt-1 text-center text-white'
+            >
+              <div className='flex flex-col items-center'>
+                <span className='mx-auto mb-1 block pt-1 text-2xl '>
+                  {icon}
                 </span>
-              </a>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
+                <span className='block pb-2 text-xs'>{subText}</span>
+              </div>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 };
 
