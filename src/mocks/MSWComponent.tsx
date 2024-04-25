@@ -2,14 +2,21 @@
 
 import { useEffect, useState } from 'react';
 
-import { initMsw } from '@/src/mocks/initMsw';
+const initMsw = async () => {
+  if (process.env.NEXT_RUNTIME !== 'nodejs') {
+    const { worker } = await import('./browser');
+    await worker.start({
+      onUnhandledRequest: 'bypass',
+    });
+  }
+};
 
 export const MSWComponent = ({ children }: { children: React.ReactNode }) => {
-  const [isInit, isSetInit] = useState(false);
+  const [isInit, setIsInit] = useState(false);
 
   useEffect(() => {
     if (!isInit) {
-      initMsw().then(() => isSetInit(true));
+      initMsw().then(() => setIsInit(true));
     }
   }, [isInit]);
 
