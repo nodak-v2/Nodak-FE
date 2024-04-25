@@ -11,12 +11,12 @@ const GNB = () => {
     <div className='w-full'>
       <div className='bg-[#212529]'>
         <div className='flex justify-between px-4'>
-          {navItems.map((item, index) => (
+          {navItems.map(({ href, text, subText }, index) => (
             <div key={index}>
-              <a href={item.href} className='flex p-2 text-center text-white'>
+              <a href={href} className='flex p-2 text-center text-white'>
                 <span>
-                  <p>{item.text}</p>
-                  <span className='block pb-2 text-xs'>{item.subText}</span>
+                  <p>{text}</p>
+                  <span className='block pb-2 text-xs'>{subText}</span>
                 </span>
               </a>
             </div>
