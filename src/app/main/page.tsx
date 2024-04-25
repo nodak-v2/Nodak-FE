@@ -1,11 +1,7 @@
 import PostItem from './_component/PostItem';
 
 const MainPage = () => {
-  return (
-    <div>
-      <PostItem />
-    </div>
-  );
+  return <PostItem />;
 };
 
 export default MainPage;
