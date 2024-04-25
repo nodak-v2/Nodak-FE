@@ -7,7 +7,7 @@ const GNB = () => {
     { href: '/', icon: <Icon id='home' />, subText: '홈' },
     { href: '/chat', icon: <Icon id='chat' />, subText: '채팅' },
     { href: '/write', icon: <Icon id='add' />, subText: '글쓰기' },
-    { href: '/noti', icon: <Icon id='heart' />, subText: '알림' },
+    { href: '/users', icon: <Icon id='user' />, subText: '유저' },
     { href: '/profile', icon: <Icon id='user' />, subText: '프로필' },
   ];
 
