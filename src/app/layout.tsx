@@ -1,8 +1,6 @@
 import type { Metadata } from 'next';
 
 import '../style/globals.css';
-import GNB from './_components/GNB';
-import Header from './_components/Header';
 import Introduction from './_components/Introduction';
 
 export const metadata: Metadata = {
@@ -18,16 +16,12 @@ const RootLayout = ({
   return (
     <html lang='ko'>
       <body>
-        <div className='flex h-screen w-screen items-center justify-center gap-10'>
+        <div className='flex h-screen w-screen flex-row items-center justify-center gap-10'>
           <div className='hidden shrink sm:flex'>
             <Introduction />
           </div>
-          <div className='relative flex h-full max-h-[950px] min-h-[600px] w-full min-w-[350px] max-w-[450px] shrink-0 flex-col justify-between shadow-xl'>
-            <div>
-              <Header />
-              {children}
-            </div>
-            <GNB />
+          <div className='relative flex h-full max-h-[950px] min-h-[600px] w-full min-w-[350px] max-w-[450px] shrink-0 flex-col shadow-xl'>
+            {children}
           </div>
         </div>
       </body>
