@@ -7,12 +7,12 @@ const chipCSS = cva(
   {
     variants: {
       variant: {
-        primary: 'bg-gray-700 text-white',
-        secondary: 'bg-gray-100 text-black',
+        default: 'bg-gray-100 text-black',
+        selected: 'bg-gray-700 text-white',
       },
     },
     defaultVariants: {
-      variant: 'primary',
+      variant: 'default',
     },
   },
 );
