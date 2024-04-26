@@ -26,8 +26,8 @@ const UserInfo = ({
           height={150}
           className='rounded-full object-cover'
         />
-        <div className='flex grow flex-col items-center gap-2'>
-          <span className='font-bold'>{nickname}</span>
+        <div className='flex grow flex-col items-start gap-2'>
+          <span className='text-xl font-bold'>{nickname}</span>
           <span className='text-sm'>{introduction}</span>
         </div>
       </div>
