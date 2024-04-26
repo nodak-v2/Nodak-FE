@@ -16,7 +16,7 @@ const RootLayout = ({
   return (
     <html lang='ko'>
       <body>
-        <div className='lex-row flex h-screen w-screen items-center justify-center gap-10 text-white'>
+        <div className='flex h-screen w-screen flex-row items-center justify-center gap-10 text-white'>
           <div className='hidden shrink sm:flex'>
             <Introduction />
           </div>
