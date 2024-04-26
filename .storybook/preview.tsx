@@ -4,7 +4,6 @@ import { initialize, mswLoader } from 'msw-storybook-addon';
 import '../src/app/globals.css';
 
 initialize({ onUnhandledRequest: 'bypass' });
-
 const preview: Preview = {
   parameters: {
     controls: {
