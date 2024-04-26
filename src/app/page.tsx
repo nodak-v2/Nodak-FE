@@ -1,6 +1,6 @@
 'use client';
 
-import Icon from './_components/Icon';
+import Icon from '../components/Icon';
 
 const Home = () => {
   return (

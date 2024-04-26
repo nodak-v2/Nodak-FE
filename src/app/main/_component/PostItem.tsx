@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import Icon from '@/src/app/_components/Icon';
+import Icon from '@/src/components/Icon';
 
 const post = {
   title: '게시글 제목입니다.',
