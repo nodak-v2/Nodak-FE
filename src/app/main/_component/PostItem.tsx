@@ -47,11 +47,11 @@ const PostItem = () => {
           </span>
           <span className='flex gap-2'>
             <span className='flex items-center gap-1'>
-              <Icon id='heart'></Icon>
+              <Icon id='heart' aria-label='좋아요 수' />
               <span>{likedCount}</span>
             </span>
             <span className='flex items-center gap-1'>
-              <Icon id='comment'></Icon>
+              <Icon id='comment' aria-label='댓글 수' />
               <span>{commentedCount}</span>
             </span>
           </span>
