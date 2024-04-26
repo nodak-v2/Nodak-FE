@@ -1,1 +1,8 @@
-export type IconName = 'heart' | 'home' | 'user' | 'comment' | 'chat' | 'add';
+export type IconName =
+  | 'heart'
+  | 'home'
+  | 'user'
+  | 'comment'
+  | 'chat'
+  | 'add'
+  | 'right-arrow';
