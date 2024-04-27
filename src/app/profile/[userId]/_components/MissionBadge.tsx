@@ -1,5 +1,3 @@
-'use client';
-
 import Image from 'next/image';
 
 const MissionBadgeDummy = [
@@ -44,7 +42,7 @@ const MissionBadge = () => {
   return (
     <div className='flex flex-col gap-2 border-b p-4'>
       <div className='flex items-center gap-0.5 text-sm text-[#F0F0F0]'>
-        <span>{'미션 뱃지'}</span>
+        <span>미션 뱃지</span>
         <span>{MissionBadgeDummy.length}</span>
       </div>
       <div className='flex flex-wrap items-center justify-start gap-3'>
