@@ -40,7 +40,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const url = `${{ steps.chromatic.outputs.url }}`;
+            const url = `${{ steps.chromatic.outputs.storybookUrl }}`;
             const message = `🚀 Storybook is deployed! View it here: ${url}`;
             const prNumber = context.payload.pull_request.number;
             github.rest.issues.createComment({
