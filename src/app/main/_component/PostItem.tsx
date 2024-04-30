@@ -26,13 +26,13 @@ const PostItem = () => {
   } = post;
 
   return (
-    <div className='flex w-full justify-start gap-4 bg-[#343A40] p-4 text-white'>
+    <div className='flex w-full justify-start gap-4 bg-dark-accent2 p-4 text-white'>
       <Image src={imageUrl} alt='게시글이미지' width={130} height={130} />
       <div className='flex w-full flex-col gap-4'>
         <div className='flex flex-col gap-0.5'>
           <span>{title}</span>
-          <span className='text-xs text-gray-200'>{`총 ${votedCount}명 투표`}</span>
-          <span className='text-xs text-gray-200'>{createdAt}</span>
+          <span className='text-xs text-gray-accent2'>{`총 ${votedCount}명 투표`}</span>
+          <span className='text-xs text-gray-accent2'>{createdAt}</span>
         </div>
         <div className='flex w-full justify-between'>
           <span className='flex items-center gap-2'>
@@ -43,9 +43,9 @@ const PostItem = () => {
               width={20}
               height={20}
             />
-            <span className='text-sm text-gray-100'>{author}</span>
+            <span className='text-sm text-gray-accent1'>{author}</span>
           </span>
-          <span className='flex gap-2 text-[#F0F0F0]'>
+          <span className='flex gap-2 text-gray-accent1'>
             <span className='flex items-center gap-1'>
               <Icon id='heart' aria-label='좋아요 수' />
               <span>{likedCount}</span>
