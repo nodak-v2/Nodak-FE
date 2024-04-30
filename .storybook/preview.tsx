@@ -1,7 +1,9 @@
 import type { Preview } from '@storybook/react';
+import { initialize, mswLoader } from 'msw-storybook-addon';
 
-import '@/src/style/globals.css';
+import '../src/app/globals.css';
 
+initialize({ onUnhandledRequest: 'bypass' });
 const preview: Preview = {
   parameters: {
     controls: {
@@ -11,6 +13,7 @@ const preview: Preview = {
       },
     },
   },
+  loaders: [mswLoader],
 };
 
 export default preview;
