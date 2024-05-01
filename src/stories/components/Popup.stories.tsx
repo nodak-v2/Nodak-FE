@@ -3,7 +3,7 @@ import { Meta } from '@storybook/react';
 import Popup from '@/src/app/_components/Popup';
 
 const meta: Meta<typeof Popup> = {
-  title: 'components/Chip',
+  title: 'components/Popup',
   tags: ['autodocs'],
   component: Popup,
 };
