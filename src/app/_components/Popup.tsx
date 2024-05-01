@@ -18,14 +18,15 @@ const Popup = () => {
         disableOnInteraction: true,
       }}
       modules={[Pagination, Autoplay]}
-      className='flex max-w-[350px] flex-col bg-[#212529]'
+      className='flex w-full max-w-[400px] flex-col items-center bg-[#212529]'
     >
       {[0, 1, 2, 3, 4].map(idx => (
         <SwiperSlide key={idx}>
           <Image
+            className=''
             src={`/SlideD${idx}.webp`}
             alt={'slide'}
-            width={350}
+            width={400}
             height={220}
             priority
           />
