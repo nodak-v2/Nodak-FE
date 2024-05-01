@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  #layout-Root {
+    --primary-1: #c7b299;
+    --primary-2: #675640;
+    --gray-1: #f0f0f0;
+    --gray-2: #999999;
+    --gray-3: #333333;
+    --dark-1: #343a40;
+    --dark-2: #212529;
+  }
+}
