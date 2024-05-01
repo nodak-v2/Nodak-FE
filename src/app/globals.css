@@ -23,3 +23,7 @@
     --dark-2: #212529;
   }
 }
+
+ul > li:last-child {
+  border-bottom: none;
+}
