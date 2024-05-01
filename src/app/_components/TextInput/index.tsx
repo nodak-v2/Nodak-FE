@@ -17,7 +17,7 @@ const textInputCSS = cva(
       },
       isDisabled: {
         false: '',
-        true: 'bg-gray-accent7 placeholder-gray-accent3 cursor-not-allowed',
+        true: 'bg-gray-accent7 cursor-not-allowed placeholder-gray-accent3',
       },
     },
     defaultVariants: {
