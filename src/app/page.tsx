@@ -43,7 +43,7 @@ const Home = () => {
               <input
                 type='checkbox'
                 checked={isChecked}
-                onChange={() => handleCheckbox()}
+                onChange={handleCheckbox}
               />
               <p className='text-white'>다시 보지 않기</p>
             </div>
