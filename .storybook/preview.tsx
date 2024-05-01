@@ -1,3 +1,5 @@
+import React from 'react';
+
 import type { Preview } from '@storybook/react';
 import { initialize, mswLoader } from 'msw-storybook-addon';
 
@@ -14,6 +16,13 @@ const preview: Preview = {
     },
   },
   loaders: [mswLoader],
+  decorators: [
+    Story => (
+      <div id='layout-Root'>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default preview;
