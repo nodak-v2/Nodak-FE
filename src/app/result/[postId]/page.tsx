@@ -1,16 +1,7 @@
-'use client';
-
-import { useEffect, useState } from 'react';
-
 import { getPostDetail } from '@/src/apis/post';
-import { Post } from '@/src/apis/types';
 
-const Page = () => {
-  const [postDetail, setPostDetail] = useState<Post>();
-
-  useEffect(() => {
-    getPostDetail(0).then(v => setPostDetail(v));
-  }, []);
+const Page = async () => {
+  const postDetail = await getPostDetail(1);
 
   return <div>{JSON.stringify(postDetail)}</div>;
 };
