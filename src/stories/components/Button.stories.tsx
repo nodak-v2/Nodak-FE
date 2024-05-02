@@ -5,6 +5,13 @@ import Button from '@/src/app/_components/Button/Button';
 const meta = {
   title: 'components/Button',
   tags: ['autodocs'],
+  decorators: [
+    Story => (
+      <div className='bg-dark-accent1 p-3'>
+        <Story />
+      </div>
+    ),
+  ],
   component: Button,
 } satisfies Meta<typeof Button>;
 export default meta;
