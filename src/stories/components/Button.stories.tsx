@@ -2,37 +2,40 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import Button from '@/src/app/_components/Button/Button';
 
-export default {
+const meta = {
   title: 'components/Button',
   tags: ['autodocs'],
   component: Button,
 } satisfies Meta<typeof Button>;
+export default meta;
 
-type Story = StoryObj<typeof Button>;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    children: '화이트 모드',
-    isDark: false,
+    children: '기본',
+    baseColor: 'dark',
+    disabled: false,
   },
 };
-
 export const DefaultDisabled: Story = {
   args: {
-    children: '비활성화된 화이트 모드',
-    isDark: false,
+    children: '기본 비활성화',
     disabled: true,
   },
 };
-export const DarkMode: Story = {
+
+export const Primary: Story = {
   args: {
-    children: '다크 모드',
+    children: 'Primary 색',
+    baseColor: 'primary',
   },
 };
 
-export const DarkModeDisabled: Story = {
+export const PrimaryDisabled: Story = {
   args: {
-    children: '비활성화된 다크 모드',
+    children: 'Primary 색 비활성화',
+    baseColor: 'primary',
     disabled: true,
   },
 };
