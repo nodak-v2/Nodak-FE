@@ -34,7 +34,6 @@ export default Msw;
 // msw.stories.tsx
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { handlers } from '@/src/mocks/handlers';
 import { PageLayoutDecorator } from '@/src/stories/decorator';
 
 import Msw from './msw';
@@ -47,13 +46,7 @@ export default {
 
 type Story = StoryObj<typeof Msw>;
 
-export const Default: Story = {
-  parameters: {
-    msw: {
-      handlers, // handers 설정
-    },
-  },
-};
+export const Default: Story = {};
 ```
 
 ## handlers 는 따로 정의 해주셔야합니다.
@@ -89,6 +82,13 @@ const getPostList = http.get(`posts`, () => {
 });
 
 export const handlers = [getPostList];
+```
+
+```ts
+// src/mocks/handlers/post.ts
+import { handlers as postHandlers } from './post';
+
+export const handlers = [...postHandlers]; // 특정 handler 파일의 handler 들 추가
 ```
 
 ## 결과
