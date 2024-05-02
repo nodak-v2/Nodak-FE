@@ -6,4 +6,5 @@ export type IconName =
   | 'chat'
   | 'add'
   | 'right-arrow'
-  | 'camera';
+  | 'camera'
+  | 'x';
