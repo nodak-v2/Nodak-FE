@@ -24,6 +24,10 @@
   }
 }
 
-ul > li:last-child {
+ul > button:last-child {
   border-bottom: none;
+}
+
+#drawer-content::after {
+  content: none;
 }

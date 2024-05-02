@@ -7,6 +7,8 @@ import {
   DrawerTrigger,
 } from '@/src/components/ui/Drawer';
 
+import DrawerButton from './DrawerButton';
+
 interface User {
   id: number;
   name: string;
@@ -33,11 +35,26 @@ const UserItem = ({ user }: UserItemProps) => {
         />
         <span className='text-gray-accent1'>{`${name}`}</span>
       </DrawerTrigger>
-      <DrawerContent className='absolute'>
-        <div className='p-4'>
-          <span className='text-lg font-bold text-white'>{name}</span>
+      <DrawerContent
+        id='drawer-content'
+        className='absolute bottom-0 border-none bg-dark-accent1 text-gray-accent1'
+      >
+        <div className='flex flex-col gap-8 p-4'>
+          <Image
+            src={userImage}
+            alt='유저 아바타'
+            width={80}
+            height={80}
+            className='object-fit rounded-full'
+          />
+          <div className='flex flex-col gap-4 rounded-md bg-dark-accent2 p-4 pt-2'>
+            <div className='text-lg font-bold text-gray-accent1'>{name}</div>
+            <DrawerButton isMe={true} />
+          </div>
         </div>
-        <DrawerClose className='text-gray-accent1'>닫기</DrawerClose>
+        <DrawerClose className='rounded-b-md bg-dark-accent2 py-2 text-gray-accent1'>
+          닫기
+        </DrawerClose>
       </DrawerContent>
     </Drawer>
   );
