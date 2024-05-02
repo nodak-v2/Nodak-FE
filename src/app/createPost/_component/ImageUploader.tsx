@@ -39,7 +39,7 @@ const ImageUploader = ({ imageSrcUrl, onChange }: ImageUploadProps) => {
               onClick={handleDeleteImage}
               className='border-gray-accent5 flex h-[35px] w-[35px] cursor-pointer items-center justify-center rounded-full border bg-white text-gray-accent2'
             >
-              <Icon id='x' />
+              <Icon id='x' aria-label='업로드한 이미지 삭제하기' />
             </button>
           ) : (
             <ImageUploadButton
