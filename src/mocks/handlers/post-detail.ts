@@ -1,8 +1,8 @@
 import { HttpResponse, http } from 'msw';
 
-import { Post } from '@/src/apis/types';
+import { PostDetail } from '@/src/apis/types';
 
-const posts = Array.from<unknown, Post>({ length: 10 }, () => ({
+const postList = Array.from<unknown, PostDetail>({ length: 10 }, () => ({
   title: '시연영상은 어떤가요?',
   author: '데브코스시연',
   profileImageUrl: 'http://asd.asd',
@@ -20,21 +20,17 @@ const posts = Array.from<unknown, Post>({ length: 10 }, () => ({
   checkStar: true,
 }));
 
-const getPostList = http.get('posts', () => {
-  return HttpResponse.json<Post[]>(posts);
-});
-
 const getPostDetail = http.get('posts/:id', ({ params }) => {
   const { id } = params;
   const index = +id;
-  const isInCorrectId = index < 0 || posts.length <= index;
+  const isInCorrectId = index < 0 || postList.length <= index;
 
   if (isInCorrectId)
     return new HttpResponse('Not found', {
       status: 404,
     });
 
-  return HttpResponse.json<Post>(posts[index]);
+  return HttpResponse.json<PostDetail>(postList[index]);
 });
 
-export const handlers = [getPostList, getPostDetail];
+export const handlers = [getPostDetail];

@@ -1,4 +1,4 @@
-export interface Vote {
+interface Vote {
   voteId: number;
   voteTitle: string;
   hasVoted: boolean;
@@ -6,7 +6,7 @@ export interface Vote {
   options: string[];
 }
 
-export interface Post {
+export interface PostDetail {
   title: string;
   author: string;
   profileImageUrl: string;
@@ -16,4 +16,42 @@ export interface Post {
   voteInfo: Vote;
   starCount: number;
   checkStar: boolean;
+}
+
+interface Sort {
+  sorted: boolean;
+  empty: boolean;
+  unsorted: boolean;
+}
+interface Pageable {
+  sort: Sort;
+  offset: number;
+  pageNumber: number;
+  pageSize: number;
+  unpaged: boolean;
+  paged: boolean;
+}
+interface PostListInfo {
+  postId: number;
+  title: string;
+  totalCount: number;
+  userId: number;
+  author: string;
+  profileImageUrl: string;
+  imageUrl: string;
+  createdAt: string;
+}
+
+export interface PostList {
+  posts: PostListInfo[];
+  pageable: Pageable;
+  last: boolean;
+  totalPages: number;
+  totalElements: number;
+  first: boolean;
+  size: number;
+  number: number;
+  sort: Sort;
+  numberOfElements: number;
+  empty: boolean;
 }
