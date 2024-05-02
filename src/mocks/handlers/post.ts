@@ -1,27 +1,40 @@
 import { HttpResponse, http } from 'msw';
 
-interface Post {
-  postId: string;
-  nickname: string;
-  title: string;
-  createAt: string;
-  viewCount: number;
-  likeCount: number;
-  hashtags: string[];
-}
+import { Post } from '@/src/apis/types';
 
-const getPostList = http.get(`posts`, () => {
-  return HttpResponse.json<Post[]>([
-    {
-      postId: '1',
-      nickname: 'testAccount',
-      title: '제목일세',
-      createAt: '2024-03-01T18:55:48.884Z',
-      viewCount: 30,
-      likeCount: 1,
-      hashtags: ['#해시태그'],
-    },
-  ]);
+const posts = Array.from<unknown, Post>({ length: 10 }, () => ({
+  title: '시연영상은 어떤가요?',
+  author: '데브코스시연',
+  profileImageUrl: 'http://asd.asd',
+  date: '2024-01-17',
+  content: '게시글 시연영상',
+  imageUrl: 'http://abc.abc',
+  voteInfo: {
+    voteId: 123,
+    voteTitle: '시연영상 만족도',
+    hasVoted: true,
+    choice: 1,
+    options: ['만족', '불만족'],
+  },
+  starCount: 2,
+  checkStar: true,
+}));
+
+const getPostList = http.get('posts', () => {
+  return HttpResponse.json<Post[]>(posts);
 });
 
-export const handlers = [getPostList];
+const getPostDetail = http.get('posts/:id', ({ params }) => {
+  const { id } = params;
+  const index = +id;
+  const isInCorrectId = index < 0 || posts.length <= index;
+
+  if (isInCorrectId)
+    return new HttpResponse('Not found', {
+      status: 404,
+    });
+
+  return HttpResponse.json<Post>(posts[index]);
+});
+
+export const handlers = [getPostList, getPostDetail];
