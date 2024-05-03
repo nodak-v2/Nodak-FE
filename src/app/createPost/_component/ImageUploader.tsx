@@ -7,17 +7,15 @@ import Image from 'next/image';
 import ImageUploadButton from '@/src/app/_components/ImageUploadButton';
 import Icon from '@/src/components/Icon';
 
-interface ImageUploadProps {
+interface ImageUploaderProps {
   imageSrcUrl?: string;
   onChange?: (file?: File) => void;
 }
 
-const ImageUploader = ({ imageSrcUrl, onChange }: ImageUploadProps) => {
+const ImageUploader = ({ imageSrcUrl, onChange }: ImageUploaderProps) => {
   const [previewImageUrl, setPreviewImageUrl] = useState(imageSrcUrl || null);
 
-  const handleDeleteImage = () => {
-    setPreviewImageUrl(null);
-  };
+  const handleDeleteImage = () => setPreviewImageUrl(null);
 
   return (
     <div className='bg-gray-accent7 mb-3 flex w-full justify-center p-10'>
