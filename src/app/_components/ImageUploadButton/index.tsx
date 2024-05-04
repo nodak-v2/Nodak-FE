@@ -5,7 +5,7 @@ import { IconName } from '@/src/components/Icon/type';
 
 interface Props {
   setImageUrl: (imageUrl: string) => void;
-  onChange?: (file: File) => void;
+  onChange: (file: File) => void;
   iconId?: IconName;
 }
 
@@ -20,9 +20,8 @@ const ImageUploadButton = ({
     const file = inputElement.current?.files?.[0];
     if (!file) return;
 
-    if (onChange) {
-      onChange(file);
-    }
+    onChange(file);
+
     const imageUrl = URL.createObjectURL(file);
     setImageUrl(imageUrl);
   };

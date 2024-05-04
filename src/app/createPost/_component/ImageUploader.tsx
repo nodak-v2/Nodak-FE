@@ -9,7 +9,7 @@ import Icon from '@/src/components/Icon';
 
 interface ImageUploaderProps {
   imageSrcUrl?: string;
-  onChange?: (file?: File) => void;
+  onChange: (file?: File) => void;
 }
 
 const ImageUploader = ({ imageSrcUrl, onChange }: ImageUploaderProps) => {
