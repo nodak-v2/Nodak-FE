@@ -1,5 +1,5 @@
 import GNB from '../_components/GNB';
-import UserList from './_components/UserItem';
+import UserList from './_components/UserList';
 
 const UserListPageDummyData = [
   {
@@ -47,8 +47,8 @@ const UserListPageDummyData = [
 ];
 
 const UserListPage = () => {
-  const isOnlineUser = UserListPageDummyData.filter(user => user.isOnline);
-  const isOfflineUser = UserListPageDummyData.filter(user => !user.isOnline);
+  const onLineUsers = UserListPageDummyData.filter(user => user.isOnline);
+  const offLineUsers = UserListPageDummyData.filter(user => !user.isOnline);
 
   return (
     <>
@@ -56,13 +56,13 @@ const UserListPage = () => {
         TobBar자리
       </div>
       <div className='flex grow flex-col gap-4 p-4'>
-        <div className='flex flex-col gap-2'>
-          <span className='text-gray-accent1'>{`온라인-${isOnlineUser.length}`}</span>
-          <UserList users={isOnlineUser} />
+        <div className='flex flex-col gap-2 text-gray-accent1'>
+          <span>{`온라인-${onLineUsers.length}`}</span>
+          <UserList users={onLineUsers} />
         </div>
-        <div className='flex flex-col gap-2'>
-          <span className='text-gray-accent2'>{`오프라인-${isOfflineUser.length}`}</span>
-          <UserList users={isOfflineUser} />
+        <div className='flex flex-col gap-2 text-gray-accent2'>
+          <span>{`오프라인-${offLineUsers.length}`}</span>
+          <UserList users={offLineUsers} />
         </div>
       </div>
       <GNB />
