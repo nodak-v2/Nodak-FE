@@ -17,7 +17,7 @@ const Popup = ({
   const [isChecked, setIsChecked] = useState(false);
 
   useEffect(() => {
-    setSee(localStorage.getItem('see'));
+    setSee(localStorage.getItem('seenPopup'));
   }, [setSee]);
 
   const handleSeeAgain = () => {
