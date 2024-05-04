@@ -1,7 +1,9 @@
+'use client';
+
 import ImageUploader from './_component/ImageUploader';
 
 const CreatePostPage = () => {
-  return <ImageUploader />;
+  return <ImageUploader onChange={() => {}} />;
 };
 
 export default CreatePostPage;

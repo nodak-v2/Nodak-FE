@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import Icon from '@/src/components/Icon';
 import { IconName } from '@/src/components/Icon/type';
 
-interface Props {
+interface ImageUploadButtonProps {
   setImageUrl: (imageUrl: string) => void;
   onChange: (file: File) => void;
   iconId?: IconName;
@@ -13,7 +13,7 @@ const ImageUploadButton = ({
   setImageUrl,
   onChange,
   iconId = 'camera',
-}: Props) => {
+}: ImageUploadButtonProps) => {
   const inputElement = useRef<HTMLInputElement>(null);
 
   const handleImageSelect = () => {
