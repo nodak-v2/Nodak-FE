@@ -1,11 +1,11 @@
 import Image from 'next/image';
 
-interface Props {
+interface ProfileBlockProps {
   name: string;
   imageUrl: string;
 }
 
-const ProfileBlock = ({ name, imageUrl }: Props) => {
+const ProfileBlock = ({ name, imageUrl }: ProfileBlockProps) => {
   return (
     <div className='flex w-full items-center gap-4 p-4'>
       <Image
@@ -15,7 +15,7 @@ const ProfileBlock = ({ name, imageUrl }: Props) => {
         height={40}
         className='rounded-full object-cover'
       />
-      <span className='text-sm font-bold'>{name}</span>
+      <span className='text-sm font-bold text-gray-accent1'>{name}</span>
     </div>
   );
 };
