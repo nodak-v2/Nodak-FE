@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import VoteBlock from '@/src/app/result/[postId]/_components/VoteBlock';
+import VoteForm from '@/src/app/result/[postId]/_components/VoteForm';
 import { PageLayoutDecorator } from '@/src/stories/decorator';
 
 const meta = {
-  title: 'Components/VoteBlock',
+  title: 'Components/Vote/Form',
   tags: ['autodocs'],
-  component: VoteBlock,
+  component: VoteForm,
   decorators: PageLayoutDecorator,
-} satisfies Meta<typeof VoteBlock>;
+} satisfies Meta<typeof VoteForm>;
 
 export default meta;
 
