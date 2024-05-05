@@ -12,13 +12,13 @@ const VoteBlockForm = ({ title, options }: Props) => {
   };
 
   return (
-    <form className='flex flex-col gap-3 rounded-md bg-dark-accent2 p-4 text-white'>
-      <span className='pb-4 text-xl font-bold'>{title}</span>
-      <ul>
+    <form className='flex flex-col rounded-md bg-dark-accent2 p-4 text-gray-accent1'>
+      <span className='pb-8 text-xl font-bold'>{title}</span>
+      <ul className='flex flex-col gap-4'>
         {options.map((content, index) => (
           <li
             key={`${index}-${content}`}
-            className='mb-4 cursor-pointer rounded-md border-2 border-white bg-dark-accent1 p-4 '
+            className='cursor-pointer rounded-md border-2 border-gray-accent1 bg-dark-accent1 p-4 '
             onClick={() => handleClick(index)}
           >
             {content}
