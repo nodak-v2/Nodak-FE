@@ -1,11 +1,11 @@
 'use client';
 
-interface Props {
+interface VoteBlockFormProps {
   title: string;
   options: string[];
 }
 
-const VoteBlockForm = ({ title, options }: Props) => {
+const VoteBlockForm = ({ title, options }: VoteBlockFormProps) => {
   const handleClick = (index: number) => {
     // TODO: 투표 post 요청
     console.log(index);

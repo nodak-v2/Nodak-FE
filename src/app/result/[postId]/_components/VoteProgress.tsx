@@ -4,13 +4,13 @@ interface Option {
   count: number;
 }
 
-interface Props {
+interface VoteProgressProps {
   title: string;
   options: Option[];
   totalNumber: number;
 }
 
-const VoteProgress = ({ title, options, totalNumber }: Props) => {
+const VoteProgress = ({ title, options, totalNumber }: VoteProgressProps) => {
   const percentageOf = (count: number) => {
     return (count / totalNumber) * 100;
   };
