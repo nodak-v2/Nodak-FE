@@ -5,11 +5,14 @@ interface ProfileBlockProps {
   imageUrl?: string;
 }
 
-const ProfileBlock = ({ name, imageUrl }: ProfileBlockProps) => {
+const ProfileBlock = ({
+  name,
+  imageUrl = 'https://via.placeholder.com/40',
+}: ProfileBlockProps) => {
   return (
     <div className='flex w-full items-center gap-4 p-4'>
       <Image
-        src={imageUrl || 'https://via.placeholder.com/40'}
+        src={imageUrl}
         alt={`${name}님의 프로필 이미지`}
         width={40}
         height={40}
