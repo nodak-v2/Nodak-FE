@@ -7,7 +7,7 @@ interface Props {
 
 const ProfileBlock = ({ name, imageUrl }: Props) => {
   return (
-    <div className='flex w-full items-center justify-start gap-4 p-4'>
+    <div className='flex w-full items-center gap-4 p-4'>
       <Image
         src={imageUrl}
         alt={`${name}님의 프로필 이미지`}
@@ -15,7 +15,7 @@ const ProfileBlock = ({ name, imageUrl }: Props) => {
         height={40}
         className='rounded-full object-cover'
       />
-      <p className=' self-center text-sm font-bold'>{name}</p>
+      <span className='text-sm font-bold'>{name}</span>
     </div>
   );
 };
