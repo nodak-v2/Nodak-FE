@@ -5,9 +5,12 @@ interface VoteBlockFormProps {
   options: string[];
 }
 
-const VoteBlockForm = ({ title, options }: VoteBlockFormProps) => {
+const VoteForm = ({ title, options }: VoteBlockFormProps) => {
   const handleClick = (index: number) => {
-    // TODO: 투표 post 요청
+    /**
+     * TODO: 투표 post 요청
+     * 비회원일시 signin 리다이렉트
+     */
     console.log(index);
   };
 
@@ -29,4 +32,4 @@ const VoteBlockForm = ({ title, options }: VoteBlockFormProps) => {
   );
 };
 
-export default VoteBlockForm;
+export default VoteForm;

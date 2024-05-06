@@ -55,3 +55,16 @@ export interface PostList {
   numberOfElements: number;
   empty: boolean;
 }
+
+interface Option {
+  seq: number;
+  content: string;
+  count: number;
+}
+
+export interface VoteResult {
+  voteId: number;
+  title: string;
+  totalNumber: number;
+  options: Option[];
+}
