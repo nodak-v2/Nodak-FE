@@ -2,18 +2,22 @@ import Image from 'next/image';
 
 import Icon from '@/src/components/Icon';
 
-const post = {
-  title: '게시글 제목입니다.',
-  votedCount: 10,
-  likedCount: 10,
-  commentedCount: 10,
-  author: 'homin',
-  profileImageUrl: 'https://via.placeholder.com/150',
-  imageUrl: 'https://via.placeholder.com/150',
-  createdAt: '2021-10-10',
+type Post = {
+  title: string;
+  votedCount: number;
+  likedCount: number;
+  commentedCount: number;
+  author: string;
+  profileImageUrl: string;
+  imageUrl: string;
+  createdAt: string;
 };
 
-const PostItem = () => {
+interface PostItemProps {
+  post: Post;
+}
+
+const PostItem = ({ post }: PostItemProps) => {
   const {
     title,
     votedCount,
