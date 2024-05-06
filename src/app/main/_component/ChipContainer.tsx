@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import Link from 'next/link';
 
 import Chip from '@/src/app/main/_component/Chip';
@@ -11,9 +13,17 @@ const channelData = [
   { name: '공부', path: 'study' },
 ];
 
-const currentPath = 'all';
+interface ChipContainerProps {
+  currentChannel: string;
+}
 
-const ChipContainer = () => {
+const ChipContainer = ({ currentChannel }: ChipContainerProps) => {
+  const [currentPath, setCurrentPath] = useState(currentChannel || 'all');
+
+  const handleChipClick = (path: string) => () => {
+    setCurrentPath(path);
+  };
+
   return (
     <div className='overflow-x-auto'>
       <ul className='flex flex-nowrap gap-2 p-2'>
@@ -22,7 +32,10 @@ const ChipContainer = () => {
 
           return (
             <li key={`${index}-${name}`}>
-              <Link href={{ pathname: '/', query: { channel: path } }}>
+              <Link
+                href={{ pathname: '/main', query: { channel: path } }}
+                onClick={handleChipClick(path)}
+              >
                 <Chip variant={variant}>{name}</Chip>
               </Link>
             </li>

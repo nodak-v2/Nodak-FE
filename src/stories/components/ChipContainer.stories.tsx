@@ -11,5 +11,5 @@ const meta: Meta<typeof ChipContainer> = {
 export default meta;
 
 export const DefaultTemplate = () => {
-  return <ChipContainer />;
+  return <ChipContainer currentChannel='all' />;
 };
