@@ -1,16 +1,30 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import Page from '@/src/app/result/[postId]/page';
+import ResultPage from '@/src/app/result/[postId]/page';
 import { PageLayoutDecorator } from '@/src/stories/decorator';
 
 const meta = {
   title: 'pages/result',
   tags: ['autodocs'],
   decorators: [PageLayoutDecorator],
-  component: Page,
-} satisfies Meta<typeof Page>;
+  parameters: {
+    nextjs: {
+      appDirectory: true,
+    },
+  },
+  component: ResultPage,
+} satisfies Meta<typeof ResultPage>;
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: { params: { postId: '1' } },
+  parameters: {
+    nextjs: {
+      navigation: {
+        pathname: '/result/1',
+      },
+    },
+  },
+};
