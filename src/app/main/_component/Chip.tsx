@@ -7,8 +7,8 @@ const chipCSS = cva(
   {
     variants: {
       variant: {
-        default: 'bg-gray-100 text-black',
-        selected: 'bg-gray-700 text-white',
+        default: 'bg-zinc-700 text-white',
+        selected: 'bg-zinc-200 text-black',
       },
     },
     defaultVariants: {
