@@ -1,5 +1,3 @@
-'use client';
-
 import Image from 'next/image';
 
 interface CommentInfoProps {
@@ -31,7 +29,7 @@ const CommentInfo = ({
         </div>
         <div className='flex-grow'>
           <div className='flex flex-row items-start'>
-            <span className='ltext-xl flex-grow font-bold'>{nickname}</span>
+            <span className='flex-grow text-xl font-bold'>{nickname}</span>
             <span className='text-sm text-gray-accent2'>
               {new Date(createdAt.getTime() + GMTTime)
                 .toISOString()
