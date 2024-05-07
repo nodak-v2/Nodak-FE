@@ -3,7 +3,6 @@ import type { Metadata } from 'next';
 import { MSWComponent } from '@/src/mocks/MSWComponent';
 
 import Introduction from './_components/Introduction';
-import Selector from './_components/Selector';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -28,22 +27,6 @@ const RootLayout = ({
               className='relative flex h-full max-h-[950px] min-h-[600px] w-full min-w-[350px] max-w-[450px] shrink-0 flex-col shadow-xl'
             >
               {children}
-              <Selector
-                items={[
-                  { text: 'Item 1' },
-                  { text: 'Item 2' },
-                  { text: 'Item 3' },
-                ]}
-                placeholder='테스트 1'
-              />
-              <Selector
-                items={[
-                  { text: 'Test 1' },
-                  { text: 'Test 2' },
-                  { text: 'Test 3' },
-                ]}
-                placeholder='테스트 2'
-              />
             </div>
           </div>
         </MSWComponent>
