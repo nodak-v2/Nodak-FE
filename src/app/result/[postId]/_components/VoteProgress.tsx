@@ -11,9 +11,7 @@ interface VoteProgressProps {
 }
 
 const VoteProgress = ({ title, options, totalNumber }: VoteProgressProps) => {
-  const percentageOf = (count: number) => {
-    return (count / totalNumber) * 100;
-  };
+  const percentageOf = (count: number) => (count / totalNumber) * 100;
 
   return (
     <div className='flex flex-col rounded-md bg-dark-accent2 p-4 text-gray-accent1'>
