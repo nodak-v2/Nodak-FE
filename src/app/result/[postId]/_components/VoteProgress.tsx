@@ -20,7 +20,7 @@ const VoteProgress = ({ title, options, totalNumber }: VoteProgressProps) => {
       <span className='pb-8 text-xl font-bold'>{title}</span>
       <ul className='flex flex-col gap-4'>
         {options.map(({ seq, content, count }) => (
-          <li key={seq} className='relative'>
+          <li key={`${seq}-${content}`} className='relative'>
             <div
               className='absolute bottom-0 top-0 block bg-dark-accent1'
               style={{ width: `${percentageOf(count)}%` }}
