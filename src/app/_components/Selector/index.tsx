@@ -26,7 +26,7 @@ const Selector = ({ items, placeholder }: SelectorProps) => {
 
   return (
     <div
-      className='relative'
+      className='relative inline-block'
       onClick={toggleDropdown}
       ref={dropdownRef as RefObject<HTMLDivElement>}
     >
