@@ -1,14 +1,19 @@
 'use client';
 
+import { useState } from 'react';
+
+import { cn } from '@/src/utils/cn';
+
 interface VoteBlockFormProps {
   title: string;
   options: string[];
 }
 
 const VoteBlockForm = ({ title, options }: VoteBlockFormProps) => {
+  const [selectedIndex, setSelectedIndex] = useState<number>();
+
   const handleClick = (index: number) => {
-    // TODO: 투표 post 요청
-    console.log(index);
+    setSelectedIndex(index);
   };
 
   return (
@@ -18,7 +23,12 @@ const VoteBlockForm = ({ title, options }: VoteBlockFormProps) => {
         {options.map((content, index) => (
           <li
             key={`${index}-${content}`}
-            className='cursor-pointer rounded-md border-2 border-gray-accent1 bg-dark-accent1 p-4 '
+            className={cn(
+              'cursor-pointer rounded-md border-2 border-gray-accent1 bg-dark-accent1 p-4',
+              {
+                'bg-dark-accent2': selectedIndex === index,
+              },
+            )}
             onClick={() => handleClick(index)}
           >
             {content}
