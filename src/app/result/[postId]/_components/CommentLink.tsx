@@ -3,12 +3,12 @@ import Link from 'next/link';
 import Icon from '@/src/components/Icon';
 
 interface CommentLinkProps {
-  href: string;
+  postId: string;
 }
 
-const CommentLink = ({ href }: CommentLinkProps) => {
+const CommentLink = ({ postId }: CommentLinkProps) => {
   return (
-    <Link href={href}>
+    <Link href={`comments/${postId}`}>
       <Icon id='comment' size={24} />
     </Link>
   );

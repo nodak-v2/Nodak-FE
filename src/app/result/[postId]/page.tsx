@@ -33,7 +33,7 @@ const ResultPage = async ({ params: { postId } }: ResultPageProps) => {
         <p className='pl-1 text-xs text-gray-accent2'>{date}</p>
       </div>
       <p className='break-words p-4'>{content}</p>
-      {isAuthor && <EditLinks rewriteHref='rewrite' deleteHref='delete' />}
+      {isAuthor && <EditLinks postId={postId} />}
       {hasVoted ? (
         <VoteProgress
           title={voteTitle}
@@ -49,7 +49,7 @@ const ResultPage = async ({ params: { postId } }: ResultPageProps) => {
           <span className='pr-2'>{starCount}</span>
         </div>
         <div className='flex gap-0.5'>
-          <CommentLink href='posts' />
+          <CommentLink postId={postId} />
           <span>{totalNumber}</span>
         </div>
       </div>

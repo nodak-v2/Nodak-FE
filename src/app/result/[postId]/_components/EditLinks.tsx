@@ -1,15 +1,14 @@
 import Link from 'next/link';
 
 interface EditLinksProps {
-  rewriteHref: string;
-  deleteHref: string;
+  postId: string;
 }
 
-const EditLinks = ({ rewriteHref, deleteHref }: EditLinksProps) => {
+const EditLinks = ({ postId }: EditLinksProps) => {
   return (
     <div className='flex justify-end gap-2 p-2'>
-      <Link href={rewriteHref}>수정</Link>
-      <Link href={deleteHref}>삭제</Link>
+      <Link href={`rewrite/${postId}`}>수정</Link>
+      <Link href={`delete/${postId}`}>삭제</Link>
     </div>
   );
 };
