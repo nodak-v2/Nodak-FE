@@ -7,4 +7,4 @@ export type IconName =
   | 'add'
   | 'right-arrow'
   | 'camera'
-  | 'x';
+  | 'dash-circle-fill';
