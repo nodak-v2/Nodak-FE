@@ -28,9 +28,9 @@ const ResultPage = async ({ params: { postId } }: ResultPageProps) => {
   return (
     <div className='flex h-full grow flex-col gap-2 overscroll-y-auto'>
       <ProfileBlock name={author} imageUrl={profileImageUrl} />
-      <div className='p-4'>
-        <p className='text-xl font-bold'>{title}</p>
-        <p className='pl-1 text-xs text-gray-accent2'>{date}</p>
+      <div className='flex flex-col p-4'>
+        <span className='text-xl font-bold'>{title}</span>
+        <span className='pl-1 text-xs text-gray-accent2'>{date}</span>
       </div>
       <p className='break-words p-4'>{content}</p>
       {isAuthor && <EditLinks postId={postId} />}
