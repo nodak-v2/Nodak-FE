@@ -18,9 +18,6 @@ const ProfileBlock = ({
         width={40}
         height={40}
         className='rounded-full object-cover'
-        onError={e => {
-          throw new Error(`image load error: ${e.currentTarget.id}`);
-        }}
       />
       <span className='text-sm font-bold text-gray-accent1'>{name}</span>
     </div>
