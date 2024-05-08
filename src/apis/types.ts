@@ -9,6 +9,7 @@ interface Vote {
 export interface PostDetail {
   title: string;
   author: string;
+  isAuthor: boolean;
   profileImageUrl: string;
   date: string;
   content: string;

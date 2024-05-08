@@ -5,6 +5,7 @@ import { PostDetail } from '@/src/apis/types';
 const postList = Array.from<unknown, PostDetail>({ length: 10 }, () => ({
   title: '시연영상은 어떤가요?',
   author: '데브코스시연',
+  isAuthor: false,
   profileImageUrl: 'http://via.placeholder.com/40',
   date: '2024-01-17',
   content: '게시글 시연영상',
@@ -12,13 +13,30 @@ const postList = Array.from<unknown, PostDetail>({ length: 10 }, () => ({
   voteInfo: {
     voteId: 123,
     voteTitle: '시연영상 만족도',
-    hasVoted: true,
+    hasVoted: false,
     choice: 1,
     options: ['만족', '불만족'],
   },
   starCount: 2,
   checkStar: true,
 }));
+
+export const VOTED_AUTHOR = 0;
+export const VOTED_NOT_AUTHOR = 1;
+export const NOT_VOTED_AUTHOR = 2;
+export const NOT_VOTED_NOT_AUTHOR = 3;
+
+postList[VOTED_AUTHOR].voteInfo.hasVoted = true;
+postList[VOTED_AUTHOR].isAuthor = true;
+
+postList[VOTED_NOT_AUTHOR].voteInfo.hasVoted = true;
+postList[VOTED_NOT_AUTHOR].isAuthor = false;
+
+postList[NOT_VOTED_AUTHOR].voteInfo.hasVoted = false;
+postList[NOT_VOTED_AUTHOR].isAuthor = true;
+
+postList[NOT_VOTED_NOT_AUTHOR].voteInfo.hasVoted = false;
+postList[NOT_VOTED_NOT_AUTHOR].isAuthor = false;
 
 const getPostDetail = http.get(
   `${process.env.NEXT_PUBLIC_URL}/posts/:id`,

@@ -7,8 +7,6 @@ import ProfileBlock from '@/src/app/result/[postId]/_components/ProfileBlock';
 import VoteForm from '@/src/app/result/[postId]/_components/VoteForm';
 import VoteProgress from '@/src/app/result/[postId]/_components/VoteProgress';
 
-const isSignin = false;
-
 interface ResultPageProps {
   params: { postId: string };
 }
@@ -36,7 +34,7 @@ const ResultPage = async ({ params: { postId } }: ResultPageProps) => {
       </div>
       <p className='break-words p-4'>{content}</p>
       {isAuthor && <EditLinks rewriteHref='rewrite' deleteHref='delete' />}
-      {isSignin && hasVoted ? (
+      {hasVoted ? (
         <VoteProgress
           title={voteTitle}
           options={resultOptions}
