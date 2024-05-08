@@ -1,14 +1,11 @@
-import { Children, PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 
 import Icon from '@/src/components/Icon';
 
 const Container = ({ children }: PropsWithChildren) => {
-  const [leftChildren, rightChildren] = Children.toArray(children);
-
   return (
     <div className='flex justify-between border-b border-gray-accent2 py-2 text-gray-accent1'>
-      {leftChildren}
-      {rightChildren}
+      {children}
     </div>
   );
 };
