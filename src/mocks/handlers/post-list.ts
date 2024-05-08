@@ -63,7 +63,7 @@ const postList = {
   empty: false, // 현재 페이지가 비어있는 지 여부
 };
 
-const getPostList = http.get('posts', () => {
+const getPostList = http.get(`${process.env.NEXT_PUBLIC_URL}/posts`, () => {
   return HttpResponse.json<PostList>(postList);
 });
 export const handlers = [getPostList];
