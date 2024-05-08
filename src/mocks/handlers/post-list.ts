@@ -1,6 +1,6 @@
 import { HttpResponse, http } from 'msw';
 
-import { PostList } from '@/src/apis/types';
+import { PostList } from '@/src/apis/post';
 
 const postList = {
   posts: [

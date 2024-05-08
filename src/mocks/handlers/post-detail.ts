@@ -1,6 +1,6 @@
 import { HttpResponse, http } from 'msw';
 
-import { PostDetail } from '@/src/apis/types';
+import { PostDetail } from '@/src/apis/post';
 
 const postList = Array.from<unknown, PostDetail>({ length: 10 }, () => ({
   title: '시연영상은 어떤가요?',

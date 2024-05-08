@@ -1,6 +1,6 @@
 import { HttpResponse, http } from 'msw';
 
-import { VoteResult } from '@/src/apis/types';
+import { VoteResult } from '@/src/apis/vote';
 
 const voteResults = [
   {
