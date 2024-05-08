@@ -2,31 +2,26 @@
 
 import Icon from '@/src/components/Icon';
 
-interface FavoriteButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
+interface LikeIconProps {
   postId: string;
   isChecked: boolean;
 }
 
-const FavoriteButton = ({
-  postId,
-  isChecked,
-  ...props
-}: FavoriteButtonProps) => {
+const LikeIcon = ({ postId, isChecked }: LikeIconProps) => {
   const handleClick = () => {
-    //Todo: 찜 요청
+    //Todo: 좋아요 요청
     console.log(postId);
   };
 
   return (
-    <button onClick={handleClick} {...props}>
+    <button onClick={handleClick}>
       <Icon
         id={isChecked ? 'heart-fill' : 'heart'}
         size={24}
         className='text-pink-500'
-        style={{ fill: 'pink' }}
       />
     </button>
   );
 };
 
-export default FavoriteButton;
+export default LikeIcon;
