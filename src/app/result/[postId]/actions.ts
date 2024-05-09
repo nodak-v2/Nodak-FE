@@ -2,17 +2,17 @@
 
 import { revalidateTag } from 'next/cache';
 
-import { createFavorite, deleteFavorite } from '@/src/apis/post';
+import { createLike, deleteLike } from '@/src/apis/post';
 
-export const favoriteAction = (formData: FormData) => {
+export const LikeAction = (formData: FormData) => {
   const postId = formData.get('postId') as string;
   const isChecked = formData.get('isChecked') === 'true';
   revalidateTag('post');
 
   if (isChecked) {
-    deleteFavorite(postId);
+    deleteLike(postId);
     return;
   }
 
-  createFavorite(postId);
+  createLike(postId);
 };

@@ -52,7 +52,7 @@ const getPostDetail = http.get(`${BASE_URL}/posts/:postId`, ({ params }) => {
   return HttpResponse.json<PostDetail>(postList[+postId]);
 });
 
-const createStar = http.post(
+const createLike = http.post(
   `${BASE_URL}/posts/:postId/stars`,
   ({ params }) => {
     const { postId } = params;
@@ -71,7 +71,7 @@ const createStar = http.post(
   },
 );
 
-const deleteStar = http.delete(
+const deleteLike = http.delete(
   `${BASE_URL}/posts/:postId/stars`,
   ({ params }) => {
     const { postId } = params;
@@ -90,4 +90,4 @@ const deleteStar = http.delete(
   },
 );
 
-export const handlers = [getPostDetail, createStar, deleteStar];
+export const handlers = [getPostDetail, createLike, deleteLike];

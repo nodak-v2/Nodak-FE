@@ -1,6 +1,6 @@
 'use client';
 
-import { favoriteAction } from '@/src/app/result/[postId]/actions';
+import { LikeAction } from '@/src/app/result/[postId]/actions';
 import Icon from '@/src/components/Icon';
 
 interface LikeIconProps {
@@ -10,7 +10,7 @@ interface LikeIconProps {
 
 const LikeIcon = ({ postId, isChecked }: LikeIconProps) => {
   return (
-    <form action={favoriteAction}>
+    <form action={LikeAction}>
       <input type='hidden' name='postId' value={postId} />
       <input
         type='hidden'
