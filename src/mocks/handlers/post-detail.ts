@@ -1,5 +1,6 @@
 import { HttpResponse, http } from 'msw';
 
+import { BASE_URL } from '@/src/apis/constants';
 import { PostDetail } from '@/src/apis/post';
 
 const postList = Array.from<unknown, PostDetail>({ length: 10 }, () => ({
@@ -40,22 +41,19 @@ postList[NOT_VOTED_NOT_AUTHOR].isAuthor = false;
 
 const isOutOfBounds = (index: number) => index < 0 || index >= postList.length;
 
-const getPostDetail = http.get(
-  `${process.env.NEXT_PUBLIC_URL}/posts/:postId`,
-  ({ params }) => {
-    const { postId } = params;
+const getPostDetail = http.get(`${BASE_URL}/posts/:postId`, ({ params }) => {
+  const { postId } = params;
 
-    if (isOutOfBounds(+postId))
-      return new HttpResponse('Not found', {
-        status: 404,
-      });
+  if (isOutOfBounds(+postId))
+    return new HttpResponse('Not found', {
+      status: 404,
+    });
 
-    return HttpResponse.json<PostDetail>(postList[+postId]);
-  },
-);
+  return HttpResponse.json<PostDetail>(postList[+postId]);
+});
 
 const createStar = http.post(
-  `${process.env.NEXT_PUBLIC_URL}/posts/:postId/stars`,
+  `${BASE_URL}/posts/:postId/stars`,
   ({ params }) => {
     const { postId } = params;
 
@@ -74,7 +72,7 @@ const createStar = http.post(
 );
 
 const deleteStar = http.delete(
-  `${process.env.NEXT_PUBLIC_URL}/posts/:postId/stars`,
+  `${BASE_URL}/posts/:postId/stars`,
   ({ params }) => {
     const { postId } = params;
 

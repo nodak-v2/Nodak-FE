@@ -1,3 +1,5 @@
+import { BASE_URL } from '@/src/apis/constants';
+
 interface Vote {
   voteId: number;
   voteTitle: string;
@@ -59,20 +61,20 @@ export interface PostList {
 
 export const getPostDetail = async (postId: string) => {
   const data = (
-    await fetch(`${process.env.NEXT_PUBLIC_URL}/posts/${postId}`)
+    await fetch(`${BASE_URL}/posts/${postId}`)
   ).json() as Promise<PostDetail>;
 
   return data;
 };
 
 export const createFavorite = async (postId: string) => {
-  await fetch(`${process.env.NEXT_PUBLIC_URL}/posts/${postId}/stars`, {
+  await fetch(`${BASE_URL}/posts/${postId}/stars`, {
     method: 'post',
   });
 };
 
 export const deleteFavorite = async (postId: string) => {
-  await fetch(`${process.env.NEXT_PUBLIC_URL}/posts/${postId}/stars`, {
+  await fetch(`${BASE_URL}/posts/${postId}/stars`, {
     method: 'delete',
   });
 };
