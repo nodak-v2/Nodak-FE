@@ -38,20 +38,58 @@ postList[NOT_VOTED_AUTHOR].isAuthor = true;
 postList[NOT_VOTED_NOT_AUTHOR].voteInfo.hasVoted = false;
 postList[NOT_VOTED_NOT_AUTHOR].isAuthor = false;
 
-const getPostDetail = http.get(
-  `${process.env.NEXT_PUBLIC_URL}/posts/:id`,
-  ({ params }) => {
-    const { id } = params;
-    const index = +id;
-    const isInCorrectId = index < 0 || postList.length <= index;
+const isOutOfBounds = (index: number) => index < 0 || index >= postList.length;
 
-    if (isInCorrectId)
+const getPostDetail = http.get(
+  `${process.env.NEXT_PUBLIC_URL}/posts/:postId`,
+  ({ params }) => {
+    const { postId } = params;
+
+    if (isOutOfBounds(+postId))
       return new HttpResponse('Not found', {
         status: 404,
       });
 
-    return HttpResponse.json<PostDetail>(postList[index]);
+    return HttpResponse.json<PostDetail>(postList[+postId]);
   },
 );
 
-export const handlers = [getPostDetail];
+const createStar = http.post(
+  `${process.env.NEXT_PUBLIC_URL}/posts/:postId/stars`,
+  ({ params }) => {
+    const { postId } = params;
+
+    if (isOutOfBounds(+postId))
+      return new HttpResponse('Not found', {
+        status: 404,
+      });
+
+    postList[+postId].starCount += 1;
+    postList[+postId].checkStar = true;
+
+    return new HttpResponse('Created', {
+      status: 201,
+    });
+  },
+);
+
+const deleteStar = http.delete(
+  `${process.env.NEXT_PUBLIC_URL}/posts/:postId/stars`,
+  ({ params }) => {
+    const { postId } = params;
+
+    if (isOutOfBounds(+postId))
+      return new HttpResponse('Not found', {
+        status: 404,
+      });
+
+    postList[+postId].starCount -= 1;
+    postList[+postId].checkStar = false;
+
+    return new HttpResponse('Created', {
+      status: 200,
+    });
+  },
+);
+
+export const handlers = [getPostDetail, createStar, deleteStar];

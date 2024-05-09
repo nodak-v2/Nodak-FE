@@ -64,3 +64,15 @@ export const getPostDetail = async (postId: string) => {
 
   return data;
 };
+
+export const createFavorite = async (postId: string) => {
+  await fetch(`${process.env.NEXT_PUBLIC_URL}/posts/${postId}/stars`, {
+    method: 'post',
+  });
+};
+
+export const deleteFavorite = async (postId: string) => {
+  await fetch(`${process.env.NEXT_PUBLIC_URL}/posts/${postId}/stars`, {
+    method: 'delete',
+  });
+};
