@@ -18,3 +18,12 @@ export const getVoteResult = async (voteId: string) => {
 
   return data;
 };
+
+export const doVote = async (voteId: number, optionSeq: number) => {
+  await fetch(
+    `${process.env.NEXT_PUBLIC_URL}/votes/${voteId}?option=${optionSeq}`,
+    {
+      method: 'POST',
+    },
+  );
+};

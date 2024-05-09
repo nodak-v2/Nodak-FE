@@ -21,8 +21,9 @@ const ResultPage = async ({ params: { postId } }: ResultPageProps) => {
     content,
     starCount,
     checkStar: isCheckStar,
-    voteInfo: { hasVoted, voteTitle, options },
+    voteInfo: { hasVoted, voteTitle, options, voteId },
   } = await getPostDetail(postId);
+
   const { options: resultOptions, totalNumber } = await getVoteResult(postId);
 
   return (
@@ -41,7 +42,7 @@ const ResultPage = async ({ params: { postId } }: ResultPageProps) => {
           totalNumber={totalNumber}
         />
       ) : (
-        <VoteForm title={voteTitle} options={options} />
+        <VoteForm title={voteTitle} options={options} voteId={voteId} />
       )}
       <div className='flex items-center gap-1 p-4'>
         <div className='flex gap-0.5'>

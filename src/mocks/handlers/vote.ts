@@ -4,7 +4,7 @@ import { VoteResult } from '@/src/apis/vote';
 
 const voteResults = [
   {
-    voteId: 1,
+    voteId: 123,
     title: '시연영상 만족도',
     totalNumber: 13,
     options: [
@@ -27,4 +27,27 @@ const getVoteResult = http.get(
     return HttpResponse.json<VoteResult>(voteResults[0]);
   },
 );
-export const handlers = [getVoteResult];
+
+const doVote = http.post(
+  `${process.env.NEXT_PUBLIC_URL}/votes/:voteId`,
+  ({ request }) => {
+    const url = new URL(request.url);
+
+    const optionSeq = url.searchParams.get('option');
+
+    if (!optionSeq)
+      return new HttpResponse('Not found', {
+        status: 404,
+      });
+
+    const created = voteResults[0].options.find(
+      ({ seq }) => seq === +optionSeq,
+    );
+
+    if (created)
+      return new HttpResponse('Created', {
+        status: 201,
+      });
+  },
+);
+export const handlers = [getVoteResult, doVote];
