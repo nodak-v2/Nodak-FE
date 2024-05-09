@@ -61,7 +61,9 @@ export interface PostList {
 
 export const getPostDetail = async (postId: string) => {
   const data = (
-    await fetch(`${BASE_URL}/posts/${postId}`)
+    await fetch(`${BASE_URL}/posts/${postId}`, {
+      next: { tags: ['post', postId] },
+    })
   ).json() as Promise<PostDetail>;
 
   return data;

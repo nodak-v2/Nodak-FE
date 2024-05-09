@@ -12,7 +12,5 @@ const initMsw = async () => {
 export const MSWComponent = () => {
   initMsw();
 
-  console.log('hi');
-
   return null;
 };
