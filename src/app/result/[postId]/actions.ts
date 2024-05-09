@@ -4,9 +4,12 @@ import { revalidateTag } from 'next/cache';
 
 import { createLike, deleteLike } from '@/src/apis/post';
 
-export const LikeAction = (formData: FormData) => {
-  const postId = formData.get('postId') as string;
-  const isChecked = formData.get('isChecked') === 'true';
+interface Args {
+  postId: string;
+  isChecked: boolean;
+}
+
+export const updateLike = ({ postId, isChecked }: Args) => {
   revalidateTag('post');
 
   if (isChecked) {

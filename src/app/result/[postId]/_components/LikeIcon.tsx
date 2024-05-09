@@ -1,6 +1,6 @@
 'use client';
 
-import { LikeAction } from '@/src/app/result/[postId]/actions';
+import { updateLike } from '@/src/app/result/[postId]/actions';
 import Icon from '@/src/components/Icon';
 
 interface LikeIconProps {
@@ -9,14 +9,10 @@ interface LikeIconProps {
 }
 
 const LikeIcon = ({ postId, isChecked }: LikeIconProps) => {
+  const updateLikeWithArgs = updateLike.bind(null, { postId, isChecked });
+
   return (
-    <form action={LikeAction}>
-      <input type='hidden' name='postId' value={postId} />
-      <input
-        type='hidden'
-        name='isChecked'
-        value={isChecked ? 'true' : 'false'}
-      />
+    <form action={updateLikeWithArgs}>
       <button>
         <Icon
           id={isChecked ? 'heart-fill' : 'heart'}
