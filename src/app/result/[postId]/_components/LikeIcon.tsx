@@ -22,7 +22,6 @@ const LikeIcon = ({ postId, isChecked }: LikeIconProps) => {
           id={isChecked ? 'heart-fill' : 'heart'}
           size={24}
           className='text-pink-500'
-          style={{ fill: 'pink' }}
         />
       </button>
     </form>
