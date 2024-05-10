@@ -33,14 +33,6 @@ class Post {
     return this.postList;
   }
 
-  getPost(id: number): PostDetail {
-    return this.postList[id];
-  }
-
-  setPost(id: number, post: PostDetail) {
-    this.postList[id] = post;
-  }
-
   setVoteInfo(
     voteId: number,
     callback: (voteInfo: PostDetail['voteInfo']) => void,
@@ -49,11 +41,6 @@ class Post {
     if (!post) return;
     callback(post.voteInfo);
   }
-
-  getPostIdOfVoteId(voteId: number) {
-    return this.postList.findIndex(post => post.voteInfo.voteId === voteId);
-  }
-
   getPostOfVoteId(voteId: number) {
     return this.postList.find(post => post.voteInfo.voteId === voteId);
   }
