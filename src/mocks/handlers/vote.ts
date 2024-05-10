@@ -49,8 +49,6 @@ const doVote = http.post(
       voteInfo.hasVoted = true;
     });
 
-    console.log(post.getPostOfVoteId(+voteId));
-
     if (created)
       return new HttpResponse('Created', {
         status: 201,
