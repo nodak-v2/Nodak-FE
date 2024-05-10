@@ -13,9 +13,7 @@ export interface VoteResult {
 
 export const getVoteResult = async (voteId: number) => {
   const data = (
-    await fetch(`${process.env.NEXT_PUBLIC_URL}/votes/${voteId}`, {
-      next: { tags: ['vote', voteId.toString()] },
-    })
+    await fetch(`${process.env.NEXT_PUBLIC_URL}/votes/${voteId}`)
   ).json() as Promise<VoteResult>;
 
   return data;
