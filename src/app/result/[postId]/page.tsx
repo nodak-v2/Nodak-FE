@@ -23,8 +23,7 @@ const ResultPage = async ({ params: { postId } }: ResultPageProps) => {
     checkStar: isCheckStar,
     voteInfo: { hasVoted, voteTitle, options, voteId },
   } = await getPostDetail(postId);
-
-  const { options: resultOptions, totalNumber } = await getVoteResult(postId);
+  const { options: resultOptions, totalNumber } = await getVoteResult(voteId);
 
   return (
     <div className='flex h-full grow flex-col gap-2 overscroll-y-auto'>
