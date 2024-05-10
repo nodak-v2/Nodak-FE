@@ -1,3 +1,4 @@
+import { ButtonHTMLAttributes } from 'react';
 import { ReactNode } from 'react';
 
 import { type VariantProps, cva } from 'class-variance-authority';
@@ -17,15 +18,16 @@ const chipCSS = cva(
   },
 );
 
-type ChipProps = VariantProps<typeof chipCSS> & {
-  children: ReactNode;
-};
+type ChipProps = ButtonHTMLAttributes<HTMLButtonElement> &
+  VariantProps<typeof chipCSS> & {
+    children: ReactNode;
+  };
 
 const Chip = ({ children, variant, ...props }: ChipProps) => {
   return (
-    <div className={chipCSS({ variant })} {...props}>
+    <button className={chipCSS({ variant })} {...props}>
       {children}
-    </div>
+    </button>
   );
 };
 

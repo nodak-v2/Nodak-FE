@@ -32,11 +32,10 @@ const ChipContainer = ({ currentChannel }: ChipContainerProps) => {
 
           return (
             <li key={`${index}-${name}`}>
-              <Link
-                href={{ pathname: '/main', query: { channel: path } }}
-                onClick={handleChipClick(path)}
-              >
-                <Chip variant={variant}>{name}</Chip>
+              <Link href={{ pathname: '/main', query: { channel: path } }}>
+                <Chip variant={variant} onClick={handleChipClick(path)}>
+                  {name}
+                </Chip>
               </Link>
             </li>
           );
