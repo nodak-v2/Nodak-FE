@@ -6,4 +6,9 @@ export type IconName =
   | 'chat'
   | 'add'
   | 'right-arrow'
+  | 'moon-fill'
+  | 'moon-line'
+  | 'notification'
+  | 'search'
+  | 'back'
   | 'pencil-fill';
