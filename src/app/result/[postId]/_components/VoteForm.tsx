@@ -28,7 +28,7 @@ const VoteForm = ({ title, options, voteId }: VoteFormProps) => {
       <span className='text-xl font-bold'>{title}</span>
       <ul className='flex flex-col gap-4'>
         {options.map((content, index) => (
-          <div
+          <li
             key={`${index}-${content}`}
             className={cn(
               'flex w-full items-center rounded-md border-2 border-gray-accent1 bg-dark-accent1',
@@ -51,7 +51,7 @@ const VoteForm = ({ title, options, voteId }: VoteFormProps) => {
             >
               {content}
             </label>
-          </div>
+          </li>
         ))}
       </ul>
       <Button baseColor='primary'>투표 하기</Button>
