@@ -17,6 +17,7 @@ export interface PostDetail {
   voteInfo: Vote;
   starCount: number;
   checkStar: boolean;
+  commentCount: number;
 }
 
 interface Sort {

@@ -25,6 +25,7 @@ class Post {
         },
         starCount: 2,
         checkStar: true,
+        commentCount: 2,
       }),
     );
   }
