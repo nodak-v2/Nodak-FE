@@ -23,25 +23,34 @@ const VoteForm = ({ title, options, voteId }: VoteFormProps) => {
   return (
     <form
       action={doVoteWithArgs}
-      className='flex flex-col rounded-md bg-dark-accent2 p-4 text-gray-accent1'
+      className='flex flex-col gap-6 rounded-md bg-dark-accent2 p-4 text-gray-accent1'
     >
-      <span className='pb-8 text-xl font-bold'>{title}</span>
+      <span className='text-xl font-bold'>{title}</span>
       <ul className='flex flex-col gap-4'>
         {options.map((content, index) => (
-          <div key={`${index}-${content}`}>
+          <div
+            key={`${index}-${content}`}
+            className={cn(
+              'flex w-full items-center rounded-md border-2 border-gray-accent1 bg-dark-accent1',
+              {
+                'bg-dark-accent2': selectedIndex === index,
+              },
+            )}
+          >
             <input
+              id={`radio-${index}`}
+              className='hidden'
               type='radio'
               name='option'
-              className={cn(
-                'cursor-pointer rounded-md border-2 border-gray-accent1 bg-dark-accent1 p-4',
-                {
-                  'bg-dark-accent2': selectedIndex === index,
-                },
-              )}
               onClick={() => handleClick(index)}
               value={index}
             />
-            <div>{content}</div>
+            <label
+              htmlFor={`radio-${index}`}
+              className='h-full w-full cursor-pointer p-4'
+            >
+              {content}
+            </label>
           </div>
         ))}
       </ul>
