@@ -39,6 +39,8 @@ class Vote {
       if (option.seq === optionSeq) option.count++;
     });
 
+    voteResult.totalNumber++;
+
     post.setVoteInfo(+voteId, voteInfo => {
       voteInfo.hasVoted = true;
     });
