@@ -2,8 +2,12 @@
 
 import { useEffect, useState } from 'react';
 
+import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
+import Icon from '@/src/components/Icon';
+
+import GNB from '../_components/GNB';
 import ChipContainer from './_component/ChipContainer';
 import PostItem from './_component/PostItem';
 
@@ -48,6 +52,14 @@ const Main = () => {
           <PostItem key={`${index}-${post.title}`} post={post} />
         ))}
       </div>
+      <Link href={'createPost'}>
+        <button className='absolute bottom-24 right-5 z-10 flex h-[57px] w-[57px] items-center justify-center rounded-full bg-zinc-200  shadow-lg'>
+          <Icon id='pencil-fill' size={24} />
+          <span className='font-bold'></span>
+        </button>
+      </Link>
+
+      <GNB />
     </div>
   );
 };

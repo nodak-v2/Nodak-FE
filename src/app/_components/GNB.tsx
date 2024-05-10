@@ -6,13 +6,12 @@ const GNB = () => {
   const navItems = [
     { href: '/', icon: <Icon id='home' />, name: '홈' },
     { href: '/chat', icon: <Icon id='chat' />, name: '채팅' },
-    { href: '/write', icon: <Icon id='add' />, name: '글쓰기' },
     { href: '/users', icon: <Icon id='user' />, name: '유저' },
     { href: '/profile', icon: <Icon id='user' />, name: '프로필' },
   ];
 
   return (
-    <nav className=' w-full bg-[#212529] px-4'>
+    <nav className='absolute bottom-0 w-full bg-[#212529]  px-4'>
       <ul className='flex justify-between'>
         {navItems.map(({ href, icon, name }, index) => (
           <li key={`${index}-${name}`}>

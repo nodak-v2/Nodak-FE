@@ -5,4 +5,5 @@ export type IconName =
   | 'comment'
   | 'chat'
   | 'add'
-  | 'right-arrow';
+  | 'right-arrow'
+  | 'pencil-fill';
