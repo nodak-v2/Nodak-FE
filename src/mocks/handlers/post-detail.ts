@@ -2,24 +2,66 @@ import { HttpResponse, http } from 'msw';
 
 import { PostDetail } from '@/src/apis/post';
 
-const postList = Array.from<unknown, PostDetail>({ length: 10 }, () => ({
-  title: '시연영상은 어떤가요?',
-  author: '데브코스시연',
-  isAuthor: false,
-  profileImageUrl: 'http://via.placeholder.com/40',
-  date: '2024-01-17',
-  content: '게시글 시연영상',
-  imageUrl: 'http://abc.abc',
-  voteInfo: {
-    voteId: 123,
-    voteTitle: '시연영상 만족도',
-    hasVoted: false,
-    choice: 1,
-    options: ['만족', '불만족'],
-  },
-  starCount: 2,
-  checkStar: true,
-}));
+class Post {
+  private postList: PostDetail[];
+
+  constructor() {
+    this.postList = Array.from<unknown, PostDetail>(
+      { length: 10 },
+      (_, index) => ({
+        title: '시연영상은 어떤가요?',
+        author: '데브코스시연',
+        isAuthor: false,
+        profileImageUrl: 'http://via.placeholder.com/40',
+        date: '2024-01-17',
+        content: '게시글 시연영상',
+        imageUrl: 'http://abc.abc',
+        voteInfo: {
+          voteId: 123 + index,
+          voteTitle: '시연영상 만족도',
+          hasVoted: false,
+          choice: 1,
+          options: ['만족', '불만족'],
+        },
+        starCount: 2,
+        checkStar: true,
+      }),
+    );
+  }
+
+  getPostList(): PostDetail[] {
+    return this.postList;
+  }
+
+  getPost(id: number): PostDetail {
+    return this.postList[id];
+  }
+
+  setPost(id: number, post: PostDetail) {
+    this.postList[id] = post;
+  }
+
+  setVoteInfo(
+    voteId: number,
+    callback: (voteInfo: PostDetail['voteInfo']) => void,
+  ) {
+    const post = this.getPostOfVoteId(voteId);
+    if (!post) return;
+    callback(post.voteInfo);
+  }
+
+  getPostIdOfVoteId(voteId: number) {
+    return this.postList.findIndex(post => post.voteInfo.voteId === voteId);
+  }
+
+  getPostOfVoteId(voteId: number) {
+    return this.postList.find(post => post.voteInfo.voteId === voteId);
+  }
+}
+
+export const post = new Post();
+
+export const postList = post.getPostList();
 
 export const VOTED_AUTHOR = 0;
 export const VOTED_NOT_AUTHOR = 1;
@@ -43,14 +85,14 @@ const getPostDetail = http.get(
   ({ params }) => {
     const { id } = params;
     const index = +id;
-    const isInCorrectId = index < 0 || postList.length <= index;
+    const isInCorrectId = index < 0 || post.getPostList().length <= index;
 
     if (isInCorrectId)
       return new HttpResponse('Not found', {
         status: 404,
       });
 
-    return HttpResponse.json<PostDetail>(postList[index]);
+    return HttpResponse.json<PostDetail>(post.getPostList()[index]);
   },
 );
 

@@ -1,6 +1,7 @@
 import { HttpResponse, http } from 'msw';
 
 import { VoteResult } from '@/src/apis/vote';
+import { post } from '@/src/mocks/handlers/post-detail';
 
 const voteResults = [
   {
@@ -30,9 +31,9 @@ const getVoteResult = http.get(
 
 const doVote = http.post(
   `${process.env.NEXT_PUBLIC_URL}/votes/:voteId`,
-  ({ request }) => {
+  ({ request, params }) => {
+    const { voteId } = params;
     const url = new URL(request.url);
-
     const optionSeq = url.searchParams.get('option');
 
     if (!optionSeq)
@@ -43,6 +44,12 @@ const doVote = http.post(
     const created = voteResults[0].options.find(
       ({ seq }) => seq === +optionSeq,
     );
+
+    post.setVoteInfo(+voteId, voteInfo => {
+      voteInfo.hasVoted = true;
+    });
+
+    console.log(post.getPostOfVoteId(+voteId));
 
     if (created)
       return new HttpResponse('Created', {
