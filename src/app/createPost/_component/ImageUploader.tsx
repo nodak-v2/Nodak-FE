@@ -18,7 +18,7 @@ const ImageUploader = ({ imageSrcUrl, onChange }: ImageUploaderProps) => {
   const handleDeleteImage = () => setPreviewImageUrl(null);
 
   return (
-    <div className='bg-gray-accent7 mb-3 flex w-full justify-center p-10'>
+    <div className='bg-gray-accent7 flex w-full justify-center p-10'>
       <div className='relative '>
         {previewImageUrl ? (
           <>

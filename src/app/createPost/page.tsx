@@ -1,9 +1,9 @@
 'use client';
 
-import ImageUploader from './_component/ImageUploader';
+import PostPage from './_component/PostForm';
 
 const CreatePostPage = () => {
-  return <ImageUploader onChange={() => {}} />;
+  return <PostPage />;
 };
 
 export default CreatePostPage;
