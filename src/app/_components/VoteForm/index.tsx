@@ -3,8 +3,13 @@ import React, { ChangeEvent, useState } from 'react';
 import Icon from '@/src/components/Icon';
 import { cn } from '@/src/utils/cn';
 
+const MIN_LIMIT = 2;
+const MAX_LIMIT = 6;
+
 const VoteForm = () => {
-  const [options, setOptions] = useState<string[]>(['', '']);
+  const [options, setOptions] = useState<string[]>(
+    new Array(MIN_LIMIT).fill(''),
+  );
 
   const handleOptionChange = (
     index: number,
@@ -16,7 +21,7 @@ const VoteForm = () => {
   };
 
   const handleAddOption = () => {
-    if (options.length === 6) return;
+    if (options.length === MAX_LIMIT) return;
     setOptions([...options, '']);
   };
 
@@ -37,7 +42,12 @@ const VoteForm = () => {
           <input
             value={option}
             onChange={event => handleOptionChange(index, event)}
-            className='w-full rounded-sm border border-gray-accent2 bg-dark-accent1 p-3 text-black text-gray-accent1 outline-none ring-gray-accent1 focus:ring-2'
+            className={cn(
+              'w-full rounded-sm border border-gray-accent2 bg-dark-accent1 p-3 text-gray-accent1 outline-none ring-gray-accent1 focus:ring-2',
+              {
+                'mr-8': [0, 1].includes(index),
+              },
+            )}
             placeholder='투표항목을 입력하세요.'
           />
           <Icon
@@ -45,6 +55,7 @@ const VoteForm = () => {
             className={cn('cursor-pointer text-red-400 hover:text-red-600', {
               'cursor-not-allowed opacity-50 hover:text-red-400':
                 options.length === 2,
+              hidden: [0, 1].includes(index),
             })}
             size={24}
             onClick={() => {
