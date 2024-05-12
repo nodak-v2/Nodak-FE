@@ -9,6 +9,7 @@ import Icon from '@/src/components/Icon';
 
 import GNB from '../_components/GNB';
 import ChipContainer from './_component/ChipContainer';
+import { ChannelType } from './_component/ChipContainer';
 import PostItem from './_component/PostItem';
 
 const posts = [
@@ -36,10 +37,10 @@ const posts = [
 
 const Main = () => {
   const searchParams = useSearchParams();
-  const [currentChannel, setCurrentChannel] = useState('all');
+  const [currentChannel, setCurrentChannel] = useState<ChannelType>('all');
 
   useEffect(() => {
-    const channel = searchParams.get('channel');
+    const channel = searchParams.get('channel') as ChannelType;
     if (channel) setCurrentChannel(channel);
   }, [searchParams]);
 

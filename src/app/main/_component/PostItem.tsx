@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 import Icon from '@/src/components/Icon';
 
-type Post = {
+type PostType = {
   title: string;
   votedCount: number;
   likedCount: number;
@@ -14,7 +14,7 @@ type Post = {
 };
 
 interface PostItemProps {
-  post: Post;
+  post: PostType;
 }
 
 const PostItem = ({ post }: PostItemProps) => {

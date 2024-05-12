@@ -4,9 +4,15 @@ import Link from 'next/link';
 
 import Chip from '@/src/app/main/_component/Chip';
 
-type Channel = 'all' | 'hot' | 'chatting' | 'sports' | 'entertaining' | 'study';
+export type ChannelType =
+  | 'all'
+  | 'hot'
+  | 'chatting'
+  | 'sports'
+  | 'entertaining'
+  | 'study';
 
-const channelData: { name: string; path: Channel }[] = [
+const channelData: { name: string; path: ChannelType }[] = [
   { name: '전체', path: 'all' },
   { name: 'HOT', path: 'hot' },
   { name: '잡담', path: 'chatting' },
@@ -16,13 +22,13 @@ const channelData: { name: string; path: Channel }[] = [
 ];
 
 interface ChipContainerProps {
-  currentChannel: Channel;
+  currentChannel: ChannelType;
 }
 
 const ChipContainer = ({ currentChannel = 'all' }: ChipContainerProps) => {
   const [currentPath, setCurrentPath] = useState(currentChannel);
 
-  const handleChipClick = (path: Channel) => () => {
+  const handleChipClick = (path: ChannelType) => () => {
     setCurrentPath(path);
   };
 
