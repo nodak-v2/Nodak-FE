@@ -8,6 +8,7 @@ import { useSearchParams } from 'next/navigation';
 import Icon from '@/src/components/Icon';
 
 import GNB from '../_components/GNB';
+import TopBar from '../_components/Topbar';
 import ChipContainer from './_component/ChipContainer';
 import { ChannelType } from './_component/ChipContainer';
 import PostItem from './_component/PostItem';
@@ -46,6 +47,15 @@ const Main = () => {
 
   return (
     <>
+      <TopBar.Container>
+        <TopBar.Left>
+          <TopBar.Title>노닥노닥 로고</TopBar.Title>
+        </TopBar.Left>
+        <TopBar.Right>
+          <TopBar.NotificationButton />
+          <TopBar.SearchButton />
+        </TopBar.Right>
+      </TopBar.Container>
       <ChipContainer currentChannel={currentChannel} />
       <p className='text-white'>{currentChannel}</p>
       <div className='flex flex-col gap-1'>
