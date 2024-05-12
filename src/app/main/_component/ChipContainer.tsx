@@ -22,7 +22,7 @@ const channelData: { name: string; path: ChannelType }[] = [
 ];
 
 interface ChipContainerProps {
-  currentChannel: ChannelType;
+  currentChannel?: ChannelType;
 }
 
 const ChipContainer = ({ currentChannel = 'all' }: ChipContainerProps) => {
@@ -34,7 +34,7 @@ const ChipContainer = ({ currentChannel = 'all' }: ChipContainerProps) => {
 
   return (
     <div className='overflow-x-auto'>
-      <ul className='flex flex-nowrap gap-2 p-2'>
+      <ul className='flex flex-nowrap gap-5 p-3'>
         {channelData.map(({ name, path }, index) => {
           const variant = path === currentPath ? 'selected' : 'default';
 

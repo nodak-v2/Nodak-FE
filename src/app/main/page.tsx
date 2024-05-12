@@ -46,7 +46,7 @@ const Main = () => {
   }, [searchParams]);
 
   return (
-    <>
+    <div className='flex h-full flex-col'>
       <TopBar.Container>
         <TopBar.Left>
           <TopBar.Title>노닥노닥 로고</TopBar.Title>
@@ -56,20 +56,22 @@ const Main = () => {
           <TopBar.SearchButton />
         </TopBar.Right>
       </TopBar.Container>
-      <ChipContainer currentChannel={currentChannel} />
-      <p className='text-white'>{currentChannel}</p>
-      <div className='flex flex-col gap-1'>
-        {posts.map((post, index) => (
-          <PostItem key={`${index}-${post.title}`} post={post} />
-        ))}
-      </div>
-      <Link href='createPost'>
-        <button className='absolute bottom-24 right-5 z-10 flex h-[53px] w-[53px] items-center justify-center rounded-full bg-zinc-200  shadow-lg'>
-          <Icon id='pencil-fill' size={24} />
-        </button>
-      </Link>
+      <main className='grow'>
+        <ChipContainer currentChannel={currentChannel} />
+        <p className='text-white'>{currentChannel}</p>
+        <div className='flex flex-col gap-1'>
+          {posts.map((post, index) => (
+            <PostItem key={`${index}-${post.title}`} post={post} />
+          ))}
+        </div>
+        <Link href='createPost'>
+          <button className='absolute bottom-24 right-5 z-10 flex h-[53px] w-[53px] items-center justify-center rounded-full bg-zinc-200  shadow-lg'>
+            <Icon id='pencil-fill' size={24} />
+          </button>
+        </Link>
+      </main>
       <GNB />
-    </>
+    </div>
   );
 };
 export default Main;
