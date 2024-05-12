@@ -17,8 +17,8 @@ interface ChipContainerProps {
   currentChannel: string;
 }
 
-const ChipContainer = ({ currentChannel }: ChipContainerProps) => {
-  const [currentPath, setCurrentPath] = useState(currentChannel || 'all');
+const ChipContainer = ({ currentChannel = 'all' }: ChipContainerProps) => {
+  const [currentPath, setCurrentPath] = useState(currentChannel);
 
   const handleChipClick = (path: string) => () => {
     setCurrentPath(path);
