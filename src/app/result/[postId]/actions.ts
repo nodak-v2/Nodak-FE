@@ -12,10 +12,5 @@ interface Args {
 export const updateLike = ({ postId, isChecked }: Args) => {
   revalidateTag('post');
 
-  if (isChecked) {
-    deleteLike(postId);
-    return;
-  }
-
-  createLike(postId);
+  isChecked ? deleteLike(postId) : createLike(postId);
 };
