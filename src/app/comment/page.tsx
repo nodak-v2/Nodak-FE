@@ -1,4 +1,4 @@
-import CommentList from './_components/CommentInfo';
+import CommentItem from './_components/CommentInfo';
 import PostComment from './_components/PostComment';
 
 const commentData = [
@@ -20,11 +20,11 @@ const commentPage = () => {
   return (
     <>
       <h1>TopBar</h1>
-      <div className='flex-grow overflow-auto'>
+      <div className='grow overflow-y-auto'>
         {commentData.length > 0 ? (
           commentData.map(
             ({ nickname, profileImageUrl, commentText, createdAt }, index) => (
-              <CommentList
+              <CommentItem
                 key={index}
                 nickname={nickname}
                 profileImageUrl={profileImageUrl}
