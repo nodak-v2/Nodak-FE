@@ -10,7 +10,7 @@ import Textarea from '@/src/app/_components/Textarea';
 import ImageUploader from '../ImageUploader';
 import { formOptions } from './formSchema';
 
-const PostPage = () => {
+const PostForm = () => {
   const {
     register,
     handleSubmit,
@@ -65,4 +65,4 @@ const PostPage = () => {
   );
 };
 
-export default PostPage;
+export default PostForm;

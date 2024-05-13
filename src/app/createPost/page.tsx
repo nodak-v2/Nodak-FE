@@ -1,9 +1,9 @@
 'use client';
 
-import PostPage from './_component/PostForm';
+import PostForm from './_component/PostForm';
 
 const CreatePostPage = () => {
-  return <PostPage />;
+  return <PostForm />;
 };
 
 export default CreatePostPage;
