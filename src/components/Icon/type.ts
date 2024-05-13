@@ -13,4 +13,5 @@ export type IconName =
   | 'notification'
   | 'search'
   | 'back'
+  | 'pencil-fill'
   | 'subtract-circle';
