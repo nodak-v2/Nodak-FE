@@ -1,5 +1,3 @@
-'use client';
-
 import PostForm from './_component/PostForm';
 
 const CreatePostPage = () => {
