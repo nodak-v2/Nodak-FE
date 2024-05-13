@@ -1,6 +1,6 @@
 import type { Meta } from '@storybook/react';
 
-import ChipContainer from '@/src/app/_components/ChipContainer';
+import ChipContainer from '@/src/app/main/_component/ChipContainer';
 
 const meta: Meta<typeof ChipContainer> = {
   title: 'components/ChipSelect',
@@ -11,5 +11,5 @@ const meta: Meta<typeof ChipContainer> = {
 export default meta;
 
 export const DefaultTemplate = () => {
-  return <ChipContainer />;
+  return <ChipContainer currentChannel='all' />;
 };

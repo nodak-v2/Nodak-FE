@@ -12,4 +12,6 @@ export type IconName =
   | 'moon-line'
   | 'notification'
   | 'search'
-  | 'back';
+  | 'back'
+  | 'pencil-fill'
+  | 'subtract-circle';
