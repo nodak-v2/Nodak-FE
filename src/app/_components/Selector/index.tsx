@@ -11,7 +11,7 @@ interface Item {
 }
 
 interface SelectorProps {
-  items: Item[];
+  items: string[];
   placeholder: string;
 }
 
@@ -30,25 +30,32 @@ const Selector = ({ items, placeholder }: SelectorProps) => {
       onClick={toggleDropdown}
       ref={dropdownRef as RefObject<HTMLDivElement>}
     >
-      <button className='text-bold flex w-64 justify-between rounded border bg-gray-accent1 p-2'>
+      <button className='text-bold flex w-full justify-between rounded border bg-gray-accent1 p-2'>
         <span>{selectedItem ? selectedItem.text : placeholder}</span>
-        <Icon id='down-arrow' />
+        <Icon
+          id='down-arrow'
+          className={`transition-transform duration-300 ${isOpen ? 'rotate-180 transform' : ''}`}
+        />
       </button>
 
       {isOpen && (
-        <ul className='absolute z-50 w-64 rounded bg-gray-accent2 shadow-sm'>
-          {items.map((item, index) => (
-            <li
-              key={index}
-              onClick={() => {
-                updateSelectedItem(item);
-                toggleDropdown();
-              }}
-              className={`z-20 flex w-64 border-b border-gray-200 bg-gray-accent2 p-2 hover:brightness-125`}
-            >
-              <span>{item.text}</span>
-            </li>
-          ))}
+        <ul className='absolute z-50 w-full rounded bg-gray-accent2 shadow-sm'>
+          {items.map((item, index) => {
+            const handleSelectorClick = () => {
+              updateSelectedItem(item);
+              toggleDropdown();
+            };
+
+            return (
+              <li
+                key={`${index}-${item}`}
+                onClick={handleSelectorClick}
+                className='z-20 flex w-full border-b border-gray-accent2 bg-gray-accent2 p-2 hover:brightness-125'
+              >
+                <span>{item.text}</span>
+              </li>
+            );
+          })}
         </ul>
       )}
     </div>
