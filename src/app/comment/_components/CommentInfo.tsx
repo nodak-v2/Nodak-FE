@@ -27,9 +27,9 @@ const CommentInfo = ({
             className='rounded-full object-cover'
           />
         </div>
-        <div className='flex-grow'>
+        <div className='grow'>
           <div className='flex flex-row items-start'>
-            <span className='flex-grow text-xl font-bold'>{nickname}</span>
+            <span className='grow text-xl font-bold'>{nickname}</span>
             <span className='text-sm text-gray-accent2'>
               {new Date(createdAt.getTime() + GMTTime)
                 .toISOString()
