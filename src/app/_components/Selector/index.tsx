@@ -11,7 +11,7 @@ interface Item {
 }
 
 interface SelectorProps {
-  items: string[];
+  items: Item[];
   placeholder: string;
 }
 
