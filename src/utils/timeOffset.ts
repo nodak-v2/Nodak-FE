@@ -1,4 +1,4 @@
-const useTimeOffset = (standardTime: string | Date) => {
+const timeOffset = (standardTime: string | Date) => {
   if (standardTime instanceof Date) {
     standardTime = standardTime.toString();
   }
@@ -30,4 +30,4 @@ const useTimeOffset = (standardTime: string | Date) => {
   }
 };
 
-export default useTimeOffset;
+export default timeOffset;
