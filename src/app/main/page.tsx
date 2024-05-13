@@ -59,7 +59,7 @@ const Main = () => {
       <main className='grow'>
         <ChipContainer currentChannel={currentChannel} />
         <p className='text-white'>{currentChannel}</p>
-        <div className='flex flex-col gap-1'>
+        <div className='flex flex-col'>
           {posts.map((post, index) => (
             <PostItem key={`${index}-${post.title}`} post={post} />
           ))}

@@ -30,7 +30,7 @@ const PostItem = ({ post }: PostItemProps) => {
   } = post;
 
   return (
-    <div className='flex w-full justify-start gap-4 bg-dark-accent2 p-4 text-white'>
+    <div className='flex w-full cursor-pointer justify-start gap-4 border-b bg-dark-accent2 p-4 text-white'>
       <Image src={imageUrl} alt='게시글이미지' width={130} height={130} />
       <div className='flex w-full flex-col gap-4'>
         <div className='flex flex-col gap-0.5'>
