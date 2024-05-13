@@ -12,9 +12,6 @@ export default meta;
 
 export const DefaultTemplate = () => {
   return (
-    <Selector
-      items={[{ text: 'Item 1' }, { text: 'Item 2' }, { text: 'Item 3' }]}
-      placeholder='테스트 1'
-    />
+    <Selector items={['Item 1', 'Item 2', 'Item 3']} placeholder='테스트 1' />
   );
 };

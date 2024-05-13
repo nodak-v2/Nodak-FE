@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-const useDropdown = <T extends { text: string }>() => {
+const useDropdown = <T extends string | string[]>() => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<T | null>(null);
 
