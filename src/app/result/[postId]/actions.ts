@@ -4,12 +4,12 @@ import { revalidateTag } from 'next/cache';
 
 import { createLike, deleteLike } from '@/src/apis/post';
 
-interface Args {
+interface UpdateLikeArgs {
   postId: string;
   isChecked: boolean;
 }
 
-export const updateLike = ({ postId, isChecked }: Args) => {
+export const updateLike = ({ postId, isChecked }: UpdateLikeArgs) => {
   revalidateTag('post');
 
   isChecked ? deleteLike(postId) : createLike(postId);
