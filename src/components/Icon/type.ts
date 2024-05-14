@@ -1,5 +1,6 @@
 export type IconName =
   | 'heart'
+  | 'heart-fill'
   | 'home'
   | 'user'
   | 'comment'
@@ -7,3 +8,12 @@ export type IconName =
   | 'add'
   | 'right-arrow'
   | 'down-arrow';
+  | 'camera'
+  | 'dash-circle-fill'
+  | 'moon-fill'
+  | 'moon-line'
+  | 'notification'
+  | 'search'
+  | 'back'
+  | 'pencil-fill'
+  | 'subtract-circle';
