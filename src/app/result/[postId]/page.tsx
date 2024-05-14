@@ -4,8 +4,8 @@ import CommentLink from '@/src/app/result/[postId]/_components/CommentLink';
 import EditLinks from '@/src/app/result/[postId]/_components/EditLinks';
 import LikeIcon from '@/src/app/result/[postId]/_components/LikeIcon';
 import ProfileBlock from '@/src/app/result/[postId]/_components/ProfileBlock';
-import VoteForm from '@/src/app/result/[postId]/_components/VoteForm';
 import VoteProgress from '@/src/app/result/[postId]/_components/VoteProgress';
+import VoteForm from '@/src/app/result/[postId]/_components/VoteResult';
 
 interface ResultPageProps {
   params: { postId: string };
