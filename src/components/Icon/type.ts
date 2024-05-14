@@ -6,4 +6,13 @@ export type IconName =
   | 'comment'
   | 'chat'
   | 'add'
-  | 'right-arrow';
+  | 'right-arrow'
+  | 'camera'
+  | 'dash-circle-fill'
+  | 'moon-fill'
+  | 'moon-line'
+  | 'notification'
+  | 'search'
+  | 'back'
+  | 'pencil-fill'
+  | 'subtract-circle';
