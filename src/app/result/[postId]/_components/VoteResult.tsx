@@ -4,12 +4,12 @@ import { useState } from 'react';
 
 import { cn } from '@/src/utils/cn';
 
-interface VoteBlockFormProps {
+interface VoteFormProps {
   title: string;
   options: string[];
 }
 
-const VoteBlockForm = ({ title, options }: VoteBlockFormProps) => {
+const VoteForm = ({ title, options }: VoteFormProps) => {
   const [selectedIndex, setSelectedIndex] = useState<number>();
 
   const handleClick = (index: number) => {
@@ -39,4 +39,4 @@ const VoteBlockForm = ({ title, options }: VoteBlockFormProps) => {
   );
 };
 
-export default VoteBlockForm;
+export default VoteForm;
