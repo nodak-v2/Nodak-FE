@@ -2,18 +2,22 @@ import Image from 'next/image';
 
 import Icon from '@/src/components/Icon';
 
-const post = {
-  title: '게시글 제목입니다.',
-  votedCount: 10,
-  likedCount: 10,
-  commentedCount: 10,
-  author: 'homin',
-  profileImageUrl: 'https://via.placeholder.com/150',
-  imageUrl: 'https://via.placeholder.com/150',
-  createdAt: '2021-10-10',
+type PostType = {
+  title: string;
+  votedCount: number;
+  likedCount: number;
+  commentedCount: number;
+  author: string;
+  profileImageUrl: string;
+  imageUrl: string;
+  createdAt: string;
 };
 
-const PostItem = () => {
+interface PostItemProps {
+  post: PostType;
+}
+
+const PostItem = ({ post }: PostItemProps) => {
   const {
     title,
     votedCount,
@@ -26,7 +30,7 @@ const PostItem = () => {
   } = post;
 
   return (
-    <div className='flex w-full justify-start gap-4 bg-dark-accent2 p-4 text-white'>
+    <div className='flex w-full cursor-pointer justify-start gap-4 border-b bg-dark-accent2 p-4 text-white'>
       <Image src={imageUrl} alt='게시글이미지' width={130} height={130} />
       <div className='flex w-full flex-col gap-4'>
         <div className='flex flex-col gap-0.5'>

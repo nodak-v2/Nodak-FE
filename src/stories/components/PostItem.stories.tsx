@@ -17,7 +17,15 @@ type Story = StoryObj<typeof PostItem>;
 
 export const DefaultTemplate: Story = {
   args: {
-    size: 20,
-    id: 'add',
+    post: {
+      title: '게시글 제목입니다.',
+      votedCount: 10,
+      likedCount: 10,
+      commentedCount: 10,
+      author: 'homin',
+      profileImageUrl: 'https://via.placeholder.com/150',
+      imageUrl: 'https://via.placeholder.com/150',
+      createdAt: '2021-10-10',
+    },
   },
 };
