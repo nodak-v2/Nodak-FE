@@ -1,5 +1,7 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+
 const initMsw = async () => {
   if (process.env.NEXT_RUNTIME !== 'nodejs') {
     const { worker } = await import('./browser');
@@ -9,10 +11,18 @@ const initMsw = async () => {
   }
 };
 
-export const MSWComponent = () => {
-  initMsw();
+export const MSWComponent = ({ children }: { children: React.ReactNode }) => {
+  const [isInit, setIsInit] = useState(false);
 
-  console.log('hi');
+  useEffect(() => {
+    if (!isInit) {
+      initMsw().then(() => setIsInit(true));
+    }
+  }, [isInit]);
 
-  return null;
+  if (!isInit) {
+    return null;
+  }
+
+  return <>{children}</>;
 };
