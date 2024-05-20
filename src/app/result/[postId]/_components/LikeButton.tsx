@@ -3,12 +3,12 @@
 import { updateLike } from '@/src/app/result/[postId]/actions';
 import Icon from '@/src/components/Icon';
 
-interface LikeIconProps {
+interface LikeButtonProps {
   postId: string;
   isChecked: boolean;
 }
 
-const LikeIcon = ({ postId, isChecked }: LikeIconProps) => {
+const LikeButton = ({ postId, isChecked }: LikeButtonProps) => {
   const updateLikeWithArgs = updateLike.bind(null, { postId, isChecked });
 
   return (
@@ -24,4 +24,4 @@ const LikeIcon = ({ postId, isChecked }: LikeIconProps) => {
   );
 };
 
-export default LikeIcon;
+export default LikeButton;

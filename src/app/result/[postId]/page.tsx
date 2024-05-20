@@ -2,7 +2,7 @@ import { getPostDetail } from '@/src/apis/post';
 import { getVoteResult } from '@/src/apis/vote';
 import CommentLink from '@/src/app/result/[postId]/_components/CommentLink';
 import EditLinks from '@/src/app/result/[postId]/_components/EditLinks';
-import LikeIcon from '@/src/app/result/[postId]/_components/LikeIcon';
+import LikeButton from '@/src/app/result/[postId]/_components/LikeButton';
 import ProfileBlock from '@/src/app/result/[postId]/_components/ProfileBlock';
 import VoteProgress from '@/src/app/result/[postId]/_components/VoteProgress';
 import VoteForm from '@/src/app/result/[postId]/_components/VoteResult';
@@ -45,7 +45,7 @@ const ResultPage = async ({ params: { postId } }: ResultPageProps) => {
       )}
       <div className='flex items-center gap-1 p-4'>
         <div className='flex gap-0.5'>
-          <LikeIcon postId={postId} isChecked={isCheckStar} />
+          <LikeButton postId={postId} isChecked={isCheckStar} />
           <span className='pr-2'>{starCount}</span>
         </div>
         <div className='flex gap-0.5'>
