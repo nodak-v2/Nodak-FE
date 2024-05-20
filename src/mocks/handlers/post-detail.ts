@@ -1,5 +1,6 @@
 import { HttpResponse, http } from 'msw';
 
+import { BASE_URL } from '@/src/apis/constants';
 import { PostDetail } from '@/src/apis/post';
 
 class Post {
@@ -68,20 +69,55 @@ postList[NOT_VOTED_AUTHOR].isAuthor = true;
 postList[NOT_VOTED_NOT_AUTHOR].voteInfo.hasVoted = false;
 postList[NOT_VOTED_NOT_AUTHOR].isAuthor = false;
 
-const getPostDetail = http.get(
-  `${process.env.NEXT_PUBLIC_URL}/posts/:id`,
-  ({ params }) => {
-    const { id } = params;
-    const index = +id;
-    const isInCorrectId = index < 0 || post.getPostList().length <= index;
+const isOutOfBounds = (index: number) => index < 0 || index >= postList.length;
 
-    if (isInCorrectId)
+const getPostDetail = http.get(`${BASE_URL}/posts/:postId`, ({ params }) => {
+  const { postId } = params;
+
+  if (isOutOfBounds(+postId))
+    return new HttpResponse('Not found', {
+      status: 404,
+    });
+
+  return HttpResponse.json<PostDetail>(postList[+postId]);
+});
+
+const createLike = http.post(
+  `${BASE_URL}/posts/:postId/stars`,
+  ({ params }) => {
+    const { postId } = params;
+
+    if (isOutOfBounds(+postId))
       return new HttpResponse('Not found', {
         status: 404,
       });
 
-    return HttpResponse.json<PostDetail>(post.getPostList()[index]);
+    postList[+postId].starCount += 1;
+    postList[+postId].checkStar = true;
+
+    return new HttpResponse('Created', {
+      status: 201,
+    });
   },
 );
 
-export const handlers = [getPostDetail];
+const deleteLike = http.delete(
+  `${BASE_URL}/posts/:postId/stars`,
+  ({ params }) => {
+    const { postId } = params;
+
+    if (isOutOfBounds(+postId))
+      return new HttpResponse('Not found', {
+        status: 404,
+      });
+
+    postList[+postId].starCount -= 1;
+    postList[+postId].checkStar = false;
+
+    return new HttpResponse('Created', {
+      status: 200,
+    });
+  },
+);
+
+export const handlers = [getPostDetail, createLike, deleteLike];

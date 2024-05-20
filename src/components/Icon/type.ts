@@ -7,6 +7,7 @@ export type IconName =
   | 'chat'
   | 'add'
   | 'right-arrow'
+  | 'down-arrow'
   | 'camera'
   | 'dash-circle-fill'
   | 'moon-fill'

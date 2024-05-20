@@ -1,5 +1,6 @@
 import { HttpResponse, http } from 'msw';
 
+import { BASE_URL } from '@/src/apis/constants';
 import { VoteResult } from '@/src/apis/vote';
 import { post } from '@/src/mocks/handlers/post-detail';
 
@@ -51,40 +52,34 @@ class Vote {
 
 const vote = new Vote();
 
-const getVoteResult = http.get(
-  `${process.env.NEXT_PUBLIC_URL}/votes/:voteId`,
-  ({ params }) => {
-    const { voteId } = params;
-    const result = vote.getVoteResult(+voteId);
+const getVoteResult = http.get(`${BASE_URL}/votes/:voteId`, ({ params }) => {
+  const { voteId } = params;
+  const result = vote.getVoteResult(+voteId);
 
-    if (!result) return new HttpResponse('Not found', { status: 404 });
+  if (!result) return new HttpResponse('Not found', { status: 404 });
 
-    return HttpResponse.json<VoteResult>(result);
-  },
-);
+  return HttpResponse.json<VoteResult>(result);
+});
 
-const doVote = http.post(
-  `${process.env.NEXT_PUBLIC_URL}/votes/:voteId`,
-  ({ request, params }) => {
-    const { voteId } = params;
-    const url = new URL(request.url);
-    const optionSeq = url.searchParams.get('option'); // 쿼리 파라미터 가져오기
+const doVote = http.post(`${BASE_URL}/votes/:voteId`, ({ request, params }) => {
+  const { voteId } = params;
+  const url = new URL(request.url);
+  const optionSeq = url.searchParams.get('option'); // 쿼리 파라미터 가져오기
 
-    if (!optionSeq)
-      return new HttpResponse('Not found', {
-        status: 404,
-      });
-
-    const isSuccess = vote.vote(+voteId, +optionSeq);
-
-    if (!isSuccess)
-      return new HttpResponse('Not found', {
-        status: 404,
-      });
-
-    return new HttpResponse('Created', {
-      status: 201,
+  if (!optionSeq)
+    return new HttpResponse('Not found', {
+      status: 404,
     });
-  },
-);
+
+  const isSuccess = vote.vote(+voteId, +optionSeq);
+
+  if (!isSuccess)
+    return new HttpResponse('Not found', {
+      status: 404,
+    });
+
+  return new HttpResponse('Created', {
+    status: 201,
+  });
+});
 export const handlers = [getVoteResult, doVote];
