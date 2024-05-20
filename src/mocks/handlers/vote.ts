@@ -1,5 +1,6 @@
 import { HttpResponse, http } from 'msw';
 
+import { BASE_URL } from '@/src/apis/constants';
 import { VoteResult } from '@/src/apis/vote';
 
 const voteResults = [
@@ -21,10 +22,7 @@ const voteResults = [
     ],
   },
 ];
-const getVoteResult = http.get(
-  `${process.env.NEXT_PUBLIC_URL}/votes/:voteId`,
-  () => {
-    return HttpResponse.json<VoteResult>(voteResults[0]);
-  },
-);
+const getVoteResult = http.get(`${BASE_URL}/votes/:voteId`, () => {
+  return HttpResponse.json<VoteResult>(voteResults[0]);
+});
 export const handlers = [getVoteResult];

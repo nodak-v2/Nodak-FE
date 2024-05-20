@@ -1,3 +1,5 @@
+import { BASE_URL } from '@/src/apis/constants';
+
 interface Option {
   seq: number;
   content: string;
@@ -13,7 +15,7 @@ export interface VoteResult {
 
 export const getVoteResult = async (voteId: string) => {
   const data = (
-    await fetch(`${process.env.NEXT_PUBLIC_URL}/votes/${voteId}`)
+    await fetch(`${BASE_URL}/votes/${voteId}`)
   ).json() as Promise<VoteResult>;
 
   return data;
