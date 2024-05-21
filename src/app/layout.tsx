@@ -6,7 +6,10 @@ import Introduction from './_components/Introduction';
 import './globals.css';
 
 export const viewport: Viewport = {
-  themeColor: '#ffffff',
+  themeColor: "#ffffff",
+  initialScale: 1,
+  minimumScale: 1,
+  viewportFit: "cover"
 };
 
 export const metadata: Metadata = {
@@ -24,7 +27,7 @@ const RootLayout = ({
     <html lang='ko'>
       <body>
         <MSWComponent>
-          <div className='flex h-screen w-screen flex-row items-center justify-center gap-10'>
+          <div className='flex flex-row items-center justify-center w-screen h-screen gap-10'>
             <div className='hidden shrink sm:flex'>
               <Introduction />
             </div>
