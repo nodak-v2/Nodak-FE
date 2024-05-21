@@ -23,3 +23,11 @@
     --dark-2: #212529;
   }
 }
+
+ul > button:last-child {
+  border-bottom: none;
+}
+
+#drawer-content::after {
+  content: none;
+}

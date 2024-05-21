@@ -1,6 +1,7 @@
 import { HttpResponse, http } from 'msw';
 
-import { PostList } from '@/src/apis/types';
+import { BASE_URL } from '@/src/apis/constants';
+import { PostList } from '@/src/apis/post';
 
 const postList = {
   posts: [
@@ -63,7 +64,7 @@ const postList = {
   empty: false, // 현재 페이지가 비어있는 지 여부
 };
 
-const getPostList = http.get('posts', () => {
+const getPostList = http.get(`${BASE_URL}/posts`, () => {
   return HttpResponse.json<PostList>(postList);
 });
 export const handlers = [getPostList];
