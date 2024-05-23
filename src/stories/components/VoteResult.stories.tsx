@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import VoteResult from '@/src/app/result/[postId]/_components/VoteResult';
+import VoteResult from '@/src/app/result/[postId]/_components/VoteBlock/VoteResult';
 import { PageLayoutDecorator } from '@/src/stories/decorator';
 
 const meta = {
