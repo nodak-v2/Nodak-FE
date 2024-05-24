@@ -73,11 +73,17 @@ export const getPostDetail = async (postId: string) => {
 export const createLike = async (postId: string) => {
   await fetch(`${BASE_URL}/posts/${postId}/stars`, {
     method: 'post',
+    headers: {
+      Authorization: TEST_TOKEN || '',
+    },
   });
 };
 
 export const deleteLike = async (postId: string) => {
   await fetch(`${BASE_URL}/posts/${postId}/stars`, {
     method: 'delete',
+    headers: {
+      Authorization: TEST_TOKEN || '',
+    },
   });
 };

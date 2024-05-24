@@ -38,6 +38,9 @@ export const doVote = async (voteId: number, optionSeq: number) => {
     `${process.env.NEXT_PUBLIC_URL}/votes/${voteId}?option=${optionSeq}`,
     {
       method: 'post',
+      headers: {
+        Authorization: TEST_TOKEN || '',
+      },
     },
   );
 };
