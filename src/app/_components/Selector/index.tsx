@@ -9,7 +9,7 @@ import useDropdown from './useDropdown';
 interface SelectorProps {
   items: string[];
   placeholder: string;
-  onChange: (channel: string) => void;
+  onChange?: (channel: string) => void;
 }
 
 const Selector = ({ items, placeholder, onChange }: SelectorProps) => {
@@ -22,7 +22,9 @@ const Selector = ({ items, placeholder, onChange }: SelectorProps) => {
   } = useDropdown();
 
   const handleSelectorClick = (item: string) => {
-    onChange(item);
+    if (onChange) {
+      onChange(item);
+    }
     updateSelectedItem(item);
     toggleDropdown();
   };
