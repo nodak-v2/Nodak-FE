@@ -24,21 +24,14 @@ const RootLayout = ({
             </div>
             <div
               id='layout-Root'
-              className='relative flex h-full max-h-[950px] min-h-[600px] w-full min-w-[350px] max-w-[450px] shrink-0 flex-col shadow-xl'
+              className='relative flex h-full max-h-[950px] min-h-[600px] w-full min-w-[350px] max-w-[450px] shrink-0 flex-col bg-dark-accent2 shadow-xl'
             >
               {children}
             </div>
-          </div>
-          <div
-            id='layout-Root'
-            className='relative flex h-full max-h-[950px] min-h-[600px] w-full min-w-[350px] max-w-[450px] shrink-0 flex-col shadow-xl'
-          >
-            {children}
           </div>
         </MSWComponent>
       </body>
     </html>
   );
 };
-
 export default RootLayout;

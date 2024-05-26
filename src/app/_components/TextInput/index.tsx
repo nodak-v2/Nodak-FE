@@ -13,7 +13,7 @@ const textInputCSS = cva(
         filled: 'border-gray-200 bg-gray-200 ',
         underline:
           'rounded-none border-0 border-b-2 border-gray-300 bg-transparent',
-        error: 'bg-transparent ring-2 ring-red-500',
+        error: 'bg-transparent ring-1 ring-red-500',
       },
       isDisabled: {
         false: '',

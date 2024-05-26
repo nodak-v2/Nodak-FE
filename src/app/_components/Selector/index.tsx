@@ -9,9 +9,10 @@ import useDropdown from './useDropdown';
 interface SelectorProps {
   items: string[];
   placeholder: string;
+  onChange: (channel: string) => void;
 }
 
-const Selector = ({ items, placeholder }: SelectorProps) => {
+const Selector = ({ items, placeholder, onChange }: SelectorProps) => {
   const {
     isOpen,
     toggleDropdown,
@@ -21,17 +22,21 @@ const Selector = ({ items, placeholder }: SelectorProps) => {
   } = useDropdown();
 
   const handleSelectorClick = (item: string) => {
+    onChange(item);
     updateSelectedItem(item);
     toggleDropdown();
   };
 
   return (
     <div
-      className='relative inline-block'
+      className='relative'
       onClick={toggleDropdown}
       ref={dropdownRef as RefObject<HTMLDivElement>}
     >
-      <button className='text-bold flex w-full items-center justify-between rounded border bg-gray-accent1 p-2'>
+      <button
+        type='button'
+        className='text-bold flex w-full items-center justify-between rounded border bg-gray-accent1 p-2'
+      >
         <span>{selectedItem ? selectedItem : placeholder}</span>
         <Icon
           id='down-arrow'
@@ -39,7 +44,7 @@ const Selector = ({ items, placeholder }: SelectorProps) => {
         />
       </button>
       {isOpen && (
-        <ul className='absolute z-50 w-full rounded bg-gray-accent2 shadow-sm'>
+        <ul className='z-50 w-full rounded bg-gray-accent2 shadow-sm'>
           {items.map((item, index) => {
             return (
               <li

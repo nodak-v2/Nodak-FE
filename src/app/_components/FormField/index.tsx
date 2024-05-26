@@ -10,6 +10,7 @@ interface FormFieldProps
   currentLength?: number;
   maxLength?: number;
   error?: string | undefined;
+  childClassName?: string;
 }
 
 const FormField = ({
@@ -20,6 +21,7 @@ const FormField = ({
   children,
   className,
   error,
+  childClassName,
   ...props
 }: FormFieldProps) => {
   return (
@@ -33,7 +35,7 @@ const FormField = ({
           <span className='text-xs text-gray-accent2'>{`${currentLength}/${maxLength}`}</span>
         )}
       </div>
-      {children}
+      <div className={childClassName}>{children}</div>
       {error && <p className='text-sm text-red-500'>{error}</p>}
     </div>
   );

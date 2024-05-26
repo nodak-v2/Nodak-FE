@@ -11,7 +11,7 @@ const textareaCSS = cva(
       variant: {
         default: 'border-gray-300 bg-transparent ',
         filled: 'border-gray-200 bg-gray-200 ',
-        error: 'bg-transparent ring-2 ring-red-500',
+        error: 'bg-transparent ring-1 ring-red-500',
       },
       isDisabled: {
         false: '',
