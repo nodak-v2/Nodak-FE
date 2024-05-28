@@ -1,5 +1,7 @@
 import { PropsWithChildren } from 'react';
 
+import Link from 'next/link';
+
 import Icon from '@/src/components/Icon';
 
 const Container = ({ children }: PropsWithChildren) => {
@@ -17,8 +19,10 @@ const Right = ({ children }: PropsWithChildren) => (
   <div className='flex items-center gap-3'>{children}</div>
 );
 
-const BackButton = () => (
-  <Icon id='back' size={24} className='cursor-pointer' />
+const BackButton = ({ href }: { href: string }) => (
+  <Link href={href}>
+    <Icon id='back' size={24} className='cursor-pointer' />
+  </Link>
 );
 
 const ReportButton = () => (
