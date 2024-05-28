@@ -9,6 +9,7 @@ import ChipContainer, {
   ChannelType,
 } from '@/src/app/(main)/_component/ChipContainer';
 import PostItem from '@/src/app/(main)/_component/PostItem';
+import Popup from '@/src/app/_components/Popup';
 import Icon from '@/src/components/Icon';
 
 import GNB from './_components/GNB';
@@ -72,6 +73,7 @@ const Main = () => {
         </Link>
       </main>
       <GNB />
+      <Popup />
     </div>
   );
 };
