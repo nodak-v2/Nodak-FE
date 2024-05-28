@@ -92,7 +92,7 @@ const queryParamsStringify = (params: object) =>
 
 export const getPostList = async (params: GetPostListParams) => {
   const response = await fetch(
-    `/posts/search?${queryParamsStringify(params)}`,
+    `api/posts/search?${queryParamsStringify(params)}`,
     {
       next: {
         tags: ['post', ...Object.values(params)],
