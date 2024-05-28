@@ -1,13 +1,7 @@
-'use client';
-
-import { useState } from 'react';
-
 import Icon from '../components/Icon';
 import Popup from './_components/Popup';
 
 const Home = () => {
-  const [see, setSee] = useState<string | null>('');
-
   return (
     // 아래는 예시 사용방법입니다.
     <>
@@ -20,7 +14,7 @@ const Home = () => {
         <Icon id='heart' size={16} />
       </div>
 
-      {!see && <Popup setSee={setSee} />}
+      <Popup />
     </>
   );
 };

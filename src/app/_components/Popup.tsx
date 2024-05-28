@@ -1,7 +1,6 @@
-/* eslint-disable prettier/prettier */
 'use client';
 
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Image from 'next/image';
 import 'swiper/css';
@@ -10,31 +9,29 @@ import 'swiper/css/pagination';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-/* eslint-disable prettier/prettier */
+const Popup = () => {
+  const [seen, setSeen] = useState<string | null>('');
 
-const Popup = ({
-  setSee,
-}: {
-  setSee: Dispatch<SetStateAction<string | null>>;
-}) => {
   const [isChecked, setIsChecked] = useState(false);
   useEffect(() => {
-    setSee(localStorage.getItem('seenPopup'));
-  }, [setSee]);
+    setSeen(localStorage.getItem('seenPopup'));
+  }, [setSeen]);
 
   const handleSeeAgain = () => {
     if (isChecked) {
       localStorage.setItem('seenPopup', 'true');
     }
-    setSee('true');
+    setSeen('true');
   };
 
   const handleCheckbox = () => {
     isChecked ? setIsChecked(false) : setIsChecked(true);
   };
 
+  if (seen) return null;
+
   return (
-    <div className='bg-dark-accent2 absolute bottom-0 z-50 flex w-full flex-col'>
+    <div className='absolute bottom-0 z-50 flex w-full flex-col bg-dark-accent2'>
       <Swiper
         slidesPerView={1}
         loop
@@ -66,7 +63,7 @@ const Popup = ({
             checked={isChecked}
             onChange={handleCheckbox}
           />
-          <p className='text-gray-accent1 ml-1'>다시 보지 않기</p>
+          <p className='ml-1 text-gray-accent1'>다시 보지 않기</p>
         </div>
         <button className='h-8 w-8 bg-white' onClick={handleSeeAgain}>
           닫기
