@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 
-import { MSWComponent } from '@/src/mocks/MSWComponent';
-
+import { MSWComponent } from '../mocks/MSWComponent';
 import Introduction from './_components/Introduction';
 import './globals.css';
 
@@ -24,16 +23,10 @@ const RootLayout = ({
             </div>
             <div
               id='layout-Root'
-              className='relative flex h-full max-h-[950px] min-h-[600px] w-full min-w-[350px] max-w-[450px] shrink-0 flex-col shadow-xl'
+              className='relative flex h-full max-h-[950px] min-h-[600px] w-full min-w-[350px] max-w-[450px] shrink-0 flex-col bg-dark-accent2 text-gray-accent1 shadow-xl'
             >
               {children}
             </div>
-          </div>
-          <div
-            id='layout-Root'
-            className='relative flex h-full max-h-[950px] min-h-[600px] w-full min-w-[350px] max-w-[450px] shrink-0 flex-col shadow-xl'
-          >
-            {children}
           </div>
         </MSWComponent>
       </body>

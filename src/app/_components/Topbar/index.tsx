@@ -4,7 +4,7 @@ import Icon from '@/src/components/Icon';
 
 const Container = ({ children }: PropsWithChildren) => {
   return (
-    <div className='flex justify-between border-b border-gray-accent2 py-2 text-gray-accent1'>
+    <div className='flex justify-between border-b border-gray-accent2 p-2'>
       {children}
     </div>
   );
@@ -17,7 +17,9 @@ const Right = ({ children }: PropsWithChildren) => (
   <div className='flex items-center gap-3'>{children}</div>
 );
 
-const BackButton = () => <Icon id='back' size={24} />;
+const BackButton = () => (
+  <Icon id='back' size={24} className='cursor-pointer' />
+);
 
 const ReportButton = () => (
   <Icon id='notification' size={24} className='text-red-500' />

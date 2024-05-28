@@ -4,5 +4,6 @@ export async function register() {
     server.listen({
       onUnhandledRequest: 'bypass',
     });
+    server.close();
   }
 }
