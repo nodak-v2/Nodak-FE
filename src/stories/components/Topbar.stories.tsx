@@ -22,7 +22,7 @@ export const PostDetail: Story = {
     children: (
       <>
         <TopBar.Left>
-          <TopBar.BackButton />
+          <TopBar.BackButton href='/' />
           <TopBar.Title>프로필</TopBar.Title>
         </TopBar.Left>
       </>
@@ -36,7 +36,7 @@ export const Comment: Story = {
     children: (
       <>
         <TopBar.Left>
-          <TopBar.BackButton />
+          <TopBar.BackButton href='/' />
           <TopBar.Title>댓글 0개</TopBar.Title>
         </TopBar.Left>
       </>
@@ -50,7 +50,7 @@ export const Profile: Story = {
     children: (
       <>
         <TopBar.Left>
-          <TopBar.BackButton />
+          <TopBar.BackButton href='/' />
           <TopBar.Title>프로필</TopBar.Title>
         </TopBar.Left>
         <TopBar.Right>
