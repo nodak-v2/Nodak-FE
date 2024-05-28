@@ -44,7 +44,7 @@ const VoteForm = ({ onChange, error }: VoteFormProps) => {
   };
 
   const isOptionvalid = (option: string): boolean => {
-    return option.length >= 1 && option.length <= 7;
+    return option.length >= 1 && option.length <= 20;
   };
 
   return (
