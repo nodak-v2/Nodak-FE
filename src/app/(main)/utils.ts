@@ -15,11 +15,10 @@ export const PostContentToPostItemType = (
   createdAt: new Date().toISOString(),
 });
 
-export const isValidImageUrl = <TUrl extends string | null>(
-  url: TUrl,
-): boolean => {
-  const image = new Image();
-  image.src = url ?? '';
+export const isValidImageUrl = (url: string | null): url is string => {
+  if (!url) return false;
+  if (url.startsWith('data:')) return true;
+  if (url.startsWith('http://') || url.startsWith('https://')) return true;
 
-  return image.complete && image.naturalWidth !== 0;
+  return false;
 };

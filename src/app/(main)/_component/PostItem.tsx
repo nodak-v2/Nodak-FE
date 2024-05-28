@@ -35,7 +35,7 @@ const PostItem = ({ post }: PostItemProps) => {
       <Image
         src={
           isValidImageUrl(imageUrl)
-            ? imageUrl!
+            ? imageUrl
             : 'https://via.placeholder.com/130'
         }
         alt='게시글이미지'
@@ -53,7 +53,7 @@ const PostItem = ({ post }: PostItemProps) => {
             <Image
               src={
                 isValidImageUrl(profileImageUrl)
-                  ? profileImageUrl!
+                  ? profileImageUrl
                   : 'https://via.placeholder.com/20'
               }
               alt='사용자 프로필'
