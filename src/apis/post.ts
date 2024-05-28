@@ -59,6 +59,15 @@ export interface PostList {
   empty: boolean;
 }
 
+export interface PostValue {
+  title: string;
+  content: string;
+  imageUrl?: File;
+  channel?: string;
+  voteTitle?: string;
+  voteOptions?: string[];
+}
+
 export const getPostDetail = async (postId: string) => {
   const data = (
     await fetch(`${BASE_URL}/posts/${postId}`, {
@@ -78,5 +87,16 @@ export const createLike = async (postId: string) => {
 export const deleteLike = async (postId: string) => {
   await fetch(`${BASE_URL}/posts/${postId}/stars`, {
     method: 'delete',
+  });
+};
+
+export const createPost = async (data: PostValue) => {
+  await fetch(`${BASE_URL}/posts`, {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: '',
+    },
+    body: JSON.stringify(data),
   });
 };

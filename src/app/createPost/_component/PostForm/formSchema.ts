@@ -13,14 +13,14 @@ const validateOptions = (value: string[] | undefined) => {
 };
 
 export const schema = yup.object({
-  image: yup.mixed<File>().required(),
+  imageUrl: yup.mixed<File>().required(),
   title: yup
     .string()
     .required('필수 입력 항목입니다.')
     .trim()
     .min(2, '최소 2글자 이상이어야 합니다.')
     .max(50, '최대 500글자까지 입력 가능합니다.'),
-  description: yup
+  content: yup
     .string()
     .required('필수 입력 항목입니다.')
     .trim()
@@ -35,9 +35,9 @@ export const schema = yup.object({
 });
 
 export const defaultValues = {
-  image: new File([], ''),
+  imageUrl: new File([], ''),
   title: '',
-  description: '',
+  content: '',
   channel: '',
   voteOptions: [],
 };

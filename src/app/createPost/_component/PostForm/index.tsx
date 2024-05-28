@@ -2,6 +2,7 @@
 
 import { Controller, useForm } from 'react-hook-form';
 
+import { PostValue, createPost } from '@/src/apis/post';
 import Button from '@/src/app/_components/Button/Button';
 import FormField from '@/src/app/_components/FormField';
 import Selector from '@/src/app/_components/Selector';
@@ -23,10 +24,17 @@ const PostForm = () => {
     control,
   } = useForm(formOptions);
 
+  const onSubmitPost = (data: PostValue) => {
+    createPost(data);
+  };
+
   return (
-    <form onSubmit={handleSubmit(() => {})}>
+    <form
+      onSubmit={handleSubmit(onSubmitPost)}
+      className='flex grow flex-col overflow-y-auto'
+    >
       <Controller
-        name='image'
+        name='imageUrl'
         control={control}
         render={({ field }) => <ImageUploader onChange={field.onChange} />}
       />
@@ -50,13 +58,13 @@ const PostForm = () => {
           labelText='투표 설명'
           isRequired
           maxLength={500}
-          currentLength={watch('description')?.length}
-          error={errors.description?.message}
+          currentLength={watch('content')?.length}
+          error={errors.content?.message}
         >
           <Textarea
-            variant={errors.description ? 'error' : 'default'}
+            variant={errors.content ? 'error' : 'default'}
             maxLength={500}
-            {...register('description')}
+            {...register('content')}
           />
         </FormField>
 
