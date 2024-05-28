@@ -1,3 +1,5 @@
+import { BASE_URL } from './constants';
+
 interface Comment {
   commentId: number;
   profileImageUrl: string | null;
@@ -13,10 +15,17 @@ interface CommentResponse {
 
 export const getComments = async (postId: string): Promise<CommentResponse> => {
   const data = (
-    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts/${postId}/comments`, {
+    await fetch(`${BASE_URL}/posts/${postId}/comments`, {
       cache: 'force-cache',
     })
   ).json();
 
   return data;
+};
+
+export const createComment = async (postId: string, comment: string) => {
+  await fetch(`${BASE_URL}/posts/${postId}/comments`, {
+    method: 'post',
+    body: JSON.stringify({ content: comment }),
+  });
 };
