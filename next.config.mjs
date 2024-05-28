@@ -10,7 +10,8 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: process.env.NEXT_PUBLIC_URL + '/:path*',
+        destination:
+          (process.env.NEXT_PUBLIC_URL ?? 'https://api.nodak.link') + '/:path*',
       },
     ];
   },
