@@ -6,6 +6,14 @@ const nextConfig = {
   images: {
     domains: ['via.placeholder.com'],
   },
+  async rewrites() {
+    return [
+      {
+        source: '/:path*',
+        destination: process.env.NEXT_PUBLIC_URL + '/:path*',
+      },
+    ];
+  },
 };
 
 export default nextConfig;
