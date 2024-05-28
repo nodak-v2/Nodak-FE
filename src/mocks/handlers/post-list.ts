@@ -65,6 +65,6 @@ const postList = {
 };
 
 const getPostList = http.get(`${BASE_URL}/posts`, () => {
-  return HttpResponse.json<PostList>(postList);
+  return HttpResponse.json<PostList>(postList as unknown as PostList);
 });
 export const handlers = [getPostList];
