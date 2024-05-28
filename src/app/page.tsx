@@ -5,47 +5,37 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
+import { PostList, getPostList } from '@/src/apis/post';
 import ChipContainer, {
   ChannelType,
 } from '@/src/app/(main)/_component/ChipContainer';
 import PostItem from '@/src/app/(main)/_component/PostItem';
+import { PostContentToPostItemType } from '@/src/app/(main)/utils';
 import Popup from '@/src/app/_components/Popup';
 import Icon from '@/src/components/Icon';
 
 import GNB from './_components/GNB';
 import TopBar from './_components/Topbar';
 
-const posts = [
-  {
-    title: '게시글 제목입니다.',
-    votedCount: 10,
-    likedCount: 10,
-    commentedCount: 10,
-    author: 'homin',
-    profileImageUrl: 'https://via.placeholder.com/150',
-    imageUrl: 'https://via.placeholder.com/150',
-    createdAt: '2021-10-10',
-  },
-  {
-    title: '게시글 제목입니다.',
-    votedCount: 10,
-    likedCount: 10,
-    commentedCount: 10,
-    author: 'homin',
-    profileImageUrl: 'https://via.placeholder.com/150',
-    imageUrl: 'https://via.placeholder.com/150',
-    createdAt: '2021-10-10',
-  },
-];
-
 const Main = () => {
   const searchParams = useSearchParams();
   const [currentChannel, setCurrentChannel] = useState<ChannelType>('all');
+  const [posts, setPosts] = useState<PostList['body']['content']>();
 
   useEffect(() => {
     const channel = searchParams.get('channel') as ChannelType;
     if (channel) setCurrentChannel(channel);
   }, [searchParams]);
+
+  useEffect(() => {
+    const fetchPostList = async () => {
+      const response = await getPostList({ page: '0', size: '4' });
+
+      setPosts(response.body.content);
+    };
+
+    fetchPostList();
+  }, [currentChannel]);
 
   return (
     <div className='flex h-full flex-col'>
@@ -62,8 +52,11 @@ const Main = () => {
         <ChipContainer currentChannel={currentChannel} />
         <p className='text-white'>{currentChannel}</p>
         <div className='flex flex-col'>
-          {posts.map((post, index) => (
-            <PostItem key={`${index}-${post.title}`} post={post} />
+          {posts?.map((post, index) => (
+            <PostItem
+              key={`${index}-${post.title}`}
+              post={PostContentToPostItemType(post)}
+            />
           ))}
         </div>
         <Link href='createPost'>

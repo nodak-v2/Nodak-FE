@@ -28,8 +28,8 @@ interface PostListContent {
   title: string;
   totalCount: number;
   author: string;
-  profileImageUrl: string;
-  postImageUrl: string;
+  profileImageUrl: string | null;
+  postImageUrl: string | null;
 }
 
 interface PostListPageable {
@@ -91,13 +91,16 @@ const queryParamsStringify = (params: object) =>
     .join('&');
 
 export const getPostList = async (params: GetPostListParams) => {
-  const data = (
-    await fetch(`${BASE_URL}/posts?${queryParamsStringify(params)}`, {
+  const response = await fetch(
+    `/posts/search?${queryParamsStringify(params)}`,
+    {
       next: {
         tags: ['post', ...Object.values(params)],
       },
-    })
-  ).json() as Promise<PostList>;
+    },
+  );
+
+  const data = (await response.json()) as PostList;
 
   return data;
 };
