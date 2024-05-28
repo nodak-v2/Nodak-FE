@@ -5,13 +5,14 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
+import ChipContainer, {
+  ChannelType,
+} from '@/src/app/(main)/_component/ChipContainer';
+import PostItem from '@/src/app/(main)/_component/PostItem';
 import Icon from '@/src/components/Icon';
 
 import GNB from './_components/GNB';
 import TopBar from './_components/Topbar';
-import ChipContainer from './main/_component/ChipContainer';
-import { ChannelType } from './main/_component/ChipContainer';
-import PostItem from './main/_component/PostItem';
 
 const posts = [
   {
