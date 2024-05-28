@@ -1,16 +1,11 @@
-interface Option {
-  seq: number;
-  content: string;
-  count: number;
-}
+import { getVoteResult } from '@/src/apis/vote';
 
 interface VoteProgressProps {
-  title: string;
-  options: Option[];
-  totalNumber: number;
+  voteId: number;
 }
 
-const VoteProgress = ({ title, options, totalNumber }: VoteProgressProps) => {
+const VoteProgress = async ({ voteId }: VoteProgressProps) => {
+  const { title, options, totalNumber } = await getVoteResult(voteId);
   const percentageOf = (count: number) => (count / totalNumber) * 100;
 
   return (

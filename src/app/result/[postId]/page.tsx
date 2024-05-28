@@ -1,5 +1,4 @@
 import { getPostDetail } from '@/src/apis/post';
-import { getVoteResult } from '@/src/apis/vote';
 import CommentLink from '@/src/app/result/[postId]/_components/CommentLink';
 import EditLinks from '@/src/app/result/[postId]/_components/EditLinks';
 import LikeButton from '@/src/app/result/[postId]/_components/LikeButton';
@@ -20,10 +19,10 @@ const ResultPage = async ({ params: { postId } }: ResultPageProps) => {
     date,
     content,
     starCount,
+    commentCount,
     checkStar: isCheckStar,
-    voteInfo: { hasVoted, voteTitle, options },
+    voteInfo: { hasVoted, voteTitle, options, voteId },
   } = await getPostDetail(postId);
-  const { options: resultOptions, totalNumber } = await getVoteResult(postId);
 
   return (
     <div className='flex h-full grow flex-col gap-2 overscroll-y-auto'>
@@ -35,13 +34,9 @@ const ResultPage = async ({ params: { postId } }: ResultPageProps) => {
       <p className='break-words p-4'>{content}</p>
       {isAuthor && <EditLinks postId={postId} />}
       {hasVoted ? (
-        <VoteProgress
-          title={voteTitle}
-          options={resultOptions}
-          totalNumber={totalNumber}
-        />
+        <VoteProgress voteId={voteId} />
       ) : (
-        <VoteForm title={voteTitle} options={options} />
+        <VoteForm title={voteTitle} options={options} voteId={voteId} />
       )}
       <div className='flex items-center gap-1 p-4'>
         <div className='flex gap-0.5'>
@@ -50,7 +45,7 @@ const ResultPage = async ({ params: { postId } }: ResultPageProps) => {
         </div>
         <div className='flex gap-0.5'>
           <CommentLink postId={postId} />
-          <span>{totalNumber}</span>
+          <span>{commentCount}</span>
         </div>
       </div>
     </div>

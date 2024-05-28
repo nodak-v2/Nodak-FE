@@ -13,10 +13,19 @@ export interface VoteResult {
   options: Option[];
 }
 
-export const getVoteResult = async (voteId: string) => {
+export const getVoteResult = async (voteId: number) => {
   const data = (
     await fetch(`${BASE_URL}/votes/${voteId}`)
   ).json() as Promise<VoteResult>;
 
   return data;
+};
+
+export const doVote = async (voteId: number, optionSeq: number) => {
+  await fetch(
+    `${process.env.NEXT_PUBLIC_URL}/votes/${voteId}?option=${optionSeq}`,
+    {
+      method: 'post',
+    },
+  );
 };
