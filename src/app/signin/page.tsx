@@ -12,7 +12,7 @@ const Signin = () => {
         height={180}
       />
       <Link
-        href='https://api.nodak.link.com/oauth2/authorization/kakao'
+        href='https://api.nodak.link/oauth2/authorization/kakao'
         className='h-50pxr w-240pxr flex items-center justify-center gap-6 rounded-md bg-[#fdd801] px-6 py-3 opacity-100 hover:opacity-80'
       >
         <Image src={'kakao.svg'} alt='kakao' width={30} height={30} />
