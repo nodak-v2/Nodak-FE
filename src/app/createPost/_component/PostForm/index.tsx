@@ -100,11 +100,9 @@ const PostForm = () => {
           />
         </FormField>
       </fieldset>
-      <div className='p-4'>
-        <Button type='submit' baseColor='primary' className='w-full py-2'>
-          투표 생성하기
-        </Button>
-      </div>
+      <Button type='submit' baseColor='primary' className='mx-4 my-6'>
+        투표 생성하기
+      </Button>
     </form>
   );
 };
