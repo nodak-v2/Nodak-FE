@@ -14,11 +14,7 @@ interface CommentResponse {
 }
 
 export const getComments = async (postId: string): Promise<CommentResponse> => {
-  const data = (
-    await fetch(`${BASE_URL}/posts/${postId}/comments`, {
-      cache: 'force-cache',
-    })
-  ).json();
+  const data = (await fetch(`${BASE_URL}/posts/${postId}/comments`)).json();
 
   return data;
 };
