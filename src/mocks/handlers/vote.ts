@@ -43,13 +43,13 @@ class Vote {
   getVoteResult(voteId: number) {
     return this.voteResults.find(vote => vote.body.voteId === voteId);
   }
-  setVoteInfo(voteId: number, optionSeq: number) {
+  setVoteInfo(voteId: number, optionSequence: number) {
     const voteResult = this.getVoteResult(voteId);
     if (!voteResult) return;
 
     voteResult.body.hasVoted = true;
     voteResult.body.voteOptions.forEach(option => {
-      if (option.seq === optionSeq) option.count++;
+      if (option.seq === optionSequence) option.count++;
     });
 
     voteResult.body.totalNumber++;
