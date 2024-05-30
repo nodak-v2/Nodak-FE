@@ -1,6 +1,9 @@
 'use client';
 
+import { cva } from 'class-variance-authority';
+
 import Tooltip from '@/src/app/_components/Tooltip/Tooltip';
+import { cn } from '@/src/utils/cn';
 
 const year = new Date().getFullYear();
 const month = new Date().getMonth();
@@ -11,11 +14,26 @@ const grass: {
   lightness: LightnessType;
   postNumber: number;
   date: string;
-}[] = Array.from({ length: lastDayOfMonth * 3 }, (_, index) => ({
-  lightness: 300,
+}[] = Array.from({ length: lastDayOfMonth }, (_, index) => ({
+  lightness: 200,
   postNumber: 0,
   date: `${year}-${month + 1}-${index + 1}`,
 }));
+
+const grassCSS = cva(`shadow-border h-5 w-5 rounded-md`, {
+  variants: {
+    variant: {
+      100: 'bg-grass-100',
+      200: 'bg-grass-200',
+      300: 'bg-grass-300',
+      400: 'bg-grass-400',
+      500: 'bg-grass-500',
+    },
+  },
+  defaultVariants: {
+    variant: 100,
+  },
+});
 
 const ActiveGrass = () => {
   return (
@@ -30,9 +48,7 @@ const ActiveGrass = () => {
             hasArrow
             type='hover'
           >
-            <div
-              className={`shadow-border bg-grass-${lightness} h-5 w-5 rounded-md`}
-            ></div>
+            <div className={cn(grassCSS({ variant: lightness }))}></div>
           </Tooltip>
         ))}
       </div>

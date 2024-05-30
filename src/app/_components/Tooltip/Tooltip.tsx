@@ -54,9 +54,9 @@ const Tooltip = ({
       <span ref={ref}>{childElement}</span>
       {isShow && (
         <span
-          className={`sha absolute z-10 w-24
+          className='absolute z-10 w-24
           max-w-xs rounded-lg bg-primary-accent1 px-4
-          py-2  text-center text-sm leading-6 text-black shadow-sm`}
+          py-2  text-center text-sm leading-6 text-black shadow-sm'
           ref={tooltipRef}
           onAnimationEnd={() => {
             if (!isShow) {
@@ -66,13 +66,9 @@ const Tooltip = ({
           }}
         >
           {message.split(',').map((item, index) => (
-            <Fragment key={index}>
-              {item}
-              <br />
-            </Fragment>
+            <Fragment key={index}>{item}</Fragment>
           ))}
           {hasArrow && <TooltipArrow direction={direction} />}
-          <div className='shadow-'></div>
         </span>
       )}
     </div>
