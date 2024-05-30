@@ -8,6 +8,7 @@ const initMsw = async () => {
     await worker.start({
       onUnhandledRequest: 'bypass',
     });
+    worker.stop();
   }
 };
 
