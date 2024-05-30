@@ -5,17 +5,30 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
-import { PostList, getPostList } from '@/src/apis/post';
+import { GetPostListParams, PostList, getPostList } from '@/src/apis/post';
 import ChipContainer, {
   ChannelType,
 } from '@/src/app/(main)/_component/ChipContainer';
 import PostItem from '@/src/app/(main)/_component/PostItem';
+import { CATEGORY_MAP } from '@/src/app/(main)/constants';
 import { PostContentToPostItemType } from '@/src/app/(main)/utils';
 import Popup from '@/src/app/_components/Popup';
 import Icon from '@/src/components/Icon';
 
 import GNB from './_components/GNB';
 import TopBar from './_components/Topbar';
+
+const searchParamsToGetPostListParams = (
+  channel?: ChannelType,
+  keyword?: string,
+): Omit<GetPostListParams, 'size' | 'page'> => {
+  const categoryId = channel && CATEGORY_MAP[channel];
+
+  return {
+    categoryId,
+    keyword,
+  };
+};
 
 const Main = () => {
   const searchParams = useSearchParams();
@@ -24,18 +37,22 @@ const Main = () => {
 
   useEffect(() => {
     const channel = searchParams.get('channel') as ChannelType;
-    if (channel) setCurrentChannel(channel);
-  }, [searchParams]);
+    const keyword = searchParams.get('keyword') as string;
 
-  useEffect(() => {
     const fetchPostList = async () => {
-      const response = await getPostList({ page: '0', size: '4' });
+      const response = await getPostList({
+        page: '0',
+        size: '8',
+        ...searchParamsToGetPostListParams(channel, keyword),
+      });
 
       setPosts(response.body.content);
     };
 
     fetchPostList();
-  }, [currentChannel]);
+
+    if (channel) setCurrentChannel(channel);
+  }, [searchParams]);
 
   return (
     <div className='flex h-full flex-col'>
