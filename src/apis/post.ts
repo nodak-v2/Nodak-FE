@@ -80,14 +80,14 @@ interface PostListParamsWithKeyword extends PostListInitialParams {
   categoryId: null;
 }
 
-type GetPostListParams =
+export type GetPostListParams =
   | PostListParamsWithCategoryId
   | PostListParamsWithKeyword
   | PostListInitialParams;
 
 const queryParamsStringify = (params: object) =>
   Object.entries(params)
-    .map(([key, value]) => `${key}=${value}`)
+    .map(([key, value]) => (value ? `${key}=${value}` : null))
     .join('&');
 
 export const getPostList = async (params: GetPostListParams) => {
