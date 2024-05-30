@@ -5,30 +5,20 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
-import { GetPostListParams, PostList, getPostList } from '@/src/apis/post';
+import { PostList, getPostList } from '@/src/apis/post';
 import ChipContainer, {
   ChannelType,
 } from '@/src/app/(main)/_component/ChipContainer';
 import PostItem from '@/src/app/(main)/_component/PostItem';
-import { CATEGORY_MAP } from '@/src/app/(main)/constants';
-import { PostContentToPostItemType } from '@/src/app/(main)/utils';
+import {
+  PostContentToPostItemType,
+  searchParamsToGetPostListParams,
+} from '@/src/app/(main)/utils';
 import Popup from '@/src/app/_components/Popup';
 import Icon from '@/src/components/Icon';
 
 import GNB from './_components/GNB';
 import TopBar from './_components/Topbar';
-
-const searchParamsToGetPostListParams = (
-  channel?: ChannelType,
-  keyword?: string,
-): Omit<GetPostListParams, 'size' | 'page'> => {
-  const categoryId = channel && CATEGORY_MAP[channel];
-
-  return {
-    categoryId,
-    keyword,
-  };
-};
 
 const Main = () => {
   const searchParams = useSearchParams();
