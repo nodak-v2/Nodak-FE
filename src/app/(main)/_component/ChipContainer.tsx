@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import Link from 'next/link';
 
-import Chip from '@/src/app/main/_component/Chip';
+import Chip from '@/src/app/(main)/_component/Chip';
 
 export type ChannelType =
   | 'all'
@@ -40,7 +40,7 @@ const ChipContainer = ({ currentChannel = 'all' }: ChipContainerProps) => {
 
           return (
             <li key={`${index}-${name}`}>
-              <Link href={{ pathname: '/main', query: { channel: path } }}>
+              <Link href={{ pathname: '/', query: { channel: path } }}>
                 <Chip variant={variant} onClick={handleChipClick(path)}>
                   {name}
                 </Chip>
