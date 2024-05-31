@@ -19,6 +19,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    name: 'test',
+    name: '이름',
+    imageUrl: 'https://via.placeholder.com/150',
   },
 };

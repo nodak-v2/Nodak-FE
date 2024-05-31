@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 interface ProfileBlockProps {
   name: string;
-  imageUrl?: string;
+  imageUrl: string | null;
 }
 
 const ProfileBlock = ({
@@ -13,7 +13,7 @@ const ProfileBlock = ({
     <div className='flex w-full items-center gap-4 p-4 pb-4'>
       <Image
         id={name}
-        src={imageUrl}
+        src={imageUrl || 'https://via.placeholder.com/40'}
         alt={`${name}님의 프로필 이미지`}
         width={40}
         height={40}
