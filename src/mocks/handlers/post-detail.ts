@@ -4,70 +4,54 @@ import { BASE_URL } from '@/src/apis/constants';
 import { PostDetail } from '@/src/apis/post';
 
 class Post {
-  private postList: PostDetail[];
-
+  private postDetail: PostDetail[];
+  private mockPostDetail = (): PostDetail => ({
+    message: 'success',
+    body: {
+      title: '시연영상은 어떤가요?',
+      author: '데브코스시연',
+      isAuthor: false,
+      commentSize: 2,
+      profileImageUrl: 'http://via.placeholder.com/40',
+      createdAt: '2024-01-17',
+      content: '게시글 시연영상',
+      imageUrl: 'http://abc.abc',
+      starCount: 2,
+      checkStar: true,
+    },
+  });
   constructor() {
-    this.postList = Array.from<unknown, PostDetail>(
+    this.postDetail = Array.from<unknown, PostDetail>(
       { length: 10 },
-      (_, index) => ({
-        title: '시연영상은 어떤가요?',
-        author: '데브코스시연',
-        isAuthor: false,
-        profileImageUrl: 'http://via.placeholder.com/40',
-        date: '2024-01-17',
-        content: '게시글 시연영상',
-        imageUrl: 'http://abc.abc',
-        voteInfo: {
-          voteId: 123 + index,
-          voteTitle: '시연영상 만족도',
-          hasVoted: false,
-          choice: 1,
-          options: ['만족', '불만족'],
-        },
-        starCount: 2,
-        checkStar: true,
-        commentCount: 2,
-      }),
+      this.mockPostDetail,
     );
+
+    this.setIsAuthorById(0, true);
+    this.setIsAuthorById(1, false);
+    this.setIsAuthorById(2, true);
+    this.setIsAuthorById(3, false);
   }
 
   getPostList(): PostDetail[] {
-    return this.postList;
+    return this.postDetail;
   }
 
-  setVoteInfo(
-    voteId: number,
-    callback: (voteInfo: PostDetail['voteInfo']) => void,
-  ) {
-    const post = this.getPostOfVoteId(voteId);
-    if (!post) return;
-    callback(post.voteInfo);
+  setIsAuthorById(postId: number, isAuthor: boolean) {
+    this.postDetail[postId].body.isAuthor = isAuthor;
   }
-  getPostOfVoteId(voteId: number) {
-    return this.postList.find(post => post.voteInfo.voteId === voteId);
+
+  setStarCountById(postId: number, starCount: number) {
+    this.postDetail[postId].body.starCount = starCount;
+  }
+
+  setCheckStarById(postId: number, checkStar: boolean) {
+    this.postDetail[postId].body.checkStar = checkStar;
   }
 }
 
 export const post = new Post();
 
 export const postList = post.getPostList();
-
-export const VOTED_AUTHOR = 0;
-export const VOTED_NOT_AUTHOR = 1;
-export const NOT_VOTED_AUTHOR = 2;
-export const NOT_VOTED_NOT_AUTHOR = 3;
-
-postList[VOTED_AUTHOR].voteInfo.hasVoted = true;
-postList[VOTED_AUTHOR].isAuthor = true;
-
-postList[VOTED_NOT_AUTHOR].voteInfo.hasVoted = true;
-postList[VOTED_NOT_AUTHOR].isAuthor = false;
-
-postList[NOT_VOTED_AUTHOR].voteInfo.hasVoted = false;
-postList[NOT_VOTED_AUTHOR].isAuthor = true;
-
-postList[NOT_VOTED_NOT_AUTHOR].voteInfo.hasVoted = false;
-postList[NOT_VOTED_NOT_AUTHOR].isAuthor = false;
 
 const isOutOfBounds = (index: number) => index < 0 || index >= postList.length;
 
@@ -92,8 +76,8 @@ const createLike = http.post(
         status: 404,
       });
 
-    postList[+postId].starCount += 1;
-    postList[+postId].checkStar = true;
+    post.setStarCountById(+postId, postList[+postId].body.starCount + 1);
+    post.setCheckStarById(+postId, true);
 
     return new HttpResponse('Created', {
       status: 201,
@@ -111,8 +95,8 @@ const deleteLike = http.delete(
         status: 404,
       });
 
-    postList[+postId].starCount -= 1;
-    postList[+postId].checkStar = false;
+    post.setStarCountById(+postId, postList[+postId].body.starCount - 1);
+    post.setCheckStarById(+postId, false);
 
     return new HttpResponse('Created', {
       status: 200,
