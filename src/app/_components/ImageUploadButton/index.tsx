@@ -5,7 +5,7 @@ import { IconName } from '@/src/components/Icon/type';
 
 interface ImageUploadButtonProps {
   setImageUrl: (imageUrl: string) => void;
-  onChange: (file: File) => void;
+  onChange: (file: File | null) => void;
   iconId?: IconName;
 }
 
