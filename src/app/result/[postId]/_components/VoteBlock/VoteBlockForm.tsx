@@ -38,7 +38,7 @@ const VoteForm = ({ title, options, voteId }: VoteFormProps) => {
             )}
           >
             <input
-              id={`${index}-${content}`}
+              id={`radio-${index}`}
               className='hidden'
               type='radio'
               name='option'
@@ -46,7 +46,7 @@ const VoteForm = ({ title, options, voteId }: VoteFormProps) => {
               value={index}
             />
             <label
-              htmlFor={`${index}-${content}`}
+              htmlFor={`radio-${index}`}
               className='h-full w-full cursor-pointer p-4'
             >
               {content}
