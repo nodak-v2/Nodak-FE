@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import VoteProgress from '@/src/app/result/[postId]/_components/VoteProgress';
+import VoteProgress from '@/src/app/result/[postId]/_components/VoteBlock/VoteProgress';
 import { PageLayoutDecorator } from '@/src/stories/decorator';
 
 const meta = {
@@ -16,12 +16,12 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    title: '지브리 영화 추천',
+    title: '투표 제목',
     options: [
-      { seq: 1, content: '벼랑위의 포뇨', count: 2 },
-      { seq: 2, content: '하울의 움직이는 성', count: 6 },
-      { seq: 3, content: '모노노케 히메', count: 4 },
+      { seq: 1, content: '옵션1', count: 10 },
+      { seq: 2, content: '옵션2', count: 20 },
+      { seq: 3, content: '옵션3', count: 30 },
     ],
-    totalNumber: 12,
+    totalNumber: 60,
   },
 };

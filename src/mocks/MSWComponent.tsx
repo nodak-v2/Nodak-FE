@@ -3,11 +3,16 @@
 import { useEffect, useState } from 'react';
 
 const initMsw = async () => {
-  if (process.env.NEXT_RUNTIME !== 'nodejs') {
+  if (
+    process.env.NEXT_RUNTIME !== 'nodejs' &&
+    process.env.NEXT_PUBLIC_ENV === 'development'
+  ) {
+    console.log('init msw');
     const { worker } = await import('./browser');
     await worker.start({
       onUnhandledRequest: 'bypass',
     });
+    worker.stop();
   }
 };
 

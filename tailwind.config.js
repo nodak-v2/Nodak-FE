@@ -17,6 +17,13 @@ export default {
           accent1: 'var(--primary-1)',
           accent2: 'var(--primary-2)',
         },
+        grass: {
+          100: '#F4FCE3',
+          200: '#D8F5A2',
+          300: '#94D82D',
+          400: '#94D82D',
+          500: '#5C940D',
+        },
       },
     },
   },

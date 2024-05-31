@@ -1,16 +1,14 @@
-interface Option {
-  seq: number;
-  content: string;
-  count: number;
-}
-
 interface VoteProgressProps {
   title: string;
-  options: Option[];
+  options: { seq: number; content: string; count: number }[];
   totalNumber: number;
 }
 
-const VoteProgress = ({ title, options, totalNumber }: VoteProgressProps) => {
+const VoteProgress = async ({
+  title,
+  options,
+  totalNumber,
+}: VoteProgressProps) => {
   const percentageOf = (count: number) => (count / totalNumber) * 100;
 
   return (
