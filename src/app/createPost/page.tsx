@@ -6,7 +6,7 @@ const CreatePostPage = () => {
     <div className='flex h-full flex-col'>
       <TopBar.Container>
         <TopBar.Left>
-          <TopBar.BackButton />
+          <TopBar.BackButton href='/' />
         </TopBar.Left>
       </TopBar.Container>
       <PostForm />
