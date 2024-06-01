@@ -101,6 +101,15 @@ export const getPostList = async (params: GetPostListParams) => {
   return data;
 };
 
+export interface PostValue {
+  title: string;
+  content: string;
+  imageUrl?: File;
+  channel?: string;
+  voteTitle?: string;
+  voteOptions?: string[];
+}
+
 export const getPostDetail = async (postId: string) => {
   const data = await fetch(`${BASE_URL}/posts/${postId}`, {
     next: { tags: ['post', postId] },
@@ -130,5 +139,16 @@ export const deleteLike = async (postId: string) => {
     headers: {
       Authorization: TEST_TOKEN || '',
     },
+  });
+};
+
+export const createPost = async (data: PostValue) => {
+  await fetch(`${BASE_URL}/posts`, {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: '',
+    },
+    body: JSON.stringify(data),
   });
 };

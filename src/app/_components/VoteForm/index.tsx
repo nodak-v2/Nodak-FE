@@ -1,15 +1,26 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 
 import Icon from '@/src/components/Icon';
 import { cn } from '@/src/utils/cn';
 
+import TextInput from '../TextInput';
+
 const MIN_LIMIT = 2;
 const MAX_LIMIT = 6;
 
-const VoteForm = () => {
+interface VoteFormProps {
+  onChange: (channel: string[]) => void;
+  error?: string | undefined;
+}
+
+const VoteForm = ({ onChange, error }: VoteFormProps) => {
   const [options, setOptions] = useState<string[]>(
     new Array(MIN_LIMIT).fill(''),
   );
+
+  useEffect(() => {
+    onChange(options);
+  }, [options, onChange]);
 
   const handleOptionChange = (
     index: number,
@@ -32,39 +43,44 @@ const VoteForm = () => {
     setOptions(newOptions);
   };
 
+  const isOptionvalid = (option: string): boolean => {
+    return option.length >= 1 && option.length <= 20;
+  };
+
   return (
     <div className='flex flex-col gap-1 rounded-md bg-dark-accent1 p-2'>
       {options.map((option, index) => (
-        <div
-          key={`${index}`}
-          className='flex w-full items-center gap-2 bg-dark-accent1 p-2'
-        >
-          <input
-            value={option}
-            onChange={event => handleOptionChange(index, event)}
-            className={cn(
-              'w-full rounded-sm border border-gray-accent2 bg-dark-accent1 p-3 text-gray-accent1 outline-none ring-gray-accent1 focus:ring-2',
-              {
+        <div key={`${index}`}>
+          <div className='flex w-full items-center gap-1 bg-dark-accent1 p-2'>
+            <TextInput
+              value={option}
+              onChange={event => handleOptionChange(index, event)}
+              variant={error && !isOptionvalid(option) ? 'error' : 'default'}
+              className={cn('border text-gray-accent1', {
                 'mr-8': [0, 1].includes(index),
-              },
-            )}
-            placeholder='투표항목을 입력하세요.'
-          />
-          <Icon
-            id='subtract-circle'
-            className={cn('cursor-pointer text-red-400 hover:text-red-600', {
-              'cursor-not-allowed opacity-50 hover:text-red-400':
-                options.length === 2,
-              hidden: [0, 1].includes(index),
-            })}
-            size={24}
-            onClick={() => {
-              handleRemoveOption(index);
-            }}
-          />
+              })}
+              placeholder='투표항목을 입력하세요.'
+            />
+            <Icon
+              id='subtract-circle'
+              className={cn('cursor-pointer text-red-400 hover:text-red-600', {
+                'cursor-not-allowed opacity-50 hover:text-red-400':
+                  options.length === 2,
+                hidden: [0, 1].includes(index),
+              })}
+              size={24}
+              onClick={() => {
+                handleRemoveOption(index);
+              }}
+            />
+          </div>
+          {error && !isOptionvalid(option) && (
+            <span className='mt-1 pl-2 text-sm text-red-500'>{error}</span>
+          )}
         </div>
       ))}
       <button
+        type='button'
         onClick={handleAddOption}
         className={cn('ml-2 mr-10 rounded-md bg-dark-accent2 p-2 text-white', {
           'cursor-not-allowed opacity-50': options.length === 6,

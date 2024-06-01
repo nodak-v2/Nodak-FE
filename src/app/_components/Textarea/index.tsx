@@ -4,15 +4,13 @@ import { VariantProps, cva } from 'class-variance-authority';
 
 import { cn } from '@/src/utils/cn';
 
-const textInputCSS = cva(
-  'w-full rounded-lg border-2 p-3 text-gray-accent1 placeholder-gray-500 outline-none',
+const textareaCSS = cva(
+  'h-[150px] w-full resize-none appearance-none rounded-lg border-2 p-3 text-gray-accent1 placeholder-gray-500 outline-none',
   {
     variants: {
       variant: {
         default: 'border-gray-300 bg-transparent ',
         filled: 'border-gray-200 bg-gray-200 ',
-        underline:
-          'rounded-none border-0 border-b-2 border-gray-300 bg-transparent',
         error: 'bg-transparent ring-1 ring-red-500',
       },
       isDisabled: {
@@ -27,22 +25,22 @@ const textInputCSS = cva(
   },
 );
 
-type TextInputProps = ComponentPropsWithoutRef<'input'> &
-  VariantProps<typeof textInputCSS>;
+type TextareaProps = ComponentPropsWithoutRef<'textarea'> &
+  VariantProps<typeof textareaCSS>;
 
-const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
+const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   ({ variant, className, ...props }, ref) => {
     const { disabled: isDisabled } = props;
 
     return (
-      <input
+      <textarea
         ref={ref}
-        className={cn(textInputCSS({ variant, isDisabled }), className)}
+        className={cn(textareaCSS({ variant, isDisabled }), className)}
         {...props}
       />
     );
   },
 );
 
-TextInput.displayName = 'TextInput';
-export default TextInput;
+Textarea.displayName = 'Textarea';
+export default Textarea;

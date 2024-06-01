@@ -46,5 +46,4 @@ const RootLayout = ({
     </html>
   );
 };
-
 export default RootLayout;
