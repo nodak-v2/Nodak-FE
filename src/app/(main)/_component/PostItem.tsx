@@ -30,14 +30,18 @@ const PostItem = ({ post }: PostItemProps) => {
     createdAt,
   } = post;
 
+  const validatedImageUrl = isValidImageUrl(imageUrl)
+    ? imageUrl
+    : '/placeHolder_130.png';
+
+  const validatedProfileImageUrl = isValidImageUrl(profileImageUrl)
+    ? profileImageUrl
+    : '/placeHolder_20.png';
+
   return (
     <div className='flex w-full cursor-pointer justify-start gap-4 border-b bg-dark-accent2 p-4 text-white'>
       <Image
-        src={
-          isValidImageUrl(imageUrl)
-            ? imageUrl
-            : 'https://via.placeholder.com/130'
-        }
+        src={validatedImageUrl}
         alt='게시글이미지'
         width={130}
         height={130}
@@ -51,11 +55,7 @@ const PostItem = ({ post }: PostItemProps) => {
         <div className='flex w-full justify-between'>
           <span className='flex items-center gap-2'>
             <Image
-              src={
-                isValidImageUrl(profileImageUrl)
-                  ? profileImageUrl
-                  : 'https://via.placeholder.com/20'
-              }
+              src={validatedProfileImageUrl}
               alt='사용자 프로필'
               className='rounded-full object-cover'
               width={20}
