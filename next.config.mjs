@@ -6,15 +6,6 @@ const nextConfig = {
   images: {
     domains: ['via.placeholder.com'],
   },
-  async rewrites() {
-    return [
-      {
-        source: '/api/:path*',
-        destination:
-          (process.env.NEXT_PUBLIC_URL ?? 'https://api.nodak.link') + '/:path*',
-      },
-    ];
-  },
 };
 
 export default nextConfig;
