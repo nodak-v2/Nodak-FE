@@ -1,5 +1,3 @@
-import { BASE_URL } from './constants';
-
 interface Comment {
   commentId: number;
   profileImageUrl: string | null;
@@ -8,19 +6,23 @@ interface Comment {
   createdAt: string;
 }
 
-interface CommentResponse {
-  body: Comment[];
+export interface GetData<T> {
+  body: T;
   message: string;
 }
 
-export const getComments = async (postId: string): Promise<CommentResponse> => {
-  const data = (await fetch(`${BASE_URL}/posts/${postId}/comments`)).json();
+export const getComments = async (postId: string) => {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/posts/${postId}/comments`,
+  );
 
-  return data;
+  const data = (await response.json()) as GetData<Comment[]>;
+
+  return data.body;
 };
 
 export const createComment = async (postId: string, comment: string) => {
-  await fetch(`${BASE_URL}/posts/${postId}/comments`, {
+  await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts/${postId}/comments`, {
     method: 'post',
     body: JSON.stringify({ content: comment }),
   });
