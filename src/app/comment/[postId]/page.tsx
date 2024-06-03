@@ -13,8 +13,8 @@ const commentPage = async ({ params: { postId } }: CommentPageProps) => {
   return (
     <>
       <div className='h-full grow overflow-y-auto'>
-        {commentData.body.length > 0 ? (
-          commentData.body.map(
+        {commentData.length > 0 ? (
+          commentData.map(
             ({ writerName, profileImageUrl, content, createdAt }, index) => (
               <CommentItem
                 key={index}

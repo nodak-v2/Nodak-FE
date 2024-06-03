@@ -14,14 +14,14 @@ const CommentLayout = async ({
   children,
   params: { postId },
 }: PropsWithParams) => {
-  const { body } = await getComments(postId);
+  const commentData = await getComments(postId);
 
   return (
     <>
       <TopBar.Container>
         <TopBar.Left>
           <TopBar.BackButton href={`/result/${postId}`} />
-          <TopBar.Title>{`댓글 ${body.length}개`}</TopBar.Title>
+          <TopBar.Title>{`댓글 ${commentData.length}개`}</TopBar.Title>
         </TopBar.Left>
       </TopBar.Container>
       {children}
