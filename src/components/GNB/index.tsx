@@ -2,12 +2,17 @@ import Link from 'next/link';
 
 import Icon from '@/src/components/Icon';
 
+const userId = 1;
 const GNB = () => {
   const navItems = [
     { href: '/', icon: <Icon id='home' />, name: '홈' },
     { href: '/chat', icon: <Icon id='chat' />, name: '채팅' },
-    { href: '/users', icon: <Icon id='user' />, name: '유저' },
-    { href: '/profile', icon: <Icon id='user' />, name: '프로필' },
+    {
+      href: `/notification/${userId}`,
+      icon: <Icon id='notification' />,
+      name: '알림',
+    },
+    { href: `/profile/${userId}`, icon: <Icon id='user' />, name: '프로필' },
   ];
 
   return (
