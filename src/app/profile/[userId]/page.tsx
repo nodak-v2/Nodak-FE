@@ -1,27 +1,23 @@
-'use client';
+import { getProfile } from '@/src/apis/profile';
 
 import ActiveGrass from './_components/ActiveGrass';
 import MissionBadge from './_components/MissionBadge';
 import UserInfo from './_components/UserInfo';
 import UserPost from './_components/UserPost';
 
-const userDummyData = {
-  nickname: 'John Doe',
-  profileImageUrl: 'https://via.placeholder.com/150',
-  introduction: 'Hello, I am John Doe',
-  createdAt: '2021-01-01',
-  updatedAt: '2021-01-01',
-  followerCount: 10,
-  followeeCount: 5,
-};
-const UserPage = () => {
+interface UserPageProps {
+  params: { userId: string };
+}
+
+const UserPage = async ({ params: { userId } }: UserPageProps) => {
+  const profileData = await getProfile(userId);
   const {
     nickname,
     profileImageUrl,
     introduction,
     followerCount,
     followeeCount,
-  } = userDummyData;
+  } = profileData;
 
   return (
     <div className='flex grow flex-col'>

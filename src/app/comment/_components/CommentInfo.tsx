@@ -1,5 +1,7 @@
 import Image from 'next/image';
 
+import timeOffset from '@/src/utils/timeOffset';
+
 interface CommentInfoProps {
   profileImageUrl?: string;
   writerName: string;
@@ -12,8 +14,6 @@ const CommentInfo = ({
   content,
   createdAt,
 }: CommentInfoProps) => {
-  const GMTTime = 9 * 60 * 60 * 1000;
-
   return (
     <div className='flex gap-4 border-b p-4'>
       <Image
@@ -28,10 +28,7 @@ const CommentInfo = ({
         <div className='flex justify-between'>
           <span className='grow text-xl font-bold'>{writerName}</span>
           <span className='text-sm text-gray-accent2'>
-            {new Date(createdAt.getTime() + GMTTime)
-              .toISOString()
-              .replace('T', ' ')
-              .slice(0, -8)}
+            {timeOffset(createdAt)}
           </span>
         </div>
         <span>{content}</span>
