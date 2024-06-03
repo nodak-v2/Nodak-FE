@@ -55,9 +55,6 @@ const Main = () => {
         <TopBar.Left>
           <TopBar.Title>노닥노닥 로고</TopBar.Title>
         </TopBar.Left>
-        <TopBar.Right>
-          <TopBar.SearchButton />
-        </TopBar.Right>
       </TopBar.Container>
       <main className='grow'>
         <ChipContainer currentChannel={currentChannel} />

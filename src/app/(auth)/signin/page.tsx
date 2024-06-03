@@ -11,12 +11,14 @@ const Signin = () => {
         width={180}
         height={180}
       />
-      <Link
-        href='https://api.nodak.link/oauth2/authorization/kakao'
-        className='h-50pxr w-240pxr flex items-center justify-center gap-6 rounded-md bg-[#fdd801] px-6 py-3 opacity-100 hover:opacity-80'
-      >
-        <Image src={'kakao.svg'} alt='kakao' width={30} height={30} />
-        <span>카카오로 시작하기</span>
+      <Link href='https://api.nodak.link/oauth2/authorization/kakao'>
+        <Image
+          src={'/kakao.png'}
+          alt='kakao'
+          width={300}
+          height={30}
+          className='opacity-100 hover:opacity-80'
+        />
       </Link>
     </section>
   );
