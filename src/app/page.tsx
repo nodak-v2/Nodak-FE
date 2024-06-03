@@ -7,13 +7,13 @@ import { useSearchParams } from 'next/navigation';
 
 import ChipContainer, {
   ChannelType,
-} from '@/src/app/(main)/_component/ChipContainer';
-import PostItem from '@/src/app/(main)/_component/PostItem';
-import Popup from '@/src/app/_components/Popup';
+} from '@/src/app/_components/ChipContainer';
+import PostItem from '@/src/app/_components/PostItem';
 import Icon from '@/src/components/Icon';
+import Popup from '@/src/components/POPup';
 
-import GNB from './_components/GNB';
-import TopBar from './_components/Topbar';
+import GNB from '../components/GNB';
+import TopBar from '../components/Topbar';
 
 const posts = [
   {
@@ -60,7 +60,6 @@ const Main = () => {
       </TopBar.Container>
       <main className='grow'>
         <ChipContainer currentChannel={currentChannel} />
-        <p className='text-white'>{currentChannel}</p>
         <div className='flex flex-col'>
           {posts.map((post, index) => (
             <PostItem key={`${index}-${post.title}`} post={post} />

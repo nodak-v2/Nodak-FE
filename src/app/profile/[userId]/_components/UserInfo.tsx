@@ -4,8 +4,8 @@ import { useState } from 'react';
 
 import Image from 'next/image';
 
-import TextInput from '@/src/app/_components/TextInput';
 import Icon from '@/src/components/Icon';
+import TextInput from '@/src/components/TextInput';
 
 interface UserInfoProps {
   nickname: string;

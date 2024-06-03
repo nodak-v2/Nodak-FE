@@ -3,12 +3,12 @@
 import { Controller, useForm } from 'react-hook-form';
 
 import { PostValue, createPost } from '@/src/apis/post';
-import Button from '@/src/app/_components/Button/Button';
-import FormField from '@/src/app/_components/FormField';
-import Selector from '@/src/app/_components/Selector';
-import TextInput from '@/src/app/_components/TextInput';
-import Textarea from '@/src/app/_components/Textarea';
-import VoteForm from '@/src/app/_components/VoteForm';
+import Button from '@/src/components/Button/Button';
+import FormField from '@/src/components/FormField';
+import Selector from '@/src/components/Selector';
+import TextInput from '@/src/components/TextInput';
+import Textarea from '@/src/components/Textarea';
+import VoteForm from '@/src/components/VoteForm';
 
 import ImageUploader from '../ImageUploader';
 import { formOptions } from './formSchema';

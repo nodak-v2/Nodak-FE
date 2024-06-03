@@ -1,4 +1,4 @@
-import TopBar from '../_components/Topbar';
+import TopBar from '../../../components/Topbar';
 import PostForm from './_component/PostForm';
 
 const CreatePostPage = () => {

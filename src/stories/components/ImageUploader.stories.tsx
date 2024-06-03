@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import ImageUploader from '@/src/app/createPost/_component/ImageUploader';
+import ImageUploader from '@/src/app/(post)/createPost/_component/ImageUploader';
 
 const meta: Meta<typeof ImageUploader> = {
   title: 'components/ImageUpload',

@@ -2,7 +2,7 @@ import { PropsWithChildren } from 'react';
 
 import { getComments } from '@/src/apis/comments';
 
-import TopBar from '../../_components/Topbar';
+import TopBar from '../../../../components/Topbar';
 
 interface PropsWithParams extends PropsWithChildren {
   params: {

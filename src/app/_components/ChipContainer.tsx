@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import Link from 'next/link';
 
-import Chip from '@/src/app/(main)/_component/Chip';
+import Chip from '@/src/app/_components/Chip';
 
 export type ChannelType =
   | 'all'

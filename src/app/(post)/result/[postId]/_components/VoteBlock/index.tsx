@@ -1,6 +1,6 @@
 import { getVoteResult } from '@/src/apis/vote';
-import VoteBlockForm from '@/src/app/result/[postId]/_components/VoteBlock/VoteBlockForm';
-import VoteProgress from '@/src/app/result/[postId]/_components/VoteBlock/VoteProgress';
+import VoteBlockForm from '@/src/app/(post)/result/[postId]/_components/VoteBlock/VoteBlockForm';
+import VoteProgress from '@/src/app/(post)/result/[postId]/_components/VoteBlock/VoteProgress';
 
 interface VoteBlockProps {
   voteId: number;

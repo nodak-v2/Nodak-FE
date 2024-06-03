@@ -1,6 +1,6 @@
 import type { Meta } from '@storybook/react';
 
-import CommentInfo from '@/src/app/comment/_components/CommentInfo';
+import CommentInfo from '@/src/app/(post)/comment/_components/CommentInfo';
 
 const meta: Meta<typeof CommentInfo> = {
   title: 'components/CommentInfo',

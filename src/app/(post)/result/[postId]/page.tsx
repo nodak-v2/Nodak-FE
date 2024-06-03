@@ -1,8 +1,8 @@
 import { getPostDetail } from '@/src/apis/post';
-import CommentLink from '@/src/app/result/[postId]/_components/CommentLink';
-import LikeButton from '@/src/app/result/[postId]/_components/LikeButton';
-import ProfileBlock from '@/src/app/result/[postId]/_components/ProfileBlock';
-import VoteBlock from '@/src/app/result/[postId]/_components/VoteBlock';
+import CommentLink from '@/src/app/(post)/result/[postId]/_components/CommentLink';
+import LikeButton from '@/src/app/(post)/result/[postId]/_components/LikeButton';
+import ProfileBlock from '@/src/app/(post)/result/[postId]/_components/ProfileBlock';
+import VoteBlock from '@/src/app/(post)/result/[postId]/_components/VoteBlock';
 
 interface ResultPageProps {
   params: { postId: string };

@@ -1,4 +1,4 @@
-import GNB from '../_components/GNB';
+import GNB from '../../components/GNB';
 import UserList from './_components/UserList';
 
 const UserListPageDummyData = [

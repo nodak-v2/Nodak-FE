@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import ProfileBlock from '@/src/app/result/[postId]/_components/ProfileBlock';
+import ProfileBlock from '@/src/app/(post)/result/[postId]/_components/ProfileBlock';
 
 const meta = {
   title: 'Components/ProfileBlock',

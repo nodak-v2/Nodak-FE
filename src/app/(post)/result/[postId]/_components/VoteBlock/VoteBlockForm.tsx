@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 
-import Button from '@/src/app/_components/Button/Button';
-import { doVoteAction } from '@/src/app/result/[postId]/actions';
+import { doVoteAction } from '@/src/app/(post)/result/[postId]/actions';
+import Button from '@/src/components/Button/Button';
 import { cn } from '@/src/utils/cn';
 
 interface VoteFormProps {

@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 
+import Introduction from '../components/Introduction';
 import { MSWComponent } from '../mocks/MSWComponent';
-import Introduction from './_components/Introduction';
 import './globals.css';
 
 export const viewport: Viewport = {

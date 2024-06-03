@@ -4,8 +4,8 @@ import { useState } from 'react';
 
 import Image from 'next/image';
 
-import ImageUploadButton from '@/src/app/_components/ImageUploadButton';
 import Icon from '@/src/components/Icon';
+import ImageUploadButton from '@/src/components/ImageUploadButton';
 
 interface ImageUploaderProps {
   imageSrcUrl?: string;

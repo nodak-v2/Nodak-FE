@@ -1,6 +1,6 @@
 'use client';
 
-import { updateLike } from '@/src/app/result/[postId]/actions';
+import { updateLike } from '@/src/app/(post)/result/[postId]/actions';
 import Icon from '@/src/components/Icon';
 
 interface LikeButtonProps {
