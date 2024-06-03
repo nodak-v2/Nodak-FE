@@ -14,6 +14,7 @@ interface UserInfoProps {
   followeeCount: number;
   followerCount: number;
 }
+
 const UserInfo = ({
   nickname,
   profileImageUrl,
