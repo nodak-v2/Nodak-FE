@@ -1,4 +1,4 @@
-interface Comment {
+export interface Comment {
   commentId: number;
   profileImageUrl: string | null;
   writerName: string;

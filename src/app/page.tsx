@@ -12,6 +12,7 @@ import PostItem from '@/src/app/_components/PostItem';
 import Icon from '@/src/components/Icon';
 import Popup from '@/src/components/POPup';
 
+import { getUserStatus } from '../apis/myInfo';
 import GNB from '../components/GNB';
 import TopBar from '../components/Topbar';
 
@@ -43,10 +44,12 @@ const posts = [
 const Main = () => {
   const searchParams = useSearchParams();
   const [currentChannel, setCurrentChannel] = useState<ChannelType>('all');
-
   useEffect(() => {
     const channel = searchParams.get('channel') as ChannelType;
     if (channel) setCurrentChannel(channel);
+    // 여기서는 클라이언트 컴포넌트라서 data가 출력됨
+    const data = getUserStatus();
+    console.log(data);
   }, [searchParams]);
 
   return (

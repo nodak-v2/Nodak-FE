@@ -1,4 +1,4 @@
-import { getComments } from '@/src/apis/comments';
+import { API } from '@/src/apis/api';
 
 import CommentItem from '../_components/CommentInfo';
 import PostComment from '../_components/PostComment';
@@ -8,7 +8,9 @@ interface CommentPageProps {
 }
 
 const commentPage = async ({ params: { postId } }: CommentPageProps) => {
-  const commentData = await getComments(postId);
+  // const cookieHeader = cookies();
+  // 쿠키가 undefined 출력됨
+  const commentData = await API.getComments(postId);
 
   return (
     <>
