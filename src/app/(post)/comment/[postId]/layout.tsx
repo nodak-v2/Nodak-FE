@@ -1,20 +1,16 @@
+'use client';
+
 import { PropsWithChildren } from 'react';
 
-import { getComments } from '@/src/apis/comments';
+import { useParams } from 'next/navigation';
+
+import { useGetCommentsAPI } from '@/src/apis/comments';
 
 import TopBar from '../../../../components/Topbar';
 
-interface PropsWithParams extends PropsWithChildren {
-  params: {
-    postId: string;
-  };
-}
-
-const CommentLayout = async ({
-  children,
-  params: { postId },
-}: PropsWithParams) => {
-  const commentData = await getComments(postId);
+const CommentLayout = ({ children }: PropsWithChildren) => {
+  const { postId } = useParams() as { postId: string };
+  const commentData = useGetCommentsAPI(postId);
 
   return (
     <>

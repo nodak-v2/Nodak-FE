@@ -4,12 +4,12 @@ import React, { useState } from 'react';
 
 import { useParams } from 'next/navigation';
 
-import { createComment } from '@/src/apis/comments';
+import { useCreateComment } from '../hooks/useCreateComment';
 
 const PostComment = () => {
   const { postId } = useParams() as { postId: string };
-
   const [comment, setComment] = useState('');
+  const createComment = useCreateComment(postId);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setComment(e.target.value);
@@ -18,7 +18,8 @@ const PostComment = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // 입력된 댓글 값을 이용하여 createComment 함수 호출
-    createComment(postId, comment);
+    // Todo : 함수 호출에 따른 상태변경 추가해야합니다.
+    createComment(comment);
   };
 
   return (
