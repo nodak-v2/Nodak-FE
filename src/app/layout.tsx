@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 
 import Introduction from '../components/Introduction';
 import { MSWComponent } from '../mocks/MSWComponent';
+import Providers from './Providers';
 import './globals.css';
 
 export const viewport: Viewport = {
@@ -29,19 +30,21 @@ const RootLayout = ({
     <html lang='ko'>
       <link rel='icon' href='/icon.ico' sizes='any' />
       <body>
-        <MSWComponent>
-          <div className='flex h-screen w-screen flex-row items-center justify-center gap-10'>
-            <div className='hidden shrink sm:flex'>
-              <Introduction />
+        <Providers>
+          <MSWComponent>
+            <div className='flex h-screen w-screen flex-row items-center justify-center gap-10'>
+              <div className='hidden shrink sm:flex'>
+                <Introduction />
+              </div>
+              <div
+                id='layout-Root'
+                className='relative flex h-full max-h-[950px] min-h-[600px] w-full min-w-[350px] max-w-[450px] shrink-0 flex-col bg-dark-accent2 text-gray-accent1 shadow-xl'
+              >
+                {children}
+              </div>
             </div>
-            <div
-              id='layout-Root'
-              className='relative flex h-full max-h-[950px] min-h-[600px] w-full min-w-[350px] max-w-[450px] shrink-0 flex-col bg-dark-accent2 text-gray-accent1 shadow-xl'
-            >
-              {children}
-            </div>
-          </div>
-        </MSWComponent>
+          </MSWComponent>
+        </Providers>
       </body>
     </html>
   );
