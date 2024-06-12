@@ -7,13 +7,13 @@ export const PostContentToPostItemType = (
   postListContent: PostList['content'][0],
 ): PostType => ({
   title: postListContent.title,
-  commentedCount: postListContent.totalCount,
+  commentedCount: postListContent.commentCount,
   author: postListContent.author,
   profileImageUrl: postListContent.profileImageUrl,
   imageUrl: postListContent.postImageUrl,
-  // TODO: votedCount, likedCount, createdAt 값은 서버에서 받아와야 합니다.
-  votedCount: 0,
-  likedCount: 0,
+  // TODO: createdAt 값은 서버에서 받아와야 합니다.
+  votedCount: postListContent.voterCount,
+  likedCount: postListContent.likeCount,
   createdAt: new Date().toISOString(),
 });
 

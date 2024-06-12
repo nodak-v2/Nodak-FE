@@ -6,7 +6,9 @@ interface PostListContent {
   postId: number;
   voteId: number;
   title: string;
-  totalCount: number;
+  commentCount: number;
+  likeCount: number;
+  voterCount: number;
   author: string;
   profileImageUrl: string | null;
   postImageUrl: string | null;
