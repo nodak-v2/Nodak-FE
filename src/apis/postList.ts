@@ -12,6 +12,7 @@ interface PostListContent {
   author: string;
   profileImageUrl: string | null;
   postImageUrl: string | null;
+  createdAt: string;
 }
 
 interface PostListPageable {

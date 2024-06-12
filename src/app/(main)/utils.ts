@@ -11,10 +11,9 @@ export const PostContentToPostItemType = (
   author: postListContent.author,
   profileImageUrl: postListContent.profileImageUrl,
   imageUrl: postListContent.postImageUrl,
-  // TODO: createdAt 값은 서버에서 받아와야 합니다.
   votedCount: postListContent.voterCount,
   likedCount: postListContent.likeCount,
-  createdAt: new Date().toISOString(),
+  createdAt: postListContent.createdAt,
 });
 
 export const isValidImageUrl = (url: string | null): url is string => {

@@ -2,6 +2,7 @@ import Image from 'next/image';
 
 import { isValidImageUrl } from '@/src/app/(main)/utils';
 import Icon from '@/src/components/Icon';
+import timeOffset from '@/src/utils/timeOffset';
 
 export type PostType = {
   title: string;
@@ -50,7 +51,9 @@ const PostItem = ({ post }: PostItemProps) => {
         <div className='flex flex-col gap-0.5'>
           <span>{title}</span>
           <span className='text-xs text-gray-accent2'>{`총 ${votedCount}명 투표`}</span>
-          <span className='text-xs text-gray-accent2'>{createdAt}</span>
+          <span className='text-xs text-gray-accent2'>
+            {timeOffset(createdAt)}
+          </span>
         </div>
         <div className='flex w-full justify-between'>
           <span className='flex items-center gap-2'>
