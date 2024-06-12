@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import { DrawerClose, DrawerContent } from '@/src/components/ui/Drawer';
+import { DrawerClose, DrawerContent } from '@/src/components/Drawer';
 
 import { FollowButton, LinkDMButton, LinkProfileButton } from './DrawerButton';
 

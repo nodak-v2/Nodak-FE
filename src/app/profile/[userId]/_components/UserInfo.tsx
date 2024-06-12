@@ -4,7 +4,8 @@ import { useState } from 'react';
 
 import Image from 'next/image';
 
-import TextInput from '@/src/app/_components/TextInput';
+import Icon from '@/src/components/Icon';
+import TextInput from '@/src/components/TextInput';
 
 interface UserInfoProps {
   nickname: string;
@@ -13,6 +14,7 @@ interface UserInfoProps {
   followeeCount: number;
   followerCount: number;
 }
+
 const UserInfo = ({
   nickname,
   profileImageUrl,
@@ -33,12 +35,9 @@ const UserInfo = ({
       <div className='flex items-center gap-4 px-4'>
         <div className='relative'>
           {isEditing && (
-            <Image
-              src={'/close.svg'}
-              alt='camera'
-              width={30}
-              height={30}
-              className='absolute right-0 top-0'
+            <Icon
+              id='close'
+              className='absolute right-0 top-0 text-dark-accent2'
             />
           )}
           <Image
@@ -49,12 +48,10 @@ const UserInfo = ({
             className='rounded-xl object-cover'
           />
           {isEditing && (
-            <Image
-              src={'/camera.svg'}
-              alt='camera'
-              width={30}
-              height={30}
-              className='absolute bottom-1 right-1'
+            <Icon
+              id='camera'
+              size={24}
+              className='absolute bottom-0 right-0 text-dark-accent2'
             />
           )}
         </div>

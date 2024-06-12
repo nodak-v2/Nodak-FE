@@ -1,6 +1,6 @@
 import type { Meta } from '@storybook/react';
 
-import PostComment from '@/src/app/comment/_components/PostComment';
+import PostComment from '@/src/app/(post)/comment/_components/PostComment';
 
 const meta: Meta<typeof PostComment> = {
   title: 'components/PostComment',

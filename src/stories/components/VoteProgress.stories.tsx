@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import VoteProgress from '@/src/app/result/[postId]/_components/VoteBlock/VoteProgress';
+import VoteProgress from '@/src/app/(post)/result/[postId]/_components/VoteBlock/VoteProgress';
 import { PageLayoutDecorator } from '@/src/stories/decorator';
 
 const meta = {

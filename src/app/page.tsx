@@ -6,19 +6,19 @@ import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
 import { PostList, getPostList } from '@/src/apis/post';
-import ChipContainer, {
-  ChannelType,
-} from '@/src/app/(main)/_component/ChipContainer';
-import PostItem from '@/src/app/(main)/_component/PostItem';
 import {
   PostContentToPostItemType,
   searchParamsToGetPostListParams,
 } from '@/src/app/(main)/utils';
-import Popup from '@/src/app/_components/Popup';
+import ChipContainer, {
+  ChannelType,
+} from '@/src/app/_components/ChipContainer';
+import PostItem from '@/src/app/_components/PostItem';
 import Icon from '@/src/components/Icon';
+import Popup from '@/src/components/POPup';
 
-import GNB from './_components/GNB';
-import TopBar from './_components/Topbar';
+import GNB from '../components/GNB';
+import TopBar from '../components/Topbar';
 
 const Main = () => {
   const searchParams = useSearchParams();
@@ -42,6 +42,7 @@ const Main = () => {
     fetchPostList();
 
     if (channel) setCurrentChannel(channel);
+    // 여기서는 클라이언트 컴포넌트라서 data가 출력됨
   }, [searchParams]);
 
   return (
@@ -50,14 +51,9 @@ const Main = () => {
         <TopBar.Left>
           <TopBar.Title>노닥노닥 로고</TopBar.Title>
         </TopBar.Left>
-        <TopBar.Right>
-          <TopBar.NotificationButton />
-          <TopBar.SearchButton />
-        </TopBar.Right>
       </TopBar.Container>
       <main className='grow'>
         <ChipContainer currentChannel={currentChannel} />
-        <p className='text-white'>{currentChannel}</p>
         <div className='flex flex-col'>
           {posts?.map((post, index) => (
             <PostItem

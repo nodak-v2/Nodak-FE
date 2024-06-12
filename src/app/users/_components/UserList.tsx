@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import { Drawer, DrawerTrigger } from '@/src/components/ui/Drawer';
+import { Drawer, DrawerTrigger } from '@/src/components/Drawer';
 
 import DrawerContent from './DrawerContent';
 

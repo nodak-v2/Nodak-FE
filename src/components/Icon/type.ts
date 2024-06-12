@@ -16,4 +16,7 @@ export type IconName =
   | 'search'
   | 'back'
   | 'pencil-fill'
-  | 'subtract-circle';
+  | 'subtract-circle'
+  | 'kakao'
+  | 'close'
+  | 'camera';

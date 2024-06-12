@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import TopBar from '@/src/app/_components/Topbar';
+import TopBar from '@/src/components/Topbar';
 
 import { PageLayoutDecorator } from '../decorator';
 

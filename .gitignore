@@ -40,5 +40,7 @@ next-env.d.ts
 storybook-static
 
 # pwa
-public/sw.js.*
-public/workbox-*.js.*
+/public/sw.js
+/public/sw.js.map
+/public/workbox-*.js
+/public/workbox-*.js.map

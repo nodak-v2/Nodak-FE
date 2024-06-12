@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import ResultPage from '@/src/app/result/[postId]/page';
+import ResultPage from '@/src/app/(post)/result/[postId]/page';
 import '@/src/mocks/handlers/post-detail';
 import { PageLayoutDecorator } from '@/src/stories/decorator';
 
