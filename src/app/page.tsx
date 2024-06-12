@@ -1,11 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
-import { PostList, getPostList } from '@/src/apis/postList';
+import { useGetPostListAPI } from '@/src/apis/postList';
 import {
   PostContentToPostItemType,
   searchParamsToGetPostListParams,
@@ -22,28 +20,14 @@ import TopBar from '../components/Topbar';
 
 const Main = () => {
   const searchParams = useSearchParams();
-  const [currentChannel, setCurrentChannel] = useState<ChannelType>('all');
-  const [posts, setPosts] = useState<PostList['content']>();
+  const channel = searchParams.get('channel') as ChannelType;
+  const keyword = searchParams.get('keyword') as string;
 
-  useEffect(() => {
-    const channel = searchParams.get('channel') as ChannelType;
-    const keyword = searchParams.get('keyword') as string;
-
-    const fetchPostList = async () => {
-      const response = await getPostList({
-        page: '0',
-        size: '8',
-        ...searchParamsToGetPostListParams(channel, keyword),
-      });
-
-      setPosts(response.body.content);
-    };
-
-    fetchPostList();
-
-    if (channel) setCurrentChannel(channel);
-    // 여기서는 클라이언트 컴포넌트라서 data가 출력됨
-  }, [searchParams]);
+  const posts = useGetPostListAPI({
+    page: '0',
+    size: '8',
+    ...searchParamsToGetPostListParams(channel, keyword),
+  });
 
   return (
     <div className='flex h-full flex-col'>
@@ -53,7 +37,7 @@ const Main = () => {
         </TopBar.Left>
       </TopBar.Container>
       <main className='grow'>
-        <ChipContainer currentChannel={currentChannel} />
+        <ChipContainer currentChannel={channel} />
         <div className='flex flex-col'>
           {posts?.map((post, index) => (
             <PostItem

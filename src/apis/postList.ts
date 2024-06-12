@@ -73,7 +73,8 @@ export const useGetPostListAPI = (params: GetPostListParams) => {
   const { data } = useQuery({
     queryKey: ['postList', ...Object.values(params)],
     queryFn: () => getPostList(params),
+    select: data => data?.body.content,
   });
 
-  return data?.body;
+  return data;
 };
