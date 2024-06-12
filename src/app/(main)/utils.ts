@@ -1,7 +1,7 @@
 import { GetPostListParams, PostList } from '@/src/apis/post';
-import { ChannelType } from '@/src/app/(main)/_component/ChipContainer';
-import { PostType } from '@/src/app/(main)/_component/PostItem';
 import { CATEGORY_MAP } from '@/src/app/(main)/constants';
+import { ChannelType } from '@/src/app/_components/ChipContainer';
+import { PostType } from '@/src/app/_components/PostItem';
 
 export const PostContentToPostItemType = (
   postListContent: PostList['body']['content'][0],
