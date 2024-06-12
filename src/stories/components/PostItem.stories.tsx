@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import PostItem from '@/src/app/(main)/_component/PostItem';
+import PostItem from '@/src/app/_components/PostItem';
 
 import { PageLayoutDecorator } from '../decorator';
 

@@ -7,16 +7,17 @@ import { useSearchParams } from 'next/navigation';
 
 import ChipContainer, {
   ChannelType,
-} from '@/src/app/(main)/_component/ChipContainer';
-import PostItem from '@/src/app/(main)/_component/PostItem';
-import Popup from '@/src/app/_components/Popup';
+} from '@/src/app/_components/ChipContainer';
+import PostItem from '@/src/app/_components/PostItem';
 import Icon from '@/src/components/Icon';
+import Popup from '@/src/components/POPup';
 
-import GNB from './_components/GNB';
-import TopBar from './_components/Topbar';
+import GNB from '../components/GNB';
+import TopBar from '../components/Topbar';
 
 const posts = [
   {
+    postId: '1',
     title: '게시글 제목입니다.',
     votedCount: 10,
     likedCount: 10,
@@ -27,6 +28,7 @@ const posts = [
     createdAt: '2021-10-10',
   },
   {
+    postId: '2',
     title: '게시글 제목입니다.',
     votedCount: 10,
     likedCount: 10,
@@ -41,10 +43,10 @@ const posts = [
 const Main = () => {
   const searchParams = useSearchParams();
   const [currentChannel, setCurrentChannel] = useState<ChannelType>('all');
-
   useEffect(() => {
     const channel = searchParams.get('channel') as ChannelType;
     if (channel) setCurrentChannel(channel);
+    // 여기서는 클라이언트 컴포넌트라서 data가 출력됨
   }, [searchParams]);
 
   return (
@@ -53,17 +55,17 @@ const Main = () => {
         <TopBar.Left>
           <TopBar.Title>노닥노닥 로고</TopBar.Title>
         </TopBar.Left>
-        <TopBar.Right>
-          <TopBar.NotificationButton />
-          <TopBar.SearchButton />
-        </TopBar.Right>
       </TopBar.Container>
       <main className='grow'>
         <ChipContainer currentChannel={currentChannel} />
-        <p className='text-white'>{currentChannel}</p>
         <div className='flex flex-col'>
           {posts.map((post, index) => (
-            <PostItem key={`${index}-${post.title}`} post={post} />
+            <Link
+              key={`${index}-${post.title}`}
+              href={`/result/${post.postId}`}
+            >
+              <PostItem post={post} />
+            </Link>
           ))}
         </div>
         <Link href='createPost'>

@@ -1,6 +1,6 @@
 import type { Meta } from '@storybook/react';
 
-import Selector from '@/src/app/_components/Selector';
+import Selector from '@/src/components/Selector';
 
 const meta: Meta<typeof Selector> = {
   title: 'components/Selector',

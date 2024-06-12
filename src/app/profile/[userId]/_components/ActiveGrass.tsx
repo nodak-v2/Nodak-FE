@@ -2,7 +2,7 @@
 
 import { cva } from 'class-variance-authority';
 
-import Tooltip from '@/src/app/_components/Tooltip/Tooltip';
+import Tooltip from '@/src/components/Tooltip/Tooltip';
 import { cn } from '@/src/utils/cn';
 
 const year = new Date().getFullYear();
