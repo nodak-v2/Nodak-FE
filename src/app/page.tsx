@@ -10,7 +10,10 @@ import ChipContainer, {
   ChannelType,
 } from '@/src/app/(main)/_component/ChipContainer';
 import PostItem from '@/src/app/(main)/_component/PostItem';
-import { PostContentToPostItemType } from '@/src/app/(main)/utils';
+import {
+  PostContentToPostItemType,
+  searchParamsToGetPostListParams,
+} from '@/src/app/(main)/utils';
 import Popup from '@/src/app/_components/Popup';
 import Icon from '@/src/components/Icon';
 
@@ -24,18 +27,22 @@ const Main = () => {
 
   useEffect(() => {
     const channel = searchParams.get('channel') as ChannelType;
-    if (channel) setCurrentChannel(channel);
-  }, [searchParams]);
+    const keyword = searchParams.get('keyword') as string;
 
-  useEffect(() => {
     const fetchPostList = async () => {
-      const response = await getPostList({ page: '0', size: '4' });
+      const response = await getPostList({
+        page: '0',
+        size: '8',
+        ...searchParamsToGetPostListParams(channel, keyword),
+      });
 
       setPosts(response.body.content);
     };
 
     fetchPostList();
-  }, [currentChannel]);
+
+    if (channel) setCurrentChannel(channel);
+  }, [searchParams]);
 
   return (
     <div className='flex h-full flex-col'>

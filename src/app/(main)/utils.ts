@@ -1,5 +1,7 @@
-import { PostList } from '@/src/apis/post';
+import { GetPostListParams, PostList } from '@/src/apis/post';
+import { ChannelType } from '@/src/app/(main)/_component/ChipContainer';
 import { PostType } from '@/src/app/(main)/_component/PostItem';
+import { CATEGORY_MAP } from '@/src/app/(main)/constants';
 
 export const PostContentToPostItemType = (
   postListContent: PostList['body']['content'][0],
@@ -21,4 +23,15 @@ export const isValidImageUrl = (url: string | null): url is string => {
   if (url.startsWith('http://') || url.startsWith('https://')) return true;
 
   return false;
+};
+export const searchParamsToGetPostListParams = (
+  channel?: ChannelType,
+  keyword?: string,
+): Omit<GetPostListParams, 'size' | 'page'> => {
+  const categoryId = channel && CATEGORY_MAP[channel];
+
+  return {
+    categoryId,
+    keyword,
+  };
 };
