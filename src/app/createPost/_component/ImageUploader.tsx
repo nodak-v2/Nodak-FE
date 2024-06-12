@@ -9,16 +9,19 @@ import Icon from '@/src/components/Icon';
 
 interface ImageUploaderProps {
   imageSrcUrl?: string;
-  onChange: (file?: File) => void;
+  onChange: (file?: File | null) => void;
 }
 
 const ImageUploader = ({ imageSrcUrl, onChange }: ImageUploaderProps) => {
   const [previewImageUrl, setPreviewImageUrl] = useState(imageSrcUrl || null);
 
-  const handleDeleteImage = () => setPreviewImageUrl(null);
+  const handleDeleteImage = () => {
+    setPreviewImageUrl(null);
+    onChange(null);
+  };
 
   return (
-    <div className='bg-gray-accent7 mb-3 flex w-full justify-center p-10'>
+    <div className='bg-gray-accent7 flex w-full justify-center p-10'>
       <div className='relative '>
         {previewImageUrl ? (
           <>

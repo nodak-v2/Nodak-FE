@@ -38,3 +38,7 @@ next-env.d.ts
 .env
 *storybook.log
 storybook-static
+
+# pwa
+public/sw.js.*
+public/workbox-*.js.*

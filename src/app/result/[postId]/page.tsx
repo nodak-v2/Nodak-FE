@@ -1,27 +1,27 @@
 import { getPostDetail } from '@/src/apis/post';
 import CommentLink from '@/src/app/result/[postId]/_components/CommentLink';
-import EditLinks from '@/src/app/result/[postId]/_components/EditLinks';
 import LikeButton from '@/src/app/result/[postId]/_components/LikeButton';
 import ProfileBlock from '@/src/app/result/[postId]/_components/ProfileBlock';
-import VoteProgress from '@/src/app/result/[postId]/_components/VoteProgress';
-import VoteForm from '@/src/app/result/[postId]/_components/VoteResult';
+import VoteBlock from '@/src/app/result/[postId]/_components/VoteBlock';
 
 interface ResultPageProps {
   params: { postId: string };
+  searchParams: { voteId: string };
 }
 
-const ResultPage = async ({ params: { postId } }: ResultPageProps) => {
+const ResultPage = async ({
+  params: { postId },
+  searchParams: { voteId },
+}: ResultPageProps) => {
   const {
     author,
-    isAuthor,
     profileImageUrl,
     title,
-    date,
+    createdAt,
     content,
     starCount,
-    commentCount,
+    commentSize,
     checkStar: isCheckStar,
-    voteInfo: { hasVoted, voteTitle, options, voteId },
   } = await getPostDetail(postId);
 
   return (
@@ -29,23 +29,18 @@ const ResultPage = async ({ params: { postId } }: ResultPageProps) => {
       <ProfileBlock name={author} imageUrl={profileImageUrl} />
       <div className='flex flex-col p-4'>
         <span className='text-xl font-bold'>{title}</span>
-        <span className='pl-1 text-xs text-gray-accent2'>{date}</span>
+        <span className='pl-1 text-xs text-gray-accent2'>{createdAt}</span>
       </div>
       <p className='break-words p-4'>{content}</p>
-      {isAuthor && <EditLinks postId={postId} />}
-      {hasVoted ? (
-        <VoteProgress voteId={voteId} />
-      ) : (
-        <VoteForm title={voteTitle} options={options} voteId={voteId} />
-      )}
-      <div className='flex items-center gap-1 p-4'>
+      <VoteBlock voteId={+voteId} />
+      <div className='flex gap-1 p-4'>
         <div className='flex gap-0.5'>
           <LikeButton postId={postId} isChecked={isCheckStar} />
           <span className='pr-2'>{starCount}</span>
         </div>
         <div className='flex gap-0.5'>
           <CommentLink postId={postId} />
-          <span>{commentCount}</span>
+          <span>{commentSize}</span>
         </div>
       </div>
     </div>

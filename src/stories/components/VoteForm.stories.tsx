@@ -8,10 +8,20 @@ const meta = {
   tags: ['autodocs'],
   component: VoteForm,
   decorators: PageLayoutDecorator,
+  argTypes: {
+    error: {
+      options: [undefined, '1글자 이상 7글자 이하여야 합니다.'],
+      control: { type: 'radio' },
+    },
+  },
 } satisfies Meta<typeof VoteForm>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {
+    onChange: () => {},
+  },
+};
