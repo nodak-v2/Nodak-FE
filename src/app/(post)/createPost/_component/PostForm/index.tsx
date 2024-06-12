@@ -2,7 +2,7 @@
 
 import { Controller, useForm } from 'react-hook-form';
 
-import { PostValue, createPost } from '@/src/apis/post';
+import { PostValue, createPost } from '@/src/apis/postDetail';
 import Button from '@/src/components/Button/Button';
 import FormField from '@/src/components/FormField';
 import Selector from '@/src/components/Selector';

@@ -1,4 +1,4 @@
-import { getPostDetail } from '@/src/apis/post';
+import { getPostDetail } from '@/src/apis/postDetail';
 import CommentLink from '@/src/app/(post)/result/[postId]/_components/CommentLink';
 import LikeButton from '@/src/app/(post)/result/[postId]/_components/LikeButton';
 import ProfileBlock from '@/src/app/(post)/result/[postId]/_components/ProfileBlock';

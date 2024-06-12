@@ -2,7 +2,7 @@
 
 import { revalidateTag } from 'next/cache';
 
-import { createLike, deleteLike } from '@/src/apis/post';
+import { createLike, deleteLike } from '@/src/apis/postDetail';
 import { doVote } from '@/src/apis/vote';
 
 interface UpdateLikeArgs {

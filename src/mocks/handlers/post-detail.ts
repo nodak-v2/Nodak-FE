@@ -1,7 +1,7 @@
 import { HttpResponse, http } from 'msw';
 
 import { BASE_URL } from '@/src/apis/constants';
-import { PostDetail } from '@/src/apis/post';
+import { PostDetail } from '@/src/apis/postDetail';
 
 class Post {
   private postDetail: PostDetail[];
