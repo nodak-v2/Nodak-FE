@@ -9,14 +9,9 @@ import { api } from './core';
 export interface Comment {
   commentId: number;
   profileImageUrl: string | null;
-  writerName: string;
+  nickname: string;
   content: string;
   createdAt: string;
-}
-
-export interface GetData<T> {
-  body: T;
-  message: string;
 }
 
 // export const getComments = async (postId: string) => {

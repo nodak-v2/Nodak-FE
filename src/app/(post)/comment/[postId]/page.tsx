@@ -25,10 +25,10 @@ const CommentPage = () => {
       <div className='h-full grow overflow-y-auto'>
         {commentData.length > 0 ? (
           commentData.map(
-            ({ writerName, profileImageUrl, content, createdAt }, index) => (
+            ({ nickname, profileImageUrl, content, createdAt }, index) => (
               <CommentItem
                 key={index}
-                writerName={writerName}
+                nickname={nickname}
                 profileImageUrl={profileImageUrl ? profileImageUrl : undefined}
                 content={content}
                 createdAt={new Date(createdAt)}
