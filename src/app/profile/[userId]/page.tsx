@@ -1,4 +1,6 @@
-import { getProfile } from '@/src/apis/profile';
+'use client';
+
+import { useGetProfileAPI } from '@/src/apis/profile';
 
 import ActiveGrass from './_components/ActiveGrass';
 import MissionBadge from './_components/MissionBadge';
@@ -9,8 +11,8 @@ interface UserPageProps {
   params: { userId: string };
 }
 
-const UserPage = async ({ params: { userId } }: UserPageProps) => {
-  const profileData = await getProfile(userId);
+const UserPage = ({ params: { userId } }: UserPageProps) => {
+  const profileData = useGetProfileAPI(userId);
   const {
     nickname,
     profileImageUrl,
