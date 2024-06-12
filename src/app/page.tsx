@@ -23,7 +23,7 @@ import TopBar from '../components/Topbar';
 const Main = () => {
   const searchParams = useSearchParams();
   const [currentChannel, setCurrentChannel] = useState<ChannelType>('all');
-  const [posts, setPosts] = useState<PostList['body']['content']>();
+  const [posts, setPosts] = useState<PostList['content']>();
 
   useEffect(() => {
     const channel = searchParams.get('channel') as ChannelType;

@@ -4,7 +4,7 @@ import { ChannelType } from '@/src/app/_components/ChipContainer';
 import { PostType } from '@/src/app/_components/PostItem';
 
 export const PostContentToPostItemType = (
-  postListContent: PostList['body']['content'][0],
+  postListContent: PostList['content'][0],
 ): PostType => ({
   title: postListContent.title,
   commentedCount: postListContent.totalCount,

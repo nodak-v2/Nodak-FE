@@ -1,3 +1,5 @@
+import { useQuery } from '@tanstack/react-query';
+
 import { api } from '@/src/apis/core';
 
 interface PostListContent {
@@ -24,7 +26,7 @@ interface PostListSort {
   unsorted: boolean;
   sorted: boolean;
 }
-interface PostList {
+export interface PostList {
   content: PostListContent[];
   pageable: PostListPageable;
   last: boolean;
@@ -65,4 +67,13 @@ export const getPostList = async (params: GetPostListParams) => {
   });
 
   return data;
+};
+
+export const useGetPostListAPI = (params: GetPostListParams) => {
+  const { data } = useQuery({
+    queryKey: ['postList', ...Object.values(params)],
+    queryFn: () => getPostList(params),
+  });
+
+  return data?.body;
 };
