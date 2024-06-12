@@ -13,7 +13,7 @@ export default meta;
 export const DefaultTemplate = () => {
   return (
     <CommentInfo
-      writerName='User'
+      nickname='User'
       profileImageUrl='https://via.placeholder.com/150'
       content='댓글 텍스트'
       createdAt={new Date()}
