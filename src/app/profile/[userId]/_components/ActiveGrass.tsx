@@ -35,12 +35,14 @@ const grassCSS = cva(`shadow-border h-5 w-5 rounded-md`, {
   },
 });
 
+// Todo : 해당 컴포넌트 로직에 대한 백엔드 API 기반으로 재설계 진행
+// Todo : 해당 컴포넌트에 대한 정보를 전달할 수 있는 라벨을 추가해야함. 라벨은 서비스 내의 고유한 아이디어로 구성
 const ActiveGrass = () => {
   return (
-    <div className='border-b p-2'>
-      <label>{`총 0개의 포스트를 작성하였습니다.`}</label>
+    <div className='border-b p-4'>
       <div className='mt-3 flex flex-wrap items-center justify-start gap-[2px] rounded-sm bg-[#F9F9F9]'>
         {grass.map(({ date, postNumber, lightness }) => (
+          // Todo : 툴팁 컴포넌트 수정 필요
           <Tooltip
             key={date}
             direction='bottom'

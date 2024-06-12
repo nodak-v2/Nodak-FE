@@ -38,6 +38,8 @@ const MissionBadgeDummy = [
     description: '팔로우 3개 하기',
   },
 ];
+
+// Todo : 해당 미션에 대한 내용을 Tooltip으로 표시
 const MissionBadge = () => {
   return (
     <div className='flex flex-col gap-2 border-b p-4'>

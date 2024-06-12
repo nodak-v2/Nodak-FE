@@ -1,16 +1,11 @@
 'use client';
 
-import { useState } from 'react';
-
 import Image from 'next/image';
-
-import Icon from '@/src/components/Icon';
-import TextInput from '@/src/components/TextInput';
 
 interface UserInfoProps {
   nickname: string;
-  profileImageUrl: string;
-  introduction: string;
+  profileImageUrl?: string;
+  introduction?: string;
   followeeCount: number;
   followerCount: number;
 }
@@ -22,66 +17,35 @@ const UserInfo = ({
   followeeCount,
   followerCount,
 }: UserInfoProps) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [editNickname, setEditNickname] = useState(nickname);
-  const [editIntroduction, setEditIntroduction] = useState(introduction);
-
-  const handleProfileEdit = () => {
-    setIsEditing(!isEditing);
-  };
-
   return (
     <div className='flex  w-full flex-col border-b pt-5'>
       <div className='flex items-center gap-4 px-4'>
         <div className='relative'>
-          {isEditing && (
-            <Icon
-              id='close'
-              className='absolute right-0 top-0 text-dark-accent2'
-            />
-          )}
           <Image
-            src={profileImageUrl}
+            src={profileImageUrl || '/icon-128x128.png'}
             alt='사용자 이미지'
             width={150}
             height={150}
             className='rounded-xl object-cover'
           />
-          {isEditing && (
-            <Icon
-              id='camera'
-              size={24}
-              className='absolute bottom-0 right-0 text-dark-accent2'
-            />
-          )}
         </div>
         <div className='flex grow flex-col items-start gap-2'>
-          {isEditing ? (
-            <TextInput
-              className='rounded-sm p-0'
-              value={editNickname}
-              onChange={e => setEditNickname(e.target.value)}
-            />
-          ) : (
-            <span className='text-xl font-bold'>{nickname}</span>
-          )}
-          {isEditing ? (
-            <TextInput
-              className='rounded-sm p-0'
-              value={editIntroduction}
-              onChange={e => setEditIntroduction(e.target.value)}
-            />
-          ) : (
-            <span className='text-sm'>{introduction}</span>
-          )}
+          <span className='text-xl font-bold'>{nickname}</span>
+          {/* 소개글이 없을 때 어떻게 렌더링 할 것 인지에 대한 디자인 필요 */}
+          <span className='text-sm'>
+            {introduction || '사용자는 아직 소개글을 작성하지 않았습니다.'}
+          </span>
         </div>
       </div>
       <div className='p-4'>
+        {/* Todo : 해당 버튼에 동작 추가 */}
         <button
-          className='w-full rounded-md bg-[#C7B299] py-2'
-          onClick={handleProfileEdit}
+          className='w-full rounded-md bg-[#C7B299] py-2 text-dark-accent2'
+          onClick={() => {
+            console.log('프로필 수정');
+          }}
         >
-          {isEditing ? '프로필 저장' : '프로필 수정'}
+          프로필 수정
         </button>
       </div>
       <div className='flex items-center gap-4 p-4 text-xs text-[#F0F0F0]'>
