@@ -1,15 +1,16 @@
 import Image from 'next/image';
 
+import { isValidImageUrl } from '@/src/app/(main)/utils';
 import Icon from '@/src/components/Icon';
 
-type PostType = {
+export type PostType = {
   title: string;
   votedCount: number;
   likedCount: number;
   commentedCount: number;
   author: string;
-  profileImageUrl: string;
-  imageUrl: string;
+  profileImageUrl: string | null;
+  imageUrl: string | null;
   createdAt: string;
 };
 
@@ -29,9 +30,22 @@ const PostItem = ({ post }: PostItemProps) => {
     createdAt,
   } = post;
 
+  const validatedImageUrl = isValidImageUrl(imageUrl)
+    ? imageUrl
+    : '/placeHolder_130.png';
+
+  const validatedProfileImageUrl = isValidImageUrl(profileImageUrl)
+    ? profileImageUrl
+    : '/placeHolder_20.png';
+
   return (
     <div className='flex w-full cursor-pointer justify-start gap-4 border-b bg-dark-accent2 p-4 text-white'>
-      <Image src={imageUrl} alt='게시글이미지' width={130} height={130} />
+      <Image
+        src={validatedImageUrl}
+        alt='게시글이미지'
+        width={130}
+        height={130}
+      />
       <div className='flex w-full flex-col gap-4'>
         <div className='flex flex-col gap-0.5'>
           <span>{title}</span>
@@ -41,7 +55,7 @@ const PostItem = ({ post }: PostItemProps) => {
         <div className='flex w-full justify-between'>
           <span className='flex items-center gap-2'>
             <Image
-              src={profileImageUrl}
+              src={validatedProfileImageUrl}
               alt='사용자 프로필'
               className='rounded-full object-cover'
               width={20}

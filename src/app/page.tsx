@@ -5,6 +5,11 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
+import { PostList, getPostList } from '@/src/apis/post';
+import {
+  PostContentToPostItemType,
+  searchParamsToGetPostListParams,
+} from '@/src/app/(main)/utils';
 import ChipContainer, {
   ChannelType,
 } from '@/src/app/_components/ChipContainer';
@@ -15,36 +20,27 @@ import Popup from '@/src/components/POPup';
 import GNB from '../components/GNB';
 import TopBar from '../components/Topbar';
 
-const posts = [
-  {
-    postId: '1',
-    title: '게시글 제목입니다.',
-    votedCount: 10,
-    likedCount: 10,
-    commentedCount: 10,
-    author: 'homin',
-    profileImageUrl: 'https://via.placeholder.com/150',
-    imageUrl: 'https://via.placeholder.com/150',
-    createdAt: '2021-10-10',
-  },
-  {
-    postId: '2',
-    title: '게시글 제목입니다.',
-    votedCount: 10,
-    likedCount: 10,
-    commentedCount: 10,
-    author: 'homin',
-    profileImageUrl: 'https://via.placeholder.com/150',
-    imageUrl: 'https://via.placeholder.com/150',
-    createdAt: '2021-10-10',
-  },
-];
-
 const Main = () => {
   const searchParams = useSearchParams();
   const [currentChannel, setCurrentChannel] = useState<ChannelType>('all');
+  const [posts, setPosts] = useState<PostList['body']['content']>();
+
   useEffect(() => {
     const channel = searchParams.get('channel') as ChannelType;
+    const keyword = searchParams.get('keyword') as string;
+
+    const fetchPostList = async () => {
+      const response = await getPostList({
+        page: '0',
+        size: '8',
+        ...searchParamsToGetPostListParams(channel, keyword),
+      });
+
+      setPosts(response.body.content);
+    };
+
+    fetchPostList();
+
     if (channel) setCurrentChannel(channel);
     // 여기서는 클라이언트 컴포넌트라서 data가 출력됨
   }, [searchParams]);
@@ -59,13 +55,11 @@ const Main = () => {
       <main className='grow'>
         <ChipContainer currentChannel={currentChannel} />
         <div className='flex flex-col'>
-          {posts.map((post, index) => (
-            <Link
+          {posts?.map((post, index) => (
+            <PostItem
               key={`${index}-${post.title}`}
-              href={`/result/${post.postId}`}
-            >
-              <PostItem post={post} />
-            </Link>
+              post={PostContentToPostItemType(post)}
+            />
           ))}
         </div>
         <Link href='createPost'>

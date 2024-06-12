@@ -6,7 +6,6 @@ import Chip from '@/src/app/_components/Chip';
 
 export type ChannelType =
   | 'all'
-  | 'hot'
   | 'chatting'
   | 'sports'
   | 'entertaining'
@@ -14,7 +13,6 @@ export type ChannelType =
 
 const channelData: { name: string; path: ChannelType }[] = [
   { name: '전체', path: 'all' },
-  { name: 'HOT', path: 'hot' },
   { name: '잡담', path: 'chatting' },
   { name: '스포츠', path: 'sports' },
   { name: '연예', path: 'entertaining' },
