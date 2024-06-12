@@ -1,4 +1,4 @@
-import { GetPostListParams, PostList } from '@/src/apis/post';
+import { GetPostListParams, PostList } from '@/src/apis/postList';
 import { CATEGORY_MAP } from '@/src/app/(main)/constants';
 import { ChannelType } from '@/src/app/_components/ChipContainer';
 import { PostType } from '@/src/app/_components/PostItem';

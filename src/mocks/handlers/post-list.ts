@@ -1,7 +1,7 @@
 import { HttpResponse, http } from 'msw';
 
 import { BASE_URL } from '@/src/apis/constants';
-import { PostList } from '@/src/apis/post';
+import { PostList } from '@/src/apis/postList';
 
 const postList = {
   posts: [
