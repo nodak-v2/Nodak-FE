@@ -46,7 +46,7 @@ const PostForm = () => {
           labelText='제목'
           isRequired
           maxLength={50}
-          currentLength={watch('title')?.length}
+          currentLength={watch('title')?.trim().length}
           error={errors.title?.message}
         >
           <TextInput
@@ -59,7 +59,7 @@ const PostForm = () => {
           labelText='투표 설명'
           isRequired
           maxLength={500}
-          currentLength={watch('content')?.length}
+          currentLength={watch('content')?.trim().length}
           error={errors.content?.message}
         >
           <Textarea
