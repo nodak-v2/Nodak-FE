@@ -83,7 +83,7 @@ const VoteForm = ({ onChange, error }: VoteFormProps) => {
         type='button'
         onClick={handleAddOption}
         className={cn('ml-2 mr-10 rounded-md bg-dark-accent2 p-2 text-white', {
-          'cursor-not-allowed opacity-50': options.length === 6,
+          hidden: options.length === 6,
         })}
       >
         선택항목 추가

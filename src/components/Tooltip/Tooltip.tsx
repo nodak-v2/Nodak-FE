@@ -9,6 +9,7 @@ import {
 } from 'react';
 
 import useHover from '@/src/hooks/useHover';
+import { cn } from '@/src/utils/cn';
 
 import TooltipArrow from './TooltipArrow';
 
@@ -20,6 +21,7 @@ export interface TooltipProps {
   type?: TooltipType;
   direction: TooltipDirection;
   hasArrow: boolean;
+  className?: string;
 }
 
 const Tooltip = ({
@@ -28,6 +30,7 @@ const Tooltip = ({
   message,
   direction,
   children,
+  className,
 }: PropsWithChildren<TooltipProps>) => {
   const [ref, isHovered] = useHover();
   const [isShow, setIsShow] = useState(false);
@@ -54,9 +57,10 @@ const Tooltip = ({
       <span ref={ref}>{childElement}</span>
       {isShow && (
         <span
-          className='absolute z-10 w-24
-          max-w-xs rounded-lg bg-primary-accent1 px-4
-          py-2  text-center text-sm leading-6 text-black shadow-sm'
+          className={cn(
+            'absolute z-10 min-w-24 max-w-xs rounded-lg bg-primary-accent1 px-4 py-2  text-center text-sm leading-6 text-black shadow-sm',
+            className,
+          )}
           ref={tooltipRef}
           onAnimationEnd={() => {
             if (!isShow) {
