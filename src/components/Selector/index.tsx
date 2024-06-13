@@ -37,7 +37,7 @@ const Selector = ({ items, placeholder, onChange }: SelectorProps) => {
     >
       <button
         type='button'
-        className='text-bold flex w-full items-center justify-between rounded border bg-gray-accent1 p-2'
+        className='text-bold flex w-full items-center justify-between rounded border bg-gray-accent1 p-2 text-black'
       >
         <span>{selectedItem ? selectedItem : placeholder}</span>
         <Icon
