@@ -68,7 +68,11 @@ const PostForm = () => {
             {...register('content')}
           />
         </FormField>
-        <FormField labelText='투표 항목' isRequired>
+        <FormField
+          labelText='투표 항목'
+          isRequired
+          description='최대 6개의 투표항목을 입력할 수 있습니다.'
+        >
           <Controller
             name='voteOptions'
             control={control}
