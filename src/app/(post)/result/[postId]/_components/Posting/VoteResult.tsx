@@ -4,6 +4,7 @@ import { useParams } from 'next/navigation';
 
 import { useGetVoteDetailAPI } from '@/src/apis/vote';
 import Icon from '@/src/components/Icon';
+import { cn } from '@/src/utils/cn';
 
 const VoteResult = () => {
   const { postId } = useParams() as { postId: string };
@@ -13,8 +14,8 @@ const VoteResult = () => {
   const maxCount = Math.max(...voteOptions.map(({ count }) => count));
 
   return (
-    <div className='flex items-center justify-center'>
-      <div className='flex w-full flex-col gap-6 rounded-lg p-4 text-white shadow-lg'>
+    <div className='flex items-center justify-center rounded-[8px] bg-gray-accent1'>
+      <div className='flex w-full flex-col gap-6 p-4 text-white'>
         <div>
           <span className='font-bold'>{voteTitle}</span>
           <p className='text-sm text-gray-400'>{totalNumber}명 참여</p>
@@ -34,16 +35,22 @@ const VoteResult = () => {
                   <Icon id='select-default' size={24} />
                 )}
                 <div className='flex flex-grow flex-col'>
-                  <span>{voteOptionContent}</span>
+                  <span className='font-text-1-rg'>{voteOptionContent}</span>
                   <div className='flex w-full items-center gap-3'>
                     {count > 0 && (
                       <div
-                        className={`relative h-1 w-full rounded-full ${count === maxCount ? 'bg-red-600' : 'bg-gray-500'}`}
+                        className={cn(`relative h-1 w-full rounded-full`, {
+                          'bg-primary': count === maxCount,
+                          'bg-gray-accent3': count !== maxCount,
+                        })}
                         style={{ width: `${percentage / 2}%` }}
                       />
                     )}
                     <div
-                      className={`text-xs ${count === maxCount ? 'text-red-600' : 'text-gray-500'}`}
+                      className={cn(`font-text-4-rg`, {
+                        'text-primary': count === maxCount,
+                        'text-gray-accent3': count !== maxCount,
+                      })}
                     >
                       {count}표, {percentage.toFixed(0)}%
                     </div>

@@ -9,7 +9,7 @@ const CommentList = () => {
   const comments = useGetCommentsAPI(postId);
 
   return (
-    <div className='border-t border-gray-accent3'>
+    <div className='border-t border-gray-accent2'>
       {comments.map((comment, idx) => (
         <CommentItem key={`${comment.commentId}-${idx}`} comment={comment} />
       ))}

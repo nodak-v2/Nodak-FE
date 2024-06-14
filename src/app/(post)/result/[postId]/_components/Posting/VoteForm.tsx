@@ -30,11 +30,13 @@ const VoteForm = () => {
   };
 
   return (
-    <div className='flex items-center justify-center'>
-      <div className='flex w-full flex-col gap-6 rounded-lg p-4 text-white shadow-lg'>
+    <div className='flex items-center justify-center rounded-[8px] bg-gray-accent1'>
+      <div className='flex w-full flex-col gap-6 p-4'>
         <div>
-          <span className='font-bold'>{voteTitle}</span>
-          <p className='text-sm text-gray-400'>{totalNumber}명 참여</p>
+          <span className='font-sm-bold'>{voteTitle}</span>
+          <p className='font-text-3-rg text-gray-accent4'>
+            {totalNumber}명 참여
+          </p>
         </div>
         <div className='flex flex-col gap-3'>
           {voteOptions.map(({ voteOptionContent, voteOptionId, seq }) => (
@@ -55,15 +57,18 @@ const VoteForm = () => {
               ) : (
                 <Icon id='select-default' size={24} />
               )}
-              <span>{voteOptionContent}</span>
+              <span className='font-text-1-rg'>{voteOptionContent}</span>
             </label>
           ))}
         </div>
         <button
-          className={cn(`w-full rounded-lg bg-[#53251D] py-2 text-[#FF614B]`, {
-            'cursor-not-allowed bg-gray-accent2 text-white':
-              selectedOption === null,
-          })}
+          className={cn(
+            `font-title-1-md w-full rounded-lg bg-sub py-2 text-primary`,
+            {
+              'cursor-not-allowed bg-gray-accent2 text-white':
+                selectedOption === null,
+            },
+          )}
           onClick={handleVote}
         >
           투표하기

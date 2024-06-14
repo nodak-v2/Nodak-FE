@@ -19,13 +19,12 @@ const PostingMain = () => {
       <div className='flex items-center gap-2'>
         <Image src='/user-square.png' alt='유저프로필' width={36} height={36} />
         <div className='flex flex-col'>
-          <span className='text-[14px] font-bold'>{author}</span>
-          <span className='text-gray-accent4 text-[12px]'>{createdAt}</span>
+          <span className='font-title-1-md'>{author}</span>
+          <span className='font-text-4-rg text-gray-accent4'>{createdAt}</span>
         </div>
       </div>
       {hasVoted ? <VoteResult /> : <VoteForm />}
-      {/* <VoteForm /> */}
-      <span className='text-[14px]'>{content}</span>
+      <span className='font-text-1-rg'>{content}</span>
     </div>
   );
 };
