@@ -3,8 +3,9 @@
 import { PropsWithChildren } from 'react';
 
 import TopBar from '../../../../components/Topbar';
+import CommentInput from './_components/CommentInput';
 
-const CommentLayout = ({ children }: PropsWithChildren) => {
+const PostDetailLayout = ({ children }: PropsWithChildren) => {
   return (
     <>
       <TopBar.Container>
@@ -13,8 +14,9 @@ const CommentLayout = ({ children }: PropsWithChildren) => {
         <TopBar.NavMore />
       </TopBar.Container>
       {children}
+      <CommentInput />
     </>
   );
 };
 
-export default CommentLayout;
+export default PostDetailLayout;

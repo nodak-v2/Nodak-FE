@@ -26,7 +26,7 @@ const ResultPage = () => {
   // );
 
   return (
-    <div className='flex h-full flex-col gap-4 overflow-y-auto'>
+    <div className='flex h-full grow flex-col gap-4 overflow-y-auto'>
       <div className='flex flex-col gap-[36px]'>
         <PostingMain />
         <PostingButton />
