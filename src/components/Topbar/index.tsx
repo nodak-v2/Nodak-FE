@@ -5,11 +5,7 @@ import Link from 'next/link';
 import Icon from '@/src/components/Icon';
 
 const Container = ({ children }: PropsWithChildren) => {
-  return (
-    <div className='flex justify-between border-b border-gray-accent2 p-4'>
-      {children}
-    </div>
-  );
+  return <div className='flex justify-between p-4'>{children}</div>;
 };
 const Left = ({ children }: PropsWithChildren) => (
   <div className='flex items-center gap-3'>{children}</div>
