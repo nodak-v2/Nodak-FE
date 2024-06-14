@@ -20,4 +20,5 @@ export type IconName =
   | 'kakao'
   | 'close'
   | 'camera'
-  | 'logo';
+  | 'logo'
+  | 'check';

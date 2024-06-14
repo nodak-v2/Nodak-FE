@@ -40,22 +40,11 @@ const PostItem = ({ post }: PostItemProps) => {
     : '/placeHolder_20.png';
 
   return (
-    <div className='flex w-full cursor-pointer justify-start gap-4 border-b bg-dark-accent2 p-4 text-white'>
-      <Image
-        src={validatedImageUrl}
-        alt='게시글이미지'
-        width={130}
-        height={130}
-      />
-      <div className='flex w-full flex-col gap-4'>
-        <div className='flex flex-col gap-0.5'>
-          <span>{title}</span>
-          <span className='text-xs text-gray-accent2'>{`총 ${votedCount}명 투표`}</span>
-          <span className='text-xs text-gray-accent2'>
-            {timeOffset(createdAt)}
-          </span>
-        </div>
-        <div className='flex w-full justify-between'>
+    <div className='flex w-full cursor-pointer justify-start gap-4 border-b bg-dark-accent2 p-4 pb-4 text-white'>
+      <div className='flex w-full flex-col justify-between gap-1'>
+        <span>{title}</span>
+        <span className='text-xs text-gray-accent2'>{`총 ${votedCount}명 투표`}</span>
+        <div className='flex gap-4'>
           <span className='flex items-center gap-2'>
             <Image
               src={validatedProfileImageUrl}
@@ -65,6 +54,9 @@ const PostItem = ({ post }: PostItemProps) => {
               height={20}
             />
             <span className='text-sm text-gray-accent1'>{author}</span>
+            <span className='text-xs text-gray-accent2'>
+              {timeOffset(createdAt)}
+            </span>
           </span>
           <span className='flex gap-2 text-gray-accent1'>
             <span className='flex items-center gap-1'>
@@ -78,6 +70,12 @@ const PostItem = ({ post }: PostItemProps) => {
           </span>
         </div>
       </div>
+      <Image
+        src={validatedImageUrl}
+        alt='게시글이미지'
+        width={130}
+        height={130}
+      />
     </div>
   );
 };
