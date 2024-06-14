@@ -16,7 +16,7 @@ const GNB = () => {
   ];
 
   return (
-    <div className='bg-[#212529] px-4'>
+    <div className='fixed bottom-0 w-full bg-[#212529] px-4'>
       <nav>
         <ul className='flex justify-between'>
           {navItems.map(({ href, icon, name }, index) => (

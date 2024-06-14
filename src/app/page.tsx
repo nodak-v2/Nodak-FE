@@ -47,7 +47,7 @@ const Main = () => {
           ))}
         </div>
         <Link href='createPost'>
-          <button className='absolute bottom-24 right-5 z-10 flex h-[53px] w-[53px] items-center justify-center rounded-full bg-zinc-200  shadow-lg'>
+          <button className='fixed bottom-24 right-5 z-10 flex h-[53px] w-[53px] items-center justify-center rounded-full bg-zinc-200  shadow-lg'>
             <Icon id='pencil-fill' size={24} />
           </button>
         </Link>
