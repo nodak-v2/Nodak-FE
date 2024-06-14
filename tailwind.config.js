@@ -3,27 +3,37 @@ export default {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      // 색상 설정
       colors: {
-        gray: {
-          accent1: 'var(--gray-1)',
-          accent2: 'var(--gray-2)',
-          accent3: 'var(--gray-3)',
-        },
+        primary: 'var(--primary)',
+        sub: 'var(--sub)',
+        error: 'var(--error)',
+        background: 'var(--background)',
         dark: {
-          accent1: 'var(--dark-1)',
-          accent2: 'var(--dark-2)',
+          accent1: 'var(--dark-accent1)',
+          accent2: 'var(--dark-accent2)',
         },
-        primary: {
-          accent1: 'var(--primary-1)',
-          accent2: 'var(--primary-2)',
+        gray: {
+          accent1: 'var(--gray-accent1)',
+          accent2: 'var(--gray-accent2)',
         },
         grass: {
-          100: '#F4FCE3',
-          200: '#D8F5A2',
-          300: '#94D82D',
-          400: '#94D82D',
-          500: '#5C940D',
+          100: 'var(--grass-100)',
+          200: 'var(--grass-200)',
+          300: 'var(--grass-300)',
+          400: 'var(--grass-400)',
+          500: 'var(--grass-500)',
         },
+      },
+
+      // 폰트 설정
+      fontFamily: {
+        sans: ['Pretendard', 'sans-serif'],
+      },
+      fontWeight: {
+        semibold: 600,
+        medium: 500,
+        regular: 400,
       },
     },
   },

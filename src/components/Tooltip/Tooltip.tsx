@@ -55,7 +55,7 @@ const Tooltip = ({
       {isShow && (
         <span
           className='absolute z-10 w-24
-          max-w-xs rounded-lg bg-primary-accent1 px-4
+          max-w-xs rounded-lg bg-primary px-4
           py-2  text-center text-sm leading-6 text-black shadow-sm'
           ref={tooltipRef}
           onAnimationEnd={() => {

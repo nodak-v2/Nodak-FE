@@ -15,7 +15,7 @@ const textareaCSS = cva(
       },
       isDisabled: {
         false: '',
-        true: 'bg-gray-accent7 cursor-not-allowed placeholder-gray-accent3',
+        true: 'bg-gray-accent7 cursor-not-allowed placeholder-gray-accent2',
       },
     },
     defaultVariants: {
