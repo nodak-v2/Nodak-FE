@@ -24,5 +24,8 @@ export type IconName =
   | 'add-box'
   | 'nav-more'
   | 'arrow-left'
-  | 'user-square'
-  | 'more-square';
+  | 'more-square'
+  | 'message'
+  | 'heart-fill'
+  | 'select-vote'
+  | 'select-default';
