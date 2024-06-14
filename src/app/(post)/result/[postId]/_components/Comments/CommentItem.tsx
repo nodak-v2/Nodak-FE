@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 import type { Comment } from '@/src/apis/comments';
 import { useGetUserStatusAPI } from '@/src/apis/myInfo';
 import Icon from '@/src/components/Icon';
@@ -16,7 +18,12 @@ const CommentItem = ({ comment }: CommentItemProps) => {
     <div className='flex flex-col gap-2 border-b border-gray-accent3 p-4'>
       <div className='flex items-center justify-between'>
         <div className='flex items-center gap-1'>
-          <Icon id='user-square' size={24} />
+          <Image
+            src='/user-square.png'
+            alt='유저프로필'
+            width={24}
+            height={24}
+          />
           <span className='text-[14px]'>{nickname}</span>
           {ownId === userId && <OwnCommentChip />}
         </div>

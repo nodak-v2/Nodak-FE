@@ -1,21 +1,10 @@
 'use client';
 
-import { useGetPostDetailAPI } from '@/src/apis/post';
-import { useGetVoteDetailAPI } from '@/src/apis/vote';
-
 import CommentList from './_components/Comments/CommentList';
+import PostingMain from './_components/Posting';
+import PostingButton from './_components/Posting/PostingButton';
 
-interface ResultPageProps {
-  params: { postId: string };
-}
-
-const ResultPage = ({ params: { postId } }: ResultPageProps) => {
-  const getPostDetail = useGetPostDetailAPI(postId);
-  const getVoteDetail = useGetVoteDetailAPI(postId);
-
-  console.log(getPostDetail);
-  console.log(getVoteDetail);
-
+const ResultPage = () => {
   // return (
   //   <div className='flex h-full grow flex-col gap-2 overscroll-y-auto'>
   //     <ProfileBlock name={author} imageUrl={profileImageUrl} />
@@ -39,8 +28,8 @@ const ResultPage = ({ params: { postId } }: ResultPageProps) => {
   return (
     <div className='flex h-full flex-col gap-4 overflow-y-auto'>
       <div className='flex flex-col gap-[36px]'>
-        {/* <PostDetail />
-        <PostIcon /> */}
+        <PostingMain />
+        <PostingButton />
       </div>
       <CommentList />
     </div>
