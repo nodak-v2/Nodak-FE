@@ -8,8 +8,6 @@ const CommentList = () => {
   const { postId } = useParams() as { postId: string };
   const comments = useGetCommentsAPI(postId);
 
-  console.log(comments[0]);
-
   return (
     <div className='border-t border-gray-accent3'>
       {comments.map((comment, idx) => (
