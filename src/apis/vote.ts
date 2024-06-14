@@ -1,16 +1,17 @@
-// import { BASE_URL, TEST_TOKEN } from '@/src/apis/constants';
 import {
   useMutation,
   useQueryClient,
   useSuspenseQuery,
 } from '@tanstack/react-query';
 
+import { BASE_URL, TEST_TOKEN } from '@/src/apis/constants';
+
 import { api } from './core';
 
-// export interface VoteResult {
-//   message: string;
-//   body: VoteResultBody;
-// }
+export interface VoteResult {
+  message: string;
+  body: VoteResultBody;
+}
 
 export interface VoteResultBody {
   voteId: number;
@@ -28,29 +29,29 @@ export interface VoteOption {
   count: number;
 }
 
-// export const getVoteResult = async (voteId: number) => {
-//   const data = await fetch(`${BASE_URL}/votes/${voteId}`, {
-//     headers: {
-//       Authorization: TEST_TOKEN || '',
-//     },
-//   });
+export const getVoteResult = async (voteId: number) => {
+  const data = await fetch(`${BASE_URL}/votes/${voteId}`, {
+    headers: {
+      Authorization: TEST_TOKEN || '',
+    },
+  });
 
-//   const awaitedData = (await data.json()) as VoteResult;
+  const awaitedData = (await data.json()) as VoteResult;
 
-//   return awaitedData.body;
-// };
+  return awaitedData.body;
+};
 
-// export const doVote = async (voteId: number, optionSeq: number) => {
-//   await fetch(
-//     `${process.env.NEXT_PUBLIC_URL}/votes/${voteId}?option=${optionSeq}`,
-//     {
-//       method: 'post',
-//       headers: {
-//         Authorization: TEST_TOKEN || '',
-//       },
-//     },
-//   );
-// };
+export const doVote = async (voteId: number, optionSeq: number) => {
+  await fetch(
+    `${process.env.NEXT_PUBLIC_URL}/votes/${voteId}?option=${optionSeq}`,
+    {
+      method: 'post',
+      headers: {
+        Authorization: TEST_TOKEN || '',
+      },
+    },
+  );
+};
 
 const getVoteDetail = (postId: string) => {
   return api.get<VoteResultBody>({
