@@ -43,7 +43,10 @@ const PostItem = ({ post }: PostItemProps) => {
     <div className='flex w-full cursor-pointer justify-start gap-4 border-b bg-dark-accent2 p-4 pb-4 text-white'>
       <div className='flex w-full flex-col justify-between gap-1'>
         <span>{title}</span>
-        <span className='text-xs text-gray-accent2'>{`총 ${votedCount}명 투표`}</span>
+        <div className='flex items-center gap-1'>
+          <Icon id='check' size={16} />
+          <span className='text-xs text-gray-accent2'>{`총 ${votedCount}명 투표중`}</span>
+        </div>
         <div className='flex gap-4'>
           <span className='flex items-center gap-2'>
             <Image
