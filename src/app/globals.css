@@ -14,13 +14,19 @@
 
 @layer base {
   #layout-Root {
-    --primary-1: #c7b299;
-    --primary-2: #675640;
-    --gray-1: #f0f0f0;
-    --gray-2: #999999;
-    --gray-3: #333333;
-    --dark-1: #343a40;
-    --dark-2: #212529;
+    --primary: #ff614b;
+    --sub: #53251d;
+    --error: #ec323e;
+    --background: #121212;
+    --dark-accent1: #1e1e1e;
+    --dark-accent2: #333333;
+    --gray-accent1: #777777;
+    --gray-accent2: #a2a2a2;
+    --grass-100: #f4fce3;
+    --grass-200: #d8f5a2;
+    --grass-300: #94d82d;
+    --grass-400: #94d82d;
+    --grass-500: #5c940d;
   }
 }
 
@@ -53,15 +59,15 @@ ul > button:last-child {
     @apply text-[12px] font-semibold leading-[16px];
   }
   .font-text-1-rg {
-    @apply font-regular text-[14px] leading-[18px];
+    @apply text-[14px] font-regular leading-[18px];
   }
   .font-text-2-md {
     @apply text-[12px] font-medium leading-[16px];
   }
   .font-text-3-rg {
-    @apply font-regular text-[12px] leading-[16px];
+    @apply text-[12px] font-regular leading-[16px];
   }
   .font-text-4-rg {
-    @apply font-regular text-[10px] leading-[14px];
+    @apply text-[10px] font-regular leading-[14px];
   }
 }
