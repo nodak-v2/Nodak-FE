@@ -76,8 +76,9 @@ const PostItem = ({ post }: PostItemProps) => {
       <Image
         src={validatedImageUrl}
         alt='게시글이미지'
-        width={130}
-        height={130}
+        width={60}
+        height={60}
+        className='aspect-square h-fit self-center rounded-md object-cover'
       />
     </div>
   );
