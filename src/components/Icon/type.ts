@@ -21,4 +21,8 @@ export type IconName =
   | 'camera'
   | 'logo'
   | 'check'
-  | 'add-box';
+  | 'add-box'
+  | 'nav-more'
+  | 'arrow-left'
+  | 'user-square'
+  | 'more-square';
