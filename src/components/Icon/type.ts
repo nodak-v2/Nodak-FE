@@ -19,4 +19,5 @@ export type IconName =
   | 'subtract-circle'
   | 'kakao'
   | 'close'
-  | 'camera';
+  | 'camera'
+  | 'logo';

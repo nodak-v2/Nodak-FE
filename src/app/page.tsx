@@ -33,7 +33,9 @@ const Main = () => {
     <div className='flex h-full flex-col'>
       <TopBar.Container>
         <TopBar.Left>
-          <TopBar.Title>노닥노닥 로고</TopBar.Title>
+          <TopBar.Title>
+            <Icon id='logo' width={87} height={45} />
+          </TopBar.Title>
         </TopBar.Left>
       </TopBar.Container>
       <main className='grow'>
