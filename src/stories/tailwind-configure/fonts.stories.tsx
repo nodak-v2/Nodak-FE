@@ -16,10 +16,10 @@ const fontClasses = [
 ];
 
 const FontBox = ({ font }: { font: string }) => (
-  <>
+  <div className='font-sans'>
     <div className={font}>{font}</div>
     <span className='text-sm'>{font}</span>
-  </>
+  </div>
 );
 
 const meta: Meta<typeof FontBox> = {
