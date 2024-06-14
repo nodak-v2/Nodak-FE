@@ -31,3 +31,37 @@ ul > button:last-child {
 #drawer-content::after {
   content: none;
 }
+
+/* 폰트 */
+@layer components {
+  .font-h1-sm {
+    @apply text-[24px] font-semibold leading-[36px];
+  }
+  .font-h2-sm {
+    @apply text-[20px] font-semibold leading-[30px];
+  }
+  .font-h3-sm {
+    @apply text-[16px] font-semibold leading-[24px];
+  }
+  .font-h4-sm {
+    @apply text-[14px] font-semibold leading-[22px];
+  }
+  .font-title-1-md {
+    @apply text-[14px] font-medium leading-[18px];
+  }
+  .font-title-2-sm {
+    @apply text-[12px] font-semibold leading-[16px];
+  }
+  .font-text-1-rg {
+    @apply font-regular text-[14px] leading-[18px];
+  }
+  .font-text-2-md {
+    @apply text-[12px] font-medium leading-[16px];
+  }
+  .font-text-3-rg {
+    @apply font-regular text-[12px] leading-[16px];
+  }
+  .font-text-4-rg {
+    @apply font-regular text-[10px] leading-[14px];
+  }
+}

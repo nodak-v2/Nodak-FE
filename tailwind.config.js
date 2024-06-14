@@ -3,6 +3,7 @@ export default {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      // 색상 설정
       colors: {
         primary: '#ff614b',
         sub: '#53251d',
@@ -23,6 +24,16 @@ export default {
           400: '#94D82D',
           500: '#5C940D',
         },
+      },
+
+      // 폰트 설정
+      fontFamily: {
+        sans: ['Pretendard', 'sans-serif'],
+      },
+      fontWeight: {
+        semibold: 600,
+        medium: 500,
+        regular: 400,
       },
     },
   },
