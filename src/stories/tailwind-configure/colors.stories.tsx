@@ -1,21 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-type ColorType =
-  | 'gray-accent1'
-  | 'gray-accent2'
-  | 'dark-accent1'
-  | 'dark-accent2'
-  | 'primary'
-  | 'sub'
-  | 'error'
-  | 'background'
-  | 'grass-100'
-  | 'grass-200'
-  | 'grass-300'
-  | 'grass-400'
-  | 'grass-500';
-
-const colorClassMap: Record<ColorType, string> = {
+const colorClassMap: Record<string, string> = {
   'gray-accent1': 'bg-gray-accent1',
   'gray-accent2': 'bg-gray-accent2',
   'dark-accent1': 'bg-dark-accent1',
@@ -31,7 +16,7 @@ const colorClassMap: Record<ColorType, string> = {
   'grass-500': 'bg-grass-500',
 };
 
-const ColorBox = ({ color }: { color: ColorType }) => (
+const ColorBox = ({ color }: { color: string }) => (
   <>
     <div className={`h-20 w-20 ${colorClassMap[color]}`} />
     <span className='text-sm'>{color}</span>
