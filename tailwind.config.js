@@ -5,18 +5,17 @@ export default {
     extend: {
       colors: {
         gray: {
-          accent1: 'var(--gray-1)',
-          accent2: 'var(--gray-2)',
-          accent3: 'var(--gray-3)',
+          accent1: '#777777',
+          accent2: '#a2a2a2',
         },
         dark: {
-          accent1: 'var(--dark-1)',
-          accent2: 'var(--dark-2)',
+          accent1: '#1e1e1e',
+          accent2: '#333333',
         },
-        primary: {
-          accent1: 'var(--primary-1)',
-          accent2: 'var(--primary-2)',
-        },
+        primary: '#ff614b',
+        sub: '#53251d',
+        error: '#ec323e',
+        background: '#121212',
         grass: {
           100: '#F4FCE3',
           200: '#D8F5A2',
