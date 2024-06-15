@@ -59,7 +59,7 @@ const VoteForm = ({ onChange, error }: VoteFormProps) => {
               className={cn('border text-gray-accent1', {
                 'mr-8': [0, 1].includes(index),
               })}
-              placeholder='투표항목을 입력하세요.'
+              placeholder='항목 입력'
             />
             <Icon
               id='subtract-circle'

@@ -52,11 +52,12 @@ const PostForm = () => {
           <TextInput
             variant={errors.title ? 'error' : 'default'}
             maxLength={50}
+            placeholder='투표 제목'
             {...register('title')}
           />
         </FormField>
         <FormField
-          labelText='투표 설명'
+          labelText='내용'
           isRequired
           maxLength={500}
           currentLength={watch('content')?.trim().length}
@@ -65,6 +66,7 @@ const PostForm = () => {
           <Textarea
             variant={errors.content ? 'error' : 'default'}
             maxLength={500}
+            placeholder='내용을 입력하세요'
             {...register('content')}
           />
         </FormField>
@@ -85,7 +87,7 @@ const PostForm = () => {
           />
         </FormField>
         <FormField
-          labelText='채널 선택'
+          labelText='카테고리'
           isRequired
           error={errors.channel?.message}
           childClassName={errors.channel ? 'ring-1 ring-red-500 rounded' : ''}

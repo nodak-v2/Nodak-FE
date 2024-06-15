@@ -30,7 +30,7 @@ const FormField = ({
   ...props
 }: FormFieldProps) => {
   return (
-    <div className={cn('flex flex-col gap-2', className)} {...props}>
+    <div className={cn('flex flex-col gap-3', className)} {...props}>
       <div className='flex justify-between'>
         <label className='font-title-1-md text-gray-accent2 text-white'>
           {labelText}
