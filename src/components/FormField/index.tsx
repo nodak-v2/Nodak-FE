@@ -9,6 +9,7 @@ interface FormFieldProps
   extends PropsWithChildren,
     ComponentPropsWithoutRef<'div'> {
   labelText: string;
+  labelClassName?: string;
   isRequired?: boolean;
   currentLength?: number;
   maxLength?: number;
@@ -19,6 +20,7 @@ interface FormFieldProps
 
 const FormField = ({
   labelText,
+  labelClassName,
   isRequired = false,
   currentLength = 0,
   maxLength,
@@ -30,9 +32,14 @@ const FormField = ({
   ...props
 }: FormFieldProps) => {
   return (
-    <div className={cn('flex flex-col gap-3', className)} {...props}>
+    <div className={cn('flex flex-col gap-3 px-6', className)} {...props}>
       <div className='flex justify-between'>
-        <label className='font-title-1-md text-gray-accent2 text-white'>
+        <label
+          className={cn(
+            'font-title-1-md text-gray-accent2 text-white',
+            labelClassName,
+          )}
+        >
           {labelText}
           {isRequired && <span className='ml-0.5 text-primary'>*</span>}
         </label>
@@ -50,7 +57,7 @@ const FormField = ({
             <Icon
               id={'info-circle'}
               aria-label='필드 설명'
-              className='opacity-75'
+              className='mr-6 opacity-75'
             />
           </Tooltip>
         )}
