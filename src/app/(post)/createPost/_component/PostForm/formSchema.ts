@@ -3,7 +3,9 @@ import * as yup from 'yup';
 
 const isValidOptions = (value: string[] | undefined) => {
   if (!Array.isArray(value)) return false;
-  return value.every(option => option.length >= 1 && option.length <= 15);
+  return value.every(
+    option => option.trim().length >= 1 && option.trim().length <= 15,
+  );
 };
 
 export const schema = yup.object({
@@ -25,7 +27,8 @@ export const schema = yup.object({
     .array()
     .required('필수 선택 항목입니다.')
     .min(2, '최소 2개의 옵션을 입력해야 합니다.')
-    .test('글자수 검증', '1글자 이상 15글자 이하여야 합니다.', isValidOptions),
+    .test('글자수 검증', '1글자 이상 15글자 이하여야 합니다.', isValidOptions)
+    .of(yup.string().trim().required()),
 });
 
 export const defaultValues = {

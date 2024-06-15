@@ -44,7 +44,7 @@ const PostForm = () => {
           labelText='제목'
           isRequired
           maxLength={50}
-          currentLength={watch('title')?.length}
+          currentLength={watch('title')?.trim().length}
           error={errors.title?.message}
         >
           <TextInput
@@ -58,7 +58,7 @@ const PostForm = () => {
           labelText='투표 설명'
           isRequired
           maxLength={500}
-          currentLength={watch('content')?.length}
+          currentLength={watch('content')?.trim().length}
           error={errors.content?.message}
         >
           <Textarea
@@ -68,7 +68,11 @@ const PostForm = () => {
           />
         </FormField>
 
-        <FormField labelText='투표 항목' isRequired>
+        <FormField
+          labelText='투표 항목'
+          isRequired
+          description='최대 6개의 투표항목을 입력할 수 있습니다.'
+        >
           <Controller
             name='voteOptions'
             control={control}
