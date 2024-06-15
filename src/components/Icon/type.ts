@@ -30,4 +30,5 @@ export type IconName =
   | 'select-default'
   | 'warning'
   | 'camera'
-  | 'info-circle';
+  | 'info-circle'
+  | 'add-circle';
