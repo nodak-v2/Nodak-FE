@@ -6,7 +6,9 @@ import Icon from '@/src/components/Icon';
 
 const Container = ({ children }: PropsWithChildren) => {
   return (
-    <div className='flex items-center justify-between p-4'>{children}</div>
+    <div className='flex h-[54px] items-center justify-between border-b border-gray-accent2 p-2 pr-4'>
+      {children}
+    </div>
   );
 };
 
@@ -31,7 +33,7 @@ const SearchButton = () => <Icon id='search' size={24} />;
 const NotificationButton = () => <Icon id='notification' size={24} />;
 
 const Title = ({ children }: PropsWithChildren) => (
-  <div className='cursor-default px-4 py-2.5 font-bold'>{children}</div>
+  <div className='font-h3-sm cursor-default '>{children}</div>
 );
 const TopBar = {
   Container,
