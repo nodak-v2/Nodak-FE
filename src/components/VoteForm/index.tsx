@@ -47,12 +47,17 @@ const VoteForm = ({ onChange, error }: VoteFormProps) => {
     return option.trim().length >= 1 && option.trim().length <= 20;
   };
 
+  const isLastOption = (index: number) => index === options.length - 1;
+
+  const isBounded = (index: number) =>
+    index + 1 < MAX_LIMIT && index + 1 >= MIN_LIMIT;
+
   return (
     <div className='flex flex-col gap-3 rounded-md bg-dark-accent1 p-4'>
       {options.map((option, index) => (
         <div key={`${index}`}>
           <div className='flex w-full items-center justify-end gap-3 self-end bg-dark-accent1'>
-            {index + 1 === options.length && index + 1 < 6 ? (
+            {isLastOption(index) && isBounded(index) ? (
               <Icon
                 id='add-circle'
                 className='cursor-pointer text-green-400 hover:text-green-600'
@@ -63,7 +68,7 @@ const VoteForm = ({ onChange, error }: VoteFormProps) => {
               <Icon
                 id='subtract-circle'
                 className={cn('hover:gray-accent2 cursor-pointer text-white', {
-                  'pointer-events-none opacity-50': index < 1,
+                  'pointer-events-none opacity-50': options.length <= MIN_LIMIT,
                 })}
                 size={24}
                 onClick={() => {
