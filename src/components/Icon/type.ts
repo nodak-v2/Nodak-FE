@@ -20,4 +20,5 @@ export type IconName =
   | 'kakao'
   | 'close'
   | 'camera'
-  | 'info-circle';
+  | 'info-circle'
+  | 'add-circle';

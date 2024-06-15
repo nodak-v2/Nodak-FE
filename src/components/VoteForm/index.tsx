@@ -52,18 +52,25 @@ const VoteForm = ({ onChange, error }: VoteFormProps) => {
       {options.map((option, index) => (
         <div key={`${index}`}>
           <div className='flex w-full items-center justify-end gap-3 self-end bg-dark-accent1'>
-            <Icon
-              id='subtract-circle'
-              className={cn('cursor-pointer text-red-400 hover:text-red-600', {
-                'cursor-not-allowed opacity-50 hover:text-red-400':
-                  options.length === 2,
-                'pointer-events-none opacity-0': [0, 1].includes(index),
-              })}
-              size={24}
-              onClick={() => {
-                handleRemoveOption(index);
-              }}
-            />
+            {index + 1 === options.length && index + 1 < 6 ? (
+              <Icon
+                id='add-circle'
+                className='cursor-pointer text-green-400 hover:text-green-600'
+                size={24}
+                onClick={handleAddOption}
+              />
+            ) : (
+              <Icon
+                id='subtract-circle'
+                className={cn('hover:gray-accent2 cursor-pointer text-white', {
+                  'pointer-events-none opacity-50': index < 1,
+                })}
+                size={24}
+                onClick={() => {
+                  handleRemoveOption(index);
+                }}
+              />
+            )}
             <TextInput
               value={option}
               onChange={event => handleOptionChange(index, event)}
@@ -77,15 +84,6 @@ const VoteForm = ({ onChange, error }: VoteFormProps) => {
           )}
         </div>
       ))}
-      <button
-        type='button'
-        onClick={handleAddOption}
-        className={cn('ml-2 mr-10 rounded-md bg-dark-accent2 p-2 text-white', {
-          hidden: options.length === 6,
-        })}
-      >
-        선택항목 추가
-      </button>
     </div>
   );
 };
