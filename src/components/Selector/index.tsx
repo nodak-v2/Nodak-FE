@@ -37,7 +37,7 @@ const Selector = ({ items, placeholder, onChange }: SelectorProps) => {
     >
       <button
         type='button'
-        className=' font-text-1-rg flex w-full items-center justify-between rounded border-2 border-gray-accent1 p-2 text-white'
+        className=' font-text-1-rg flex w-full items-center justify-between rounded-lg border-2 border-gray-accent1 p-2 text-white'
       >
         {selectedItem ? (
           <span>{selectedItem}</span>
@@ -50,13 +50,13 @@ const Selector = ({ items, placeholder, onChange }: SelectorProps) => {
         />
       </button>
       {isOpen && (
-        <ul className='z-50 w-full rounded shadow-sm'>
+        <ul className='font-text-1-rg z-50 my-2 w-full divide-y-2 divide-gray-accent1 rounded-lg border-2 border-gray-accent1 px-2 text-white'>
           {items.map((item, index) => {
             return (
               <li
                 key={`${index}-${item}`}
                 onClick={() => handleSelectorClick(item)}
-                className='z-20 flex w-full border border-gray-accent1 p-2 text-white hover:brightness-125'
+                className='border-gray-accent1text-white z-20 flex w-full cursor-pointer p-2.5'
               >
                 <span>{item}</span>
               </li>

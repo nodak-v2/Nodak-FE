@@ -53,7 +53,7 @@ const VoteForm = ({ onChange, error }: VoteFormProps) => {
     index + 1 < MAX_LIMIT && index + 1 >= MIN_LIMIT;
 
   return (
-    <div className='flex flex-col gap-3 rounded-md bg-dark-accent1 p-4'>
+    <div className='flex flex-col gap-3 bg-dark-accent1 p-4'>
       {options.map((option, index) => (
         <div key={`${index}`}>
           <div className='flex w-full items-center justify-end gap-3 self-end bg-dark-accent1'>
@@ -80,7 +80,7 @@ const VoteForm = ({ onChange, error }: VoteFormProps) => {
               value={option}
               onChange={event => handleOptionChange(index, event)}
               variant={error && !isOptionvalid(option) ? 'error' : 'default'}
-              className={'border text-gray-accent1'}
+              className={'border'}
               placeholder='항목 입력'
             />
           </div>
