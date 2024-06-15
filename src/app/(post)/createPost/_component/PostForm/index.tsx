@@ -93,7 +93,6 @@ const PostForm = () => {
           labelText='카테고리'
           isRequired
           error={errors.channel?.message}
-          childClassName={errors.channel ? 'ring-1 ring-red-500 rounded' : ''}
         >
           <Controller
             name='channel'
@@ -103,6 +102,7 @@ const PostForm = () => {
                 items={channels}
                 placeholder='채널 선택'
                 onChange={field.onChange}
+                variant={errors.channel ? 'error' : 'default'}
               />
             )}
           />

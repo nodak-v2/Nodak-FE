@@ -5,13 +5,13 @@ import { VariantProps, cva } from 'class-variance-authority';
 import { cn } from '@/src/utils/cn';
 
 const textareaCSS = cva(
-  'font-text-1-rg h-[150px] w-full resize-none appearance-none rounded-lg border-2 p-3 text-white placeholder-gray-accent1 outline-none',
+  'font-text-1-rg h-[150px] w-full resize-none appearance-none rounded-lg border p-3 text-white placeholder-gray-accent1 outline-none',
   {
     variants: {
       variant: {
         default: 'border-gray-accent1 bg-transparent ',
         filled: 'border-gray-accent1',
-        error: 'bg-transparent ring-1 ring-red-500',
+        error: 'border-error bg-red-500 bg-opacity-10',
       },
       isDisabled: {
         false: '',

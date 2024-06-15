@@ -5,7 +5,7 @@ import { VariantProps, cva } from 'class-variance-authority';
 import { cn } from '@/src/utils/cn';
 
 const textInputCSS = cva(
-  'font-text-1-rg w-full rounded-lg border-2 p-3 text-white placeholder-gray-accent1 outline-none',
+  'font-text-1-rg w-full rounded-lg border p-3 text-white placeholder-gray-accent1 outline-none',
   {
     variants: {
       variant: {
@@ -13,7 +13,7 @@ const textInputCSS = cva(
         filled: 'border-gray-accent1 ',
         underline:
           'rounded-none border-0 border-b-2 border-gray-300 bg-transparent',
-        error: 'bg-transparent ring-1 ring-red-500',
+        error: 'border-error bg-red-500 bg-opacity-10',
       },
       isDisabled: {
         false: '',

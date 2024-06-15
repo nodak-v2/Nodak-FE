@@ -2,17 +2,41 @@
 
 import { RefObject } from 'react';
 
+import { cva } from 'class-variance-authority';
+
 import Icon from '@/src/components/Icon';
 
 import useDropdown from './useDropdown';
 
+const selectorButtonCSS = cva(
+  'font-text-1-rg flex w-full items-center justify-between rounded-lg border border-gray-accent1 p-2 text-white',
+  {
+    variants: {
+      variant: {
+        default: 'border-gray-accent1 bg-transparent ',
+        filled: 'border-gray-accent1',
+        error: 'border-error bg-red-500 bg-opacity-10',
+      },
+      isDisabled: {
+        false: '',
+        true: ' cursor-not-allowed placeholder-gray-accent2',
+      },
+    },
+    defaultVariants: {
+      variant: 'default',
+      isDisabled: false,
+    },
+  },
+);
 interface SelectorProps {
   items: string[];
   placeholder: string;
+  className?: string;
+  variant?: 'default' | 'filled' | 'error';
   onChange?: (channel: string) => void;
 }
 
-const Selector = ({ items, placeholder, onChange }: SelectorProps) => {
+const Selector = ({ items, placeholder, variant, onChange }: SelectorProps) => {
   const {
     isOpen,
     toggleDropdown,
@@ -35,10 +59,7 @@ const Selector = ({ items, placeholder, onChange }: SelectorProps) => {
       onClick={toggleDropdown}
       ref={dropdownRef as RefObject<HTMLDivElement>}
     >
-      <button
-        type='button'
-        className=' font-text-1-rg flex w-full items-center justify-between rounded-lg border-2 border-gray-accent1 p-2 text-white'
-      >
+      <button type='button' className={selectorButtonCSS({ variant })}>
         {selectedItem ? (
           <span>{selectedItem}</span>
         ) : (
@@ -50,13 +71,13 @@ const Selector = ({ items, placeholder, onChange }: SelectorProps) => {
         />
       </button>
       {isOpen && (
-        <ul className='font-text-1-rg z-50 my-2 w-full divide-y-2 divide-gray-accent1 rounded-lg border-2 border-gray-accent1 px-2 text-white'>
+        <ul className='font-text-1-rg z-50 my-2 w-full divide-y divide-gray-accent1 rounded-lg border border-gray-accent1 px-2 text-white'>
           {items.map((item, index) => {
             return (
               <li
                 key={`${index}-${item}`}
                 onClick={() => handleSelectorClick(item)}
-                className='border-gray-accent1text-white z-20 flex w-full cursor-pointer p-2.5'
+                className='z-20 flex w-full cursor-pointer border-gray-accent1 p-2.5 text-white'
               >
                 <span>{item}</span>
               </li>
