@@ -12,7 +12,7 @@ const nextConfig = withPWA({
   images: {
     domains: [
       'via.placeholder.com',
-      process.env.NEXT_PUBLIC_IMAGE_URL.split('https://')[1],
+      'nodak-s3.s3.ap-northeast-2.amazonaws.com',
     ],
   },
 });
