@@ -29,7 +29,7 @@ const RootLayout = ({
   return (
     <html lang='ko'>
       <link rel='icon' href='/icon.ico' sizes='any' />
-      <body className=' font-sans'>
+      <body className='font-sans'>
         <Providers>
           <MSWComponent>
             <div className='flex h-screen w-screen flex-row items-center justify-center gap-10'>
