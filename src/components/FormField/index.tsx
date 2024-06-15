@@ -32,9 +32,9 @@ const FormField = ({
   return (
     <div className={cn('flex flex-col gap-2', className)} {...props}>
       <div className='flex justify-between'>
-        <label className='text-sm text-gray-accent2'>
+        <label className='font-title-1-md text-gray-accent2 text-white'>
           {labelText}
-          {isRequired && <span className='ml-0.5 text-red-500'>*</span>}
+          {isRequired && <span className='ml-0.5 text-primary'>*</span>}
         </label>
         {maxLength && (
           <span className='text-xs text-gray-accent2'>{`${currentLength}/${maxLength}`}</span>
