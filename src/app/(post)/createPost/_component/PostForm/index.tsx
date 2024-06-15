@@ -39,7 +39,7 @@ const PostForm = () => {
         render={({ field }) => <ImageUploader onChange={field.onChange} />}
       />
 
-      <fieldset className='flex flex-col gap-5 p-6'>
+      <fieldset className='flex flex-col gap-5'>
         <FormField
           labelText='제목'
           isRequired
@@ -74,6 +74,9 @@ const PostForm = () => {
           labelText='투표 항목'
           isRequired
           description='최대 6개의 투표항목을 입력할 수 있습니다.'
+          className='px-0'
+          labelClassName='px-6'
+          childClassName='px-0'
         >
           <Controller
             name='voteOptions'
