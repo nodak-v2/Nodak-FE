@@ -10,7 +10,10 @@ const nextConfig = withPWA({
     instrumentationHook: true,
   },
   images: {
-    domains: ['via.placeholder.com'],
+    domains: [
+      'via.placeholder.com',
+      process.env.NEXT_PUBLIC_IMAGE_URL.split('https://')[1],
+    ],
   },
 });
 
