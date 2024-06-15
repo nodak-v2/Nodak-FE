@@ -32,7 +32,7 @@ const FormField = ({
   ...props
 }: FormFieldProps) => {
   return (
-    <div className={cn('flex flex-col gap-3 px-6', className)} {...props}>
+    <div className={cn('flex flex-col gap-3 px-4', className)} {...props}>
       <div className='flex justify-between'>
         <label
           className={cn(
@@ -57,7 +57,7 @@ const FormField = ({
             <Icon
               id={'info-circle'}
               aria-label='필드 설명'
-              className='mr-6 opacity-75'
+              className='mr-4 opacity-75'
             />
           </Tooltip>
         )}
