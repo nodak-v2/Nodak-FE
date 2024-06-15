@@ -80,7 +80,7 @@ const VoteForm = ({ onChange, error }: VoteFormProps) => {
               value={option}
               onChange={event => handleOptionChange(index, event)}
               variant={error && !isOptionvalid(option) ? 'error' : 'default'}
-              className={'border'}
+              className={'border text-gray-accent1'}
               placeholder='항목 입력'
             />
           </div>
