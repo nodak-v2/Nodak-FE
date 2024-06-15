@@ -36,7 +36,7 @@ const SearchButton = () => <Icon id='search' size={24} />;
 const NotificationButton = () => <Icon id='notification' size={24} />;
 
 const Title = ({ children }: PropsWithChildren) => (
-  <div className='font-h3-sm cursor-default '>{children}</div>
+  <div className='font-h3-sm cursor-default text-white '>{children}</div>
 );
 const TopBar = {
   Container,
