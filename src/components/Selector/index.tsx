@@ -37,22 +37,26 @@ const Selector = ({ items, placeholder, onChange }: SelectorProps) => {
     >
       <button
         type='button'
-        className='text-bold flex w-full items-center justify-between rounded border bg-gray-accent1 p-2 text-black'
+        className=' font-text-1-rg flex w-full items-center justify-between rounded border-2 border-gray-accent1 p-2 text-white'
       >
-        <span>{selectedItem ? selectedItem : placeholder}</span>
+        {selectedItem ? (
+          <span>{selectedItem}</span>
+        ) : (
+          <span className='text-gray-accent1'>{placeholder}</span>
+        )}
         <Icon
           id='down-arrow'
           className={`transition-transform duration-300 ${isOpen ? 'rotate-180 transform' : ''}`}
         />
       </button>
       {isOpen && (
-        <ul className='z-50 w-full rounded bg-gray-accent2 shadow-sm'>
+        <ul className='z-50 w-full rounded shadow-sm'>
           {items.map((item, index) => {
             return (
               <li
                 key={`${index}-${item}`}
                 onClick={() => handleSelectorClick(item)}
-                className='z-20 flex w-full border-b border-gray-accent2 bg-gray-accent2 p-2 hover:brightness-125'
+                className='z-20 flex w-full border border-gray-accent1 p-2 text-white hover:brightness-125'
               >
                 <span>{item}</span>
               </li>

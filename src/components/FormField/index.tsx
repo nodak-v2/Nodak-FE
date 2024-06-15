@@ -56,7 +56,7 @@ const FormField = ({
         )}
       </div>
       <div className={childClassName}>{children}</div>
-      {error && <p className='text-sm text-red-500'>{error}</p>}
+      {error && <p className='text-sm text-error'>{error}</p>}
     </div>
   );
 };
