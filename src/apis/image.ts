@@ -10,7 +10,7 @@ const postImageFile = (data: File) => {
   const formData = new FormData();
 
   formData.append('image', data);
-  formData.append('path', data.name);
+  formData.append('path', 'post');
 
   return api.post<PostImageFileResponse>({
     url: '/files/images',
