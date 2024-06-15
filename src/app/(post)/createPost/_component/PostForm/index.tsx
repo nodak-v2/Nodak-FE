@@ -75,7 +75,7 @@ const PostForm = () => {
           isRequired
           description='최대 6개의 투표항목을 입력할 수 있습니다.'
           className='px-0'
-          labelClassName='px-6'
+          labelClassName='px-4'
           childClassName='px-0'
         >
           <Controller

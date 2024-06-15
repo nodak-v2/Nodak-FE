@@ -48,30 +48,28 @@ const VoteForm = ({ onChange, error }: VoteFormProps) => {
   };
 
   return (
-    <div className='flex flex-col gap-1 rounded-md bg-dark-accent1 p-2'>
+    <div className='flex flex-col gap-3 rounded-md bg-dark-accent1 p-4'>
       {options.map((option, index) => (
         <div key={`${index}`}>
-          <div className='flex w-full items-center gap-1 bg-dark-accent1 p-2'>
-            <TextInput
-              value={option}
-              onChange={event => handleOptionChange(index, event)}
-              variant={error && !isOptionvalid(option) ? 'error' : 'default'}
-              className={cn('border text-gray-accent1', {
-                'mr-8': [0, 1].includes(index),
-              })}
-              placeholder='항목 입력'
-            />
+          <div className='flex w-full items-center justify-end gap-3 self-end bg-dark-accent1'>
             <Icon
               id='subtract-circle'
               className={cn('cursor-pointer text-red-400 hover:text-red-600', {
                 'cursor-not-allowed opacity-50 hover:text-red-400':
                   options.length === 2,
-                hidden: [0, 1].includes(index),
+                'pointer-events-none opacity-0': [0, 1].includes(index),
               })}
               size={24}
               onClick={() => {
                 handleRemoveOption(index);
               }}
+            />
+            <TextInput
+              value={option}
+              onChange={event => handleOptionChange(index, event)}
+              variant={error && !isOptionvalid(option) ? 'error' : 'default'}
+              className={'border text-gray-accent1'}
+              placeholder='항목 입력'
             />
           </div>
           {error && !isOptionvalid(option) && (
