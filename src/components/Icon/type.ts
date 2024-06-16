@@ -32,4 +32,9 @@ export type IconName =
   | 'camera'
   | 'info-circle'
   | 'add-circle'
-  | 'gallery';
+  | 'gallery'
+  | 'like'
+  | 'message-2'
+  | 'check-circle'
+  | 'log-out'
+  | 'write';
