@@ -1,38 +1,13 @@
 'use client';
 
-import { useGetProfileAPI } from '@/src/apis/profile';
+import ProfileBlock from '../_components/ProfileBlock';
+import Posting from './_components/Posting';
 
-import ActiveGrass from './_components/ActiveGrass';
-import MissionBadge from './_components/MissionBadge';
-import UserInfo from './_components/UserInfo';
-import UserPost from './_components/UserPost';
-
-interface UserPageProps {
-  params: { userId: string };
-}
-
-const UserPage = ({ params: { userId } }: UserPageProps) => {
-  const profileData = useGetProfileAPI(userId);
-  const {
-    nickname,
-    profileImageUrl,
-    introduction,
-    followerCount,
-    followeeCount,
-  } = profileData;
-
+const UserPage = () => {
   return (
-    <div className='flex grow flex-col'>
-      <UserInfo
-        nickname={nickname}
-        profileImageUrl={profileImageUrl}
-        introduction={introduction}
-        followerCount={followerCount}
-        followeeCount={followeeCount}
-      />
-      <MissionBadge />
-      <UserPost postCount={5} />
-      <ActiveGrass />
+    <div className='flex grow flex-col gap-6'>
+      <ProfileBlock />
+      <Posting />
     </div>
   );
 };
