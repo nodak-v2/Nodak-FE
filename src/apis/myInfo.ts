@@ -20,7 +20,7 @@ import { api } from './core';
 //   return data;
 // };
 
-interface UserStatus {
+interface GetUserStatusResponse {
   userId: number;
   nickname: string;
   profileImage: string | null;
@@ -28,7 +28,7 @@ interface UserStatus {
 }
 
 const getUserStatus = () => {
-  return api.get<UserStatus>({
+  return api.get<GetUserStatusResponse>({
     url: `/user/status`,
   });
 };
