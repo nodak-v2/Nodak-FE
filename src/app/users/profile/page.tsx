@@ -1,7 +1,7 @@
 import GNB from '@/src/components/GNB';
 
+import ProfileBlock from '../_components/ProfileBlock';
 import MyVote from './_components/MyVote';
-import ProfileBlock from './_components/ProfileBlock';
 import Setting from './_components/Setting';
 
 const ProfilePage = () => {
