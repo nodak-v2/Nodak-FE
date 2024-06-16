@@ -9,7 +9,7 @@ import ImageUploadButton from '@/src/components/ImageUploadButton';
 
 interface ImageUploaderProps {
   imageSrcUrl?: string;
-  onChange: (file?: File | null) => void;
+  onChange: (imageUrl: string | null) => void;
 }
 
 const ImageUploader = ({ imageSrcUrl, onChange }: ImageUploaderProps) => {
