@@ -10,7 +10,10 @@ const nextConfig = withPWA({
     instrumentationHook: true,
   },
   images: {
-    domains: ['via.placeholder.com'],
+    domains: [
+      'via.placeholder.com',
+      'nodak-s3.s3.ap-northeast-2.amazonaws.com',
+    ],
   },
 });
 
