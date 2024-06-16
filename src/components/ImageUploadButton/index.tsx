@@ -1,8 +1,9 @@
 import { useRef } from 'react';
 
-import { usePostImageFileAPI } from '@/src/apis/image';
 import Icon from '@/src/components/Icon';
 import { IconName } from '@/src/components/Icon/type';
+
+import { useImageUpload } from './hooks/useImageUpload';
 
 interface ImageUploadButtonProps {
   setImageUrl: (imageUrl: string) => void;
@@ -16,21 +17,13 @@ const ImageUploadButton = ({
   iconId = 'camera',
 }: ImageUploadButtonProps) => {
   const inputElement = useRef<HTMLInputElement>(null);
-  const { mutateAsync } = usePostImageFileAPI();
+  const imageUpload = useImageUpload({ setImageUrl, onChange });
 
   const handleImageSelect = async () => {
     const file = inputElement.current?.files?.[0];
     if (!file) return;
 
-    const responseData = await mutateAsync(file);
-
-    if (!('imagePath' in responseData))
-      throw new Error('이미지 업로드에 실패했습니다.');
-
-    setImageUrl(
-      `${process.env.NEXT_PUBLIC_IMAGE_URL}/${responseData.imagePath}`,
-    );
-    onChange(responseData.imagePath);
+    imageUpload(file);
   };
 
   return (

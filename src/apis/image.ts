@@ -22,11 +22,9 @@ const postImageFile = (data: File) => {
 };
 
 export const usePostImageFileAPI = () => {
-  return useMutation({
-    mutationFn: async (data: File) => {
-      const response = await postImageFile(data);
-
-      return response.data;
-    },
+  const { mutateAsync } = useMutation({
+    mutationFn: (data: File) => postImageFile(data),
   });
+
+  return mutateAsync;
 };
