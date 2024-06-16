@@ -8,8 +8,25 @@ const isValidOptions = (value: string[] | undefined) => {
   );
 };
 
+const isValidImageUrlPath = (value: string | undefined) => {
+  // URL이 https://로 시작하지 않는 경우 'https://'를 붙여서 URL 객체를 생성
+  if (value?.startsWith('http://') || value?.startsWith('https://'))
+    return true;
+
+  const url = `https://${value}`;
+
+  try {
+    new URL(url);
+    return true;
+  } catch (e) {
+    return false;
+  }
+};
+
 export const schema = yup.object({
-  imageUrl: yup.mixed<File>().required(),
+  imageUrl: yup
+    .string()
+    .test('url 검증', '유효한 URL을 입력해주세요.', isValidImageUrlPath),
   title: yup
     .string()
     .required('필수 입력 항목입니다.')
@@ -31,8 +48,10 @@ export const schema = yup.object({
     .of(yup.string().trim().required()),
 });
 
-export const defaultValues = {
-  imageUrl: new File([], ''),
+export type SchemaType = yup.InferType<typeof schema>;
+
+export const defaultValues: SchemaType = {
+  imageUrl: '',
   title: '',
   content: '',
   channel: '',

@@ -1,8 +1,9 @@
 'use client';
 
-import { Controller, useForm } from 'react-hook-form';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
-import { PostValue, createPost } from '@/src/apis/post';
+import { useCreatePostAPI } from '@/src/apis/postDetail';
+import { formValueToRequestValue } from '@/src/app/(post)/createPost/_component/PostForm/adapter';
 import Button from '@/src/components/Button/Button';
 import FormField from '@/src/components/FormField';
 import Selector from '@/src/components/Selector';
@@ -11,7 +12,7 @@ import Textarea from '@/src/components/Textarea';
 import VoteForm from '@/src/components/VoteForm';
 
 import ImageUploader from '../ImageUploader';
-import { formOptions } from './formSchema';
+import { SchemaType, formOptions } from './formSchema';
 
 const channels = ['전체', 'HOT', '잡담', '스포츠', '연예', '공부'];
 
@@ -24,8 +25,10 @@ const PostForm = () => {
     control,
   } = useForm(formOptions);
 
-  const onSubmitPost = (data: PostValue) => {
-    createPost(data);
+  const createPost = useCreatePostAPI();
+
+  const onSubmitPost: SubmitHandler<SchemaType> = data => {
+    createPost(formValueToRequestValue(data));
   };
 
   return (
