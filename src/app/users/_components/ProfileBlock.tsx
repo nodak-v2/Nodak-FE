@@ -1,13 +1,36 @@
 'use client';
 
 import Image from 'next/image';
+import { useParams } from 'next/navigation';
 
 import { useGetUserStatusAPI } from '@/src/apis/myInfo';
 import { useGetProfileAPI } from '@/src/apis/profile';
 
+const MyPageButton = () => {
+  return (
+    <button className='font-title-1-md rounded-[8px] border border-primary py-2 text-primary'>
+      프로필 수정
+    </button>
+  );
+};
+
+const UserPageButton = () => (
+  <div className='flex items-center gap-4'>
+    <button className='font-title-1-md w-full rounded-[8px] border border-primary py-2 text-primary'>
+      팔로우
+    </button>
+    <button className='font-title-1-md w-full rounded-[8px] border border-primary py-2 text-primary'>
+      메시지
+    </button>
+  </div>
+);
+
 const ProfileBlock = () => {
-  const { userId } = useGetUserStatusAPI();
-  const { followeeCount, followerCount } = useGetProfileAPI(String(userId));
+  const { userId } = useParams() as { userId: string };
+  const { userId: myId } = useGetUserStatusAPI();
+  const { followeeCount, followerCount } = useGetProfileAPI(
+    !userId ? String(myId) : userId,
+  );
 
   return (
     <div className='flex w-full flex-col gap-6 px-4 pt-4'>
@@ -36,9 +59,7 @@ const ProfileBlock = () => {
           </div>
         </div>
       </div>
-      <button className='font-title-1-md rounded-[8px] border border-primary py-2 text-primary'>
-        프로필 수정
-      </button>
+      {!userId ? <MyPageButton /> : <UserPageButton />}
     </div>
   );
 };
