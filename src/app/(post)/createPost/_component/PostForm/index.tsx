@@ -1,10 +1,11 @@
 'use client';
 
+import { forwardRef } from 'react';
+
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
 import { useCreatePostAPI } from '@/src/apis/postDetail';
 import { formValueToRequestValue } from '@/src/app/(post)/createPost/_component/PostForm/adapter';
-import Button from '@/src/components/Button/Button';
 import FormField from '@/src/components/FormField';
 import Selector from '@/src/components/Selector';
 import TextInput from '@/src/components/TextInput';
@@ -16,7 +17,7 @@ import { SchemaType, formOptions } from './formSchema';
 
 const channels = ['전체', 'HOT', '잡담', '스포츠', '연예', '공부'];
 
-const PostForm = () => {
+const PostForm = forwardRef<HTMLFormElement>((_, ref) => {
   const {
     register,
     handleSubmit,
@@ -33,6 +34,7 @@ const PostForm = () => {
 
   return (
     <form
+      ref={ref}
       onSubmit={handleSubmit(onSubmitPost)}
       className='flex grow flex-col overflow-y-auto'
     >
@@ -112,11 +114,10 @@ const PostForm = () => {
           />
         </FormField>
       </fieldset>
-      <Button type='submit' baseColor='primary' className='mx-4 my-6'>
-        투표 생성하기
-      </Button>
     </form>
   );
-};
+});
+
+PostForm.displayName = 'PostForm';
 
 export default PostForm;
