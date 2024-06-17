@@ -36,7 +36,7 @@ const PostForm = forwardRef<HTMLFormElement>((_, ref) => {
     <form
       ref={ref}
       onSubmit={handleSubmit(onSubmitPost)}
-      className='flex grow flex-col overflow-y-auto'
+      className='flex grow flex-col overflow-y-auto py-2'
     >
       <Controller
         name='imageUrl'
