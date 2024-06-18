@@ -1,9 +1,13 @@
 import Link from 'next/link';
 
+import { useGetUserStatusAPI } from '@/src/apis/myInfo';
 import Icon from '@/src/components/Icon';
 
 const userId = 1;
 const GNB = () => {
+  const userStatus = useGetUserStatusAPI();
+  const profileUrl = userStatus ? `/profile/${userId}` : '/signin';
+
   const navItems = [
     { href: '/', icon: <Icon id='home' />, name: '홈' },
     { href: '/chat', icon: <Icon id='chat' />, name: '채팅' },
@@ -17,7 +21,7 @@ const GNB = () => {
       icon: <Icon id='notification' />,
       name: '알림',
     },
-    { href: `/profile/${userId}`, icon: <Icon id='user' />, name: '프로필' },
+    { href: profileUrl, icon: <Icon id='user' />, name: '프로필' },
   ];
 
   return (
