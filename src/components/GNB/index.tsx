@@ -8,6 +8,11 @@ const GNB = () => {
     { href: '/', icon: <Icon id='home' />, name: '홈' },
     { href: '/chat', icon: <Icon id='chat' />, name: '채팅' },
     {
+      href: '/createPost',
+      icon: <Icon id='add-box' />,
+      name: '글쓰기',
+    },
+    {
       href: `/notification/${userId}`,
       icon: <Icon id='notification' />,
       name: '알림',
