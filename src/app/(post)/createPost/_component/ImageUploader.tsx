@@ -59,7 +59,7 @@ const ImageUploader = ({ imageSrcUrl, onChange }: ImageUploaderProps) => {
           ) : (
             <div className='h-40 w-40 rounded-lg bg-gray-200' />
           )}
-          <div className='absolute -bottom-3 -right-3 z-10'>
+          <div className='absolute -bottom-3 -right-3'>
             <ImageUploadButton
               setImageUrl={setPreviewImageUrl}
               onChange={onChange}
