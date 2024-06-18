@@ -6,7 +6,7 @@ import Icon from '@/src/components/Icon';
 const userId = 1;
 const GNB = () => {
   const userStatus = useGetUserStatusAPI();
-  const profileUrl = userStatus ? `/profile/${userId}` : '/signin';
+  const profileUrl = userStatus ? `/users/profile` : '/signin';
 
   const navItems = [
     { href: '/', icon: <Icon id='home' />, name: '홈' },
