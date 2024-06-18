@@ -5,15 +5,10 @@ import Link from 'next/link';
 import Icon from '@/src/components/Icon';
 
 const Container = ({ children }: PropsWithChildren) => {
-  return <div className='flex justify-between p-4'>{children}</div>;
+  return (
+    <div className='flex items-center justify-between p-4'>{children}</div>
+  );
 };
-const Left = ({ children }: PropsWithChildren) => (
-  <div className='flex items-center gap-3'>{children}</div>
-);
-
-const Right = ({ children }: PropsWithChildren) => (
-  <div className='flex items-center gap-3'>{children}</div>
-);
 
 const NavMore = () => (
   <Icon id='nav-more' size={24} className='cursor-pointer' />
@@ -40,8 +35,6 @@ const Title = ({ children }: PropsWithChildren) => (
 );
 const TopBar = {
   Container,
-  Left,
-  Right,
   BackButton,
   ReportButton,
   DarkModeButton,

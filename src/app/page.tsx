@@ -28,11 +28,9 @@ const Main = () => {
   return (
     <div className='flex h-full flex-col'>
       <TopBar.Container>
-        <TopBar.Left>
-          <TopBar.Title>
-            <Icon id='logo' width={87} height={45} />
-          </TopBar.Title>
-        </TopBar.Left>
+        <TopBar.Title>
+          <Icon id='logo' width={87} height={45} />
+        </TopBar.Title>
       </TopBar.Container>
       <main className='grow'>
         <ChipContainer currentChannel={channel} />
