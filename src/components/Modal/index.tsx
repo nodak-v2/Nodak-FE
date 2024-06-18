@@ -8,14 +8,14 @@ interface ModalProps {
   show: boolean;
   onClose: () => void;
   backgroundClassName?: string;
-  modalClassName?: string;
+  contentClassName?: string;
 }
 
 const Modal = ({
   show,
   onClose,
   backgroundClassName,
-  modalClassName,
+  contentClassName,
   children,
 }: PropsWithChildren<ModalProps>) => {
   if (!show) {
@@ -25,15 +25,15 @@ const Modal = ({
   return createPortal(
     <div
       className={cn(
-        'z-100 absolute bottom-0 left-0 right-0 top-0 flex w-full items-center justify-center bg-black bg-opacity-20',
+        'z-100 absolute bottom-0 left-0 right-0 top-0 flex w-full items-center justify-center bg-black bg-opacity-80',
         backgroundClassName,
       )}
       onClick={onClose}
     >
       <div
         className={cn(
-          'w-[290px] gap-6 rounded-lg bg-gray-accent2 px-4 pb-4 pt-6 shadow-xl',
-          modalClassName,
+          'flex w-[290px] flex-col gap-6 rounded-lg bg-dark-accent2 px-4 pb-4 pt-6 shadow-xl',
+          contentClassName,
         )}
         onClick={e => e.stopPropagation()}
       >
