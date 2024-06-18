@@ -2,7 +2,7 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { api } from '@/src/apis/core';
 
-interface PostListContent {
+export interface PostListContent {
   postId: number;
   voteId: number;
   title: string;

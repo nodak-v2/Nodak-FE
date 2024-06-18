@@ -1,33 +1,23 @@
 import Image from 'next/image';
 
+import { PostListContent } from '@/src/apis/postList';
 import { isValidImageUrl } from '@/src/app/(main)/utils';
 import Icon from '@/src/components/Icon';
 import timeOffset from '@/src/utils/timeOffset';
 
-export type PostType = {
-  title: string;
-  votedCount: number;
-  likedCount: number;
-  commentedCount: number;
-  author: string;
-  profileImageUrl: string | null;
-  imageUrl: string | null;
-  createdAt: string;
-};
-
 interface PostItemProps {
-  post: PostType;
+  post: PostListContent;
 }
 
 const PostItem = ({ post }: PostItemProps) => {
   const {
     title,
-    votedCount,
-    likedCount,
-    commentedCount,
+    voterCount: votedCount,
+    likeCount: likedCount,
+    commentCount: commentedCount,
     author,
     profileImageUrl,
-    imageUrl,
+    postImageUrl: imageUrl,
     createdAt,
   } = post;
 
