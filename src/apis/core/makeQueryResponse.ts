@@ -1,7 +1,7 @@
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 export interface GetData<T> {
-  body: T | null;
+  body: T;
   message: string;
 }
 

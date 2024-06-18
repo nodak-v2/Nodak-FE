@@ -22,7 +22,7 @@ const Main = () => {
   const channel = searchParams.get('channel') as ChannelType;
   const keyword = searchParams.get('keyword') as string;
 
-  const posts = useGetPostListAPI({
+  const { content: posts } = useGetPostListAPI({
     page: '0',
     size: '8',
     ...searchParamsToGetPostListParams(channel, keyword),
@@ -40,7 +40,7 @@ const Main = () => {
       <main className='grow'>
         <ChipContainer currentChannel={channel} />
         <div className='flex flex-col'>
-          {posts?.map((post, index) => (
+          {posts.map((post, index) => (
             <PostItem
               key={`${index}-${post.title}`}
               post={PostContentToPostItemType(post)}
