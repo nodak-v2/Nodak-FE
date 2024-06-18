@@ -39,7 +39,7 @@ const ResultPage = async ({
           <span className='pr-2'>{starCount}</span>
         </div>
         <div className='flex gap-0.5'>
-          <CommentLink postId={postId} />
+          <CommentLink />
           <span>{commentSize}</span>
         </div>
       </div>
