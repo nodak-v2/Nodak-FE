@@ -19,13 +19,15 @@ export const DefaultTemplate: Story = {
   args: {
     post: {
       title: '게시글 제목입니다.',
-      votedCount: 10,
-      likedCount: 10,
-      commentedCount: 10,
+      voterCount: 10,
+      likeCount: 10,
+      commentCount: 10,
       author: 'homin',
       profileImageUrl: 'https://via.placeholder.com/150',
-      imageUrl: 'https://via.placeholder.com/150',
+      postImageUrl: 'https://via.placeholder.com/150',
       createdAt: '2021-10-10',
+      postId: 1,
+      voteId: 1,
     },
   },
 };

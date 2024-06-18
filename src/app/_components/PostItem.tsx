@@ -1,32 +1,23 @@
 import Image from 'next/image';
 
+import { PostListContent } from '@/src/apis/postList';
 import { isValidImageUrl } from '@/src/app/(main)/utils';
 import Icon from '@/src/components/Icon';
-
-export type PostType = {
-  title: string;
-  votedCount: number;
-  likedCount: number;
-  commentedCount: number;
-  author: string;
-  profileImageUrl: string | null;
-  imageUrl: string | null;
-  createdAt: string;
-};
+import timeOffset from '@/src/utils/timeOffset';
 
 interface PostItemProps {
-  post: PostType;
+  post: PostListContent;
 }
 
 const PostItem = ({ post }: PostItemProps) => {
   const {
     title,
-    votedCount,
-    likedCount,
-    commentedCount,
+    voterCount: votedCount,
+    likeCount: likedCount,
+    commentCount: commentedCount,
     author,
     profileImageUrl,
-    imageUrl,
+    postImageUrl: imageUrl,
     createdAt,
   } = post;
 
@@ -39,20 +30,14 @@ const PostItem = ({ post }: PostItemProps) => {
     : '/placeHolder_20.png';
 
   return (
-    <div className='flex w-full cursor-pointer justify-start gap-4 border-b bg-dark-accent2 p-4 text-white'>
-      <Image
-        src={validatedImageUrl}
-        alt='게시글이미지'
-        width={130}
-        height={130}
-      />
-      <div className='flex w-full flex-col gap-4'>
-        <div className='flex flex-col gap-0.5'>
-          <span>{title}</span>
-          <span className='text-xs text-gray-accent2'>{`총 ${votedCount}명 투표`}</span>
-          <span className='text-xs text-gray-accent2'>{createdAt}</span>
+    <div className='flex w-full cursor-pointer justify-start gap-4 border-b bg-dark-accent2 p-4 pb-4 text-white'>
+      <div className='flex w-full flex-col justify-between gap-1'>
+        <span>{title}</span>
+        <div className='flex items-center gap-1'>
+          <Icon id='check' size={16} />
+          <span className='text-xs text-gray-accent2'>{`총 ${votedCount}명 투표중`}</span>
         </div>
-        <div className='flex w-full justify-between'>
+        <div className='flex gap-4'>
           <span className='flex items-center gap-2'>
             <Image
               src={validatedProfileImageUrl}
@@ -62,6 +47,9 @@ const PostItem = ({ post }: PostItemProps) => {
               height={20}
             />
             <span className='text-sm text-gray-accent1'>{author}</span>
+            <span className='text-xs text-gray-accent2'>
+              {timeOffset(createdAt)}
+            </span>
           </span>
           <span className='flex gap-2 text-gray-accent1'>
             <span className='flex items-center gap-1'>
@@ -75,6 +63,13 @@ const PostItem = ({ post }: PostItemProps) => {
           </span>
         </div>
       </div>
+      <Image
+        src={validatedImageUrl}
+        alt='게시글이미지'
+        width={60}
+        height={60}
+        className='aspect-square h-fit self-center rounded-md object-cover'
+      />
     </div>
   );
 };

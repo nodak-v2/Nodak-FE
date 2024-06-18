@@ -4,7 +4,7 @@ import { ReactNode } from 'react';
 import { type VariantProps, cva } from 'class-variance-authority';
 
 const chipCSS = cva(
-  'flex w-fit items-center whitespace-nowrap rounded-lg px-3 py-1 text-sm font-semibold',
+  'flex w-fit items-center whitespace-nowrap rounded-full border border-gray-accent2 px-3 py-1 text-sm font-semibold',
   {
     variants: {
       variant: {

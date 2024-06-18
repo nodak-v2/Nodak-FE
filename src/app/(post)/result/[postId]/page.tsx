@@ -1,4 +1,4 @@
-import { getPostDetail } from '@/src/apis/post';
+import { getPostDetail } from '@/src/apis/postDetail';
 import CommentLink from '@/src/app/(post)/result/[postId]/_components/CommentLink';
 import LikeButton from '@/src/app/(post)/result/[postId]/_components/LikeButton';
 import ProfileBlock from '@/src/app/(post)/result/[postId]/_components/ProfileBlock';
@@ -39,7 +39,7 @@ const ResultPage = async ({
           <span className='pr-2'>{starCount}</span>
         </div>
         <div className='flex gap-0.5'>
-          <CommentLink postId={postId} />
+          <CommentLink />
           <span>{commentSize}</span>
         </div>
       </div>

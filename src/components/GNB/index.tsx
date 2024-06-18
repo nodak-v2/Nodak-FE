@@ -4,19 +4,27 @@ import Icon from '@/src/components/Icon';
 
 const userId = 1;
 const GNB = () => {
+  // const userStatus = useGetUserStatusAPI();
+  // const profileUrl = userStatus ? `/profile/${userId}` : '/signin';
+
   const navItems = [
     { href: '/', icon: <Icon id='home' />, name: '홈' },
     { href: '/chat', icon: <Icon id='chat' />, name: '채팅' },
+    {
+      href: '/createPost',
+      icon: <Icon id='add-box' />,
+      name: '글쓰기',
+    },
     {
       href: `/notification/${userId}`,
       icon: <Icon id='notification' />,
       name: '알림',
     },
-    { href: `/profile/${userId}`, icon: <Icon id='user' />, name: '프로필' },
+    { href: '/signin', icon: <Icon id='user' />, name: '프로필' },
   ];
 
   return (
-    <div className='bg-[#212529] px-4'>
+    <div className='sticky bottom-0 w-full bg-[#212529] px-4'>
       <nav>
         <ul className='flex justify-between'>
           {navItems.map(({ href, icon, name }, index) => (

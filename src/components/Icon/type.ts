@@ -15,8 +15,10 @@ export type IconName =
   | 'notification'
   | 'search'
   | 'back'
-  | 'pencil-fill'
   | 'subtract-circle'
   | 'kakao'
   | 'close'
-  | 'camera';
+  | 'camera'
+  | 'logo'
+  | 'check'
+  | 'add-box';
