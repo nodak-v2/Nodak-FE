@@ -1,18 +1,15 @@
 'use client';
 
+import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
 import { useGetPostListAPI } from '@/src/apis/postList';
-import {
-  PostContentToPostItemType,
-  searchParamsToGetPostListParams,
-} from '@/src/app/(main)/utils';
+import { searchParamsToGetPostListParams } from '@/src/app/(main)/utils';
 import ChipContainer, {
   ChannelType,
 } from '@/src/app/_components/ChipContainer';
 import PostItem from '@/src/app/_components/PostItem';
 import Icon from '@/src/components/Icon';
-import Popup from '@/src/components/POPup';
 
 import GNB from '../components/GNB';
 import TopBar from '../components/Topbar';
@@ -41,15 +38,17 @@ const Main = () => {
         <ChipContainer currentChannel={channel} />
         <div className='flex flex-col'>
           {posts.map((post, index) => (
-            <PostItem
+            <Link
+              href={`/result/${post.postId}`}
               key={`${index}-${post.title}`}
-              post={PostContentToPostItemType(post)}
-            />
+            >
+              <PostItem post={post} />
+            </Link>
           ))}
         </div>
       </main>
       <GNB />
-      <Popup />
+      {/* <Popup /> */}
     </div>
   );
 };
