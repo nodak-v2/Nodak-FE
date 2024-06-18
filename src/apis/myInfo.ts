@@ -20,8 +20,15 @@ import { api } from './core';
 //   return data;
 // };
 
+interface UserStatus {
+  userId: number;
+  nickname: string;
+  profileImage: string;
+  login: boolean;
+}
+
 const getUserStatus = () => {
-  return api.get({
+  return api.get<UserStatus>({
     url: `/user/status`,
   });
 };

@@ -1,8 +1,8 @@
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { api } from '@/src/apis/core';
 
-interface PostListContent {
+export interface PostListContent {
   postId: number;
   voteId: number;
   title: string;
@@ -63,21 +63,17 @@ export type GetPostListParams =
   | PostListParamsWithKeyword
   | PostListInitialParams;
 
-export const getPostList = async (params: GetPostListParams) => {
-  const data = await api.get<PostList>({
+export const getPostList = async (params: GetPostListParams) =>
+  await api.get<PostList>({
     url: '/posts/search',
     params,
   });
 
-  return data;
-};
-
 export const useGetPostListAPI = (params: GetPostListParams) => {
-  const { data } = useQuery({
+  const { data } = useSuspenseQuery({
     queryKey: ['postList', ...Object.values(params)],
     queryFn: () => getPostList(params),
-    select: data => data?.body.content,
   });
 
-  return data;
+  return data.body;
 };
