@@ -45,15 +45,15 @@ const ProfileBlock = () => {
           <span className='font-h3-sm'>유저 닉네임</span>
           <div className='flex items-center gap-2'>
             <div className='flex items-center gap-1'>
-              <span className='text-gray-accent4 font-text-3-rg'>작성글</span>
+              <span className='font-text-3-rg text-gray-accent4'>작성글</span>
               <span className='font-title-2-sm'>3</span>
             </div>
             <div className='flex items-center gap-1'>
-              <span className='text-gray-accent4 font-text-3-rg'>팔로워</span>
+              <span className='font-text-3-rg text-gray-accent4'>팔로워</span>
               <span className='font-title-2-sm'>{followerCount}</span>
             </div>
             <div className='flex items-center gap-1'>
-              <span className='text-gray-accent4 font-text-3-rg'>팔로잉</span>
+              <span className='font-text-3-rg text-gray-accent4'>팔로잉</span>
               <span className='font-title-2-sm'>{followeeCount}</span>
             </div>
           </div>

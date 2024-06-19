@@ -31,7 +31,9 @@ const SearchButton = () => <Icon id='search' size={24} />;
 const NotificationButton = () => <Icon id='notification' size={24} />;
 
 const Title = ({ children }: PropsWithChildren) => (
-  <div className='cursor-default px-4 py-2.5 font-bold'>{children}</div>
+  <div className='flex grow cursor-default justify-center font-bold'>
+    <span>{children}</span>
+  </div>
 );
 const TopBar = {
   Container,

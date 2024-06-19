@@ -25,7 +25,7 @@ const PostingLayout = ({ children }: PropsWithChildren) => {
   return (
     <>
       <TopBar.Container>
-        <TopBar.BackButton href='/' />
+        <TopBar.BackButton href='/users/profile' />
         <TopBar.Title>{postingNavigation[pathname]}</TopBar.Title>
         {/* <TopBar.NavMore /> */}
       </TopBar.Container>

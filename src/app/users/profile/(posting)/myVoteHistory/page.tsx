@@ -1,7 +1,21 @@
+'use client';
+
+import Link from 'next/link';
+
+import PostItem from '@/src/app/_components/PostItem';
+
+import useGetPostHistory from '../hooks/useGetPostHistory';
+
 const MyVoteHistoryPage = () => {
+  const posts = useGetPostHistory();
+
   return (
-    <div>
-      <h1>My Vote History</h1>
+    <div className='flex flex-col'>
+      {posts.map((post, index) => (
+        <Link href={`/result/${post.postId}`} key={`${index}-${post.title}`}>
+          <PostItem post={post} />
+        </Link>
+      ))}
     </div>
   );
 };
