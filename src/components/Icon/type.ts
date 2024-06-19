@@ -33,4 +33,5 @@ export type IconName =
   | 'message-2'
   | 'check-circle'
   | 'log-out'
-  | 'write';
+  | 'write'
+  | 'arrow-right';
