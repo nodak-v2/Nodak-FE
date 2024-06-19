@@ -40,11 +40,9 @@ const Notification = () => {
   return (
     <div className='flex h-full flex-col'>
       <TopBar.Container>
-        <TopBar.Left>
-          <TopBar.Title>
-            <p className='text-2xl text-white'>알림</p>
-          </TopBar.Title>
-        </TopBar.Left>
+        <TopBar.Title>
+          <p className='text-2xl text-white'>알림</p>
+        </TopBar.Title>
       </TopBar.Container>
       <main className='grow'>
         {ALARM_DUMMY.length === 0 ? (
