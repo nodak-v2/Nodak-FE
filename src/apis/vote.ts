@@ -1,4 +1,12 @@
+import {
+  useMutation,
+  useQueryClient,
+  useSuspenseQuery,
+} from '@tanstack/react-query';
+
 import { BASE_URL, TEST_TOKEN } from '@/src/apis/constants';
+
+import { api } from './core';
 
 export interface VoteResult {
   message: string;
@@ -43,4 +51,36 @@ export const doVote = async (voteId: number, optionSeq: number) => {
       },
     },
   );
+};
+
+const getVoteDetail = (postId: string) => {
+  return api.get<VoteResultBody>({
+    url: `/votes/${postId}`,
+  });
+};
+
+export const useGetVoteDetailAPI = (postId: string) => {
+  const { data } = useSuspenseQuery({
+    queryKey: ['votes', postId],
+    queryFn: () => getVoteDetail(postId),
+  });
+
+  return data.body;
+};
+
+const postVote = (voteId: string, optionSeq: number) => {
+  return api.post({
+    url: `/votes/${voteId}?option=${optionSeq}`,
+  });
+};
+
+export const useCreateVoteAPI = (voteId: string, postId: string) => {
+  const QueryClient = useQueryClient();
+  const { mutateAsync } = useMutation({
+    mutationFn: (optionSeq: number) => postVote(voteId, optionSeq),
+    onSuccess: () =>
+      QueryClient.invalidateQueries({ queryKey: ['votes', postId] }),
+  });
+
+  return mutateAsync;
 };

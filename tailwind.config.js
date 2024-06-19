@@ -16,6 +16,8 @@ export default {
         gray: {
           accent1: 'var(--gray-accent1)',
           accent2: 'var(--gray-accent2)',
+          accent3: 'var(--gray-accent3)',
+          accent4: 'var(--gray-accent4)',
         },
         grass: {
           100: 'var(--grass-100)',
