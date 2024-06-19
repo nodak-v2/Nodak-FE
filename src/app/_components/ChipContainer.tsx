@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import Link from 'next/link';
 
 import Chip from '@/src/app/_components/Chip';
@@ -24,33 +22,27 @@ interface ChipContainerProps {
 }
 
 const ChipContainer = ({ currentChannel = 'all' }: ChipContainerProps) => {
-  const [currentPath, setCurrentPath] = useState(currentChannel);
-
-  const handleChipClick = (path: ChannelType) => () => {
-    setCurrentPath(path);
-  };
-
   return (
-    <ul className='flex flex-nowrap gap-2 px-4 py-2'>
-      {channelData.map(({ name, path }, index) => {
-        const variant = path === currentPath ? 'selected' : 'default';
+    <div className='bg-dark-accent2 sticky top-0 overflow-x-auto'>
+      <ul className='flex flex-nowrap gap-2 px-4 py-2'>
+        {channelData.map(({ name, path }, index) => {
+          const variant = path === currentChannel ? 'selected' : 'default';
 
-        return (
-          <li key={`${index}-${name}`}>
-            <Link
-              href={{
-                pathname: '/',
-                query: path === 'all' ? {} : { channel: path },
-              }}
-            >
-              <Chip variant={variant} onClick={handleChipClick(path)}>
-                {name}
-              </Chip>
-            </Link>
-          </li>
-        );
-      })}
-    </ul>
+          return (
+            <li key={`${index}-${name}`}>
+              <Link
+                href={{
+                  pathname: '/',
+                  query: path === 'all' ? {} : { channel: path },
+                }}
+              >
+                <Chip variant={variant}>{name}</Chip>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 };
 
