@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
 import { useGetPostListAPI } from '@/src/apis/postList';
-import { searchParamsToGetPostListParams } from '@/src/app/(main)/utils';
+import { CATEGORY_MAP } from '@/src/app/(main)/constants';
 import ChipContainer, {
   ChannelType,
 } from '@/src/app/_components/ChipContainer';
@@ -17,14 +17,10 @@ import TopBar from '../components/Topbar';
 
 const Main = () => {
   const searchParams = useSearchParams();
-  const channel = searchParams.get('channel') as ChannelType;
-  const keyword = searchParams.get('keyword') as string;
+  const channel = (searchParams.get('channel') as ChannelType | null) ?? 'all';
+  const keyword = searchParams.get('keyword');
 
-  const { content: posts } = useGetPostListAPI({
-    page: '0',
-    size: '8',
-    ...searchParamsToGetPostListParams(channel, keyword),
-  });
+  const { content: posts } = useGetPostListAPI(keyword, CATEGORY_MAP[channel]);
 
   return (
     <>
