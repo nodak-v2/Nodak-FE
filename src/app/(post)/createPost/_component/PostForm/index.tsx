@@ -27,7 +27,7 @@ const PostForm = () => {
 
   const onSubmitPost = (data: PostValue) => {
     createPost(data);
-    Toast.default('작성이 완료되었습니다.');
+    Toast.default('등록되었습니다.');
   };
 
   return (
