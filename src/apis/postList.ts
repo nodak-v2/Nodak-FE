@@ -49,8 +49,8 @@ export interface PostListResponse {
 interface GetPostListParams {
   page: string;
   size: string;
-  keyword: string;
-  categoryId: string;
+  keyword: string | null;
+  categoryId: string | null;
 }
 
 export const getPostList = async (params: GetPostListParams) =>
