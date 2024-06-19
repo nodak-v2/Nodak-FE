@@ -78,6 +78,7 @@ const VoteForm = ({ onChange, error }: VoteFormProps) => {
             )}
             <TextInput
               value={option}
+              maxLength={10}
               onChange={event => handleOptionChange(index, event)}
               variant={error && !isOptionvalid(option) ? 'error' : 'default'}
               className={'border text-gray-accent1'}
