@@ -11,8 +11,8 @@ import ChipContainer, {
 } from '@/src/app/_components/ChipContainer';
 import PostItem from '@/src/app/_components/PostItem';
 
+import EmptyPage from '../components/EmptyPage';
 import GNB from '../components/GNB';
-import Icon from '../components/Icon';
 import TopBar from '../components/Topbar';
 
 const Main = () => {
@@ -33,14 +33,7 @@ const Main = () => {
       </TopBar.Container>
       <main className='grow'>
         <ChipContainer currentChannel={channel} />
-        {posts.length === 0 ? (
-          <div className='flex h-full flex-col items-center justify-center gap-2'>
-            <Icon id='warning' aria-label='투표 글 없음' size={64} />
-            <span className='font-semibold text-gray-accent3'>
-              작성된 투표 글이 없습니다.
-            </span>
-          </div>
-        ) : (
+        {posts.length ? (
           <div className='flex flex-col'>
             {posts.map((post, index) => (
               <Link
@@ -51,6 +44,8 @@ const Main = () => {
               </Link>
             ))}
           </div>
+        ) : (
+          <EmptyPage />
         )}
       </main>
       <GNB />
