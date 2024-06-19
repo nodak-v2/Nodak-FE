@@ -21,7 +21,7 @@ const Main = () => {
   const channel = (searchParams.get('channel') as ChannelType | null) ?? 'all';
   const keyword = searchParams.get('keyword') as string;
 
-  const { content: posts } = useGetPostListAPI(keyword, CATEGORY_MAP[channel]);
+  const { data: posts } = useGetPostListAPI(keyword, CATEGORY_MAP[channel]);
 
   return (
     <>

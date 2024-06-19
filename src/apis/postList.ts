@@ -1,4 +1,4 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 
 import { api } from '@/src/apis/core';
 
@@ -65,12 +65,18 @@ export const useGetPostListAPI = (
   keyword: string | null,
   categoryId: string | null,
 ) => {
-  // TODO: 인피니티 스크롤 구현
-  const { data } = useSuspenseQuery({
+  return useSuspenseInfiniteQuery({
     queryKey: ['postList', { page: '0', keyword, categoryId }],
-    queryFn: () =>
-      getPostList({ page: '0', size: PAGE_SIZE, keyword, categoryId }),
+    initialPageParam: 0,
+    queryFn: async ({ pageParam = 0 }) =>
+      getPostList({
+        page: pageParam.toString(),
+        size: PAGE_SIZE,
+        keyword,
+        categoryId,
+      }),
+    getNextPageParam: (lastPage, allPages) =>
+      lastPage.body.last ? allPages.length : undefined,
+    select: data => data.pages.flatMap(page => page.body.content),
   });
-
-  return data.body;
 };
