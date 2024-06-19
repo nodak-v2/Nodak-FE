@@ -32,7 +32,7 @@ const Modal = ({
     >
       <div
         className={cn(
-          'flex w-[290px] flex-col gap-6 rounded-lg bg-dark-accent2 px-4 pb-4 pt-6 shadow-xl',
+          'bg-dark-accent2 flex w-[290px] flex-col gap-6 rounded-lg px-4 pb-4 pt-6 shadow-xl',
           contentClassName,
         )}
         onClick={e => e.stopPropagation()}
