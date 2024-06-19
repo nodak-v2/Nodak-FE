@@ -4,12 +4,12 @@ import { ReactNode } from 'react';
 import { type VariantProps, cva } from 'class-variance-authority';
 
 const chipCSS = cva(
-  'flex w-fit items-center whitespace-nowrap rounded-full border border-gray-accent2 px-3 py-1 text-sm font-semibold',
+  'flex w-fit items-center whitespace-nowrap rounded-[20px] border border-gray-accent2 px-4 py-2 text-sm font-semibold',
   {
     variants: {
       variant: {
-        default: 'bg-zinc-700 text-white',
-        selected: 'bg-zinc-200 text-black',
+        default: 'bg-background text-gray-accent4',
+        selected: 'bg-sub text-primary',
       },
     },
     defaultVariants: {

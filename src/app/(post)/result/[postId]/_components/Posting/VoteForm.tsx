@@ -33,7 +33,7 @@ const VoteForm = () => {
     <div className='flex items-center justify-center rounded-[8px] bg-gray-accent1'>
       <div className='flex w-full flex-col gap-6 p-4'>
         <div>
-          <span className='font-sm-bold'>{voteTitle}</span>
+          <span className='font-h3-sm'>{voteTitle}</span>
           <p className='font-text-3-rg text-gray-accent4'>
             {totalNumber}명 참여
           </p>

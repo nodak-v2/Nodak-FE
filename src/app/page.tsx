@@ -27,30 +27,27 @@ const Main = () => {
   });
 
   return (
-    <div className='flex h-full flex-col'>
+    <>
       <TopBar.Container>
         <Image src='/picky-logo.png' alt='로고' width={87} height={45} />
       </TopBar.Container>
-      <main className='grow'>
-        <ChipContainer currentChannel={channel} />
+      <ChipContainer currentChannel={channel} />
+      <main className='flex h-full grow flex-col overflow-y-scroll'>
         {posts.length ? (
-          <div className='flex flex-col'>
-            {posts.map((post, index) => (
-              <Link
-                href={`/result/${post.postId}`}
-                key={`${index}-${post.title}`}
-              >
-                <PostItem post={post} />
-              </Link>
-            ))}
-          </div>
+          posts.map((post, index) => (
+            <Link
+              href={`/result/${post.postId}`}
+              key={`${index}-${post.title}`}
+            >
+              <PostItem post={post} />
+            </Link>
+          ))
         ) : (
           <EmptyPage />
         )}
       </main>
       <GNB />
-      {/* <Popup /> */}
-    </div>
+    </>
   );
 };
 export default Main;

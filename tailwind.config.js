@@ -9,22 +9,11 @@ export default {
         sub: 'var(--sub)',
         error: 'var(--error)',
         background: 'var(--background)',
-        dark: {
-          accent1: 'var(--dark-accent1)',
-          accent2: 'var(--dark-accent2)',
-        },
         gray: {
           accent1: 'var(--gray-accent1)',
           accent2: 'var(--gray-accent2)',
           accent3: 'var(--gray-accent3)',
           accent4: 'var(--gray-accent4)',
-        },
-        grass: {
-          100: 'var(--grass-100)',
-          200: 'var(--grass-200)',
-          300: 'var(--grass-300)',
-          400: 'var(--grass-400)',
-          500: 'var(--grass-500)',
         },
       },
 

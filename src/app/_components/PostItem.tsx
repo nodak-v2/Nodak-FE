@@ -3,7 +3,6 @@ import Image from 'next/image';
 import { PostListContent } from '@/src/apis/postList';
 import { isValidImageUrl } from '@/src/app/(main)/utils';
 import Icon from '@/src/components/Icon';
-import timeOffset from '@/src/utils/timeOffset';
 
 interface PostItemProps {
   post: PostListContent;
@@ -16,7 +15,6 @@ const PostItem = ({ post }: PostItemProps) => {
     likeCount: likedCount,
     commentCount: commentedCount,
     author,
-    profileImageUrl,
     postImageUrl: imageUrl,
     createdAt,
   } = post;
@@ -25,40 +23,27 @@ const PostItem = ({ post }: PostItemProps) => {
     ? imageUrl
     : '/placeHolder_130.png';
 
-  const validatedProfileImageUrl = isValidImageUrl(profileImageUrl)
-    ? profileImageUrl
-    : '/placeHolder_20.png';
-
   return (
-    <div className='flex w-full cursor-pointer justify-start gap-4 border-b bg-dark-accent2 p-4 pb-4 text-white'>
+    <div className='flex w-full gap-4 border-b border-gray-accent2 p-4 pb-4'>
       <div className='flex w-full flex-col justify-between gap-1'>
-        <span>{title}</span>
+        <span className='font-h4-sm'>{title}</span>
         <div className='flex items-center gap-1'>
           <Icon id='check' size={16} />
-          <span className='text-xs text-gray-accent2'>{`총 ${votedCount}명 투표중`}</span>
+          <span className='font-text-1-rg'>{`총 ${votedCount}명 투표중`}</span>
         </div>
-        <div className='flex gap-4'>
-          <span className='flex items-center gap-2'>
-            <Image
-              src={validatedProfileImageUrl}
-              alt='사용자 프로필'
-              className='rounded-full object-cover'
-              width={20}
-              height={20}
-            />
-            <span className='text-sm text-gray-accent1'>{author}</span>
-            <span className='text-xs text-gray-accent2'>
-              {timeOffset(createdAt)}
-            </span>
+        <div className='flex items-center gap-4'>
+          <span className='font-text-3-rg flex items-center gap-2'>
+            <span>{author}</span>
+            <span className='text-gray-accent3'>{createdAt}</span>
           </span>
-          <span className='flex gap-2 text-gray-accent1'>
-            <span className='flex items-center gap-1'>
-              <Icon id='heart' aria-label='좋아요 수' />
-              <span>{likedCount}</span>
+          <span className='flex items-center gap-2 text-gray-accent4'>
+            <span className='font-text-3-rg flex items-center gap-1'>
+              <Icon id='heart' aria-label='좋아요 수' size={12} />
+              <span className='font-text-3-rg'>{likedCount}</span>
             </span>
             <span className='flex items-center gap-1'>
-              <Icon id='comment' aria-label='댓글 수' />
-              <span>{commentedCount}</span>
+              <Icon id='comment' aria-label='댓글 수' size={12} />
+              <span className='font-text-3-rg'>{commentedCount}</span>
             </span>
           </span>
         </div>
