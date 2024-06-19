@@ -19,7 +19,6 @@ export type IconName =
   | 'kakao'
   | 'close'
   | 'camera'
-  | 'logo'
   | 'check'
   | 'add-box'
   | 'nav-more'
