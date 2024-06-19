@@ -28,4 +28,5 @@ export type IconName =
   | 'heart-fill'
   | 'heart-line'
   | 'select-vote'
-  | 'select-default';
+  | 'select-default'
+  | 'warning';
