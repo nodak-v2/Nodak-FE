@@ -17,7 +17,7 @@ const DrawerContentBox = ({
 }: DrawerContentBoxProps) => (
   <DrawerContent
     id='drawer-content'
-    className='absolute bottom-0 border-none bg-dark-accent1 text-gray-accent1'
+    className='absolute bottom-0 border-none text-gray-accent1'
   >
     <li className='flex flex-col gap-4 p-4'>
       <Image
@@ -27,7 +27,7 @@ const DrawerContentBox = ({
         height={80}
         className='rounded-full object-contain'
       />
-      <div className='flex flex-col gap-4 rounded-md bg-dark-accent2 p-4'>
+      <div className='flex flex-col gap-4 rounded-md p-4'>
         <div className='text-lg font-bold'>{name}</div>
         <div className='flex items-center gap-3'>
           {isMe ? (
@@ -42,7 +42,7 @@ const DrawerContentBox = ({
         </div>
       </div>
     </li>
-    <DrawerClose className='rounded-b-md bg-dark-accent2 py-2 text-gray-accent1'>
+    <DrawerClose className='rounded-b-md py-2 text-gray-accent1'>
       닫기
     </DrawerClose>
   </DrawerContent>

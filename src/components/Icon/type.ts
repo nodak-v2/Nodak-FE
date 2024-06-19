@@ -18,7 +18,6 @@ export type IconName =
   | 'subtract-circle'
   | 'kakao'
   | 'close'
-  | 'camera'
   | 'check'
   | 'add-box'
   | 'nav-more'

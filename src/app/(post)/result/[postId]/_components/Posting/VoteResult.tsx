@@ -15,10 +15,12 @@ const VoteResult = () => {
 
   return (
     <div className='flex items-center justify-center rounded-[8px] bg-gray-accent1'>
-      <div className='flex w-full flex-col gap-6 p-4 text-white'>
+      <div className='flex w-full flex-col gap-6 p-4'>
         <div>
-          <span className='font-bold'>{voteTitle}</span>
-          <p className='text-sm text-gray-400'>{totalNumber}명 참여</p>
+          <span className='font-h3-sm'>{voteTitle}</span>
+          <p className='font-text-3-rg text-gray-accent4'>
+            {totalNumber}명 참여
+          </p>
         </div>
         <div className='flex flex-col gap-3'>
           {voteOptions.map(({ voteOptionContent, voteOptionId, count }) => {
