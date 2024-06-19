@@ -59,14 +59,14 @@ export const getPostList = async (params: GetPostListParams) =>
     params,
   });
 
-const PAGE_SIZE = '8';
+const PAGE_SIZE = '6';
 
 export const useGetPostListAPI = (
   keyword: string | null,
   categoryId: string | null,
 ) => {
   return useSuspenseInfiniteQuery({
-    queryKey: ['postList', { page: '0', keyword, categoryId }],
+    queryKey: ['postList', keyword, categoryId],
     initialPageParam: 0,
     queryFn: async ({ pageParam = 0 }) =>
       getPostList({
@@ -75,8 +75,8 @@ export const useGetPostListAPI = (
         keyword,
         categoryId,
       }),
-    getNextPageParam: (lastPage, allPages) =>
-      lastPage.body.last ? allPages.length : undefined,
+    getNextPageParam: lastPage =>
+      lastPage.body.last ? undefined : lastPage.body.pageable.pageNumber + 1,
     select: data => data.pages.flatMap(page => page.body.content),
   });
 };

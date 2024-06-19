@@ -10,6 +10,7 @@ import ChipContainer, {
   ChannelType,
 } from '@/src/app/_components/ChipContainer';
 import PostItem from '@/src/app/_components/PostItem';
+import useInfiniteScroll from '@/src/hooks/useInfiniteScroll';
 
 import EmptyPage from '../components/EmptyPage';
 import GNB from '../components/GNB';
@@ -21,7 +22,11 @@ const Main = () => {
   const channel = (searchParams.get('channel') as ChannelType | null) ?? 'all';
   const keyword = searchParams.get('keyword') as string;
 
-  const { data: posts } = useGetPostListAPI(keyword, CATEGORY_MAP[channel]);
+  const { data: posts, fetchNextPage } = useGetPostListAPI(
+    keyword,
+    CATEGORY_MAP[channel],
+  );
+  const scrollRef = useInfiniteScroll(fetchNextPage);
 
   return (
     <>
@@ -45,6 +50,8 @@ const Main = () => {
         ) : (
           <EmptyPage href='/createPost' text='작성 글이 없습니다.' />
         )}
+
+        <div ref={scrollRef} />
       </main>
       <GNB />
     </>
