@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import Link from 'next/link';
 
 import Chip from '@/src/app/_components/Chip';
@@ -24,17 +22,11 @@ interface ChipContainerProps {
 }
 
 const ChipContainer = ({ currentChannel = 'all' }: ChipContainerProps) => {
-  const [currentPath, setCurrentPath] = useState(currentChannel);
-
-  const handleChipClick = (path: ChannelType) => () => {
-    setCurrentPath(path);
-  };
-
   return (
     <div className='sticky top-0 overflow-x-auto bg-dark-accent2'>
       <ul className='flex flex-nowrap gap-2 px-4 py-2'>
         {channelData.map(({ name, path }, index) => {
-          const variant = path === currentPath ? 'selected' : 'default';
+          const variant = path === currentChannel ? 'selected' : 'default';
 
           return (
             <li key={`${index}-${name}`}>
@@ -44,9 +36,7 @@ const ChipContainer = ({ currentChannel = 'all' }: ChipContainerProps) => {
                   query: path === 'all' ? {} : { channel: path },
                 }}
               >
-                <Chip variant={variant} onClick={handleChipClick(path)}>
-                  {name}
-                </Chip>
+                <Chip variant={variant}>{name}</Chip>
               </Link>
             </li>
           );
