@@ -18,7 +18,6 @@ export type IconName =
   | 'subtract-circle'
   | 'kakao'
   | 'close'
-  | 'camera'
   | 'check'
   | 'add-box'
   | 'nav-more'
@@ -28,4 +27,5 @@ export type IconName =
   | 'heart-fill'
   | 'heart-line'
   | 'select-vote'
-  | 'select-default';
+  | 'select-default'
+  | 'warning';

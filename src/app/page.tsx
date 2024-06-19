@@ -11,6 +11,7 @@ import ChipContainer, {
 } from '@/src/app/_components/ChipContainer';
 import PostItem from '@/src/app/_components/PostItem';
 
+import EmptyPage from '../components/EmptyPage';
 import GNB from '../components/GNB';
 import TopBar from '../components/Topbar';
 
@@ -32,16 +33,20 @@ const Main = () => {
       </TopBar.Container>
       <main className='grow'>
         <ChipContainer currentChannel={channel} />
-        <div className='flex flex-col'>
-          {posts.map((post, index) => (
-            <Link
-              href={`/result/${post.postId}`}
-              key={`${index}-${post.title}`}
-            >
-              <PostItem post={post} />
-            </Link>
-          ))}
-        </div>
+        {posts.length ? (
+          <div className='flex flex-col'>
+            {posts.map((post, index) => (
+              <Link
+                href={`/result/${post.postId}`}
+                key={`${index}-${post.title}`}
+              >
+                <PostItem post={post} />
+              </Link>
+            ))}
+          </div>
+        ) : (
+          <EmptyPage />
+        )}
       </main>
       <GNB />
       {/* <Popup /> */}
