@@ -36,7 +36,7 @@ const UserItem = ({ user }: UserItemProps) => {
 };
 
 const UserList = ({ users }: { users: User[] }) => (
-  <ul className='rounded-md bg-dark-accent1'>
+  <ul className='rounded-md'>
     {users.map(user => (
       <UserItem key={`${user.id}-${user.name}`} user={user} />
     ))}
