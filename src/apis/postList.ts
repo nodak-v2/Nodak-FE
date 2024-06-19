@@ -43,25 +43,12 @@ export interface PostList {
   empty: boolean;
 }
 
-interface PostListInitialParams {
+interface GetPostListParams {
   page: string;
   size: string;
+  keyword: string | null;
+  categoryId: string | null;
 }
-
-interface PostListParamsWithCategoryId extends PostListInitialParams {
-  categoryId: string;
-  keyword: null;
-}
-
-interface PostListParamsWithKeyword extends PostListInitialParams {
-  keyword: string;
-  categoryId: null;
-}
-
-export type GetPostListParams =
-  | PostListParamsWithCategoryId
-  | PostListParamsWithKeyword
-  | PostListInitialParams;
 
 export const getPostList = async (params: GetPostListParams) =>
   await api.get<PostList>({
