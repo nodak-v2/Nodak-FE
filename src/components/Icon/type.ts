@@ -27,5 +27,6 @@ export type IconName =
   | 'more-square'
   | 'message'
   | 'heart-fill'
+  | 'heart-line'
   | 'select-vote'
   | 'select-default';

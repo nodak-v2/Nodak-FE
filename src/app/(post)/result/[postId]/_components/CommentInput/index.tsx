@@ -15,6 +15,7 @@ const CommentForm = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (comment.trim() === '') return;
     createComment(comment);
     setComment('');
   };
@@ -26,7 +27,6 @@ const CommentForm = () => {
         onSubmit={handleSubmit}
       >
         <input
-          type='text'
           placeholder='댓글을 남겨보세요'
           value={comment}
           onChange={handleInputChange}
