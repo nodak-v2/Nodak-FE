@@ -3,6 +3,7 @@
 import { Controller, useForm } from 'react-hook-form';
 
 import { PostValue, createPost } from '@/src/apis/postDetail';
+import Toast from '@/src/app/_components/Toast';
 import Button from '@/src/components/Button/Button';
 import FormField from '@/src/components/FormField';
 import Selector from '@/src/components/Selector';
@@ -26,6 +27,7 @@ const PostForm = () => {
 
   const onSubmitPost = (data: PostValue) => {
     createPost(data);
+    Toast.default('작성이 완료되었습니다.');
   };
 
   return (
