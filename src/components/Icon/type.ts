@@ -21,4 +21,12 @@ export type IconName =
   | 'camera'
   | 'logo'
   | 'check'
-  | 'add-box';
+  | 'add-box'
+  | 'nav-more'
+  | 'arrow-left'
+  | 'more-square'
+  | 'message'
+  | 'heart-fill'
+  | 'heart-line'
+  | 'select-vote'
+  | 'select-default';

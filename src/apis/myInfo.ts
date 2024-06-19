@@ -23,7 +23,7 @@ import { api } from './core';
 interface UserStatus {
   userId: number;
   nickname: string;
-  profileImage: string;
+  profileImage: string | null;
   login: boolean;
 }
 

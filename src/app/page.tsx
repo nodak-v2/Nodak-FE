@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
@@ -9,7 +10,6 @@ import ChipContainer, {
   ChannelType,
 } from '@/src/app/_components/ChipContainer';
 import PostItem from '@/src/app/_components/PostItem';
-import Icon from '@/src/components/Icon';
 
 import GNB from '../components/GNB';
 import TopBar from '../components/Topbar';
@@ -28,11 +28,7 @@ const Main = () => {
   return (
     <div className='flex h-full flex-col'>
       <TopBar.Container>
-        <TopBar.Left>
-          <TopBar.Title>
-            <Icon id='logo' width={87} height={45} />
-          </TopBar.Title>
-        </TopBar.Left>
+        <Image src='/picky-logo.png' alt='로고' width={87} height={45} />
       </TopBar.Container>
       <main className='grow'>
         <ChipContainer currentChannel={channel} />

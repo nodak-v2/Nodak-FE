@@ -20,10 +20,10 @@ export const PostDetail: Story = {
   name: '게시글 상세페이지',
   args: {
     children: (
-      <TopBar.Left>
+      <>
         <TopBar.BackButton href='/' />
         <TopBar.Title>프로필</TopBar.Title>
-      </TopBar.Left>
+      </>
     ),
   },
 };
@@ -32,10 +32,10 @@ export const Comment: Story = {
   name: '댓글창',
   args: {
     children: (
-      <TopBar.Left>
+      <>
         <TopBar.BackButton href='/' />
         <TopBar.Title>댓글 0개</TopBar.Title>
-      </TopBar.Left>
+      </>
     ),
   },
 };
@@ -45,14 +45,10 @@ export const Profile: Story = {
   args: {
     children: (
       <>
-        <TopBar.Left>
-          <TopBar.BackButton href='/' />
-          <TopBar.Title>프로필</TopBar.Title>
-        </TopBar.Left>
-        <TopBar.Right>
-          <TopBar.ReportButton />
-          <TopBar.DarkModeButton />
-        </TopBar.Right>
+        <TopBar.BackButton href='/' />
+        <TopBar.Title>프로필</TopBar.Title>
+        <TopBar.ReportButton />
+        <TopBar.DarkModeButton />
       </>
     ),
   },

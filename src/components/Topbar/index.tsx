@@ -6,22 +6,17 @@ import Icon from '@/src/components/Icon';
 
 const Container = ({ children }: PropsWithChildren) => {
   return (
-    <div className='flex justify-between border-gray-accent2 p-2'>
-      {children}
-    </div>
+    <div className='flex items-center justify-between p-4'>{children}</div>
   );
 };
-const Left = ({ children }: PropsWithChildren) => (
-  <div className='flex items-center gap-3'>{children}</div>
-);
 
-const Right = ({ children }: PropsWithChildren) => (
-  <div className='flex items-center gap-3'>{children}</div>
+const NavMore = () => (
+  <Icon id='nav-more' size={24} className='cursor-pointer' />
 );
 
 const BackButton = ({ href }: { href: string }) => (
   <Link href={href}>
-    <Icon id='back' size={24} className='cursor-pointer' />
+    <Icon id='arrow-left' size={24} className='cursor-pointer' />
   </Link>
 );
 
@@ -40,14 +35,13 @@ const Title = ({ children }: PropsWithChildren) => (
 );
 const TopBar = {
   Container,
-  Left,
-  Right,
   BackButton,
   ReportButton,
   DarkModeButton,
   SearchButton,
   NotificationButton,
   Title,
+  NavMore,
 };
 
 export default TopBar;

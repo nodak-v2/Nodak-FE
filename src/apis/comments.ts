@@ -12,6 +12,7 @@ export interface Comment {
   nickname: string;
   content: string;
   createdAt: string;
+  userId: number;
 }
 
 // export const getComments = async (postId: string) => {
