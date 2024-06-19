@@ -34,12 +34,7 @@ const UserInfo = ({
     <div className='flex  w-full flex-col border-b pt-5'>
       <div className='flex items-center gap-4 px-4'>
         <div className='relative'>
-          {isEditing && (
-            <Icon
-              id='close'
-              className='absolute right-0 top-0 text-dark-accent2'
-            />
-          )}
+          {isEditing && <Icon id='close' className='absolute right-0 top-0' />}
           <Image
             src={profileImageUrl}
             alt='사용자 이미지'
@@ -48,11 +43,7 @@ const UserInfo = ({
             className='rounded-xl object-cover'
           />
           {isEditing && (
-            <Icon
-              id='camera'
-              size={24}
-              className='absolute bottom-0 right-0 text-dark-accent2'
-            />
+            <Icon id='camera' size={24} className='absolute bottom-0 right-0' />
           )}
         </div>
         <div className='flex grow flex-col items-start gap-2'>

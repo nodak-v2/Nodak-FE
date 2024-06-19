@@ -31,7 +31,7 @@ const Popup = () => {
   if (seen) return null;
 
   return (
-    <div className='fixed bottom-0 z-50 flex w-full max-w-[450px] flex-col bg-dark-accent2'>
+    <div className='bg-dark-accent2 fixed bottom-0 z-50 flex w-full max-w-[450px] flex-col'>
       <Swiper
         slidesPerView={1}
         loop

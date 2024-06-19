@@ -10,7 +10,7 @@ const button = cva(
   {
     variants: {
       baseColor: {
-        dark: 'border-white bg-dark-accent1 enabled:active:text-dark-accent1',
+        dark: 'enabled:active:text-dark-accent1 border-white',
         primary: 'border-primary bg-primary enabled:active:text-primary',
       },
     },
