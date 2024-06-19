@@ -4,28 +4,36 @@ import TopBar from '@/src/components/Topbar';
 
 import NotificationItem from './_components/NotificationItem';
 
-const ALARM_DUMMY = [
-  // {
-  //   user: '유저 1',
-  //   type: 'post',
-  //   createdAt: '2024-06-19 14:26:00',
-  //   userImage: 'https://via.placeholder.com/150',
-  //   isNew: true,
-  // },
-  // {
-  //   user: '유저 1',
-  //   type: 'comment',
-  //   createdAt: '2024-06-19 13:20:00',
-  //   userImage: 'https://via.placeholder.com/150',
-  //   isNew: false,
-  // },
-  // {
-  //   user: '유저 5',
-  //   type: 'follow',
-  //   createdAt: '2024-06-18 13:26:00',
-  //   userImage: 'https://via.placeholder.com/150',
-  //   isNew: false,
-  // },
+interface Notification {
+  user: string;
+  type: 'post' | 'comment' | 'follow';
+  createdAt: string;
+  userImage: string;
+  isNew: boolean;
+}
+
+const ALARM_DUMMY: Notification[] = [
+  {
+    user: '유저 1',
+    type: 'post',
+    createdAt: '2024-06-19 14:26:00',
+    userImage: 'https://via.placeholder.com/150',
+    isNew: true,
+  },
+  {
+    user: '유저 1',
+    type: 'comment',
+    createdAt: '2024-06-19 13:20:00',
+    userImage: 'https://via.placeholder.com/150',
+    isNew: false,
+  },
+  {
+    user: '유저 5',
+    type: 'follow',
+    createdAt: '2024-06-18 13:26:00',
+    userImage: 'https://via.placeholder.com/150',
+    isNew: false,
+  },
 ];
 
 const Notification = () => {
