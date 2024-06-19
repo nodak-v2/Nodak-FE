@@ -56,10 +56,17 @@ export const getPostList = async (params: GetPostListParams) =>
     params,
   });
 
-export const useGetPostListAPI = (params: GetPostListParams) => {
+const PAGE_SIZE = '8';
+
+export const useGetPostListAPI = (
+  keyword: string | null,
+  categoryId: string | null,
+) => {
+  // TODO: 인피니티 스크롤 구현
   const { data } = useSuspenseQuery({
-    queryKey: ['postList', ...Object.values(params)],
-    queryFn: () => getPostList(params),
+    queryKey: ['postList', { page: '0', keyword, categoryId }],
+    queryFn: () =>
+      getPostList({ page: '0', size: PAGE_SIZE, keyword, categoryId }),
   });
 
   return data.body;
