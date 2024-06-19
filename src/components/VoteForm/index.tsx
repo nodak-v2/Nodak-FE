@@ -48,10 +48,10 @@ const VoteForm = ({ onChange, error }: VoteFormProps) => {
   };
 
   return (
-    <div className='flex flex-col gap-1 rounded-md bg-dark-accent1 p-2'>
+    <div className='bg-dark-accent1 flex flex-col gap-1 rounded-md p-2'>
       {options.map((option, index) => (
         <div key={`${index}`}>
-          <div className='flex w-full items-center gap-1 bg-dark-accent1 p-2'>
+          <div className='bg-dark-accent1 flex w-full items-center gap-1 p-2'>
             <TextInput
               value={option}
               onChange={event => handleOptionChange(index, event)}
@@ -82,7 +82,7 @@ const VoteForm = ({ onChange, error }: VoteFormProps) => {
       <button
         type='button'
         onClick={handleAddOption}
-        className={cn('ml-2 mr-10 rounded-md bg-dark-accent2 p-2 text-white', {
+        className={cn('bg-dark-accent2 ml-2 mr-10 rounded-md p-2 text-white', {
           'cursor-not-allowed opacity-50': options.length === 6,
         })}
       >
