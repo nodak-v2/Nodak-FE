@@ -10,6 +10,7 @@ import ChipContainer, {
   ChannelType,
 } from '@/src/app/_components/ChipContainer';
 import PostItem from '@/src/app/_components/PostItem';
+import useInfiniteScroll from '@/src/hooks/useInfiniteScroll';
 
 import GNB from '../components/GNB';
 import TopBar from '../components/Topbar';
@@ -19,7 +20,11 @@ const Main = () => {
   const channel = (searchParams.get('channel') as ChannelType | null) ?? 'all';
   const keyword = searchParams.get('keyword');
 
-  const { data: posts } = useGetPostListAPI(keyword, CATEGORY_MAP[channel]);
+  const { data: posts, fetchNextPage } = useGetPostListAPI(
+    keyword,
+    CATEGORY_MAP[channel],
+  );
+  const scrollRef = useInfiniteScroll(fetchNextPage);
 
   return (
     <div className='flex h-full flex-col'>
@@ -37,6 +42,7 @@ const Main = () => {
               <PostItem post={post} />
             </Link>
           ))}
+          <div ref={scrollRef} />
         </div>
       </main>
       <GNB />
