@@ -22,7 +22,10 @@ const Toast = {
     toast.info(message, {
       ...defaultToastOption,
       ...options,
-      className: cn('rounded-lg bg-[#2D3033] text-white', className),
+      className: cn(
+        'font-text-1-rg rounded-lg bg-[#2D3033] text-white',
+        className,
+      ),
       style: { width: '358px', height: '44px' },
     });
   },
