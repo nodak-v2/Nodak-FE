@@ -6,9 +6,10 @@ import { isValidImageUrl } from '@/src/utils/isValidImageUrl';
 
 interface PostItemProps {
   post: PostListContent;
+  isNickname?: boolean;
 }
 
-const PostItem = ({ post }: PostItemProps) => {
+const PostItem = ({ post, isNickname = true }: PostItemProps) => {
   const {
     title,
     voterCount: votedCount,
@@ -33,7 +34,9 @@ const PostItem = ({ post }: PostItemProps) => {
         </div>
         <div className='flex items-center gap-4'>
           <span className='font-text-3-rg flex items-center gap-2'>
-            <span>{author}</span>
+            {isNickname ? (
+              <span className='font-text-3-rg'>{author}</span>
+            ) : null}
             <span className='text-gray-accent3'>{createdAt}</span>
           </span>
           <span className='flex items-center gap-2 text-gray-accent4'>
