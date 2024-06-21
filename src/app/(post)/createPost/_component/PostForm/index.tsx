@@ -3,6 +3,7 @@
 import { Controller, useForm } from 'react-hook-form';
 
 import { PostValue, createPost } from '@/src/apis/postDetail';
+import Toast from '@/src/app/_components/Toast';
 import Button from '@/src/components/Button/Button';
 import FormField from '@/src/components/FormField';
 import Selector from '@/src/components/Selector';
@@ -26,6 +27,7 @@ const PostForm = () => {
 
   const onSubmitPost = (data: PostValue) => {
     createPost(data);
+    Toast.default('등록되었습니다.');
   };
 
   return (
@@ -53,7 +55,6 @@ const PostForm = () => {
             {...register('title')}
           />
         </FormField>
-
         <FormField
           labelText='투표 설명'
           isRequired
@@ -67,7 +68,6 @@ const PostForm = () => {
             {...register('content')}
           />
         </FormField>
-
         <FormField labelText='투표 항목' isRequired>
           <Controller
             name='voteOptions'
@@ -80,7 +80,6 @@ const PostForm = () => {
             )}
           />
         </FormField>
-
         <FormField
           labelText='채널 선택'
           isRequired

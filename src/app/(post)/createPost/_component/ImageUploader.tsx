@@ -34,7 +34,7 @@ const ImageUploader = ({ imageSrcUrl, onChange }: ImageUploaderProps) => {
 
   return (
     <>
-      <div className='bg-gray-accent7 flex w-full justify-center p-10'>
+      <div className='flex w-full justify-center p-10'>
         <div className='relative '>
           {previewImageUrl ? (
             <>

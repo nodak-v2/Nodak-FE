@@ -1,4 +1,6 @@
 import type { Metadata, Viewport } from 'next';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Introduction from '../components/Introduction';
 import { MSWComponent } from '../mocks/MSWComponent';
@@ -43,6 +45,7 @@ const RootLayout = ({
                 {children}
               </div>
             </div>
+            <ToastContainer className='bottom-[103px] flex flex-col items-center justify-center' />
           </MSWComponent>
         </Providers>
       </body>
