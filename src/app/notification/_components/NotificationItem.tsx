@@ -2,11 +2,13 @@ import Image from 'next/image';
 
 import timeOffset from '@/src/utils/timeOffset';
 
+type NotificationType = 'post' | 'comment' | 'follow';
+
 interface Notification {
   user: string;
-  type: 'post' | 'comment' | 'follow';
+  type: NotificationType;
   createdAt: string;
-  userImage: string;
+  userImage: string | null;
   isNew: boolean;
 }
 
@@ -14,43 +16,35 @@ interface NotificationItemProps {
   notifications: Notification[];
 }
 
-const getNotificationMessage = (notification: Notification) => {
-  const { type } = notification;
+const getNotificationMessage = (type: NotificationType) => {
+  const notificationString = {
+    post: ' 님이 새로운 투표를 게시했습니다.',
+    comment: ' 님이 댓글을 남겼습니다.',
+    follow: ' 님이 회원님을 팔로우하기 시작했습니다.',
+  };
 
-  switch (type) {
-    case 'post':
-      return ` 님이 새로운 투표를 게시했습니다.`;
-    case 'comment':
-      return ` 님이 댓글을 남겼습니다.`;
-    case 'follow':
-      return ` 님이 회원님을 팔로우하기 시작했습니다.`;
-    default:
-      return '';
-  }
+  return notificationString[type];
 };
 
 const NotificationItem = ({ notifications }: NotificationItemProps) => {
   return (
     <ul>
-      {notifications.map((notification, index) => {
-        const { user, userImage, createdAt, isNew } = notification;
-
+      {notifications.map(({ user, userImage, createdAt, type }, index) => {
         return (
-          <li key={index} className={`p-4 ${isNew ? 'bg-[#2D3033]' : ''}`}>
-            <section className='flex gap-4'>
+          <li key={index} className='p-4 pt-3'>
+            <section className='flex items-center gap-2'>
+              <Image
+                src={userImage ? userImage : '/user-square.png'}
+                alt='유저아바타'
+                width={36}
+                height={36}
+              />
               <div>
-                <Image
-                  src={userImage}
-                  alt='유저아바타'
-                  width={36}
-                  height={36}
-                  className='rounded-lg'
-                />
-              </div>
-              <div className='text-white'>
-                <span className='font-bold'>{user}</span>
-                <span>{getNotificationMessage(notification)}</span>
-                <p className='text-xs font-light'>{timeOffset(createdAt)}</p>
+                <span>{user}</span>
+                <span>{getNotificationMessage(type)}</span>
+                <p className='font-text-4-rg text-gray-accent4'>
+                  {timeOffset(createdAt)}
+                </p>
               </div>
             </section>
           </li>
