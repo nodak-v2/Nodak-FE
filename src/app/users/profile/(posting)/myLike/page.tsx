@@ -1,23 +1,8 @@
 'use client';
 
-import Link from 'next/link';
+import PostingList from '../_components/PostingList';
 
-import PostItem from '@/src/app/_components/PostItem';
-
-import useGetPostHistory from '../hooks/useGetPostHistory';
-
-const MyLikeHistoryPage = () => {
-  const posts = useGetPostHistory();
-
-  return (
-    <div className='flex flex-col'>
-      {posts.map((post, index) => (
-        <Link href={`/result/${post.postId}`} key={`${index}-${post.title}`}>
-          <PostItem post={post} />
-        </Link>
-      ))}
-    </div>
-  );
-};
+const NO_LIKE_TEXT = '좋아요한 게시글이 없습니다.';
+const MyLikeHistoryPage = () => <PostingList text={NO_LIKE_TEXT} />;
 
 export default MyLikeHistoryPage;

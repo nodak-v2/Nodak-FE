@@ -1,23 +1,8 @@
 'use client';
 
-import Link from 'next/link';
+import PostingList from '../_components/PostingList';
 
-import PostItem from '@/src/app/_components/PostItem';
+const NO_COMMENT_TEXT = '작성한 댓글이 없습니다.';
 
-import useGetPostHistory from '../hooks/useGetPostHistory';
-
-const MyCommentHistoryPage = () => {
-  const posts = useGetPostHistory();
-
-  return (
-    <div className='flex flex-col'>
-      {posts.map((post, index) => (
-        <Link href={`/result/${post.postId}`} key={`${index}-${post.title}`}>
-          <PostItem post={post} />
-        </Link>
-      ))}
-    </div>
-  );
-};
-
+const MyCommentHistoryPage = () => <PostingList text={NO_COMMENT_TEXT} />;
 export default MyCommentHistoryPage;

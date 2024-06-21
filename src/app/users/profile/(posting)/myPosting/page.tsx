@@ -1,23 +1,10 @@
 'use client';
 
-import Link from 'next/link';
+import PostingList from '../_components/PostingList';
 
-import PostItem from '@/src/app/_components/PostItem';
-
-import useGetPostHistory from '../hooks/useGetPostHistory';
-
-const MyPostingHistoryPage = () => {
-  const posts = useGetPostHistory();
-
-  return (
-    <div className='flex flex-col'>
-      {posts.map((post, index) => (
-        <Link href={`/result/${post.postId}`} key={`${index}-${post.title}`}>
-          <PostItem post={post} />
-        </Link>
-      ))}
-    </div>
-  );
-};
+const NO_POSTING_TEXT = '작성한 게시글이 없습니다.';
+const MyPostingHistoryPage = () => (
+  <PostingList text={NO_POSTING_TEXT} isNickname={false} />
+);
 
 export default MyPostingHistoryPage;

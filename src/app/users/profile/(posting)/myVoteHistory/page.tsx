@@ -1,23 +1,7 @@
 'use client';
 
-import Link from 'next/link';
+import PostingList from '../_components/PostingList';
 
-import PostItem from '@/src/app/_components/PostItem';
-
-import useGetPostHistory from '../hooks/useGetPostHistory';
-
-const MyVoteHistoryPage = () => {
-  const posts = useGetPostHistory();
-
-  return (
-    <div className='flex flex-col'>
-      {posts.map((post, index) => (
-        <Link href={`/result/${post.postId}`} key={`${index}-${post.title}`}>
-          <PostItem post={post} />
-        </Link>
-      ))}
-    </div>
-  );
-};
-
+const NO_VOTE_TEXT = '투표한 게시글이 없습니다.';
+const MyVoteHistoryPage = () => <PostingList text={NO_VOTE_TEXT} />;
 export default MyVoteHistoryPage;

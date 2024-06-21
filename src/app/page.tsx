@@ -39,7 +39,7 @@ const Main = () => {
             </Link>
           ))
         ) : (
-          <EmptyPage />
+          <EmptyPage text='작성된 투표 글이 없습니다.' />
         )}
       </main>
       <GNB />
