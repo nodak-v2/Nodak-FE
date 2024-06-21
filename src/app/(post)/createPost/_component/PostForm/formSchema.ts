@@ -15,21 +15,21 @@ export const schema = yup.object({
   imageUrl: yup.mixed<File>().required(),
   title: yup
     .string()
-    .required('필수 입력 항목입니다.')
+    .required('제목을 입력하세요.')
     .trim()
     .min(2, '최소 2글자 이상이어야 합니다.')
     .max(50, '최대 500글자까지 입력 가능합니다.'),
   content: yup
     .string()
-    .required('필수 입력 항목입니다.')
+    .required('내용을 입력하세요.')
     .trim()
     .min(2, '최소 2글자 이상이어야 합니다.')
     .max(500, '최대 500글자까지 입력 가능합니다.'),
-  channel: yup.string().required('필수 선택 항목입니다.'),
+  channel: yup.string().required('카테고리를 선택하세요'),
   voteOptions: yup
     .array()
-    .required('필수 선택 항목입니다.')
-    .test('옵션수 검증', '최소 2개의 옵션을 입력해야 합니다.', isValidOptions)
+    .required()
+    .test('옵션수 검증', '항목을 최소 2개 입력하세요.', isValidOptions)
     .of(yup.string().trim().required()),
 });
 
