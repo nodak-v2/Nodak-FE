@@ -29,6 +29,7 @@ interface PostListSort {
   unsorted: boolean;
   sorted: boolean;
 }
+
 export interface PostList {
   content: PostListContent[];
   pageable: PostListPageable;

@@ -23,26 +23,24 @@ interface ChipContainerProps {
 
 const ChipContainer = ({ currentChannel = 'all' }: ChipContainerProps) => {
   return (
-    <div className='bg-dark-accent2 sticky top-0 overflow-x-auto'>
-      <ul className='flex flex-nowrap gap-2 px-4 py-2'>
-        {channelData.map(({ name, path }, index) => {
-          const variant = path === currentChannel ? 'selected' : 'default';
+    <ul className='flex items-center gap-2 px-4 py-2'>
+      {channelData.map(({ name, path }, index) => {
+        const variant = path === currentChannel ? 'selected' : 'default';
 
-          return (
-            <li key={`${index}-${name}`}>
-              <Link
-                href={{
-                  pathname: '/',
-                  query: path === 'all' ? {} : { channel: path },
-                }}
-              >
-                <Chip variant={variant}>{name}</Chip>
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+        return (
+          <li key={`${index}-${name}`}>
+            <Link
+              href={{
+                pathname: '/',
+                query: path === 'all' ? {} : { channel: path },
+              }}
+            >
+              <Chip variant={variant}>{name}</Chip>
+            </Link>
+          </li>
+        );
+      })}
+    </ul>
   );
 };
 

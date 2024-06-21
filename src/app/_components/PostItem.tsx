@@ -1,8 +1,8 @@
 import Image from 'next/image';
 
 import { PostListContent } from '@/src/apis/postList';
-import { isValidImageUrl } from '@/src/app/(main)/utils';
 import Icon from '@/src/components/Icon';
+import { isValidImageUrl } from '@/src/utils/isValidImageUrl';
 
 interface PostItemProps {
   post: PostListContent;
