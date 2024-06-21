@@ -29,6 +29,7 @@ interface PostListSort {
   unsorted: boolean;
   sorted: boolean;
 }
+
 export interface PostList {
   content: PostListContent[];
   pageable: PostListPageable;
@@ -43,25 +44,12 @@ export interface PostList {
   empty: boolean;
 }
 
-interface PostListInitialParams {
+interface GetPostListParams {
   page: string;
   size: string;
+  keyword: string | null;
+  categoryId: string | null;
 }
-
-interface PostListParamsWithCategoryId extends PostListInitialParams {
-  categoryId: string;
-  keyword: null;
-}
-
-interface PostListParamsWithKeyword extends PostListInitialParams {
-  keyword: string;
-  categoryId: null;
-}
-
-export type GetPostListParams =
-  | PostListParamsWithCategoryId
-  | PostListParamsWithKeyword
-  | PostListInitialParams;
 
 export const getPostList = async (params: GetPostListParams) =>
   await api.get<PostList>({
@@ -69,10 +57,17 @@ export const getPostList = async (params: GetPostListParams) =>
     params,
   });
 
-export const useGetPostListAPI = (params: GetPostListParams) => {
+const PAGE_SIZE = '8';
+
+export const useGetPostListAPI = (
+  keyword: string | null,
+  categoryId: string | null,
+) => {
+  // TODO: 인피니티 스크롤 구현
   const { data } = useSuspenseQuery({
-    queryKey: ['postList', ...Object.values(params)],
-    queryFn: () => getPostList(params),
+    queryKey: ['postList', { page: '0', keyword, categoryId }],
+    queryFn: () =>
+      getPostList({ page: '0', size: PAGE_SIZE, keyword, categoryId }),
   });
 
   return data.body;
