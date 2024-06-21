@@ -22,8 +22,10 @@ const Toast = {
     toast.info(message, {
       ...defaultToastOption,
       ...options,
-      className: cn('font-text-1-rg rounded-lg bg-gray-accent1', className),
-      style: { width: '358px', height: '44px' },
+      className: cn(
+        'font-text-1-rg h-[44px] w-[358px] rounded-lg bg-gray-accent1',
+        className,
+      ),
     });
   },
 };

@@ -55,7 +55,6 @@ const PostForm = () => {
             {...register('title')}
           />
         </FormField>
-
         <FormField
           labelText='투표 설명'
           isRequired
@@ -69,7 +68,6 @@ const PostForm = () => {
             {...register('content')}
           />
         </FormField>
-
         <FormField labelText='투표 항목' isRequired>
           <Controller
             name='voteOptions'
