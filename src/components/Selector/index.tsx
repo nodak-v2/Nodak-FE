@@ -9,17 +9,17 @@ import Icon from '@/src/components/Icon';
 import useDropdown from './useDropdown';
 
 const selectorButtonCSS = cva(
-  'font-text-1-rg flex w-full items-center justify-between rounded-lg border border-gray-accent1 p-2 text-white',
+  'font-text-1-rg flex w-full items-center justify-between rounded-lg border p-2 text-white',
   {
     variants: {
       variant: {
-        default: 'border-gray-accent1 bg-transparent ',
-        filled: 'border-gray-accent1',
+        default: 'border-gray-accent3 bg-transparent ',
+        filled: 'border-gray-accent3',
         error: 'border-error bg-red-500 bg-opacity-10',
       },
       isDisabled: {
         false: '',
-        true: ' cursor-not-allowed placeholder-gray-accent2',
+        true: 'cursor-not-allowed placeholder-gray-accent2',
       },
     },
     defaultVariants: {
@@ -63,7 +63,7 @@ const Selector = ({ items, placeholder, variant, onChange }: SelectorProps) => {
         {selectedItem ? (
           <span>{selectedItem}</span>
         ) : (
-          <span className='text-gray-accent1'>{placeholder}</span>
+          <span className='text-gray-accent3'>{placeholder}</span>
         )}
         <Icon
           id='down-arrow'

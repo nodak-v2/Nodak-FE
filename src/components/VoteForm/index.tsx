@@ -48,7 +48,7 @@ const VoteForm = ({ onChange, error }: VoteFormProps) => {
   };
 
   return (
-    <div className='bg-dark-accent1 flex flex-col gap-3 p-4'>
+    <div className='flex flex-col gap-3 bg-gray-accent1 p-4'>
       {options.map((option, index) => (
         <div key={`${index}`}>
           <div className='bg-dark-accent1 flex w-full items-center justify-end gap-3 self-end'>
@@ -67,7 +67,7 @@ const VoteForm = ({ onChange, error }: VoteFormProps) => {
               maxLength={10}
               onChange={event => handleOptionChange(index, event)}
               variant={error && !isOptionvalid(option) ? 'error' : 'default'}
-              className={'border text-gray-accent1'}
+              className={'border text-white'}
               placeholder='항목 입력'
             />
           </div>

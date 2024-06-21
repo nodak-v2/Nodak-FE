@@ -34,17 +34,15 @@ const FormField = ({
   return (
     <div className={cn('flex flex-col gap-3 px-4', className)} {...props}>
       <div className='flex justify-between'>
-        <label
-          className={cn(
-            'font-title-1-md text-gray-accent2 text-white',
-            labelClassName,
-          )}
-        >
+        <label className={cn('font-title-1-md text-white', labelClassName)}>
           {labelText}
           {isRequired && <span className='ml-0.5 text-primary'>*</span>}
         </label>
         {maxLength && (
-          <span className='text-xs text-gray-accent2'>{`${currentLength}/${maxLength}`}</span>
+          <div className='text-xs'>
+            <span className='text-white'>{`${currentLength}`}</span>
+            <span className='text-gray-accent3'>{`/${maxLength}`}</span>
+          </div>
         )}
         {description && (
           <Tooltip
