@@ -80,7 +80,6 @@ const PostForm = () => {
             )}
           />
         </FormField>
-
         <FormField
           labelText='채널 선택'
           isRequired

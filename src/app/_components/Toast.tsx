@@ -23,7 +23,7 @@ const Toast = {
       ...defaultToastOption,
       ...options,
       className: cn(
-        'font-text-1-rg h-[44px] w-[358px] rounded-lg bg-gray-accent1',
+        'font-text-1-rg h-[44px] w-[358px] rounded-lg bg-[#2D3033] text-white',
         className,
       ),
     });
