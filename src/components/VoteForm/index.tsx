@@ -47,35 +47,21 @@ const VoteForm = ({ onChange, error }: VoteFormProps) => {
     return option.trim().length >= 1 && option.trim().length <= 20;
   };
 
-  const isLastOption = (index: number) => index === options.length - 1;
-
-  const isBounded = (index: number) =>
-    index + 1 < MAX_LIMIT && index + 1 >= MIN_LIMIT;
-
   return (
     <div className='bg-dark-accent1 flex flex-col gap-3 p-4'>
       {options.map((option, index) => (
         <div key={`${index}`}>
           <div className='bg-dark-accent1 flex w-full items-center justify-end gap-3 self-end'>
-            {isLastOption(index) && isBounded(index) ? (
-              <Icon
-                id='add-circle'
-                className='cursor-pointer text-green-400 hover:text-green-600'
-                size={24}
-                onClick={handleAddOption}
-              />
-            ) : (
-              <Icon
-                id='subtract-circle'
-                className={cn('hover:gray-accent2 cursor-pointer text-white', {
-                  'pointer-events-none opacity-50': options.length <= MIN_LIMIT,
-                })}
-                size={24}
-                onClick={() => {
-                  handleRemoveOption(index);
-                }}
-              />
-            )}
+            <Icon
+              id='subtract-circle'
+              className={cn('hover:gray-accent2 cursor-pointer text-white', {
+                'pointer-events-none opacity-50': options.length <= MIN_LIMIT,
+              })}
+              size={24}
+              onClick={() => {
+                handleRemoveOption(index);
+              }}
+            />
             <TextInput
               value={option}
               maxLength={10}
@@ -85,11 +71,24 @@ const VoteForm = ({ onChange, error }: VoteFormProps) => {
               placeholder='항목 입력'
             />
           </div>
-          {error && !isOptionvalid(option) && (
-            <span className='mt-1 pl-2 text-sm text-red-500'>{error}</span>
-          )}
         </div>
       ))}
+      {options.length < MAX_LIMIT && (
+        <div className='bg-dark-accent1 flex w-full items-center justify-end gap-3 self-end'>
+          <Icon
+            id='add-circle'
+            className='cursor-pointer'
+            size={24}
+            onClick={handleAddOption}
+          />
+          <TextInput
+            className={'border text-gray-accent1'}
+            placeholder='항목 추가'
+            readOnly
+          />
+        </div>
+      )}
+      {error && <p className='text-sm text-error'>{error}</p>}
     </div>
   );
 };
