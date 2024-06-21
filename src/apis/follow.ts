@@ -1,4 +1,4 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { api } from './core';
 
@@ -15,16 +15,27 @@ const deleteFollow = (userId: string) => {
 };
 
 export const usePostFollowAPI = (userId: string) => {
+  const QueryClient = useQueryClient();
   const { mutateAsync } = useMutation({
     mutationFn: () => postFollow(userId),
+    onSuccess: () =>
+      QueryClient.invalidateQueries({
+        queryKey: ['profile', userId],
+      }),
   });
 
   return mutateAsync;
 };
 
 export const useDeleteFollowAPI = (userId: string) => {
+  const QueryClient = useQueryClient();
+
   const { mutateAsync } = useMutation({
     mutationFn: () => deleteFollow(userId),
+    onSuccess: () =>
+      QueryClient.invalidateQueries({
+        queryKey: ['profile', userId],
+      }),
   });
 
   return mutateAsync;
