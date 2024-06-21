@@ -1,11 +1,11 @@
 'use client';
 
 import ProfileBlock from '../_components/ProfileBlock';
-import Posting from './_components/Posting';
+import Posting from './_components/PostingList';
 
 const UserPage = () => {
   return (
-    <div className='flex grow flex-col gap-6'>
+    <div className='flex h-full flex-col gap-6 overflow-y-scroll'>
       <ProfileBlock />
       <Posting />
     </div>
