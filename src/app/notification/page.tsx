@@ -42,7 +42,7 @@ const Notification = () => {
       <TopBar.Container>
         <p className='font-h2-sm'>알림</p>
       </TopBar.Container>
-      <main className='h-full grow overflow-y-scroll'>
+      <main className='grow overflow-y-scroll'>
         {ALARM_DUMMY.length === 0 ? (
           <div className='flex h-full flex-col items-center justify-center gap-2 text-white'>
             <Icon id='warning' aria-label='알림이 없습니다.' size={64} />
