@@ -31,7 +31,7 @@ const GNB = () => {
   ];
 
   return (
-    <div className='sticky bottom-0 w-full bg-[#212529] px-4'>
+    <div className='sticky bottom-0 w-full bg-background px-4'>
       <nav>
         <ul className='flex justify-between'>
           {navItems.map(({ href, icon, name }, index) => {
@@ -41,9 +41,7 @@ const GNB = () => {
               <li key={`${index}-${name}`}>
                 <Link
                   href={href}
-                  className={cn(
-                    `mx-auto flex w-full items-end justify-center px-4 pt-1 text-center`,
-                  )}
+                  className='mx-auto flex w-full items-end justify-center px-4 pt-1 text-center'
                 >
                   <div
                     className={cn(
