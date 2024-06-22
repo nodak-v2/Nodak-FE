@@ -11,7 +11,11 @@ const GNB = () => {
   const currentPage = usePathname();
 
   const navItems = [
-    { href: '/', icon: <Icon id='home' />, name: '홈' },
+    {
+      href: '/',
+      icon: <Icon id='home' />,
+      name: '홈',
+    },
     { href: '/chat', icon: <Icon id='chat' />, name: '채팅' },
     {
       href: '/createPost',
@@ -38,14 +42,16 @@ const GNB = () => {
                 <Link
                   href={href}
                   className={cn(
-                    `mx-auto flex w-full items-end justify-center px-4 pt-1 text-center text-white`,
-                    isActive ? 'text-white' : 'text-gray-500',
+                    `mx-auto flex w-full items-end justify-center px-4 pt-1 text-center`,
                   )}
                 >
-                  <div className='flex flex-col items-center'>
-                    <span className='mx-auto mb-1 block pt-1 text-2xl '>
-                      {icon}
-                    </span>
+                  <div
+                    className={cn(
+                      'flex flex-col items-center gap-[6px]',
+                      isActive ? 'text-white' : 'text-gray-accent3',
+                    )}
+                  >
+                    {icon}
                     <span className='block pb-2 text-xs'>{name}</span>
                   </div>
                 </Link>
