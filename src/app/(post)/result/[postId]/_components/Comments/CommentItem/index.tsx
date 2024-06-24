@@ -4,6 +4,8 @@ import Image from 'next/image';
 import type { Comment } from '@/src/apis/comments';
 import { useGetUserStatusAPI } from '@/src/apis/myInfo';
 import Icon from '@/src/components/Icon';
+import ConfirmationModal from '@/src/components/Modal/ConfirmationModal';
+import useModal from '@/src/hooks/useModal';
 import { formatDateCustom } from '@/src/utils/formatDate';
 
 import OwnCommentChip from '../OwnCommentChip';
@@ -12,20 +14,27 @@ interface CommentItemProps {
   comment: Comment;
 }
 
-const DROP_DOWN_MENUS = [
-  {
-    id: 'edit',
-    label: '수정하기',
-  },
-  {
-    id: 'delete',
-    label: '삭제하기',
-  },
-];
-
 const CommentItem = ({ comment }: CommentItemProps) => {
   const { nickname, content, createdAt, userId } = comment;
   const { userId: ownId } = useGetUserStatusAPI();
+
+  const {
+    open: openEditModal,
+    close: closeEditModal,
+    isOpen: isEditModalOpen,
+  } = useModal();
+
+  const {
+    open: openDeleteModal,
+    close: closeDeleteModal,
+    isOpen: isDeleteModalOpen,
+  } = useModal();
+
+  const {
+    open: openReportModal,
+    close: closeReportModal,
+    isOpen: isReportModalOpen,
+  } = useModal();
 
   return (
     <div className='flex flex-col gap-2 border-b border-gray-accent2 p-4 text-white'>
@@ -48,15 +57,50 @@ const CommentItem = ({ comment }: CommentItemProps) => {
           </DropdownMenu.Trigger>
           <DropdownMenu.Portal>
             <DropdownMenu.Content>
-              {DROP_DOWN_MENUS.map(menu => (
-                <DropdownMenu.Item key={menu.id} className='bg-white'>
-                  {menu.label}
-                </DropdownMenu.Item>
-              ))}
+              <DropdownMenu.Item
+                key='edit'
+                className='bg-white'
+                onClick={openEditModal}
+              >
+                수정하기
+              </DropdownMenu.Item>
+              <DropdownMenu.Item
+                key='delete'
+                className='bg-white'
+                onClick={openDeleteModal}
+              >
+                삭제하기
+              </DropdownMenu.Item>
+              <DropdownMenu.Item
+                key='report'
+                className='bg-white'
+                onClick={openReportModal}
+              >
+                신고하기
+              </DropdownMenu.Item>
             </DropdownMenu.Content>
           </DropdownMenu.Portal>
         </DropdownMenu.Root>
+        <ConfirmationModal
+          isShow={isEditModalOpen}
+          description='수정하시겠습니까?'
+          onConfirm={closeEditModal}
+          onClose={closeEditModal}
+        />
+        <ConfirmationModal
+          isShow={isDeleteModalOpen}
+          description='삭제하시겠습니까?'
+          onConfirm={closeDeleteModal}
+          onClose={closeDeleteModal}
+        />
+        <ConfirmationModal
+          isShow={isReportModalOpen}
+          description='신고하시겠습니까?'
+          onConfirm={closeReportModal}
+          onClose={closeReportModal}
+        />
       </div>
+
       <div className='flex flex-col gap-0.5'>
         <span className='font-text-1-rg'>{content}</span>
         <span className='font-text-4-rg text-gray-accent4'>
