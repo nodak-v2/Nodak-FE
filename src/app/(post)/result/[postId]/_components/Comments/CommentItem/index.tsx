@@ -1,8 +1,9 @@
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import Image from 'next/image';
 
 import type { Comment } from '@/src/apis/comments';
 import { useGetUserStatusAPI } from '@/src/apis/myInfo';
-import Dropdown from '@/src/components/DropDown';
+import Icon from '@/src/components/Icon';
 import { formatDateCustom } from '@/src/utils/formatDate';
 
 import OwnCommentChip from '../OwnCommentChip';
@@ -10,6 +11,17 @@ import OwnCommentChip from '../OwnCommentChip';
 interface CommentItemProps {
   comment: Comment;
 }
+
+const DROP_DOWN_MENUS = [
+  {
+    id: 'edit',
+    label: '수정하기',
+  },
+  {
+    id: 'delete',
+    label: '삭제하기',
+  },
+];
 
 const CommentItem = ({ comment }: CommentItemProps) => {
   const { nickname, content, createdAt, userId } = comment;
@@ -28,7 +40,22 @@ const CommentItem = ({ comment }: CommentItemProps) => {
           <span className='font-title-1-md'>{nickname}</span>
           {ownId === userId && <OwnCommentChip />}
         </div>
-        <Dropdown dropDownItems={[]} />
+        <DropdownMenu.Root>
+          <DropdownMenu.Trigger asChild>
+            <button>
+              <Icon id='more-square' />
+            </button>
+          </DropdownMenu.Trigger>
+          <DropdownMenu.Portal>
+            <DropdownMenu.Content>
+              {DROP_DOWN_MENUS.map(menu => (
+                <DropdownMenu.Item key={menu.id} className='bg-white'>
+                  {menu.label}
+                </DropdownMenu.Item>
+              ))}
+            </DropdownMenu.Content>
+          </DropdownMenu.Portal>
+        </DropdownMenu.Root>
       </div>
       <div className='flex flex-col gap-0.5'>
         <span className='font-text-1-rg'>{content}</span>
