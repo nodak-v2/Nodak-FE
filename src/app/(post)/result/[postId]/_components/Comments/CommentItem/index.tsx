@@ -2,9 +2,9 @@ import Image from 'next/image';
 
 import type { Comment } from '@/src/apis/comments';
 import { useGetUserStatusAPI } from '@/src/apis/myInfo';
-import Icon from '@/src/components/Icon';
+import Dropdown from '@/src/components/DropDown';
 
-import OwnCommentChip from './OwnCommentChip';
+import OwnCommentChip from '../OwnCommentChip';
 
 interface CommentItemProps {
   comment: Comment;
@@ -27,7 +27,7 @@ const CommentItem = ({ comment }: CommentItemProps) => {
           <span className='font-title-1-md'>{nickname}</span>
           {ownId === userId && <OwnCommentChip />}
         </div>
-        <Icon id='more-square' />
+        <Dropdown menus={[]} />
       </div>
       <div className='flex flex-col gap-0.5'>
         <span className='font-text-1-rg'>{content}</span>
