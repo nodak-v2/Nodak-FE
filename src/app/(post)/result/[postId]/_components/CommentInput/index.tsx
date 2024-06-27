@@ -79,7 +79,9 @@ const CommentForm = () => {
             placeholder='댓글을 남겨보세요'
             className='font-text-1-rg grow border-none bg-transparent px-3 py-2 text-white placeholder-gray-accent3 focus:outline-none'
           />
-          <button className='font-text-1-rg mr-3 text-primary'>등록</button>
+          <button className='font-text-1-rg mr-3 text-gray-accent3'>
+            등록
+          </button>
         </div>
       )}
       <Modal show={isModalOpen}>
