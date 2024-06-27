@@ -11,8 +11,6 @@ interface FormFieldProps
   labelText: string;
   labelClassName?: string;
   isRequired?: boolean;
-  currentLength?: number;
-  maxLength?: number;
   error?: string | undefined;
   childClassName?: string;
   description?: string;
@@ -22,8 +20,6 @@ const FormField = ({
   labelText,
   labelClassName,
   isRequired = false,
-  currentLength = 0,
-  maxLength,
   children,
   className,
   error,
@@ -38,12 +34,6 @@ const FormField = ({
           {labelText}
           {isRequired && <span className='ml-0.5 text-primary'>*</span>}
         </label>
-        {maxLength && (
-          <div className='text-xs'>
-            <span className='text-white'>{`${currentLength}`}</span>
-            <span className='text-gray-accent3'>{`/${maxLength}`}</span>
-          </div>
-        )}
         {description && (
           <Tooltip
             direction='top'
