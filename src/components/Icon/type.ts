@@ -28,4 +28,8 @@ export type IconName =
   | 'heart-line'
   | 'select-vote'
   | 'select-default'
-  | 'warning';
+  | 'warning'
+  | 'camera'
+  | 'info-circle'
+  | 'add-circle'
+  | 'gallery';

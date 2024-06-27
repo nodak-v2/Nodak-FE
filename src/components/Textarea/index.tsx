@@ -5,17 +5,17 @@ import { VariantProps, cva } from 'class-variance-authority';
 import { cn } from '@/src/utils/cn';
 
 const textareaCSS = cva(
-  'h-[150px] w-full resize-none appearance-none rounded-lg border-2 p-3 text-gray-accent1 placeholder-gray-500 outline-none',
+  'font-text-1-rg h-[150px] w-full resize-none appearance-none rounded-lg border p-3 text-white placeholder-gray-accent3 outline-none',
   {
     variants: {
       variant: {
-        default: 'border-gray-300 bg-transparent ',
-        filled: 'border-gray-200 bg-gray-200 ',
-        error: 'bg-transparent ring-1 ring-red-500',
+        default: 'border-gray-accent3 bg-transparent ',
+        filled: 'border-gray-accent3',
+        error: 'border-error bg-red-500 bg-opacity-10',
       },
       isDisabled: {
         false: '',
-        true: 'bg-gray-accent7 cursor-not-allowed placeholder-gray-accent2',
+        true: ' cursor-not-allowed placeholder-gray-accent2',
       },
     },
     defaultVariants: {

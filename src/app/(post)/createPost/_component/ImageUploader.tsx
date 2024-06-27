@@ -34,7 +34,7 @@ const ImageUploader = ({ imageSrcUrl, onChange }: ImageUploaderProps) => {
 
   return (
     <>
-      <div className='flex w-full justify-center p-10'>
+      <div className='bg-gray-accent7 flex w-full justify-center p-10'>
         <div className='relative '>
           {previewImageUrl ? (
             <>
@@ -47,12 +47,13 @@ const ImageUploader = ({ imageSrcUrl, onChange }: ImageUploaderProps) => {
               />
               <button
                 onClick={handleDeleteImage}
-                className='absolute right-1 top-2 cursor-pointer items-center'
+                className='absolute right-1 top-2 flex cursor-pointer items-center justify-center rounded-full border bg-white text-black'
               >
                 <Icon
                   id='dash-circle-fill'
                   aria-label='업로드한 이미지 삭제하기'
-                  style={{ opacity: 0.4 }}
+                  size={16}
+                  style={{ opacity: 0.5 }}
                 />
               </button>
             </>
@@ -60,14 +61,10 @@ const ImageUploader = ({ imageSrcUrl, onChange }: ImageUploaderProps) => {
             <div className='h-40 w-40 rounded-lg bg-gray-200' />
           )}
           <div className='absolute -bottom-3 -right-3'>
-            <ImageUploadButton
-              setImageUrl={setPreviewImageUrl}
-              onChange={onChange}
-            />
+            <ImageUploadButton />
           </div>
         </div>
       </div>
-
       <ConfirmationModal
         description='이미지를 삭제하시겠습니까?'
         isShow={isShowModal}

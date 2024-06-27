@@ -47,6 +47,7 @@ const ActiveGrass = () => {
             message={`${date}, 게시물: ${postNumber}`}
             hasArrow
             type='hover'
+            className='w-24'
           >
             <div className={cn(grassCSS({ variant: lightness }))}></div>
           </Tooltip>

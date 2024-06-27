@@ -5,15 +5,15 @@ import { VariantProps, cva } from 'class-variance-authority';
 import { cn } from '@/src/utils/cn';
 
 const textInputCSS = cva(
-  'w-full rounded-lg border-2 p-3 text-gray-accent1 placeholder-gray-500 outline-none',
+  'font-text-1-rg w-full rounded-lg border p-3 text-white placeholder-gray-accent3 outline-none',
   {
     variants: {
       variant: {
-        default: 'border-gray-300 bg-transparent ',
-        filled: 'border-gray-200 bg-gray-200 ',
+        default: 'border-gray-accent3 bg-transparent ',
+        filled: 'border-gray-accent3 ',
         underline:
           'rounded-none border-0 border-b-2 border-gray-300 bg-transparent',
-        error: 'bg-transparent ring-1 ring-red-500',
+        error: 'border-error bg-red-500 bg-opacity-10',
       },
       isDisabled: {
         false: '',
@@ -31,12 +31,13 @@ type TextInputProps = ComponentPropsWithoutRef<'input'> &
   VariantProps<typeof textInputCSS>;
 
 const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
-  ({ variant, className, ...props }, ref) => {
+  ({ variant, className, maxLength, ...props }, ref) => {
     const { disabled: isDisabled } = props;
 
     return (
       <input
         ref={ref}
+        maxLength={maxLength}
         className={cn(textInputCSS({ variant, isDisabled }), className)}
         {...props}
       />
