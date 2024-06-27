@@ -14,7 +14,7 @@ const isValidOptions = (value: VoteOption[]) => {
 };
 
 export const schema = yup.object({
-  title: yup
+  voteTitle: yup
     .string()
     .required('제목을 입력하세요.')
     .trim()
@@ -27,7 +27,7 @@ export const schema = yup.object({
     .min(2, '최소 2글자 이상이어야 합니다.')
     .max(200, '최대 200글자까지 입력 가능합니다.'),
   channel: yup.string().required('카테고리를 선택하세요'),
-  voteOptions: yup
+  voteOptionContent: yup
     .array(
       yup.object({
         option: yup.string().required('항목을 입력하세요.'),
@@ -44,11 +44,11 @@ export const schema = yup.object({
 });
 
 export const defaultValues = {
-  title: '',
+  voteTitle: '',
   content: '',
   channel: '',
   endDate: '',
-  voteOptions: [
+  voteOptionContent: [
     { option: '', imageUrl: '' },
     { option: '', imageUrl: '' },
   ] as VoteOption[],

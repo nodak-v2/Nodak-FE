@@ -2,7 +2,7 @@
 
 import { Controller, useForm } from 'react-hook-form';
 
-import { PostRequestBody } from '@/src/apis/postDetail';
+import { PostRequestBody } from '@/src/apis/createPost';
 import Toast from '@/src/app/_components/Toast';
 import Button from '@/src/components/Button/Button';
 import FormField from '@/src/components/FormField';
@@ -38,11 +38,15 @@ const PostForm = () => {
       className='flex grow flex-col overflow-y-auto'
     >
       <fieldset className='flex flex-col gap-5'>
-        <FormField labelText='제목' isRequired error={errors.title?.message}>
+        <FormField
+          labelText='제목'
+          isRequired
+          error={errors.voteTitle?.message}
+        >
           <TextInput
-            variant={errors.title ? 'error' : 'default'}
+            variant={errors.voteTitle ? 'error' : 'default'}
             placeholder='투표 제목'
-            {...register('title')}
+            {...register('voteTitle')}
           />
         </FormField>
         <FormField
@@ -54,12 +58,12 @@ const PostForm = () => {
           childClassName='px-0'
         >
           <Controller
-            name='voteOptions'
+            name='voteOptionContent'
             control={control}
             render={({ field }) => (
               <VoteForm
                 onChange={field.onChange}
-                error={errors.voteOptions?.message}
+                error={errors.voteOptionContent?.message}
               />
             )}
           />

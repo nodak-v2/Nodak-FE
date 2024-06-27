@@ -1,7 +1,24 @@
 import { HttpResponse, http } from 'msw';
 
 import { BASE_URL } from '@/src/apis/constants';
-import { PostDetail } from '@/src/apis/postDetail';
+
+export interface PostDetail {
+  message: string;
+  body: PostDetailBody;
+}
+
+interface PostDetailBody {
+  title: string;
+  author: string;
+  isAuthor: boolean;
+  commentSize: number;
+  profileImageUrl: string | null;
+  createdAt: string;
+  content: string;
+  imageUrl: string | null;
+  starCount: number;
+  checkStar: boolean;
+}
 
 class Post {
   private postDetail: PostDetail[];

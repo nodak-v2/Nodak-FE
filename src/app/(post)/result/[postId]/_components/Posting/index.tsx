@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
 
-import { useGetPostDetailAPI } from '@/src/apis/post';
+import { useGetPostDetailAPI } from '@/src/apis/postDetail';
 import { useGetVoteDetailAPI } from '@/src/apis/vote';
 
 import VoteForm from './VoteForm';

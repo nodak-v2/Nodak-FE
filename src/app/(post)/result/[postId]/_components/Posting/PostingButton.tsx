@@ -1,6 +1,6 @@
 import { useParams } from 'next/navigation';
 
-import { useGetPostDetailAPI } from '@/src/apis/post';
+import { useGetPostDetailAPI } from '@/src/apis/postDetail';
 import Icon from '@/src/components/Icon';
 
 import { usePostingLike } from '../../hooks/usePostingLike';

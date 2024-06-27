@@ -1,4 +1,4 @@
-import { PostRequestBody, useCreatePostAPI } from '@/src/apis/postDetail';
+import { type PostRequestBody, useCreatePostAPI } from '@/src/apis/createPost';
 
 export const useCreatePost = () => {
   const createPost = useCreatePostAPI();
