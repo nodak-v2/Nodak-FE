@@ -6,18 +6,12 @@ import { IconName } from '@/src/components/Icon/type';
 import { useImageUpload } from './hooks/useImageUpload';
 
 interface ImageUploadButtonProps {
-  setImageUrl: (imageUrl: string) => void;
-  onChange: (imageUrl: string) => void;
   iconId?: IconName;
 }
 
-const ImageUploadButton = ({
-  setImageUrl,
-  onChange,
-  iconId = 'camera',
-}: ImageUploadButtonProps) => {
+const ImageUploadButton = ({ iconId = 'camera' }: ImageUploadButtonProps) => {
   const inputElement = useRef<HTMLInputElement>(null);
-  const imageUpload = useImageUpload({ setImageUrl, onChange });
+  const imageUpload = useImageUpload();
 
   const handleImageSelect = async () => {
     const file = inputElement.current?.files?.[0];

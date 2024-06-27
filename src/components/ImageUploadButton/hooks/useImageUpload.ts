@@ -1,13 +1,6 @@
 import { usePostImageFileAPI } from '@/src/apis/image';
 
-interface ImageUploadButtonProps {
-  setImageUrl: (imageUrl: string) => void;
-  onChange: (imageUrl: string) => void;
-}
-export const useImageUpload = ({
-  setImageUrl,
-  onChange,
-}: ImageUploadButtonProps) => {
+export const useImageUpload = () => {
   const userImageFileUpload = usePostImageFileAPI();
 
   return async (image: File) => {
@@ -17,7 +10,6 @@ export const useImageUpload = ({
 
     const { imagePath } = data;
 
-    setImageUrl(`${process.env.NEXT_PUBLIC_IMAGE_URL}/${imagePath}`);
-    onChange(imagePath);
+    return `${process.env.NEXT_PUBLIC_IMAGE_URL}/${imagePath}`;
   };
 };
