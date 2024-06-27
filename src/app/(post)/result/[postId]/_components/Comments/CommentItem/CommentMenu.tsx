@@ -1,14 +1,18 @@
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
+import { useRouter } from 'next/navigation';
 
 import Icon from '@/src/components/Icon';
 import ConfirmationModal from '@/src/components/Modal/ConfirmationModal';
 import useModal from '@/src/hooks/useModal';
 
 interface CommentMenuProps {
+  commentId: number;
   isOwnComment: boolean;
 }
 
-const CommentMenu = ({ isOwnComment }: CommentMenuProps) => {
+const CommentMenu = ({ commentId, isOwnComment }: CommentMenuProps) => {
+  const router = useRouter();
+
   const {
     open: openDeleteModal,
     close: closeDeleteModal,
@@ -21,7 +25,9 @@ const CommentMenu = ({ isOwnComment }: CommentMenuProps) => {
     isOpen: isReportModalOpen,
   } = useModal();
 
-  const handleEdit = () => {};
+  const handleEdit = () => {
+    router.push(`?commentId=${commentId}`);
+  };
 
   return (
     <>
