@@ -66,3 +66,7 @@ ul > button:last-child {
     @apply text-[10px] font-regular leading-[14px];
   }
 }
+
+input[type='datetime-local']::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
