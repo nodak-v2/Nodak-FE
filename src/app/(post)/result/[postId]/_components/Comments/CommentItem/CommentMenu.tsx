@@ -32,30 +32,21 @@ const CommentMenu = ({ isOwnComment }: CommentMenuProps) => {
           </button>
         </DropdownMenu.Trigger>
         <DropdownMenu.Portal>
-          <DropdownMenu.Content onCloseAutoFocus={e => e.preventDefault()}>
+          <DropdownMenu.Content
+            onCloseAutoFocus={e => e.preventDefault()}
+            className=' font-text-3-rg flex flex-col gap-2 rounded-lg bg-[#2d3033] p-2 text-white'
+          >
             {isOwnComment ? (
               <>
-                <DropdownMenu.Item
-                  key='edit'
-                  className='bg-white'
-                  onClick={handleEdit}
-                >
+                <DropdownMenu.Item key='edit' onClick={handleEdit}>
                   수정하기
                 </DropdownMenu.Item>
-                <DropdownMenu.Item
-                  key='delete'
-                  className='bg-white'
-                  onClick={openDeleteModal}
-                >
+                <DropdownMenu.Item key='delete' onClick={openDeleteModal}>
                   삭제하기
                 </DropdownMenu.Item>
               </>
             ) : (
-              <DropdownMenu.Item
-                key='report'
-                className='bg-white'
-                onClick={openReportModal}
-              >
+              <DropdownMenu.Item key='report' onClick={openReportModal}>
                 신고하기
               </DropdownMenu.Item>
             )}
