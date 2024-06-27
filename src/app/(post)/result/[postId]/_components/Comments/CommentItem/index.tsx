@@ -15,6 +15,8 @@ const CommentItem = ({ comment }: CommentItemProps) => {
   const { nickname, content, createdAt, userId } = comment;
   const { userId: ownId } = useGetUserStatusAPI();
 
+  const isOwnComment = ownId === userId;
+
   return (
     <div className='flex flex-col gap-2 border-b border-gray-accent2 p-4 text-white'>
       <div className='flex items-center justify-between'>
@@ -26,9 +28,9 @@ const CommentItem = ({ comment }: CommentItemProps) => {
             height={24}
           />
           <span className='font-title-1-md'>{nickname}</span>
-          {ownId === userId && <OwnCommentChip />}
+          {isOwnComment && <OwnCommentChip />}
         </div>
-        <CommentMenu />
+        <CommentMenu isOwnComment={isOwnComment} />
       </div>
 
       <div className='flex flex-col gap-0.5'>
