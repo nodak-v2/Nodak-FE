@@ -1,4 +1,9 @@
+import { useMutation } from '@tanstack/react-query';
+
 import { BASE_URL, TEST_TOKEN } from '@/src/apis/constants';
+
+import { VoteOption } from '../components/VoteForm';
+import { api } from './core';
 
 export interface PostDetail {
   message: string;
@@ -18,13 +23,12 @@ interface PostDetailBody {
   checkStar: boolean;
 }
 
-export interface PostValue {
+export interface PostRequestBody {
   title: string;
   content: string;
-  imageUrl?: File;
-  channel?: string;
-  voteTitle?: string;
-  voteOptions?: string[];
+  channel: string;
+  voteOptions: VoteOption[];
+  endDate: string;
 }
 
 export const getPostDetail = async (postId: string) => {
@@ -59,13 +63,27 @@ export const deleteLike = async (postId: string) => {
   });
 };
 
-export const createPost = async (data: PostValue) => {
-  await fetch(`${BASE_URL}/posts`, {
-    method: 'post',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: '',
-    },
-    body: JSON.stringify(data),
+// export const createPost = async (data: PostValue) => {
+//   await fetch(`${BASE_URL}/posts`, {
+//     method: 'post',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify(data),
+//   });
+// };
+
+const createPost = (data: PostRequestBody) => {
+  return api.post({
+    url: `/posts`,
+    data: { ...data, startDate: new Date().toISOString() },
   });
+};
+
+export const useCreatePostAPI = () => {
+  const { mutateAsync } = useMutation({
+    mutationFn: (data: PostRequestBody) => createPost(data),
+  });
+
+  return mutateAsync;
 };
