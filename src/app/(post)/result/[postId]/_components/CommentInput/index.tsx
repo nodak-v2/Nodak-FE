@@ -9,6 +9,7 @@ import {
 
 import { useGetCommentsAPI, useUpdateCommentAPI } from '@/src/apis/comments';
 import Modal from '@/src/components/Modal';
+import useModal from '@/src/hooks/useModal';
 
 import { useCreateComment } from '../../hooks/useCreateComment';
 
@@ -26,18 +27,11 @@ const CommentForm = () => {
   const comments = useGetCommentsAPI(postId);
 
   const isUpdate = !!commentId;
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    router.push(currentPath);
-    setComment('');
-    setIsModalOpen(false);
-  };
+  const {
+    open: openModal,
+    close: closeModal,
+    isOpen: isModalOpen,
+  } = useModal();
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setComment(e.target.value);
@@ -48,8 +42,18 @@ const CommentForm = () => {
     e.preventDefault();
 
     isUpdate ? updateComment(comment) : createComment(comment);
-    setComment('');
+    resetComment();
     closeModal();
+  };
+
+  const handleCancelEditing = () => {
+    resetComment();
+    closeModal();
+  };
+
+  const resetComment = () => {
+    setComment('');
+    router.push(currentPath);
   };
 
   useEffect(() => {
@@ -60,7 +64,7 @@ const CommentForm = () => {
     );
     setComment(updatedComment ? updatedComment.content : '');
     openModal();
-  }, [isUpdate, comments, commentId]);
+  }, [isUpdate, comments, commentId, openModal]);
 
   useEffect(() => {
     if (isModalOpen) {
@@ -98,7 +102,7 @@ const CommentForm = () => {
           <div className='flex gap-2'>
             <button
               className='font-text-1-rg text-gray-accent3'
-              onClick={closeModal}
+              onClick={handleCancelEditing}
             >
               취소
             </button>
