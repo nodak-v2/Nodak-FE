@@ -47,3 +47,38 @@ export const useCreateCommentAPI = (postId: string) => {
 
   return mutateAsync;
 };
+
+const updateComment = (postId: string, commentId: number, comment: string) => {
+  return api.patch({
+    url: `/posts/${postId}/comments/${commentId}`,
+    data: { content: comment },
+  });
+};
+
+export const useUpdateCommentAPI = (postId: string, commentId: number) => {
+  const QueryClient = useQueryClient();
+  const { mutateAsync } = useMutation({
+    mutationFn: (comment: string) => updateComment(postId, commentId, comment),
+    onSuccess: () =>
+      QueryClient.invalidateQueries({ queryKey: ['comments', postId] }),
+  });
+
+  return mutateAsync;
+};
+
+const deleteComment = (postId: string, commentId: number) => {
+  return api.delete({
+    url: `/posts/${postId}/comments/${commentId}`,
+  });
+};
+
+export const useDeleteCommentAPI = (postId: string, commentId: number) => {
+  const QueryClient = useQueryClient();
+  const { mutateAsync } = useMutation({
+    mutationFn: () => deleteComment(postId, commentId),
+    onSuccess: () =>
+      QueryClient.invalidateQueries({ queryKey: ['comments', postId] }),
+  });
+
+  return mutateAsync;
+};
