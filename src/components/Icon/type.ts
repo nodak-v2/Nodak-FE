@@ -31,4 +31,5 @@ export type IconName =
   | 'warning'
   | 'camera'
   | 'info-circle'
-  | 'add-circle';
+  | 'add-circle'
+  | 'gallery';
