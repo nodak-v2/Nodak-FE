@@ -1,6 +1,6 @@
 'use client';
 
-import { PropsWithChildren, useEffect } from 'react';
+import { PropsWithChildren } from 'react';
 
 import { useParams, useRouter } from 'next/navigation';
 
@@ -11,13 +11,8 @@ const UsersLayout = ({ children }: PropsWithChildren) => {
   const router = useRouter();
   const { login: isLogin, userId: currentUserId } = useGetUserStatusAPI();
 
-  useEffect(() => {
-    if (isLogin) {
-      if (userId === String(currentUserId)) {
-        router.replace('/users/profile');
-      }
-    }
-  }, [isLogin, currentUserId, router, userId]);
+  if (isLogin && userId === String(currentUserId))
+    router.replace('/users/profile');
 
   return <>{children}</>;
 };
