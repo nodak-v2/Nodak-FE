@@ -11,7 +11,7 @@ interface CommentItemProps {
 }
 
 const CommentItem = ({ comment }: CommentItemProps) => {
-  const { nickname, content, createdAt, userId } = comment;
+  const { nickname, content, createdAt, userId, commentId } = comment;
   const { userId: ownId } = useGetUserStatusAPI();
 
   const isOwnComment = ownId === userId;
@@ -29,7 +29,7 @@ const CommentItem = ({ comment }: CommentItemProps) => {
           <span className='font-title-1-md'>{nickname}</span>
           {isOwnComment && <OwnCommentChip />}
         </div>
-        <CommentMenu isOwnComment={isOwnComment} />
+        <CommentMenu commentId={commentId} isOwnComment={isOwnComment} />
       </div>
 
       <div className='flex flex-col gap-0.5'>
