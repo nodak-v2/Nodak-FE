@@ -16,7 +16,7 @@ import useModal from '@/src/hooks/useModal';
 
 const CommentForm = () => {
   const router = useRouter();
-  const currentPath = usePathname();
+  const pathWithoutQueryParams = usePathname();
   const { postId } = useParams() as { postId: string };
   const commentId = useSearchParams().get('commentId') as string | null;
 
@@ -25,7 +25,7 @@ const CommentForm = () => {
   const {
     register,
     handleSubmit,
-    reset,
+    reset: resetForm,
     setValue,
     setFocus,
     formState: { isSubmitting },
@@ -52,9 +52,9 @@ const CommentForm = () => {
   };
 
   const handleCloseModal = () => {
-    setTimeout(reset, 0);
+    setTimeout(resetForm, 0);
     setTimeout(closeModal, 0);
-    router.push(currentPath);
+    router.push(pathWithoutQueryParams);
   };
 
   const handleOpenModal = useCallback(() => {
