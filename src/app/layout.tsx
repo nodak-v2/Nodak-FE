@@ -43,9 +43,9 @@ const RootLayout = ({
                 className='relative flex h-full max-h-[950px] min-h-[600px] w-full min-w-[350px] max-w-[450px] shrink-0 flex-col bg-background text-white shadow-xl'
               >
                 {children}
+                <ToastContainer className='absolute bottom-[103px] flex flex-col items-center justify-center' />
               </div>
             </div>
-            <ToastContainer className='bottom-[103px] flex flex-col items-center justify-center' />
           </MSWComponent>
         </Providers>
       </body>
