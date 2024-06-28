@@ -10,10 +10,15 @@ import ConfirmationModal from '@/src/components/Modal/ConfirmationModal';
 
 interface ImageUploaderProps {
   imageSrcUrl?: string;
+  defaultSrcUrl?: string;
   onChange: (imageUrl: string | null) => void;
 }
 
-const ImageUploader = ({ imageSrcUrl, onChange }: ImageUploaderProps) => {
+const ImageUploader = ({
+  imageSrcUrl,
+  onChange,
+  defaultSrcUrl = '/default-image.png',
+}: ImageUploaderProps) => {
   const [previewImageUrl, setPreviewImageUrl] = useState(imageSrcUrl || null);
   const [isShowModal, setIsShowModal] = useState(false);
 
@@ -35,33 +40,33 @@ const ImageUploader = ({ imageSrcUrl, onChange }: ImageUploaderProps) => {
   return (
     <>
       <div className='bg-gray-accent7 flex w-full justify-center p-10'>
-        <div className='relative '>
-          {previewImageUrl ? (
-            <>
-              <Image
-                src={previewImageUrl}
-                alt='profile'
-                className='z-10 h-40 w-40 rounded-lg bg-white object-cover'
-                width={500}
-                height={500}
+        <div className='relative'>
+          <Image
+            src={previewImageUrl ? previewImageUrl : defaultSrcUrl}
+            alt='profile'
+            className='z-10 h-[83.33px] w-[83.33px] rounded-lg object-cover'
+            width={83}
+            height={83}
+          />
+          {previewImageUrl && (
+            <button
+              onClick={handleDeleteImage}
+              className='absolute right-0 top-0 flex cursor-pointer items-center justify-center rounded-full border bg-white text-black'
+              type='button'
+            >
+              <Icon
+                id='dash-circle-fill'
+                aria-label='업로드한 이미지 삭제하기'
+                size={16}
+                style={{ opacity: 0.5 }}
               />
-              <button
-                onClick={handleDeleteImage}
-                className='absolute right-1 top-2 flex cursor-pointer items-center justify-center rounded-full border bg-white text-black'
-              >
-                <Icon
-                  id='dash-circle-fill'
-                  aria-label='업로드한 이미지 삭제하기'
-                  size={16}
-                  style={{ opacity: 0.5 }}
-                />
-              </button>
-            </>
-          ) : (
-            <div className='h-40 w-40 rounded-lg bg-gray-200' />
+            </button>
           )}
-          <div className='absolute -bottom-3 -right-3'>
-            <ImageUploadButton />
+          <div className='absolute -bottom-2 -right-2'>
+            <ImageUploadButton
+              onChange={onChange}
+              setImageUrl={setPreviewImageUrl}
+            />
           </div>
         </div>
       </div>
@@ -74,4 +79,5 @@ const ImageUploader = ({ imageSrcUrl, onChange }: ImageUploaderProps) => {
     </>
   );
 };
+
 export default ImageUploader;

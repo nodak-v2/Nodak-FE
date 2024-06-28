@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { Controller, useForm } from 'react-hook-form';
 
-import ImageUploader from '@/src/app/(post)/createPost/_component/ImageUploader';
+import ImageUploader from '@/src/app/users/profile/edit/ImageUploader';
 import FormField from '@/src/components/FormField';
 import TextInput from '@/src/components/TextInput';
 import Toast from '@/src/components/Toast';
@@ -48,7 +48,12 @@ const UserEditPage = () => {
           <Controller
             name='imageUrl'
             control={control}
-            render={({ field }) => <ImageUploader onChange={field.onChange} />}
+            render={({ field }) => (
+              <ImageUploader
+                defaultSrcUrl='/user-profile.png'
+                onChange={field.onChange}
+              />
+            )}
           />
 
           <FormField labelText='닉네임' error={errors.nickName?.message}>

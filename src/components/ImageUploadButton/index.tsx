@@ -6,10 +6,16 @@ import { IconName } from '@/src/components/Icon/type';
 import { useImageUpload } from './hooks/useImageUpload';
 
 interface ImageUploadButtonProps {
+  setImageUrl: (imageUrl: string) => void;
+  onChange: (imageUrl: string) => void;
   iconId?: IconName;
 }
 
-const ImageUploadButton = ({ iconId = 'camera' }: ImageUploadButtonProps) => {
+const ImageUploadButton = ({
+  iconId = 'camera',
+  onChange,
+  setImageUrl,
+}: ImageUploadButtonProps) => {
   const inputElement = useRef<HTMLInputElement>(null);
   const imageUpload = useImageUpload();
 
@@ -17,7 +23,9 @@ const ImageUploadButton = ({ iconId = 'camera' }: ImageUploadButtonProps) => {
     const file = inputElement.current?.files?.[0];
     if (!file) return;
 
-    imageUpload(file);
+    const imageUrl = await imageUpload(file);
+    setImageUrl(imageUrl);
+    onChange(imageUrl);
   };
 
   return (
