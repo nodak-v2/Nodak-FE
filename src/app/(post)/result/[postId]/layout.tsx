@@ -2,10 +2,10 @@
 
 import { PropsWithChildren, Suspense } from 'react';
 
+import CommentForm from '@/src/app/(post)/result/[postId]/_components/CommentForm';
 import Spinner from '@/src/components/Spinner';
 
 import TopBar from '../../../../components/Topbar';
-import CommentInput from './_components/CommentInput';
 
 const PostDetailLayout = ({ children }: PropsWithChildren) => {
   return (
@@ -17,8 +17,8 @@ const PostDetailLayout = ({ children }: PropsWithChildren) => {
       </TopBar.Container>
       <Suspense fallback={<Spinner text='게시글 정보를 불러오는 중 입니다.' />}>
         {children}
+        <CommentForm />
       </Suspense>
-      <CommentInput />
     </>
   );
 };
