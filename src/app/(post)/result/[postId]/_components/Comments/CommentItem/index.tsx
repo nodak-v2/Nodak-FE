@@ -30,7 +30,9 @@ const CommentItem = ({ comment }: CommentItemProps) => {
           <span className='font-title-1-md'>{nickname}</span>
           {isOwnComment && <OwnCommentChip />}
         </div>
-        <CommentMenu commentId={commentId} isOwnComment={isOwnComment} />
+        {isOwnComment && (
+          <CommentMenu commentId={commentId} isOwnComment={isOwnComment} />
+        )}
       </div>
 
       <div className='flex flex-col gap-0.5'>
