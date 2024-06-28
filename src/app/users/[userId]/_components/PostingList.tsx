@@ -12,7 +12,7 @@ const Posting = () => {
 
   return (
     <div className='flex h-full flex-col'>
-      <span className='font-h4-sm text-gray-accent3 px-4'>작성 글</span>
+      <span className='font-h4-sm px-4 text-gray-accent3'>작성 글</span>
       <div className='flex grow flex-col'>
         {posts.length ? (
           posts.map((post, index) => (
