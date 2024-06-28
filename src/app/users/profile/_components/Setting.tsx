@@ -1,9 +1,7 @@
-'use client';
-
 import { useRouter } from 'next/navigation';
 
-import Toast from '@/src/app/_components/Toast';
 import Icon from '@/src/components/Icon';
+import Toast from '@/src/components/Toast';
 
 import { useLogout } from '../hooks/useLogout';
 
