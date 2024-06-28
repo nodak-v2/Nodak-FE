@@ -1,6 +1,7 @@
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 
+import { useDeleteCommentAPI } from '@/src/apis/comments';
 import Icon from '@/src/components/Icon';
 import ConfirmationModal from '@/src/components/Modal/ConfirmationModal';
 import useModal from '@/src/hooks/useModal';
@@ -12,6 +13,8 @@ interface CommentMenuProps {
 
 const CommentMenu = ({ commentId, isOwnComment }: CommentMenuProps) => {
   const router = useRouter();
+  const { postId } = useParams() as { postId: string };
+  const deleteComment = useDeleteCommentAPI(postId, commentId);
 
   const {
     open: openDeleteModal,
@@ -19,14 +22,13 @@ const CommentMenu = ({ commentId, isOwnComment }: CommentMenuProps) => {
     isOpen: isDeleteModalOpen,
   } = useModal();
 
-  const {
-    open: openReportModal,
-    close: closeReportModal,
-    isOpen: isReportModalOpen,
-  } = useModal();
-
-  const handleEdit = () => {
+  const handleEditComment = () => {
     router.push(`?commentId=${commentId}`);
+  };
+
+  const handleDeleteComment = async () => {
+    await deleteComment();
+    closeDeleteModal();
   };
 
   return (
@@ -42,19 +44,15 @@ const CommentMenu = ({ commentId, isOwnComment }: CommentMenuProps) => {
             onCloseAutoFocus={e => e.preventDefault()}
             className=' font-text-3-rg flex flex-col gap-2 rounded-lg bg-[#2d3033] p-2 text-white'
           >
-            {isOwnComment ? (
+            {isOwnComment && (
               <>
-                <DropdownMenu.Item key='edit' onClick={handleEdit}>
+                <DropdownMenu.Item key='edit' onClick={handleEditComment}>
                   수정하기
                 </DropdownMenu.Item>
                 <DropdownMenu.Item key='delete' onClick={openDeleteModal}>
                   삭제하기
                 </DropdownMenu.Item>
               </>
-            ) : (
-              <DropdownMenu.Item key='report' onClick={openReportModal}>
-                신고하기
-              </DropdownMenu.Item>
             )}
           </DropdownMenu.Content>
         </DropdownMenu.Portal>
@@ -62,14 +60,8 @@ const CommentMenu = ({ commentId, isOwnComment }: CommentMenuProps) => {
       <ConfirmationModal
         isShow={isDeleteModalOpen}
         description='삭제하시겠습니까?'
-        onConfirm={closeDeleteModal}
+        onConfirm={handleDeleteComment}
         onClose={closeDeleteModal}
-      />
-      <ConfirmationModal
-        isShow={isReportModalOpen}
-        description='신고하시겠습니까?'
-        onConfirm={closeReportModal}
-        onClose={closeReportModal}
       />
     </>
   );
