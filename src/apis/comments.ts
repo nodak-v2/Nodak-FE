@@ -15,23 +15,6 @@ export interface Comment {
   userId: number;
 }
 
-// export const getComments = async (postId: string) => {
-//   const response = await fetch(
-//     `${process.env.NEXT_PUBLIC_API_URL}/posts/${postId}/comments`,
-//   );
-
-//   const data = (await response.json()) as GetData<Comment[]>;
-
-//   return data.body;
-// };
-
-// export const createComment = async (postId: string, comment: string) => {
-//   await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts/${postId}/comments`, {
-//     method: 'post',
-//     body: JSON.stringify({ content: comment }),
-//   });
-// };
-
 const getComments = (postId: string) => {
   return api.get<Comment[]>({
     url: `/posts/${postId}/comments`,

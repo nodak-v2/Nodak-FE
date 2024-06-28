@@ -2,15 +2,6 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { api } from './core';
 
-export interface Comment {
-  commentId: number;
-  profileImageUrl: string | null;
-  nickname: string;
-  content: string;
-  createdAt: string;
-  userId: number;
-}
-
 const postLike = (postId: string) => {
   return api.post({
     url: `/posts/${postId}/stars`,

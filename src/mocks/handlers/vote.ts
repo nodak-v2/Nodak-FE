@@ -1,7 +1,19 @@
 import { HttpResponse, http } from 'msw';
 
 import { BASE_URL } from '@/src/apis/constants';
-import { VoteResult } from '@/src/apis/vote';
+import { VoteOption } from '@/src/apis/vote';
+
+interface VoteResult {
+  message: string;
+  body: {
+    voteId: number;
+    voteTitle: string;
+    hasVoted: boolean;
+    choiceVoteOptionId: number;
+    totalNumber: number;
+    voteOptions: VoteOption[];
+  };
+}
 
 class Vote {
   private voteResults: VoteResult[];
