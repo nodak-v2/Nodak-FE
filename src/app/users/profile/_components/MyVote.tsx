@@ -11,6 +11,13 @@ interface PostingIconProps {
   routingPath: PostingNavigation;
 }
 
+const postingCategory: PostingIconProps[] = [
+  { icon: 'write', name: '작성 글', routingPath: 'myPosting' },
+  { icon: 'check-circle', name: '투표 내역', routingPath: 'myVoteHistory' },
+  { icon: 'like', name: '좋아한 투표', routingPath: 'myLike' },
+  { icon: 'message-2', name: '내 댓글', routingPath: 'myComment' },
+];
+
 const PostingIcon = ({ icon, name, routingPath }: PostingIconProps) => {
   return (
     <Link
@@ -24,13 +31,6 @@ const PostingIcon = ({ icon, name, routingPath }: PostingIconProps) => {
 };
 
 const MyVote = () => {
-  const postingCategory: PostingIconProps[] = [
-    { icon: 'write', name: '작성 글', routingPath: 'myPosting' },
-    { icon: 'check-circle', name: '투표 내역', routingPath: 'myVoteHistory' },
-    { icon: 'like', name: '좋아한 투표', routingPath: 'myLike' },
-    { icon: 'message-2', name: '내 댓글', routingPath: 'myComment' },
-  ];
-
   return (
     <div className='flex flex-col gap-4 px-4'>
       <span className='font-h4-sm-bold text-gray-accent3'>나의 투표</span>

@@ -2,18 +2,7 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { api } from './core';
 
-// interface ProfileResponse {
-//   email: string;
-//   nickname: string;
-//   profileImageUrl: string;
-//   introduction: string;
-//   createdAt: string;
-//   updatedAt: string;
-//   followerCount: number;
-//   followeeCount: number;
-// }
-
-export interface Body {
+export interface ProfileResponse {
   userId: number;
   email: string;
   nickname: string;
@@ -42,17 +31,8 @@ export interface Post {
   terminated: boolean;
 }
 
-// export const getProfile = async (userId: string) => {
-//   const response = await fetch(
-//     `${process.env.NEXT_PUBLIC_API_URL}/users/${userId}`,
-//   );
-//   const data = (await response.json()) as GetData<ProfileResponse>;
-//   console.log(data.body);
-//   return data.body;
-// };
-
 const getProfile = (userId: string) => {
-  return api.get<Body>({
+  return api.get<ProfileResponse>({
     url: `/user/${userId}`,
   });
 };
