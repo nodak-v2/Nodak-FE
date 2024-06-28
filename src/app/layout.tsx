@@ -15,11 +15,11 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: '노닥노닥',
-  description: '투표 플랫폼 노닥노닥 - COPYRIGHT ©nodaknodak',
+  title: '픽키',
+  description: '투표 플랫폼 픽키 - COPYRIGHT ©picky',
   manifest: '/manifest.json',
   icons: {
-    icon: '/icon.ico',
+    icon: '/app-Icon/icon.ico',
   },
 };
 

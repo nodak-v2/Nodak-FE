@@ -2,33 +2,15 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { api } from './core';
 
-export interface ProfileResponse {
-  userId: number;
+interface ProfileResponse {
   email: string;
   nickname: string;
   profileImageUrl: string;
-  postCount: number;
+  introduction: string;
+  createdAt: string;
+  updatedAt: string;
   followerCount: number;
   followeeCount: number;
-  isFollowing: boolean;
-  posts: Post[];
-}
-
-export interface Post {
-  postId: number;
-  voteId: number;
-  title: string;
-  commentCount: number;
-  likeCount: number;
-  voterCount: number;
-  author: string;
-  profileImageUrl: string;
-  postImageUrl: string;
-  createdAt: string;
-  startDate: string;
-  endDate: string;
-  voteOptions: string[];
-  terminated: boolean;
 }
 
 const getProfile = (userId: string) => {

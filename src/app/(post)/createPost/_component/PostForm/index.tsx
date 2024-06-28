@@ -3,13 +3,13 @@
 import { Controller, useForm } from 'react-hook-form';
 
 import { PostRequestBody } from '@/src/apis/createPost';
-import Toast from '@/src/app/_components/Toast';
 import Button from '@/src/components/Button/Button';
 import FormField from '@/src/components/FormField';
 import Selector from '@/src/components/Selector';
 import TextInput from '@/src/components/TextInput';
 import Textarea from '@/src/components/Textarea';
 import TimeInput from '@/src/components/TimeInput';
+import Toast from '@/src/components/Toast';
 import VoteForm from '@/src/components/VoteForm';
 
 import { formOptions } from './formSchema';

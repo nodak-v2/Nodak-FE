@@ -10,7 +10,7 @@ const Signin = () => {
       <div className='mb-[60px]'>
         <Link href='https://api.nodak.link/oauth2/authorization/kakao'>
           <Image
-            src={'/kakao.png'}
+            src='/picky/kakao.png'
             alt='kakao'
             width={300}
             height={30}
