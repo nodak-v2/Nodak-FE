@@ -2,8 +2,9 @@
 
 import { PropsWithChildren } from 'react';
 
+import CommentForm from '@/src/app/(post)/result/[postId]/_components/CommentForm';
+
 import TopBar from '../../../../components/Topbar';
-import CommentInput from './_components/CommentInput';
 
 const PostDetailLayout = ({ children }: PropsWithChildren) => {
   return (
@@ -14,7 +15,7 @@ const PostDetailLayout = ({ children }: PropsWithChildren) => {
         <TopBar.NavMore />
       </TopBar.Container>
       {children}
-      <CommentInput />
+      <CommentForm />
     </>
   );
 };
