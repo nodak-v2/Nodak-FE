@@ -1,15 +1,15 @@
 import { Comment } from '@/src/apis/comments';
 import { useGetUserStatusAPI } from '@/src/apis/myInfo';
 import CommentItem from '@/src/app/(post)/result/[postId]/_components/Comments/CommentItem';
-import CommentItemMenu from '@/src/app/(post)/result/[postId]/_components/Comments/CommentItem/CommentItemMenu';
+import CommentRootItemMenu from '@/src/app/(post)/result/[postId]/_components/Comments/CommentItem/CommentItemMenu/CommentRootItemMenu';
 import { cn } from '@/src/utils/cn';
 
-interface RootCommentItemProps {
+interface CommentRootItemProps {
   comment: Comment;
   isSelected: boolean;
 }
 
-const RootCommentItem = ({ comment, isSelected }: RootCommentItemProps) => {
+const CommentRootItem = ({ comment, isSelected }: CommentRootItemProps) => {
   const { commentId, nickname, content, createdAt, userId } = comment;
 
   const { userId: ownId } = useGetUserStatusAPI();
@@ -22,12 +22,15 @@ const RootCommentItem = ({ comment, isSelected }: RootCommentItemProps) => {
         nickname={nickname}
         content={content}
         createdAt={createdAt}
-        isOwnComment={userId === ownId}
+        isOwnComment={isOwnComment}
       >
-        <CommentItemMenu commentId={commentId} isOwnComment={isOwnComment} />
+        <CommentRootItemMenu
+          commentId={commentId}
+          isOwnComment={isOwnComment}
+        />
       </CommentItem>
     </div>
   );
 };
 
-export default RootCommentItem;
+export default CommentRootItem;
