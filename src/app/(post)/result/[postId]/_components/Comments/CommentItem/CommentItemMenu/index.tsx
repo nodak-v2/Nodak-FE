@@ -6,12 +6,12 @@ import Icon from '@/src/components/Icon';
 import ConfirmationModal from '@/src/components/Modal/ConfirmationModal';
 import useModal from '@/src/hooks/useModal';
 
-interface CommentMenuProps {
+interface CommentItemMenuProps {
   commentId: number;
   isOwnComment: boolean;
 }
 
-const CommentMenu = ({ commentId, isOwnComment }: CommentMenuProps) => {
+const CommentItemMenu = ({ commentId, isOwnComment }: CommentItemMenuProps) => {
   const router = useRouter();
   const { postId } = useParams() as { postId: string };
   const deleteComment = useDeleteCommentAPI(postId, commentId);
@@ -74,4 +74,4 @@ const CommentMenu = ({ commentId, isOwnComment }: CommentMenuProps) => {
   );
 };
 
-export default CommentMenu;
+export default CommentItemMenu;
