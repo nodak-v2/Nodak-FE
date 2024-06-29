@@ -25,11 +25,11 @@ const CommentRootItemMenu = ({
   } = useModal();
 
   const handleEditComment = () => {
-    router.push(`?commentId=${commentId}&reply=false&edit=true`);
+    router.push(`?commentId=${commentId}&method=update&target=root`);
   };
 
   const handleReplyComment = () => {
-    router.push(`?commentId=${commentId}&reply=true&edit=false`);
+    router.push(`?commentId=${commentId}&method=create&target=reply`);
   };
 
   const handleDeleteComment = async () => {
@@ -38,24 +38,33 @@ const CommentRootItemMenu = ({
   };
 
   return (
-    <CommentItemMenu>
-      {isOwnComment && (
-        <>
-          <CommentItemMenu.Button
-            label='수정하기'
-            onClick={handleEditComment}
-          />
-          <CommentItemMenu.Button label='삭제하기' onClick={openDeleteModal} />
-        </>
-      )}
-      <CommentItemMenu.Button label='답글 달기' onClick={handleReplyComment} />
+    <>
+      <CommentItemMenu>
+        {isOwnComment && (
+          <>
+            <CommentItemMenu.Button
+              label='수정하기'
+              onClick={handleEditComment}
+            />
+            <CommentItemMenu.Button
+              label='삭제하기'
+              onClick={openDeleteModal}
+            />
+          </>
+        )}
+        <CommentItemMenu.Button
+          label='답글 달기'
+          onClick={handleReplyComment}
+        />
+      </CommentItemMenu>
+
       <ConfirmationModal
         isShow={isDeleteModalOpen}
         description='삭제하시겠습니까?'
         onConfirm={handleDeleteComment}
         onClose={closeDeleteModal}
       />
-    </CommentItemMenu>
+    </>
   );
 };
 
