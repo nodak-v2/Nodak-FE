@@ -1,16 +1,43 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
+import {
+  useMutation,
+  useQueryClient,
+  useSuspenseQuery,
+} from '@tanstack/react-query';
 
 import { api } from './core';
 
-interface ProfileResponse {
+export interface ProfileResponse {
+  userId: number;
   email: string;
   nickname: string;
   profileImageUrl: string;
-  introduction: string;
-  createdAt: string;
-  updatedAt: string;
+  postCount: number;
   followerCount: number;
   followeeCount: number;
+  isFollowing: boolean;
+  posts: Post[];
+}
+
+export interface Post {
+  postId: number;
+  voteId: number;
+  title: string;
+  commentCount: number;
+  likeCount: number;
+  voterCount: number;
+  author: string;
+  profileImageUrl: string;
+  postImageUrl: string;
+  createdAt: string;
+  startDate: string;
+  endDate: string;
+  voteOptions: string[];
+  terminated: boolean;
+}
+
+export interface ProfilePatchRequest {
+  nickname: string;
+  profileImageUrl: string | null;
 }
 
 const getProfile = (userId: string) => {
@@ -26,4 +53,20 @@ export const useGetProfileAPI = (userId: string) => {
   });
 
   return data.body;
+};
+
+const patchUserProfile = (profileBody: ProfilePatchRequest) =>
+  api.patch({
+    url: `/user`,
+    data: profileBody,
+  });
+
+export const usePatchUserProfileAPI = () => {
+  const QueryClient = useQueryClient();
+  const { mutateAsync } = useMutation({
+    mutationFn: (data: ProfilePatchRequest) => patchUserProfile(data),
+    onSuccess: () => QueryClient.invalidateQueries({ queryKey: ['status'] }),
+  });
+
+  return mutateAsync;
 };

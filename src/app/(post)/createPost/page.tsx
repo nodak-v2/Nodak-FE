@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import TopBar from '../../../components/Topbar';
-import PostForm from './_component/PostForm';
+import PostForm from './_components/PostForm';
 
 const CreatePostPage = () => {
   return (

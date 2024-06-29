@@ -1,3 +1,5 @@
+'user client';
+
 import { ToastOptions, toast } from 'react-toastify';
 
 import { cn } from '@/src/utils/cn';
