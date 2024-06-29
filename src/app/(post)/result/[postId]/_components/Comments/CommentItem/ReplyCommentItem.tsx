@@ -1,14 +1,14 @@
-import { ChildrenComment } from '@/src/apis/comments';
+import { ReplyComment } from '@/src/apis/comments';
 import { useGetUserStatusAPI } from '@/src/apis/myInfo';
 import CommentItem from '@/src/app/(post)/result/[postId]/_components/Comments/CommentItem';
 import Icon from '@/src/components/Icon';
 
-interface CommentItemProps {
-  comment: ChildrenComment;
+interface ReplyCommentItemProps {
+  comment: ReplyComment;
   isSelected: boolean;
 }
 
-const ChildrenCommentItem = ({ comment, isSelected }: CommentItemProps) => {
+const ReplyCommentItem = ({ comment, isSelected }: ReplyCommentItemProps) => {
   const { replyId, nickname, content, createdAt, userId } = comment;
 
   const { userId: ownId } = useGetUserStatusAPI();
@@ -28,4 +28,4 @@ const ChildrenCommentItem = ({ comment, isSelected }: CommentItemProps) => {
   );
 };
 
-export default ChildrenCommentItem;
+export default ReplyCommentItem;

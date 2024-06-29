@@ -2,12 +2,12 @@ import { Comment } from '@/src/apis/comments';
 import { useGetUserStatusAPI } from '@/src/apis/myInfo';
 import CommentItem from '@/src/app/(post)/result/[postId]/_components/Comments/CommentItem';
 
-interface CommentItemProps {
+interface RootCommentItemProps {
   comment: Comment;
   isSelected: boolean;
 }
 
-const RootCommentItem = ({ comment, isSelected }: CommentItemProps) => {
+const RootCommentItem = ({ comment, isSelected }: RootCommentItemProps) => {
   const { commentId, nickname, content, createdAt, userId } = comment;
 
   const { userId: ownId } = useGetUserStatusAPI();
