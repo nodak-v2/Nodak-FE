@@ -23,12 +23,16 @@ const CommentMenu = ({ commentId, isOwnComment }: CommentMenuProps) => {
   } = useModal();
 
   const handleEditComment = () => {
-    router.push(`?commentId=${commentId}`);
+    router.push(`?commentId=${commentId}&reply=false&edit=true`);
   };
 
   const handleDeleteComment = async () => {
     await deleteComment();
     closeDeleteModal();
+  };
+
+  const handleReplyComment = () => {
+    router.push(`?commentId=${commentId}&reply=true&edit=false`);
   };
 
   return (
@@ -54,6 +58,9 @@ const CommentMenu = ({ commentId, isOwnComment }: CommentMenuProps) => {
                 </DropdownMenu.Item>
               </>
             )}
+            <DropdownMenu.Item key='reply' onClick={handleReplyComment}>
+              답글달기
+            </DropdownMenu.Item>
           </DropdownMenu.Content>
         </DropdownMenu.Portal>
       </DropdownMenu.Root>
