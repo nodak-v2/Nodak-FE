@@ -9,6 +9,7 @@ import {
 import { useForm } from 'react-hook-form';
 
 import { useGetCommentsAPI, useUpdateCommentAPI } from '@/src/apis/comments';
+import { useCreateReplyCommentAPI } from '@/src/apis/reply';
 import CommentFormModal from '@/src/app/(post)/result/[postId]/_components/CommentForm/CommentFormModal';
 import CommentInput from '@/src/app/(post)/result/[postId]/_components/CommentForm/CommentInput';
 import { useCreateComment } from '@/src/app/(post)/result/[postId]/hooks/useCreateComment';
@@ -19,8 +20,8 @@ const CommentForm = () => {
   const pathWithoutQueryParams = usePathname();
   const { postId } = useParams() as { postId: string };
   const commentId = useSearchParams().get('commentId') as string | null;
-
-  const isUpdateComment = Boolean(commentId);
+  const isReplyComment = useSearchParams().get('reply') === 'true';
+  const isUpdateComment = useSearchParams().get('edit') === 'true';
 
   const {
     register,
@@ -33,6 +34,7 @@ const CommentForm = () => {
 
   const createComment = useCreateComment(postId);
   const updateComment = useUpdateCommentAPI(postId, Number(commentId));
+  const replyComment = useCreateReplyCommentAPI(postId, Number(commentId));
   const comments = useGetCommentsAPI(postId);
 
   const {
@@ -44,6 +46,8 @@ const CommentForm = () => {
   const onSubmit = async (data: { comment: string }) => {
     if (isUpdateComment) {
       await updateComment(data.comment);
+    } else if (isReplyComment) {
+      await replyComment(data.comment);
     } else {
       await createComment(data.comment);
     }
@@ -77,10 +81,14 @@ const CommentForm = () => {
       comment => comment.commentId === Number(commentId),
     );
 
-    if (updatedComment) {
-      openModalWithComment(updatedComment.content);
-    }
+    if (updatedComment) openModalWithComment(updatedComment.content);
   }, [commentId, isUpdateComment, comments, openModalWithComment]);
+
+  useEffect(() => {
+    if (!isReplyComment) return;
+
+    handleOpenModal();
+  }, [isReplyComment, handleOpenModal]);
 
   return (
     <div className='w-full'>
