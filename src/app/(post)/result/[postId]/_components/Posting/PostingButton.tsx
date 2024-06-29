@@ -5,10 +5,10 @@ import Icon from '@/src/components/Icon';
 
 import { usePostingLike } from '../../hooks/usePostingLike';
 
-const CategoryChip = () => {
+const CategoryChip = ({ category }: { category: string }) => {
   return (
     <div className='font-text-2-md flex items-center rounded-[30px] border border-gray-accent2 px-3 py-0.5 text-gray-accent4'>
-      전체
+      {category}
     </div>
   );
 };
@@ -19,6 +19,7 @@ const PostingButton = () => {
     starCount,
     commentSize,
     checkStar: isLike,
+    categoryName,
   } = useGetPostDetailAPI(postId);
 
   const { postLike, deleteLike } = usePostingLike(postId);
@@ -29,7 +30,7 @@ const PostingButton = () => {
 
   return (
     <div className='flex justify-between px-4'>
-      <CategoryChip />
+      <CategoryChip category={categoryName} />
       <div className='flex items-center gap-2'>
         <div
           className='flex cursor-pointer items-center gap-2'
