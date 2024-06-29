@@ -6,6 +6,15 @@ import {
 
 import { api } from './core';
 
+export interface ChildrenComment {
+  replyId: number;
+  profileImageUrl: string | null;
+  nickname: string;
+  content: string;
+  createdAt: string;
+  userId: number;
+}
+
 export interface Comment {
   commentId: number;
   profileImageUrl: string | null;
@@ -13,6 +22,7 @@ export interface Comment {
   content: string;
   createdAt: string;
   userId: number;
+  children: ChildrenComment[];
 }
 
 const getComments = (postId: string) => {
