@@ -1,8 +1,8 @@
 import { useParams, useSearchParams } from 'next/navigation';
 
 import { useGetCommentsAPI } from '@/src/apis/comments';
-import CommentReplyItem from '@/src/app/(post)/result/[postId]/_components/Comments/CommentItem/CommentItemReply';
-import CommentRootItem from '@/src/app/(post)/result/[postId]/_components/Comments/CommentItem/CommentItemRoot';
+import CommentReplyItem from '@/src/app/(post)/result/[postId]/_components/Comments/CommentItem/CommentReplyItem';
+import CommentRootItem from '@/src/app/(post)/result/[postId]/_components/Comments/CommentItem/CommentRootItem';
 
 const CommentList = () => {
   const { postId } = useParams() as { postId: string };
