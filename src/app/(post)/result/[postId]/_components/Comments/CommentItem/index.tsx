@@ -1,13 +1,11 @@
 import Image from 'next/image';
 
 import CommentMenu from '@/src/app/(post)/result/[postId]/_components/Comments/CommentItem/CommentMenu';
-import { cn } from '@/src/utils/cn';
 import { formatDateCustom } from '@/src/utils/formatDate';
 
 import OwnCommentChip from './OwnCommentChip';
 
 interface CommentItemProps {
-  isSelected?: boolean;
   commentId: number;
   nickname: string;
   content: string;
@@ -16,7 +14,6 @@ interface CommentItemProps {
 }
 
 const CommentItem = ({
-  isSelected,
   commentId,
   nickname,
   content,
@@ -24,12 +21,7 @@ const CommentItem = ({
   isOwnComment,
 }: CommentItemProps) => {
   return (
-    <div
-      className={cn(
-        'flex flex-col gap-2 border-b border-gray-accent2 p-4 text-white',
-        isSelected && 'bg-gray-accent2',
-      )}
-    >
+    <div className='flex w-full flex-col gap-2'>
       <div className='flex items-center justify-between'>
         <div className='flex items-center gap-1'>
           <Image
@@ -41,9 +33,7 @@ const CommentItem = ({
           <span className='font-title-1-md'>{nickname}</span>
           {isOwnComment && <OwnCommentChip />}
         </div>
-        {isOwnComment && (
-          <CommentMenu commentId={commentId} isOwnComment={isOwnComment} />
-        )}
+        <CommentMenu commentId={commentId} isOwnComment={isOwnComment} />
       </div>
 
       <div className='flex flex-col gap-0.5'>

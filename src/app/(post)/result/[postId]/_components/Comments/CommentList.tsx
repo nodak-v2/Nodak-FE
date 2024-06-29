@@ -11,16 +11,14 @@ const CommentList = () => {
   const isSelected = Boolean(commentIdFromSearchParams);
 
   return (
-    <div className='border-t border-gray-accent2'>
+    <div className=' flex flex-col divide-y divide-gray-accent2 border-t border-gray-accent2'>
       {comments.map((rootComment, idx) => (
-        <div
-          key={`${rootComment.commentId}-${idx}`}
-          className='flex flex-col gap-2'
-        >
+        <div key={`${rootComment.commentId}-${idx}`}>
           <RootCommentItem comment={rootComment} isSelected={isSelected} />
           {rootComment.children.map((replyComment, idx) => (
             <ReplyCommentItem
               key={`${replyComment.replyId}-${idx}`}
+              isFirstChild={idx === 0}
               comment={replyComment}
               isSelected={isSelected}
             />
