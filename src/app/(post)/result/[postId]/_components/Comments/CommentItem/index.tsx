@@ -1,23 +1,27 @@
 import Image from 'next/image';
 
-import type { Comment } from '@/src/apis/comments';
-import { useGetUserStatusAPI } from '@/src/apis/myInfo';
 import CommentMenu from '@/src/app/(post)/result/[postId]/_components/Comments/CommentItem/CommentMenu';
 import { cn } from '@/src/utils/cn';
 
 import OwnCommentChip from './OwnCommentChip';
 
 interface CommentItemProps {
-  comment: Comment;
   isSelected?: boolean;
+  commentId: number;
+  nickname: string;
+  content: string;
+  createdAt: string;
+  isOwnComment: boolean;
 }
 
-const CommentItem = ({ comment, isSelected }: CommentItemProps) => {
-  const { nickname, content, createdAt, userId, commentId } = comment;
-  const { userId: ownId } = useGetUserStatusAPI();
-
-  const isOwnComment = ownId === userId;
-
+const CommentItem = ({
+  isSelected,
+  commentId,
+  nickname,
+  content,
+  createdAt,
+  isOwnComment,
+}: CommentItemProps) => {
   return (
     <div
       className={cn(
