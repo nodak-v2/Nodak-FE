@@ -11,9 +11,12 @@ import { useFollow } from '../[userId]/hooks/useFollow';
 
 const MyPageButton = () => {
   return (
-    <button className='font-title-1-md rounded-[8px] border border-primary py-2 text-primary'>
+    <Link
+      href='/users/profile/edit'
+      className='font-title-1-md rounded-[8px] border border-primary py-2 text-center text-primary'
+    >
       프로필 수정
-    </button>
+    </Link>
   );
 };
 
@@ -59,18 +62,20 @@ const UserPageButton = () => {
 
 const ProfileBlock = () => {
   const { userId } = useParams() as { userId: string };
-  const { userId: myId } = useGetUserStatusAPI();
-  const { followeeCount, followerCount, postCount, nickname } =
-    useGetProfileAPI(!userId ? String(myId) : userId);
+  const { userId: myId, profileImage, nickname } = useGetUserStatusAPI();
+  const { followeeCount, followerCount, postCount } = useGetProfileAPI(
+    !userId ? String(myId) : userId,
+  );
 
   return (
     <div className='flex w-full flex-col gap-6 px-4 pt-4'>
       <div className='flex items-center gap-2'>
         <Image
-          src='/placeHolder_130.png'
+          src={profileImage || '/default-image.png'}
           alt='유저이미지'
           width={52}
           height={52}
+          className='min-h-[52px] min-w-[52px] rounded-[8px]'
         />
         <div className='flex flex-col gap-1'>
           <span className='font-h3-sm'>{nickname}</span>

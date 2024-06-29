@@ -5,8 +5,8 @@ import Image from 'next/image';
 import Icon from '@/src/components/Icon';
 import { cn } from '@/src/utils/cn';
 
-import { useImageUpload } from '../ImageUploadButton/hooks/useImageUpload';
-import TextInput from '../TextInput';
+import TextInput from '../../../../../components/TextInput';
+import { useImageUpload } from '../../../../../hooks/useImageUpload';
 
 const MIN_LIMIT = 2;
 const MAX_LIMIT = 6;
@@ -90,7 +90,6 @@ const VoteForm = ({ onChange, error }: VoteFormProps) => {
             className='border text-white'
             placeholder='항목 입력'
           />
-
           <div className='absolute right-[10px] z-10'>
             <label htmlFor={`imageUploadButton-${index}`}>
               {imageUrl ? (

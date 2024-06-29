@@ -1,7 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
-import { VoteOption } from '@/src/components/VoteForm';
+import { VoteOption } from '@/src/app/(post)/createPost/_components/VoteForm';
 
 const isValidOptions = (value: VoteOption[]) => {
   if (!Array.isArray(value)) return false;

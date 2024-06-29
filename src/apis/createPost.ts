@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 
-import { VoteOption } from '../components/VoteForm';
+import { VoteOption } from '../app/(post)/createPost/_components/VoteForm';
 import { api } from './core';
 
 export interface PostRequestBody {

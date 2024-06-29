@@ -17,7 +17,7 @@ const getUserStatus = () => {
 
 export const useGetUserStatusAPI = () => {
   const { data } = useSuspenseQuery({
-    queryKey: ['users', 'status'],
+    queryKey: ['status'],
     queryFn: getUserStatus,
   });
 

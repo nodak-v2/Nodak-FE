@@ -1,40 +1,32 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 import Image from 'next/image';
 
 import Icon from '@/src/components/Icon';
-import ImageUploadButton from '@/src/components/ImageUploadButton';
-import ConfirmationModal from '@/src/components/Modal/ConfirmationModal';
+import { useImageUpload } from '@/src/hooks/useImageUpload';
 
 interface ImageUploaderProps {
-  imageSrcUrl?: string;
-  defaultSrcUrl?: string;
+  imageUrl: string | null;
   onChange: (imageUrl: string | null) => void;
 }
 
-const ImageUploader = ({
-  imageSrcUrl,
-  onChange,
-  defaultSrcUrl = '/default-image.png',
-}: ImageUploaderProps) => {
-  const [previewImageUrl, setPreviewImageUrl] = useState(imageSrcUrl || null);
-  const [isShowModal, setIsShowModal] = useState(false);
+const DEFAULT_IMAGE_URL = '/default-image.png';
 
-  const handleDeleteImage = () => {
-    setIsShowModal(true);
-  };
+const ImageUploader = ({ imageUrl, onChange }: ImageUploaderProps) => {
+  const [imageSrcUrl, setImageSrcUrl] = useState<string | null>(imageUrl);
+  console.log(imageSrcUrl);
+  const inputElement = useRef<HTMLInputElement>(null);
+  const imageUpload = useImageUpload();
 
-  const handleCloseModal = () => {
-    setIsShowModal(false);
-  };
+  const handleImageSelect = async () => {
+    const file = inputElement.current?.files?.[0];
+    if (!file) return;
 
-  const handleConfirmDeleteImage = () => {
-    setPreviewImageUrl(null);
-    onChange(null);
-
-    setIsShowModal(false);
+    const imageUrl = await imageUpload(file);
+    setImageSrcUrl(imageUrl);
+    onChange(imageUrl);
   };
 
   return (
@@ -42,40 +34,33 @@ const ImageUploader = ({
       <div className='bg-gray-accent7 flex w-full justify-center p-10'>
         <div className='relative'>
           <Image
-            src={previewImageUrl ? previewImageUrl : defaultSrcUrl}
+            src={imageSrcUrl || DEFAULT_IMAGE_URL}
             alt='profile'
-            className='z-10 h-[83.33px] w-[83.33px] rounded-lg object-cover'
+            className='h-[83.33px] w-[83.33px] rounded-lg object-cover'
             width={83}
             height={83}
           />
-          {previewImageUrl && (
-            <button
-              onClick={handleDeleteImage}
-              className='absolute right-0 top-0 flex cursor-pointer items-center justify-center rounded-full border bg-white text-black'
-              type='button'
-            >
-              <Icon
-                id='dash-circle-fill'
-                aria-label='업로드한 이미지 삭제하기'
-                size={16}
-                style={{ opacity: 0.5 }}
-              />
-            </button>
-          )}
-          <div className='absolute -bottom-2 -right-2'>
-            <ImageUploadButton
-              onChange={onChange}
-              setImageUrl={setPreviewImageUrl}
+          <label
+            htmlFor='imageUploadButton'
+            className='absolute -bottom-3 -right-3'
+          >
+            <Icon
+              id='camera'
+              aria-label='이미지 업로드하기'
+              size={32}
+              className='cursor-pointer'
             />
-          </div>
+          </label>
+          <input
+            id='imageUploadButton'
+            className='hidden'
+            type='file'
+            accept='image/*'
+            onChange={handleImageSelect}
+            ref={inputElement}
+          />
         </div>
       </div>
-      <ConfirmationModal
-        description='이미지를 삭제하시겠습니까?'
-        isShow={isShowModal}
-        onConfirm={handleConfirmDeleteImage}
-        onClose={handleCloseModal}
-      />
     </>
   );
 };

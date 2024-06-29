@@ -1,4 +1,8 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
+import {
+  useMutation,
+  useQueryClient,
+  useSuspenseQuery,
+} from '@tanstack/react-query';
 
 import { api } from './core';
 
@@ -31,6 +35,11 @@ export interface Post {
   terminated: boolean;
 }
 
+export interface ProfilePatchRequest {
+  nickname: string;
+  profileImageUrl: string | null;
+}
+
 const getProfile = (userId: string) => {
   return api.get<ProfileResponse>({
     url: `/user/${userId}`,
@@ -44,4 +53,20 @@ export const useGetProfileAPI = (userId: string) => {
   });
 
   return data.body;
+};
+
+const patchUserProfile = (profileBody: ProfilePatchRequest) =>
+  api.patch({
+    url: `/user`,
+    data: profileBody,
+  });
+
+export const usePatchUserProfileAPI = () => {
+  const QueryClient = useQueryClient();
+  const { mutateAsync } = useMutation({
+    mutationFn: (data: ProfilePatchRequest) => patchUserProfile(data),
+    onSuccess: () => QueryClient.invalidateQueries({ queryKey: ['status'] }),
+  });
+
+  return mutateAsync;
 };

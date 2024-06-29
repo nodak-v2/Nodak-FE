@@ -2,8 +2,12 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
 export const schema = yup.object({
-  imageUrl: yup.mixed<File>().required(),
-  nickName: yup
+  profileImageUrl: yup
+    .string()
+    .required('')
+    .url('올바른 URL을 입력하세요.')
+    .nullable(),
+  nickname: yup
     .string()
     .required('닉네임을 입력하세요.')
     .trim()
@@ -12,8 +16,8 @@ export const schema = yup.object({
 });
 
 export const defaultValues = {
-  imageUrl: new File([], ''),
-  nickName: '',
+  profileImageUrl: null,
+  nickname: '',
 };
 
 export const formOptions = {
