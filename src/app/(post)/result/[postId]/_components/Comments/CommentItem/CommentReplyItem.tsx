@@ -33,7 +33,7 @@ const CommentReplyItem = ({
         createdAt={createdAt}
         isOwnComment={isOwnComment}
       >
-        <CommentReplyItemMenu commentId={replyId} isOwnComment={isOwnComment} />
+        <CommentReplyItemMenu replyId={replyId} isOwnComment={isOwnComment} />
       </CommentItem>
     </div>
   );
