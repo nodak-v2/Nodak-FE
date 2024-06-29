@@ -5,6 +5,7 @@ import {
 } from '@tanstack/react-query';
 
 import { api } from './core';
+import { PostListContent } from './postList';
 
 export interface ProfileResponse {
   userId: number;
@@ -15,24 +16,7 @@ export interface ProfileResponse {
   followerCount: number;
   followeeCount: number;
   isFollowing: boolean;
-  posts: Post[];
-}
-
-export interface Post {
-  postId: number;
-  voteId: number;
-  title: string;
-  commentCount: number;
-  likeCount: number;
-  voterCount: number;
-  author: string;
-  profileImageUrl: string;
-  postImageUrl: string;
-  createdAt: string;
-  startDate: string;
-  endDate: string;
-  voteOptions: string[];
-  terminated: boolean;
+  posts: PostListContent[];
 }
 
 export interface ProfilePatchRequest {
@@ -65,7 +49,9 @@ export const usePatchUserProfileAPI = () => {
   const QueryClient = useQueryClient();
   const { mutateAsync } = useMutation({
     mutationFn: (data: ProfilePatchRequest) => patchUserProfile(data),
-    onSuccess: () => QueryClient.invalidateQueries({ queryKey: ['status'] }),
+    onSuccess: () => {
+      QueryClient.invalidateQueries({ queryKey: ['status'] });
+    },
   });
 
   return mutateAsync;

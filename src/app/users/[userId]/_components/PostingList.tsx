@@ -18,7 +18,7 @@ const Posting = () => {
           posts.map((post, index) => (
             <Link
               href={`/result/${post.postId}`}
-              key={`${index}-${post.title}`}
+              key={`${index}-${post.voteTitle}`}
             >
               <PostItem post={post} isNickname={false} />
             </Link>

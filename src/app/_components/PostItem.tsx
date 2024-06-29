@@ -39,13 +39,15 @@ const PostItem = ({ post, isNickname = true }: PostItemProps) => {
     terminated: isTerminated,
   } = post;
 
-  const representativeImageUrl = voteOptions
-    .map(({ imageUrl }) => imageUrl)
-    .filter(url => url)[0];
+  const representativeImageUrl =
+    voteOptions &&
+    voteOptions.map(({ imageUrl }) => imageUrl).filter(url => url)[0];
 
   const onGoingVote = voteOptions
-    .map(({ option }) => option)
-    .sort((a, b) => a.length - b.length);
+    ? voteOptions
+        .map(({ option }) => option)
+        .sort((a, b) => a.length - b.length)
+    : [];
 
   return (
     <div className='flex w-full gap-4 border-b border-gray-accent2 p-4 pb-4'>

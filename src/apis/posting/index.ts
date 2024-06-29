@@ -3,19 +3,7 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import { PostingNavigation } from '@/src/app/users/profile/(posting)/layout';
 
 import { api } from '../core';
-
-export interface PostListContent {
-  postId: number;
-  voteId: number;
-  title: string;
-  commentCount: number;
-  likeCount: number;
-  voterCount: number;
-  author: string;
-  profileImageUrl: string | null;
-  postImageUrl: string | null;
-  createdAt: string;
-}
+import { PostListContent } from '../postList';
 
 interface PostListPageable {
   pageNumber: number;
