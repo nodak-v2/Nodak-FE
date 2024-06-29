@@ -1,7 +1,7 @@
 import { useParams, useSearchParams } from 'next/navigation';
 
 import { useGetCommentsAPI } from '@/src/apis/comments';
-import ChildrenCommentItem from '@/src/app/(post)/result/[postId]/_components/Comments/CommentItem/ChildrenCommentItem';
+import ReplyCommentItem from '@/src/app/(post)/result/[postId]/_components/Comments/CommentItem/ReplyCommentItem';
 import RootCommentItem from '@/src/app/(post)/result/[postId]/_components/Comments/CommentItem/RootCommentItem';
 
 const CommentList = () => {
@@ -20,10 +20,10 @@ const CommentList = () => {
             comment={rootComment}
             isSelected={Boolean(commentIdFromSearchParams)}
           />
-          {rootComment.children.map((childrenComment, idx) => (
-            <ChildrenCommentItem
-              key={`${childrenComment.replyId}-${idx}`}
-              comment={childrenComment}
+          {rootComment.children.map((replyComment, idx) => (
+            <ReplyCommentItem
+              key={`${replyComment.replyId}-${idx}`}
+              comment={replyComment}
               isSelected={Boolean(commentIdFromSearchParams)}
             />
           ))}

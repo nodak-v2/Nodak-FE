@@ -6,7 +6,7 @@ import {
 
 import { api } from './core';
 
-export interface ChildrenComment {
+export interface ReplyComment {
   replyId: number;
   profileImageUrl: string | null;
   nickname: string;
@@ -22,7 +22,7 @@ export interface Comment {
   content: string;
   createdAt: string;
   userId: number;
-  children: ChildrenComment[];
+  children: ReplyComment[];
 }
 
 const getComments = (postId: string) => {
