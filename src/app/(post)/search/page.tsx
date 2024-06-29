@@ -1,6 +1,7 @@
 'use client';
 
-import Image from 'next/image';
+import React, { useState } from 'react';
+
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
@@ -10,30 +11,42 @@ import ChipContainer, {
   ChannelType,
 } from '@/src/app/_components/ChipContainer';
 import PostItem from '@/src/app/_components/PostItem';
+import EmptyPage from '@/src/components/EmptyPage';
 
-import EmptyPage from '../components/EmptyPage';
-import GNB from '../components/GNB';
-import Icon from '../components/Icon';
-import TopBar from '../components/Topbar';
+import TopBar from '../../../components/Topbar';
+import SearchBar from './_components/SearchBar';
 
-const Main = () => {
+const CreatePostPage = () => {
   const searchParams = useSearchParams();
   const channel = (searchParams.get('channel') as ChannelType | null) ?? 'all';
-  const keyword = searchParams.get('keyword');
-
+  const [keyword, setKeyword] = useState('');
   const { content: posts } = useGetPostListAPI(keyword, CATEGORY_MAP[channel]);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setKeyword(e.target.value);
+  };
+
+  const handleRemoveClick = () => {
+    setKeyword('');
+  };
 
   return (
     <>
       <TopBar.Container>
-        <Image src='/picky-logo.png' alt='로고' width={87} height={45} />
-        <Link href='/search'>
-          <Icon id='search' />
-        </Link>
+        <TopBar.BackButton href='/' />
+        <SearchBar
+          keyword={keyword}
+          onChange={handleInputChange}
+          onClear={handleRemoveClick}
+        />
       </TopBar.Container>
-      <ChipContainer currentChannel={channel} />
+
+      {keyword !== '' && (
+        <ChipContainer currentChannel={channel} defaultPath='/search' />
+      )}
+
       <main className='flex h-full grow flex-col overflow-y-scroll'>
-        {posts.length ? (
+        {posts.length && keyword !== '' ? (
           posts.map((post, index) => (
             <Link
               href={`/result/${post.postId}`}
@@ -46,8 +59,8 @@ const Main = () => {
           <EmptyPage />
         )}
       </main>
-      <GNB />
     </>
   );
 };
-export default Main;
+
+export default CreatePostPage;
