@@ -41,8 +41,11 @@ export const useCreateCommentAPI = (postId: string) => {
   const QueryClient = useQueryClient();
   const { mutateAsync } = useMutation({
     mutationFn: (comment: string) => createComment(postId, comment),
-    onSuccess: () =>
-      QueryClient.invalidateQueries({ queryKey: ['comments', postId] }),
+    onSuccess: () => {
+      QueryClient.invalidateQueries({ queryKey: ['comments', postId] });
+      QueryClient.invalidateQueries({ queryKey: ['posts', postId] });
+      QueryClient.invalidateQueries({ queryKey: ['postList'] });
+    },
   });
 
   return mutateAsync;
@@ -76,8 +79,11 @@ export const useDeleteCommentAPI = (postId: string, commentId: number) => {
   const QueryClient = useQueryClient();
   const { mutateAsync } = useMutation({
     mutationFn: () => deleteComment(postId, commentId),
-    onSuccess: () =>
-      QueryClient.invalidateQueries({ queryKey: ['comments', postId] }),
+    onSuccess: () => {
+      QueryClient.invalidateQueries({ queryKey: ['comments', postId] });
+      QueryClient.invalidateQueries({ queryKey: ['posts', postId] });
+      QueryClient.invalidateQueries({ queryKey: ['postList'] });
+    },
   });
 
   return mutateAsync;
