@@ -1,13 +1,13 @@
 import React from 'react';
 
 interface CommentInputProps {
-  onOpenModal: () => void;
+  onClick: () => void;
 }
 
-const CommentInput = ({ onOpenModal }: CommentInputProps) => {
+const CommentInput = ({ onClick }: CommentInputProps) => {
   return (
     <div
-      onClick={onOpenModal}
+      onClick={onClick}
       className='m-4 flex items-center gap-2 rounded-[8px] border border-gray-accent3'
     >
       <input
