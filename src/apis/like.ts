@@ -18,8 +18,10 @@ export const usePostLikeAPI = (postId: string) => {
   const QueryClient = useQueryClient();
   const { mutateAsync } = useMutation({
     mutationFn: () => postLike(postId),
-    onSuccess: () =>
+    onSuccess: () => {
       QueryClient.invalidateQueries({ queryKey: ['posts', postId] }),
+        QueryClient.invalidateQueries({ queryKey: ['postList'] });
+    },
   });
 
   return mutateAsync;
@@ -29,8 +31,10 @@ export const useDeleteLikeAPI = (postId: string) => {
   const QueryClient = useQueryClient();
   const { mutateAsync } = useMutation({
     mutationFn: () => deleteLike(postId),
-    onSuccess: () =>
+    onSuccess: () => {
       QueryClient.invalidateQueries({ queryKey: ['posts', postId] }),
+        QueryClient.invalidateQueries({ queryKey: ['postList'] });
+    },
   });
 
   return mutateAsync;
