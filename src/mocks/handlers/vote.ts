@@ -1,7 +1,6 @@
 import { HttpResponse, http } from 'msw';
 
 import { BASE_URL } from '@/src/apis/constants';
-import { VoteOption } from '@/src/apis/vote';
 
 interface VoteResult {
   message: string;
@@ -13,6 +12,13 @@ interface VoteResult {
     totalNumber: number;
     voteOptions: VoteOption[];
   };
+}
+
+interface VoteOption {
+  voteOptionId: number;
+  seq: number;
+  voteOptionContent: string;
+  count: number;
 }
 
 class Vote {

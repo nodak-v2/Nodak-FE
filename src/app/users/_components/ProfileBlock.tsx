@@ -62,10 +62,13 @@ const UserPageButton = () => {
 
 const ProfileBlock = () => {
   const { userId } = useParams() as { userId: string };
-  const { userId: myId, profileImage, nickname } = useGetUserStatusAPI();
-  const { followeeCount, followerCount, postCount } = useGetProfileAPI(
-    !userId ? String(myId) : userId,
-  );
+  const {
+    userId: myId,
+    profileImage,
+    nickname: myName,
+  } = useGetUserStatusAPI();
+  const { followeeCount, followerCount, postCount, nickname } =
+    useGetProfileAPI(!userId ? String(myId) : userId);
 
   return (
     <div className='flex w-full flex-col gap-6 px-4 pt-4'>
@@ -78,7 +81,7 @@ const ProfileBlock = () => {
           className='min-h-[52px] min-w-[52px] rounded-[8px]'
         />
         <div className='flex flex-col gap-1'>
-          <span className='font-h3-sm'>{nickname}</span>
+          <span className='font-h3-sm'>{userId ? nickname : myName}</span>
           <div className='flex items-center gap-2'>
             <div className='flex items-center gap-1'>
               <span className='font-text-3-rg text-gray-accent4'>작성글</span>

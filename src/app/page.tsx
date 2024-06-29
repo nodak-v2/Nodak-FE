@@ -18,7 +18,7 @@ import TopBar from '../components/Topbar';
 const Main = () => {
   const searchParams = useSearchParams();
   const channel = (searchParams.get('channel') as ChannelType | null) ?? 'all';
-  const keyword = searchParams.get('keyword');
+  const keyword = searchParams.get('keyword') as string;
 
   const { content: posts } = useGetPostListAPI(keyword, CATEGORY_MAP[channel]);
 
@@ -33,13 +33,13 @@ const Main = () => {
           posts.map((post, index) => (
             <Link
               href={`/result/${post.postId}`}
-              key={`${index}-${post.title}`}
+              key={`${index}-${post.voteTitle}`}
             >
               <PostItem post={post} />
             </Link>
           ))
         ) : (
-          <EmptyPage text='작성된 투표 글이 없습니다.' />
+          <EmptyPage href='/createPost' text='작성 글이 없습니다.' />
         )}
       </main>
       <GNB />

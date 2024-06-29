@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { Controller, useForm } from 'react-hook-form';
 
 import { PostRequestBody } from '@/src/apis/createPost';
@@ -15,7 +16,7 @@ import Toast from '@/src/components/Toast';
 import { formOptions } from './formSchema';
 import { useCreatePost } from './useCreatePost';
 
-const channels = ['전체', 'HOT', '잡담', '스포츠', '연예', '공부'];
+const channels = ['잡담', '스포츠', '연예', '공부'];
 
 const PostForm = () => {
   const {
@@ -25,11 +26,13 @@ const PostForm = () => {
     control,
   } = useForm(formOptions);
 
+  const router = useRouter();
   const createPost = useCreatePost();
 
   const onSubmitPost = (data: PostRequestBody) => {
     createPost(data);
     Toast.default('등록되었습니다.');
+    router.push('/');
   };
 
   return (
