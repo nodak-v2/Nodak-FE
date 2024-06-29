@@ -3,22 +3,29 @@ import Image from 'next/image';
 import type { Comment } from '@/src/apis/comments';
 import { useGetUserStatusAPI } from '@/src/apis/myInfo';
 import CommentMenu from '@/src/app/(post)/result/[postId]/_components/Comments/CommentItem/CommentMenu';
+import { cn } from '@/src/utils/cn';
 import { formatDateCustom } from '@/src/utils/formatDate';
 
 import OwnCommentChip from './OwnCommentChip';
 
 interface CommentItemProps {
   comment: Comment;
+  isSelected?: boolean;
 }
 
-const CommentItem = ({ comment }: CommentItemProps) => {
+const CommentItem = ({ comment, isSelected }: CommentItemProps) => {
   const { nickname, content, createdAt, userId, commentId } = comment;
   const { userId: ownId } = useGetUserStatusAPI();
 
   const isOwnComment = ownId === userId;
 
   return (
-    <div className='flex flex-col gap-2 border-b border-gray-accent2 p-4 text-white'>
+    <div
+      className={cn(
+        'flex flex-col gap-2 border-b border-gray-accent2 p-4 text-white',
+        isSelected && 'bg-gray-accent2',
+      )}
+    >
       <div className='flex items-center justify-between'>
         <div className='flex items-center gap-1'>
           <Image
