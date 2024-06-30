@@ -22,43 +22,41 @@ const CreatePostPage = () => {
   const [keyword, setKeyword] = useState('');
   const { content: posts } = useGetPostListAPI(keyword, CATEGORY_MAP[channel]);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setKeyword(e.target.value);
-  };
-
   const handleRemoveClick = () => {
     setKeyword('');
+  };
+
+  const handleSubmit = (input: string) => {
+    setKeyword(input);
   };
 
   return (
     <>
       <TopBar.Container>
         <TopBar.BackButton href='/' />
-        <SearchBar
-          keyword={keyword}
-          onChange={handleInputChange}
-          onClear={handleRemoveClick}
-        />
+        <SearchBar onClear={handleRemoveClick} onSubmit={handleSubmit} />
       </TopBar.Container>
 
       {keyword !== '' && (
         <ChipContainer currentChannel={channel} defaultPath='/search' />
       )}
 
-      <main className='flex h-full grow flex-col overflow-y-scroll'>
-        {posts.length && keyword !== '' ? (
-          posts.map((post, index) => (
-            <Link
-              href={`/result/${post.postId}`}
-              key={`${index}-${post.title}`}
-            >
-              <PostItem post={post} />
-            </Link>
-          ))
-        ) : (
-          <EmptyPage />
-        )}
-      </main>
+      {keyword !== '' && (
+        <main className='flex h-full grow flex-col overflow-y-scroll'>
+          {posts.length ? (
+            posts.map((post, index) => (
+              <Link
+                href={`/result/${post.postId}`}
+                key={`${index}-${post.title}`}
+              >
+                <PostItem post={post} />
+              </Link>
+            ))
+          ) : (
+            <EmptyPage />
+          )}
+        </main>
+      )}
     </>
   );
 };
