@@ -1,10 +1,10 @@
 import React from 'react';
 
-interface CommentInputProps {
+interface CommentButtonProps {
   onClick: () => void;
 }
 
-const CommentInput = ({ onClick }: CommentInputProps) => {
+const CommentButton = ({ onClick }: CommentButtonProps) => {
   return (
     <div
       onClick={onClick}
@@ -19,4 +19,4 @@ const CommentInput = ({ onClick }: CommentInputProps) => {
   );
 };
 
-export default CommentInput;
+export default CommentButton;
