@@ -23,8 +23,8 @@ type FormValues = {
 const CommentFormModal = () => {
   const { postId } = useParams() as { postId: string };
   const commentId = useSearchParams().get('commentId');
-  const method = useSearchParams().get('method') as 'create' | 'update';
-  const target = useSearchParams().get('target') as 'root';
+  const method = useSearchParams().get('method') as 'create' | 'update' | null;
+  const target = useSearchParams().get('target') as 'root' | null;
 
   const {
     isOpen: isOpenModal,
@@ -61,6 +61,7 @@ const CommentFormModal = () => {
   };
 
   const onSubmit: SubmitHandler<FormValues> = async ({ comment }) => {
+    if (!method || !target) return;
     const submitComment = submitCommentMap[method][target];
 
     await submitComment(comment);
@@ -73,8 +74,8 @@ const CommentFormModal = () => {
   };
 
   useEffect(() => {
-    handleOpenModal();
-  }, [handleOpenModal]);
+    if (method && target) handleOpenModal();
+  }, [method, target, handleOpenModal]);
 
   useEffect(() => {
     if (!isOpenModal) return setValue('comment', '');
