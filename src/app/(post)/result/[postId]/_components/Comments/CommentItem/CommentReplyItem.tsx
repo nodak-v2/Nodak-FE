@@ -1,3 +1,5 @@
+import { useSearchParams } from 'next/navigation';
+
 import { ReplyComment } from '@/src/apis/comments';
 import { useGetUserStatusAPI } from '@/src/apis/myInfo';
 import CommentItem from '@/src/app/(post)/result/[postId]/_components/Comments/CommentItem';
@@ -7,16 +9,14 @@ import { cn } from '@/src/utils/cn';
 
 interface CommentReplyItemProps {
   comment: ReplyComment;
-  isSelected: boolean;
   isFirstChild?: boolean;
 }
 
-const CommentReplyItem = ({
-  comment,
-  isSelected,
-  isFirstChild,
-}: CommentReplyItemProps) => {
+const CommentReplyItem = ({ comment, isFirstChild }: CommentReplyItemProps) => {
   const { replyId, nickname, content, createdAt, userId } = comment;
+  const commentIdFromSearchParams = useSearchParams().get('commentId');
+
+  const isSelected = Number(commentIdFromSearchParams) === replyId;
 
   const { userId: ownId } = useGetUserStatusAPI();
 
