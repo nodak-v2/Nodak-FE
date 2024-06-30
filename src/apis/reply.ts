@@ -25,7 +25,7 @@ export const useCreateReplyCommentAPI = (postId: string, commentId: number) => {
 };
 
 const deleteReplyComment = (replyId: number) => {
-  return api.patch({
+  return api.delete({
     url: `/comments`,
     data: { replyId },
   });
