@@ -24,7 +24,11 @@ const CommentFormModal = () => {
   const { postId } = useParams() as { postId: string };
   const commentId = useSearchParams().get('commentId');
   const method = useSearchParams().get('method') as 'create' | 'update' | null;
-  const target = useSearchParams().get('target') as 'root' | null;
+  const target = useSearchParams().get('target') as 'root' | 'reply' | null;
+
+  const isCreate = method === 'create';
+  const isUpdate = method === 'update';
+  const isExistedQueryParams = method && target;
 
   const {
     isOpen: isOpenModal,
@@ -57,14 +61,15 @@ const CommentFormModal = () => {
     },
     update: {
       root: updateRootComment,
+      reply: null,
     },
   };
 
   const onSubmit: SubmitHandler<FormValues> = async ({ comment }) => {
-    if (!method || !target) return;
+    if (!isExistedQueryParams) return;
     const submitComment = submitCommentMap[method][target];
 
-    await submitComment(comment);
+    await submitComment?.(comment);
     resetPath();
     handleCloseModal();
   };
@@ -74,18 +79,34 @@ const CommentFormModal = () => {
   };
 
   useEffect(() => {
-    if (method && target) handleOpenModal();
-  }, [method, target, handleOpenModal]);
+    if (isExistedQueryParams) handleOpenModal();
+  }, [isExistedQueryParams, handleOpenModal]);
 
   useEffect(() => {
-    if (!isOpenModal) return setValue('comment', '');
-
-    const selectedComment = comments.find(
-      comment => comment.commentId === Number(commentId),
-    );
-    setValue('comment', selectedComment?.content || '');
-    setFocus('comment');
-  }, [isOpenModal, commentId, comments, setValue, setFocus]);
+    if (!isOpenModal) {
+      setValue('comment', '');
+      return;
+    }
+    if (isCreate) {
+      setFocus('comment');
+      return;
+    }
+    if (isUpdate) {
+      const selectedComment = comments.find(
+        comment => comment.commentId === Number(commentId),
+      );
+      setValue('comment', selectedComment?.content || '');
+      setFocus('comment');
+    }
+  }, [
+    isOpenModal,
+    isCreate,
+    isUpdate,
+    commentId,
+    comments,
+    setValue,
+    setFocus,
+  ]);
 
   return (
     <>
