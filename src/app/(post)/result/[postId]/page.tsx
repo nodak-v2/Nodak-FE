@@ -1,10 +1,6 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-
-import CommentFormModal from '@/src/app/(post)/result/[postId]/_components/CommentForm/CommentFormModal';
-import CommentInput from '@/src/app/(post)/result/[postId]/_components/CommentForm/CommentInput';
-import useModal from '@/src/hooks/useModal';
+import CommentFormModal from '@/src/app/(post)/result/[postId]/_components/CommentModalForm';
 
 import CommentList from './_components/Comments/CommentList';
 import PostingMain from './_components/Posting';
@@ -30,14 +26,6 @@ const ResultPage = () => {
   //     </div>
   //   </div>
   // );
-
-  const router = useRouter();
-  const { isOpen, open, close } = useModal();
-
-  const handleCreateCommentUrl = () => {
-    router.push(`?method=create&target=root`);
-  };
-
   return (
     <>
       <div className='flex h-full grow flex-col gap-4 overflow-y-auto'>
@@ -48,12 +36,7 @@ const ResultPage = () => {
         <CommentList />
       </div>
 
-      {!isOpen && <CommentInput onClick={handleCreateCommentUrl} />}
-      <CommentFormModal
-        isOpen={isOpen}
-        handleOpenModal={open}
-        handleCloseModal={close}
-      />
+      <CommentFormModal />
     </>
   );
 };
