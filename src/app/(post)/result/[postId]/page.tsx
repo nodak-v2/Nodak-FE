@@ -5,6 +5,7 @@ import { useParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 import PullToRefresh from 'react-simple-pull-to-refresh';
 
+import CommentFormModal from '@/src/app/(post)/result/[postId]/_components/CommentForm/CommentFormModal';
 import CommentInput from '@/src/app/(post)/result/[postId]/_components/CommentForm/CommentInput';
 import useModal from '@/src/hooks/useModal';
 
@@ -23,7 +24,7 @@ const ResultPage = () => {
   };
 
   const router = useRouter();
-  const { isOpen } = useModal();
+  const { isOpen, open, close } = useModal();
 
   const handleCreateCommentUrl = () => {
     router.push(`?method=create&target=root`);
@@ -41,6 +42,11 @@ const ResultPage = () => {
         </div>
 
         {!isOpen && <CommentInput onClick={handleCreateCommentUrl} />}
+        <CommentFormModal
+          isOpen={false}
+          handleOpenModal={open}
+          handleCloseModal={close}
+        />
       </>
     </PullToRefresh>
   );
