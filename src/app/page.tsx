@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
@@ -25,7 +26,7 @@ const Main = () => {
   return (
     <>
       <TopBar.Container>
-        <Icon id='logo-sm' width='87' height='45' />
+        <Image src='/picky/logo.svg' alt='logo' width={87} height={45} />
         <Link href='/search'>
           <Icon id='search' />
         </Link>

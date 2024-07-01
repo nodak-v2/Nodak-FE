@@ -16,7 +16,6 @@ export type IconName =
   | 'search'
   | 'back'
   | 'subtract-circle'
-  | 'kakao'
   | 'close'
   | 'check'
   | 'add-box'
@@ -38,6 +37,4 @@ export type IconName =
   | 'check-circle'
   | 'log-out'
   | 'write'
-  | 'arrow-right'
-  | 'logo-sm'
-  | 'logo-lg';
+  | 'arrow-right';

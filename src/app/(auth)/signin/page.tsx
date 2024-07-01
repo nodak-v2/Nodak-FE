@@ -1,13 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import Icon from '@/src/components/Icon';
-
 const Signin = () => {
   return (
     <section className='relative flex h-svh flex-col items-center justify-center'>
       <div className='flex grow flex-col items-center justify-center gap-[16px]'>
-        <Icon id='logo-lg' width='160' height='84' />
+        <Image src='/picky/logo.svg' alt='logo' width={160} height={84} />
         <span className='font-h3-sm'>까다로운 고민에 대한 해답을 pick</span>
       </div>
       <div className='mb-[60px] w-full px-[14px]'>
