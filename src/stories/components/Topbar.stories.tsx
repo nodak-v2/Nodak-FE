@@ -47,8 +47,6 @@ export const Profile: Story = {
       <>
         <TopBar.BackButton href='/' />
         <TopBar.Title>프로필</TopBar.Title>
-        <TopBar.ReportButton />
-        <TopBar.DarkModeButton />
       </>
     ),
   },

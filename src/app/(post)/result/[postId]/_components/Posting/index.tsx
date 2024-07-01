@@ -9,8 +9,7 @@ import VoteResult from './VoteResult';
 
 const PostingMain = () => {
   const { postId } = useParams() as { postId: string };
-  //   const getPostDetail = useGetPostDetailAPI(postId);
-  const { hasVoted } = useGetVoteDetailAPI(postId);
+  const { hasVoted, terminated: isTerminated } = useGetVoteDetailAPI(postId);
 
   const { content, createdAt, author } = useGetPostDetailAPI(postId);
 
@@ -23,7 +22,7 @@ const PostingMain = () => {
           <span className='font-text-4-rg text-gray-accent4'>{createdAt}</span>
         </div>
       </div>
-      {hasVoted ? <VoteResult /> : <VoteForm />}
+      {hasVoted || isTerminated ? <VoteResult /> : <VoteForm />}
       <span className='font-text-1-rg'>{content}</span>
     </div>
   );

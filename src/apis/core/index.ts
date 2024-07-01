@@ -6,7 +6,7 @@ import { makeQueryResponse } from './makeQueryResponse';
 const HTTP_METHODS = {
   GET: 'get',
   POST: 'post',
-  PUT: 'put',
+  PATCH: 'patch',
   DELETE: 'delete',
 } as const;
 
@@ -24,6 +24,6 @@ const axiosInstance = axios.create({
 export const api = {
   get: makeQueryResponse(axiosInstance),
   post: makeMutationResponse(axiosInstance, HTTP_METHODS.POST),
-  put: makeMutationResponse(axiosInstance, HTTP_METHODS.PUT),
+  patch: makeMutationResponse(axiosInstance, HTTP_METHODS.PATCH),
   delete: makeMutationResponse(axiosInstance, HTTP_METHODS.DELETE),
 };

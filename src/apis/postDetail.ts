@@ -3,16 +3,15 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import { api } from './core';
 
 interface PostDetailBody {
-  title: string;
   author: string;
   isAuthor: boolean;
   commentSize: number;
   profileImageUrl: string | null;
   createdAt: string;
   content: string;
-  imageUrl: string | null;
   starCount: number;
   checkStar: boolean;
+  categoryName: string;
 }
 
 const getPostDetail = (postId: string) => {

@@ -1,6 +1,5 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { VoteOption } from '../components/VoteForm';
 import { api } from './core';
 
 export interface PostRequestBody {
@@ -11,6 +10,11 @@ export interface PostRequestBody {
   endDate: string;
 }
 
+export interface VoteOption {
+  option: string;
+  imageUrl: string | null;
+}
+
 const createPost = (data: PostRequestBody) => {
   return api.post({
     url: `/posts`,
@@ -19,8 +23,13 @@ const createPost = (data: PostRequestBody) => {
 };
 
 export const useCreatePostAPI = () => {
+  const queryClient = useQueryClient();
   const { mutateAsync } = useMutation({
     mutationFn: (data: PostRequestBody) => createPost(data),
+    onSuccess: () =>
+      queryClient.invalidateQueries({
+        queryKey: ['postList'],
+      }),
   });
 
   return mutateAsync;

@@ -1,5 +1,5 @@
 export const CATEGORY_MAP = {
-  all: null,
+  all: '',
   chatting: '1',
   sports: '2',
   entertaining: '3',

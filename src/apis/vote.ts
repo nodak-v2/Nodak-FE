@@ -12,13 +12,15 @@ export interface VoteResultResponse {
   hasVoted: boolean;
   choiceVoteOptionId: number;
   totalNumber: number;
-  voteOptions: VoteOption[];
+  voteOptions: VoteContent[];
+  terminated: boolean;
 }
 
-export interface VoteOption {
+export interface VoteContent {
   voteOptionId: number;
   seq: number;
   voteOptionContent: string;
+  voteOptionImageUrl: string;
   count: number;
 }
 
@@ -47,6 +49,23 @@ export const useCreateVoteAPI = (voteId: string, postId: string) => {
   const QueryClient = useQueryClient();
   const { mutateAsync } = useMutation({
     mutationFn: (optionSeq: number) => postVote(voteId, optionSeq),
+    onSuccess: () =>
+      QueryClient.invalidateQueries({ queryKey: ['votes', postId] }),
+  });
+
+  return mutateAsync;
+};
+
+const terminateVote = (postId: string) => {
+  return api.patch({
+    url: `/posts/${postId}/terminate`,
+  });
+};
+
+export const useTerminateVoteAPI = (postId: string) => {
+  const QueryClient = useQueryClient();
+  const { mutateAsync } = useMutation({
+    mutationFn: () => terminateVote(postId),
     onSuccess: () =>
       QueryClient.invalidateQueries({ queryKey: ['votes', postId] }),
   });

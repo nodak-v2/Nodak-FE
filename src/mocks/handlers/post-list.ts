@@ -1,7 +1,42 @@
 import { HttpResponse, http } from 'msw';
 
 import { BASE_URL } from '@/src/apis/constants';
-import { PostList } from '@/src/apis/postList';
+
+interface PostList {
+  posts: Post[];
+  pageable: {
+    sort: {
+      sorted: boolean;
+      empty: boolean;
+      unsorted: boolean;
+    };
+    offset: number;
+    pageNumber: number;
+    pageSize: number;
+    unpaged: boolean;
+    paged: boolean;
+  };
+  last: boolean;
+  totalPages: number;
+  totalElements: number;
+  first: boolean;
+  size: number;
+  number: number;
+  sort: {
+    sorted: boolean;
+    empty: boolean;
+    unsorted: boolean;
+  };
+  numberOfElements: number;
+  empty: boolean;
+}
+
+interface Post {
+  postId: number;
+  title: string;
+  totalCount: number;
+  userId: number;
+}
 
 const postList = {
   posts: [
