@@ -47,13 +47,13 @@ const CreatePostPage = () => {
             posts.map((post, index) => (
               <Link
                 href={`/result/${post.postId}`}
-                key={`${index}-${post.title}`}
+                key={`${index}-${post.voteTitle}`}
               >
                 <PostItem post={post} />
               </Link>
             ))
           ) : (
-            <EmptyPage />
+            <EmptyPage href='/createPost' text='작성 글이 없습니다.' />
           )}
         </main>
       )}
