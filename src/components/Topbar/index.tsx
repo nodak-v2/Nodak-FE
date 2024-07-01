@@ -6,7 +6,7 @@ import Icon from '@/src/components/Icon';
 
 const Container = ({ children }: PropsWithChildren) => {
   return (
-    <div className='flex h-[54px] items-center justify-between px-4 pt-[6px]'>
+    <div className='mb-[16px] flex h-[54px] items-center justify-between px-4 pt-[6px]'>
       {children}
     </div>
   );

@@ -31,7 +31,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onClear, onSubmit }) => {
       className='relative flex w-full items-center justify-end text-gray-accent3'
     >
       <TextInput
-        className='h-[40px] w-[90%] border-gray-accent2 bg-gray-accent2 py-2'
+        className='ml-[16px] h-[40px] border-gray-accent2 bg-gray-accent2 py-2'
         placeholder='검색어를 입력하세요'
         value={input}
         onChange={handleInputChange}
