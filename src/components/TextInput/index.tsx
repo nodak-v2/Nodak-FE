@@ -1,4 +1,5 @@
 import { ComponentPropsWithoutRef, forwardRef } from 'react';
+import React from 'react';
 
 import { VariantProps, cva } from 'class-variance-authority';
 
@@ -46,4 +47,4 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
 );
 
 TextInput.displayName = 'TextInput';
-export default TextInput;
+export default React.memo(TextInput);

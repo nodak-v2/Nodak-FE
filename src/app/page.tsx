@@ -13,6 +13,7 @@ import PostItem from '@/src/app/_components/PostItem';
 
 import EmptyPage from '../components/EmptyPage';
 import GNB from '../components/GNB';
+import Icon from '../components/Icon';
 import TopBar from '../components/Topbar';
 
 const Main = () => {
@@ -25,7 +26,10 @@ const Main = () => {
   return (
     <>
       <TopBar.Container>
-        <Image src='/picky-logo.png' alt='로고' width={87} height={45} />
+        <Image src='/picky/logo.svg' alt='logo' width={87} height={45} />
+        <Link href='/search'>
+          <Icon id='search' />
+        </Link>
       </TopBar.Container>
       <ChipContainer currentChannel={channel} />
       <main className='flex h-full grow flex-col overflow-y-scroll'>

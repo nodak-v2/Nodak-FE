@@ -2,7 +2,7 @@ import React, { ComponentProps } from 'react';
 
 import { IconName } from './type';
 
-interface IconProps extends Omit<ComponentProps<'svg'>, 'width' | 'height'> {
+interface IconProps extends ComponentProps<'svg'> {
   id: IconName;
   size?: number;
 }
