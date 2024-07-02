@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 
 import { useParams } from 'next/navigation';
 
@@ -11,7 +11,7 @@ const PostComment = () => {
   const [comment, setComment] = useState('');
   const createComment = useCreateComment(postId);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setComment(e.target.value);
   };
 

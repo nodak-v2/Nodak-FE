@@ -50,4 +50,4 @@ const ChipContainer = ({
   );
 };
 
-export default React.memo(ChipContainer);
+export default ChipContainer;

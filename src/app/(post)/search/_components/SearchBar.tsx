@@ -8,7 +8,7 @@ interface SearchBarProps {
   onSubmit: (input: string) => void;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ onClear, onSubmit }) => {
+const SearchBar = ({ onClear, onSubmit }: SearchBarProps) => {
   const [input, setInput] = useState('');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
