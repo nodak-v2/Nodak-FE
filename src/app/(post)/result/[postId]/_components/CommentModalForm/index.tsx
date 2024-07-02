@@ -20,7 +20,6 @@ const CommentFormModal = () => {
   }, [router, pathWithoutParams]);
 
   useEffect(() => {
-    console.log(isExistedParams);
     if (isExistedParams) open();
   }, [isExistedParams, open]);
 
