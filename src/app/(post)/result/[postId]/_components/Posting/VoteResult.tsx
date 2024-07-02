@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
 
+import { useGetPostDetailAPI } from '@/src/apis/postDetail';
 import { useGetVoteDetailAPI } from '@/src/apis/vote';
 import Icon from '@/src/components/Icon';
 import { cn } from '@/src/utils/cn';
@@ -18,6 +19,8 @@ const VoteResult = () => {
   } = useGetVoteDetailAPI(postId);
 
   const maxCount = Math.max(...voteOptions.map(({ count }) => count));
+
+  const { isAuthor } = useGetPostDetailAPI(postId);
 
   return (
     <div className='flex items-center justify-center rounded-[8px] bg-gray-accent1'>
@@ -43,11 +46,13 @@ const VoteResult = () => {
                   key={voteOptionId}
                   className='relative flex cursor-default items-center gap-4 rounded-[8px] border border-gray-accent3 px-3 py-2'
                 >
-                  {choiceVoteOptionId === voteOptionId ? (
-                    <Icon id='select-vote' size={24} />
-                  ) : (
-                    <Icon id='select-default' size={24} />
-                  )}
+                  {!isAuthor &&
+                    (choiceVoteOptionId === voteOptionId ? (
+                      <Icon id='select-vote' size={24} />
+                    ) : (
+                      <Icon id='select-default' size={24} />
+                    ))}
+
                   <div className='flex flex-grow flex-col'>
                     <span className='font-text-1-rg'>{voteOptionContent}</span>
                     <div className='flex w-full items-center gap-3'>

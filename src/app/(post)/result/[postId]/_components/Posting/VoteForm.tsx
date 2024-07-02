@@ -62,11 +62,12 @@ const VoteForm = () => {
                   onChange={() => handleOptionChange(seq)}
                   className='hidden'
                 />
-                {selectedOption === seq ? (
-                  <Icon id='select-vote' size={24} />
-                ) : (
-                  <Icon id='select-default' size={24} />
-                )}
+                {!isAuthor &&
+                  (selectedOption === seq ? (
+                    <Icon id='select-vote' size={24} />
+                  ) : (
+                    <Icon id='select-default' size={24} />
+                  ))}
                 <span className='font-text-1-rg'>{voteOptionContent}</span>
                 {voteOptionImageUrl && (
                   <Image
