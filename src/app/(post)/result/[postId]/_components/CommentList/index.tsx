@@ -16,7 +16,6 @@ const CommentList = () => {
           {rootComment.children.map((replyComment, idx) => (
             <CommentReplyItem
               key={`${replyComment.replyId}-${idx}`}
-              isFirstChild={idx === 0}
               comment={replyComment}
             />
           ))}

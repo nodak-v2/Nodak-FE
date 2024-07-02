@@ -9,10 +9,9 @@ import { cn } from '@/src/utils/cn';
 
 interface CommentReplyItemProps {
   comment: ReplyComment;
-  isFirstChild?: boolean;
 }
 
-const CommentReplyItem = ({ comment, isFirstChild }: CommentReplyItemProps) => {
+const CommentReplyItem = ({ comment }: CommentReplyItemProps) => {
   const { replyId, nickname, content, createdAt, userId } = comment;
   const commentIdFromSearchParams = useSearchParams().get('commentId');
 
@@ -26,7 +25,7 @@ const CommentReplyItem = ({ comment, isFirstChild }: CommentReplyItemProps) => {
     <div
       className={cn('flex w-full gap-2 p-4', isSelected && 'bg-gray-accent2')}
     >
-      <Icon id='reply' className={cn(!isFirstChild && 'opacity-0')} />
+      <Icon id='reply' />
       <CommentItem
         nickname={nickname}
         content={content}
