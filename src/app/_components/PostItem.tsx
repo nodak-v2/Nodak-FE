@@ -10,7 +10,7 @@ interface PostItemProps {
   isNickname?: boolean;
 }
 
-const convertOptionsToString = (options: string[]) => {
+const generateVoteStatus = (options: string[], isTerminated: boolean) => {
   const result = [] as string[];
   let remainingCount = 0;
 
@@ -22,10 +22,16 @@ const convertOptionsToString = (options: string[]) => {
     result.push(option);
   }
 
-  if (remainingCount > 0)
-    return `${result.join(',')} 외 ${remainingCount}개 투표 진행 중`;
+  const optionString = result.join(', ');
+  let suffix = remainingCount > 0 ? ` 외 ${remainingCount}개 ` : ' ';
 
-  return `${result.join(',')} 투표 진행 중`;
+  if (isTerminated) {
+    suffix += '투표 종료';
+  } else {
+    suffix += '투표 진행 중';
+  }
+
+  return optionString + suffix;
 };
 
 const PostItem = ({ post, isNickname = true }: PostItemProps) => {
@@ -64,7 +70,7 @@ const PostItem = ({ post, isNickname = true }: PostItemProps) => {
             size={16}
             className={cn(!isTerminated && 'text-primary')}
           />
-          <span className='font-text-1-rg'>{`${isTerminated ? '투표 종료' : convertOptionsToString(onGoingVote)}`}</span>
+          <span className='font-text-1-rg'>{`${generateVoteStatus(onGoingVote, isTerminated)}`}</span>
         </div>
         <div className='flex items-center gap-4'>
           <span className='font-text-3-rg flex items-center gap-2'>
