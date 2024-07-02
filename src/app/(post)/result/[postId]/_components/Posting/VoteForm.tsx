@@ -8,6 +8,7 @@ import { useParams } from 'next/navigation';
 import { useGetPostDetailAPI } from '@/src/apis/postDetail';
 import { useGetVoteDetailAPI } from '@/src/apis/vote';
 import Icon from '@/src/components/Icon';
+import ConfirmationModal from '@/src/components/Modal/ConfirmationModal';
 import { cn } from '@/src/utils/cn';
 
 import { useCreateVote } from '../../hooks/useCreateVote';
@@ -15,7 +16,7 @@ import useTerminateVote from '../../hooks/useTerminateVote';
 
 const VoteForm = () => {
   const [selectedOption, setSelectedOption] = useState<null | number>(null);
-
+  const [isShowModal, setIsShowModal] = useState<boolean>(false);
   const { postId } = useParams() as { postId: string };
   const { voteOptions, voteTitle, totalNumber, voteId } =
     useGetVoteDetailAPI(postId);
@@ -36,6 +37,14 @@ const VoteForm = () => {
 
   const handleTerminateVote = () => {
     terminateVote();
+  };
+
+  const handelCloseModal = () => {
+    setIsShowModal(false);
+  };
+
+  const handleOpenModal = () => {
+    setIsShowModal(true);
   };
 
   return (
@@ -75,7 +84,7 @@ const VoteForm = () => {
                     alt='투표이미지'
                     width={24}
                     height={24}
-                    className='absolute right-[10px] z-10 max-h-[24px] max-w-[24px] rounded-[4px]'
+                    className='absolute right-[10px] z-0 max-h-[24px] max-w-[24px] rounded-[4px]'
                   />
                 )}
               </label>
@@ -85,7 +94,7 @@ const VoteForm = () => {
         {isAuthor ? (
           <button
             className='font-title-1-md w-full rounded-lg bg-sub py-3 text-primary'
-            onClick={() => handleTerminateVote()}
+            onClick={handleOpenModal}
           >
             투표 종료하기
           </button>
@@ -102,6 +111,12 @@ const VoteForm = () => {
           </button>
         )}
       </div>
+      <ConfirmationModal
+        isShow={isShowModal}
+        description='투표를 종료하시겠습니까?'
+        onClose={handelCloseModal}
+        onConfirm={handleTerminateVote}
+      />
     </div>
   );
 };
