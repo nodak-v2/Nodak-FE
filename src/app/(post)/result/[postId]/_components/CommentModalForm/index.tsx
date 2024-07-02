@@ -10,8 +10,8 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { useGetCommentsAPI, useUpdateCommentAPI } from '@/src/apis/comments';
 import { useCreateReplyCommentAPI } from '@/src/apis/reply';
-import CommentButton from '@/src/app/(post)/result/[postId]/_components/CommentModalForm/CommentButton';
 import CommentForm from '@/src/app/(post)/result/[postId]/_components/CommentModalForm/CommentForm';
+import CommentModalButton from '@/src/app/(post)/result/[postId]/_components/CommentModalForm/CommentModalButton';
 import { useCreateComment } from '@/src/app/(post)/result/[postId]/hooks/useCreateComment';
 import Modal from '@/src/components/Modal';
 import useModal from '@/src/hooks/useModal';
@@ -110,7 +110,7 @@ const CommentFormModal = () => {
 
   return (
     <>
-      {!isOpenModal && <CommentButton onClick={handleButtonClick} />}
+      {!isOpenModal && <CommentModalButton onClick={handleButtonClick} />}
       <Modal show={isOpenModal}>
         <CommentForm
           onSubmit={handleSubmit(onSubmit)}
