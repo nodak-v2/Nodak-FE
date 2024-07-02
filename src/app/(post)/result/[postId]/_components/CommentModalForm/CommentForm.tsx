@@ -1,23 +1,83 @@
-import { useForm } from 'react-hook-form';
+import { useEffect } from 'react';
+
+import { useParams, useSearchParams } from 'next/navigation';
+import { SubmitHandler, useForm } from 'react-hook-form';
+
+import { useGetCommentsAPI, useUpdateCommentAPI } from '@/src/apis/comments';
+import { useCreateReplyCommentAPI } from '@/src/apis/reply';
+import { useCreateComment } from '@/src/app/(post)/result/[postId]/hooks/useCreateComment';
 
 interface CommentFormProps {
-  onSubmit: () => void;
-  onCancel: () => void;
-  register: ReturnType<typeof useForm<{ comment: string }>>['register'];
-  isSubmitting: boolean;
+  isOpenModal: boolean;
+  onCloseModal: () => void;
 }
 
+export type CommentFormValues = {
+  comment: string;
+};
+
 const CommentForm = ({
-  onSubmit,
-  onCancel,
-  register,
-  isSubmitting,
+  isOpenModal,
+  onCloseModal: closeModal,
 }: CommentFormProps) => {
+  const { postId } = useParams() as { postId: string };
+  const method = useSearchParams().get('method') as 'create' | 'update' | null;
+  const target = useSearchParams().get('target') as 'root' | 'reply' | null;
+  const comments = useGetCommentsAPI(postId);
+  const commentId = useSearchParams().get('commentId');
+
+  const createRootComment = useCreateComment(postId);
+  const updateRootComment = useUpdateCommentAPI(postId, +commentId!);
+  const createReplyComment = useCreateReplyCommentAPI(postId, +commentId!);
+
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    setFocus,
+    formState: { isSubmitting },
+  } = useForm<CommentFormValues>();
+
+  const isUpdateComment = method === 'update';
+  const selectedComment = comments.find(
+    comment => comment.commentId === Number(commentId),
+  );
+  const submitCommentMap = {
+    create: {
+      root: createRootComment,
+      reply: createReplyComment,
+    },
+    update: {
+      root: updateRootComment,
+      reply: null,
+    },
+  };
+
+  const onSubmit: SubmitHandler<CommentFormValues> = async ({ comment }) => {
+    if (!method || !target) return;
+    const submitComment = submitCommentMap[method][target];
+
+    await submitComment?.(comment);
+    closeModal();
+  };
+
+  useEffect(() => {
+    if (isOpenModal) setFocus('comment');
+  }, [isOpenModal, setFocus]);
+
+  useEffect(() => {
+    if (isUpdateComment) {
+      setValue('comment', selectedComment?.content || '');
+    } else {
+      setValue('comment', '');
+    }
+  }, [isUpdateComment, selectedComment, setValue, setFocus]);
+
   return (
     <div className='p-4'>
       <form
         className='flex w-full items-center gap-2 rounded-[8px] border border-gray-accent3 '
-        onSubmit={onSubmit}
+        onSubmit={handleSubmit(onSubmit)}
       >
         <input
           {...register('comment', { required: true })}
@@ -27,7 +87,7 @@ const CommentForm = ({
           <button
             type='button'
             className='font-text-1-rg text-gray-accent3'
-            onClick={onCancel}
+            onClick={closeModal}
           >
             취소
           </button>

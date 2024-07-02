@@ -1,13 +1,16 @@
 import React from 'react';
 
-interface CommentModalButtonProps {
-  onClick: () => void;
-}
+import { useRouter } from 'next/navigation';
 
-const CommentModalButton = ({ onClick }: CommentModalButtonProps) => {
+const CommentModalButton = () => {
+  const router = useRouter();
+  const handleClick = () => {
+    router.push(`?method=create&target=root`);
+  };
+
   return (
     <div
-      onClick={onClick}
+      onClick={handleClick}
       className='m-4 flex items-center gap-2 rounded-[8px] border border-gray-accent3'
     >
       <input
