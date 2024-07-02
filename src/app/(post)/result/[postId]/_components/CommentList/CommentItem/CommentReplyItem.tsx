@@ -23,9 +23,12 @@ const CommentReplyItem = ({ comment }: CommentReplyItemProps) => {
 
   return (
     <div
-      className={cn('flex w-full gap-2 p-4', isSelected && 'bg-gray-accent2')}
+      className={cn(
+        'flex w-full gap-2 px-4 py-2',
+        isSelected && 'bg-gray-accent2',
+      )}
     >
-      <Icon id='reply' />
+      <Icon id='reply' className=' text-gray-accent3' />
       <CommentItem
         nickname={nickname}
         content={content}

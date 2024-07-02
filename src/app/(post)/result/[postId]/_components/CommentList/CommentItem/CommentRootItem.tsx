@@ -7,10 +7,14 @@ import CommentRootItemMenu from '@/src/app/(post)/result/[postId]/_components/Co
 import { cn } from '@/src/utils/cn';
 
 interface CommentRootItemProps {
+  isFirst?: boolean;
   comment: Comment;
 }
 
-const CommentRootItem = ({ comment }: CommentRootItemProps) => {
+const CommentRootItem = ({
+  isFirst = false,
+  comment,
+}: CommentRootItemProps) => {
   const { commentId, nickname, content, createdAt, userId } = comment;
   const commentIdFromSearchParams = useSearchParams().get('commentId');
 
@@ -21,7 +25,13 @@ const CommentRootItem = ({ comment }: CommentRootItemProps) => {
   const isOwnComment = userId === ownId;
 
   return (
-    <div className={cn('p-4', isSelected && 'bg-gray-accent2')}>
+    <div
+      className={cn(
+        'px-4 py-2',
+        isSelected && 'bg-gray-accent2',
+        isFirst && 'px-4 py-0 pb-2',
+      )}
+    >
       <CommentItem
         nickname={nickname}
         content={content}
