@@ -1,7 +1,7 @@
 import { useParams, useRouter } from 'next/navigation';
 
 import { useDeleteCommentAPI } from '@/src/apis/comments';
-import CommentItemMenu from '@/src/app/(post)/result/[postId]/_components/Comments/CommentItem/CommentItemMenu';
+import CommentItemMenu from '@/src/app/(post)/result/[postId]/_components/CommentList/CommentItem/CommentItemMenu';
 import ConfirmationModal from '@/src/components/Modal/ConfirmationModal';
 import useModal from '@/src/hooks/useModal';
 

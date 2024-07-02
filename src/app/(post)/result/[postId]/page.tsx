@@ -9,7 +9,7 @@ import CommentFormModal from '@/src/app/(post)/result/[postId]/_components/Comme
 import CommentInput from '@/src/app/(post)/result/[postId]/_components/CommentForm/CommentInput';
 import useModal from '@/src/hooks/useModal';
 
-import CommentList from './_components/Comments/CommentList';
+import CommentList from './_components/CommentList';
 import PostingMain from './_components/Posting';
 import PostingButton from './_components/Posting/PostingButton';
 

@@ -2,8 +2,8 @@ import { useSearchParams } from 'next/navigation';
 
 import { Comment } from '@/src/apis/comments';
 import { useGetUserStatusAPI } from '@/src/apis/myInfo';
-import CommentItem from '@/src/app/(post)/result/[postId]/_components/Comments/CommentItem';
-import CommentRootItemMenu from '@/src/app/(post)/result/[postId]/_components/Comments/CommentItem/CommentItemMenu/CommentRootItemMenu';
+import CommentItem from '@/src/app/(post)/result/[postId]/_components/CommentList/CommentItem';
+import CommentRootItemMenu from '@/src/app/(post)/result/[postId]/_components/CommentList/CommentItem/CommentItemMenu/CommentRootItemMenu';
 import { cn } from '@/src/utils/cn';
 
 interface CommentRootItemProps {
