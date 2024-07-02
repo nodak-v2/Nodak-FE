@@ -97,7 +97,7 @@ const VoteResult = () => {
           )}
         </div>
         <button className='font-title-1-md w-full cursor-default rounded-lg bg-gray-accent2 py-3'>
-          {isTerminated ? '종료된 투표입니다.' : '이미 투표에 참여하셨습니다.'}
+          {isTerminated ? '종료된 투표입니다.' : '투표 완료'}
         </button>
       </div>
     </div>
