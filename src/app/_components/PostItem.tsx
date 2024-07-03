@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { PostListContent } from '@/src/apis/postList';
 import Icon from '@/src/components/Icon';
 import { cn } from '@/src/utils/cn';
+import { formatDateCustom } from '@/src/utils/formatDate';
 import { isValidImageUrl } from '@/src/utils/isValidImageUrl';
 
 interface PostItemProps {
@@ -71,7 +72,9 @@ const PostItem = ({ post, isNickname = true }: PostItemProps) => {
             {isNickname ? (
               <span className='font-text-3-rg'>{author}</span>
             ) : null}
-            <span className='text-gray-accent3'>{createdAt}</span>
+            <span className='text-gray-accent3'>
+              {formatDateCustom(createdAt, false)}
+            </span>
           </span>
           <span className='flex items-center gap-2 text-gray-accent4'>
             <span className='font-text-3-rg flex items-center gap-1'>
