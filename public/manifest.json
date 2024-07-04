@@ -1,7 +1,7 @@
 {
-  "name": "picky",
-  "short_name": "picky",
-  "description": "투표 플랫폼 picky - COPYRIGHT @picky",
+  "name": "픽키",
+  "short_name": "픽키",
+  "description": "투표 플랫폼 픽키 - COPYRIGHT @picky",
   "theme_color": "#FF5CA0",
   "background_color": "#212529",
   "display": "standalone",

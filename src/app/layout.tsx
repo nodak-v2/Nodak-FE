@@ -15,8 +15,8 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: 'picky',
-  description: '투표 플랫폼 picky - COPYRIGHT ©picky',
+  title: '픽키',
+  description: '투표 플랫폼 픽키 - COPYRIGHT ©picky',
   manifest: '/manifest.json',
   icons: {
     icon: '/app-Icon/icon-512x512.png',
