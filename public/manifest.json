@@ -1,17 +1,17 @@
 {
-  "name": "노닥노닥",
-  "short_name": "노닥노닥",
-  "description": "투표 플랫폼 노닥노닥 - COPYRIGHT ©nodaknodak",
-  "theme_color": "#faf7e8",
-  "background_color": "#faf7e8",
+  "name": "picky",
+  "short_name": "picky",
+  "description": "투표 플랫폼 picky - COPYRIGHT @picky",
+  "theme_color": "#FF5CA0",
+  "background_color": "#212529",
   "display": "standalone",
   "orientation": "portrait",
   "scope": "/",
   "start_url": "/",
   "icons": [
     {
-      "src": "/app-Icon/icon-128x128.png",
-      "sizes": "128x128",
+      "src": "/app-Icon/icon-144x144.png",
+      "sizes": "144x144",
       "type": "image/png"
     },
     {
