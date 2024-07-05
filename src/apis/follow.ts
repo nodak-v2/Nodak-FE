@@ -10,7 +10,7 @@ export interface Follow {
   userId: number;
   email: string;
   nickname: string;
-  profileImageUrl: string;
+  profileImageUrl: string | null;
   introduction: string;
   createdAt: string;
   updatedAt: string;
