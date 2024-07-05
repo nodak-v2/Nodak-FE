@@ -35,19 +35,25 @@ const getFolloweesByMe = () => {
   });
 };
 
-export const useGetFollowersAPI = () => {
+export const useGetFollowersAPI = (userId?: string) => {
   const { data } = useSuspenseQuery({
-    queryKey: ['followers', 'me'],
-    queryFn: getFollowersByMe,
+    queryKey: ['followers', userId],
+    queryFn: () => {
+      if (!userId) return getFollowersByMe();
+      else return getFollowersByMe(); // TODO: getFollowersByUserId 로 변경
+    },
   });
 
   return data.body;
 };
 
-export const useGetFolloweesAPI = () => {
+export const useGetFolloweesAPI = (userId?: string) => {
   const { data } = useSuspenseQuery({
-    queryKey: ['followees', 'me'],
-    queryFn: getFolloweesByMe,
+    queryKey: ['followees', userId],
+    queryFn: () => {
+      if (!userId) return getFolloweesByMe();
+      else return getFolloweesByMe(); // TODO: getFolloweesByUserId 로 변경
+    },
   });
 
   return data.body;
