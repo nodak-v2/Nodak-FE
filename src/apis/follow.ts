@@ -75,10 +75,14 @@ export const usePostFollowAPI = (userId: string) => {
   const QueryClient = useQueryClient();
   const { mutateAsync } = useMutation({
     mutationFn: () => postFollow(userId),
-    onSuccess: () =>
+    onSuccess: () => {
       QueryClient.invalidateQueries({
         queryKey: ['profile', userId],
-      }),
+      });
+      QueryClient.invalidateQueries({
+        queryKey: ['followees', userId],
+      });
+    },
   });
 
   return mutateAsync;
@@ -89,10 +93,14 @@ export const useDeleteFollowAPI = (userId: string) => {
 
   const { mutateAsync } = useMutation({
     mutationFn: () => deleteFollow(userId),
-    onSuccess: () =>
+    onSuccess: () => {
       QueryClient.invalidateQueries({
         queryKey: ['profile', userId],
-      }),
+      });
+      QueryClient.invalidateQueries({
+        queryKey: ['followees', userId],
+      });
+    },
   });
 
   return mutateAsync;
