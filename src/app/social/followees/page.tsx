@@ -1,13 +1,12 @@
 'use client';
 
 import { useGetFolloweesAPI } from '@/src/apis/follow';
+import FollowList from '@/src/app/social/_components/FollowList';
 
 const FolloweesPage = () => {
   const followees = useGetFolloweesAPI();
 
-  console.log(followees);
-
-  return <></>;
+  return <FollowList users={followees} />;
 };
 
 export default FolloweesPage;

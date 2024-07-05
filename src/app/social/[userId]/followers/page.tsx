@@ -3,14 +3,13 @@
 import { useParams } from 'next/navigation';
 
 import { useGetFollowersAPI } from '@/src/apis/follow';
+import FollowList from '@/src/app/social/_components/FollowList';
 
 const FollowersPage = () => {
   const { userId } = useParams<{ userId: string }>();
   const followers = useGetFollowersAPI(userId);
 
-  console.log(followers);
-
-  return <></>;
+  return <FollowList users={followers} />;
 };
 
 export default FollowersPage;
