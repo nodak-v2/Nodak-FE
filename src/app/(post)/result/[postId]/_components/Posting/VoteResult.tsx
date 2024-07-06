@@ -22,13 +22,17 @@ const VoteResult = () => {
   } = useGetVoteDetailAPI(postId);
 
   const maxCount = Math.max(...voteOptions.map(({ count }) => count));
-  const [isShow, setIsShow] = useState<boolean>(false);
+  const [isShowModal, setIsShowModal] = useState<boolean>(false);
   const [selectedImage, setSelectedImage] = useState<string>('');
   const { isAuthor } = useGetPostDetailAPI(postId);
 
   const showImageModal = (url: string) => {
-    setIsShow(true);
+    setIsShowModal(true);
     setSelectedImage(url);
+  };
+
+  const handelCloseModal = () => {
+    setIsShowModal(false);
   };
 
   return (
@@ -112,7 +116,7 @@ const VoteResult = () => {
           {isTerminated ? '종료된 투표입니다.' : '투표 완료'}
         </button>
       </div>
-      <FullScreenModal show={isShow} onClose={() => setIsShow(false)}>
+      <FullScreenModal show={isShowModal} onClose={handelCloseModal}>
         <div className='flex h-full w-full items-center'>
           <div className='relative h-[260px] w-full'>
             <Image src={selectedImage} alt='로고' fill />
