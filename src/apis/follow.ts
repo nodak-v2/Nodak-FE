@@ -5,7 +5,7 @@ import {
   useSuspenseQuery,
 } from '@tanstack/react-query';
 
-import { StringOrVoid } from '@/src/utils/types';
+import { NullableToString } from '@/src/utils/types';
 
 import { api } from './core';
 
@@ -86,11 +86,16 @@ export const invalidateFollowQueries = (
   });
 };
 
-export const usePostFollowAPI = <TUserId>(initialUserId?: TUserId) => {
+// 제너릭으로 주지않으면 타입 추론이 안되어서 타입을 명시해줘야함.
+export const usePostFollowAPI = <
+  TUserId extends string | undefined = undefined,
+>(
+  initialUserId?: TUserId,
+) => {
   const QueryClient = useQueryClient();
 
   const { mutateAsync } = useMutation({
-    mutationFn: (userId: StringOrVoid<TUserId>) =>
+    mutationFn: (userId: NullableToString<TUserId>) =>
       postFollow((initialUserId ?? userId) as string),
     onSuccess: () =>
       invalidateFollowQueries(QueryClient, initialUserId as string),
@@ -99,11 +104,15 @@ export const usePostFollowAPI = <TUserId>(initialUserId?: TUserId) => {
   return mutateAsync;
 };
 
-export const useDeleteFollowAPI = <TUserId>(initialUserId?: TUserId) => {
+export const useDeleteFollowAPI = <
+  TUserId extends string | undefined = undefined,
+>(
+  initialUserId?: TUserId,
+) => {
   const QueryClient = useQueryClient();
 
   const { mutateAsync } = useMutation({
-    mutationFn: (userId: StringOrVoid<TUserId>) =>
+    mutationFn: (userId: NullableToString<TUserId>) =>
       deleteFollow((initialUserId ?? userId) as string),
     onSuccess: () =>
       invalidateFollowQueries(QueryClient, initialUserId as string),

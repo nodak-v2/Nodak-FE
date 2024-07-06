@@ -1,2 +1,2 @@
-// T 타입이 string이면 void, 아니면 string을 반환하는 타입
-export type StringOrVoid<T> = T extends string ? void : string;
+// T 타입이 null이거나 undefined일 때 string으로 변환.
+export type NullableToString<T> = T extends NonNullable<T> ? void : string;
