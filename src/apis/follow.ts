@@ -5,6 +5,8 @@ import {
   useSuspenseQuery,
 } from '@tanstack/react-query';
 
+import { StringOrVoid } from '@/src/utils/types';
+
 import { api } from './core';
 
 export interface FollowInfo {
@@ -72,8 +74,6 @@ const deleteFollow = (userId: string) => {
   });
 };
 
-type MutationParam<T> = T extends string ? void : string;
-
 export const invalidateFollowQueries = (
   queryClient: QueryClient,
   userId: string,
@@ -90,7 +90,7 @@ export const usePostFollowAPI = <TUserId>(initialUserId?: TUserId) => {
   const QueryClient = useQueryClient();
 
   const { mutateAsync } = useMutation({
-    mutationFn: (userId: MutationParam<TUserId>) =>
+    mutationFn: (userId: StringOrVoid<TUserId>) =>
       postFollow((initialUserId ?? userId) as string),
     onSuccess: () =>
       invalidateFollowQueries(QueryClient, initialUserId as string),
@@ -103,7 +103,7 @@ export const useDeleteFollowAPI = <TUserId>(initialUserId?: TUserId) => {
   const QueryClient = useQueryClient();
 
   const { mutateAsync } = useMutation({
-    mutationFn: (userId: MutationParam<TUserId>) =>
+    mutationFn: (userId: StringOrVoid<TUserId>) =>
       deleteFollow((initialUserId ?? userId) as string),
     onSuccess: () =>
       invalidateFollowQueries(QueryClient, initialUserId as string),
