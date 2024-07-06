@@ -1,10 +1,13 @@
 'use client';
 
+import { useState } from 'react';
+
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
 
 import { useGetPostDetailAPI } from '@/src/apis/postDetail';
 import { useGetVoteDetailAPI } from '@/src/apis/vote';
+import FullScreenModal from '@/src/components/FullScreenModal';
 import Icon from '@/src/components/Icon';
 import { cn } from '@/src/utils/cn';
 
@@ -19,8 +22,14 @@ const VoteResult = () => {
   } = useGetVoteDetailAPI(postId);
 
   const maxCount = Math.max(...voteOptions.map(({ count }) => count));
-
+  const [isShow, setIsShow] = useState<boolean>(false);
+  const [selectedImage, setSelectedImage] = useState<string>('');
   const { isAuthor } = useGetPostDetailAPI(postId);
+
+  const showImageModal = (url: string) => {
+    setIsShow(true);
+    setSelectedImage(url);
+  };
 
   return (
     <div className='flex items-center justify-center rounded-[8px] bg-gray-accent1'>
@@ -88,7 +97,10 @@ const VoteResult = () => {
                       alt='투표이미지'
                       width={24}
                       height={24}
-                      className='absolute right-[10px] z-10 max-h-[24px] max-w-[24px] rounded-[4px]'
+                      className='absolute right-[10px] z-0 max-h-[24px] max-w-[24px] rounded-[4px]'
+                      onClick={() => {
+                        showImageModal(voteOptionImageUrl);
+                      }}
                     />
                   )}
                 </div>
@@ -100,6 +112,13 @@ const VoteResult = () => {
           {isTerminated ? '종료된 투표입니다.' : '투표 완료'}
         </button>
       </div>
+      <FullScreenModal show={isShow} onClose={() => setIsShow(false)}>
+        <div className='flex h-full w-full items-center'>
+          <div className='relative h-[260px] w-full'>
+            <Image src={selectedImage} alt='로고' fill />
+          </div>
+        </div>
+      </FullScreenModal>
     </div>
   );
 };

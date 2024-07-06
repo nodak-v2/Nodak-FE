@@ -39,4 +39,5 @@ export type IconName =
   | 'log-out'
   | 'write'
   | 'arrow-right'
-  | 'plus';
+  | 'plus'
+  | 'close-x';
