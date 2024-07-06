@@ -2,11 +2,11 @@ import React from 'react';
 
 import Script from 'next/script';
 
-interface GoogleAnalytics {
+interface GoogleAnalyticsProps {
   gaId: string;
 }
 
-const GoogleAnalytics = ({ gaId }: GoogleAnalytics) => {
+const GoogleAnalytics = ({ gaId }: GoogleAnalyticsProps) => {
   return (
     <>
       <Script
