@@ -7,7 +7,7 @@ import {
 
 import { api } from './core';
 
-export interface Follow {
+export interface FollowInfo {
   userId: number;
   email: string;
   nickname: string;
@@ -25,13 +25,13 @@ export interface Follow {
 }
 
 const getFollowersByMe = () => {
-  return api.get<Follow[]>({
+  return api.get<FollowInfo[]>({
     url: '/followers',
   });
 };
 
 const getFolloweesByMe = () => {
-  return api.get<Follow[]>({
+  return api.get<FollowInfo[]>({
     url: 'followees',
   });
 };
