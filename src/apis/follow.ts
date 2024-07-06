@@ -1,4 +1,5 @@
 import {
+  QueryClient,
   useMutation,
   useQueryClient,
   useSuspenseQuery,
@@ -73,20 +74,26 @@ const deleteFollow = (userId: string) => {
 
 type MutationParam<T> = T extends string ? void : string;
 
+export const invalidateFollowQueries = (
+  queryClient: QueryClient,
+  userId: string,
+) => {
+  queryClient.invalidateQueries({
+    queryKey: ['profile', userId],
+  });
+  queryClient.invalidateQueries({
+    queryKey: ['followees', userId],
+  });
+};
+
 export const usePostFollowAPI = <TUserId>(initialUserId?: TUserId) => {
   const QueryClient = useQueryClient();
 
   const { mutateAsync } = useMutation({
     mutationFn: (userId: MutationParam<TUserId>) =>
       postFollow((initialUserId ?? userId) as string),
-    onSuccess: () => {
-      QueryClient.invalidateQueries({
-        queryKey: ['profile', initialUserId],
-      });
-      QueryClient.invalidateQueries({
-        queryKey: ['followees', initialUserId],
-      });
-    },
+    onSuccess: () =>
+      invalidateFollowQueries(QueryClient, initialUserId as string),
   });
 
   return mutateAsync;
@@ -98,14 +105,8 @@ export const useDeleteFollowAPI = <TUserId>(initialUserId?: TUserId) => {
   const { mutateAsync } = useMutation({
     mutationFn: (userId: MutationParam<TUserId>) =>
       deleteFollow((initialUserId ?? userId) as string),
-    onSuccess: () => {
-      QueryClient.invalidateQueries({
-        queryKey: ['profile', initialUserId],
-      });
-      QueryClient.invalidateQueries({
-        queryKey: ['followees', initialUserId],
-      });
-    },
+    onSuccess: () =>
+      invalidateFollowQueries(QueryClient, initialUserId as string),
   });
 
   return mutateAsync;

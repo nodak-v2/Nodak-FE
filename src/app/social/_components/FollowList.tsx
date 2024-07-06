@@ -1,6 +1,10 @@
 import { useQueryClient } from '@tanstack/react-query';
 
-import { useDeleteFollowAPI, usePostFollowAPI } from '@/src/apis/follow';
+import {
+  invalidateFollowQueries,
+  useDeleteFollowAPI,
+  usePostFollowAPI,
+} from '@/src/apis/follow';
 import ProfileBlock from '@/src/app/social/_components/ProfileBlock';
 import Button from '@/src/components/Button/Button';
 
@@ -17,31 +21,16 @@ const FollowList = ({ users }: UserListProps) => {
   const postFollow = usePostFollowAPI();
   const deleteFollow = useDeleteFollowAPI();
 
-  const QueryClient = useQueryClient();
+  const queryClient = useQueryClient();
 
-  const handlePostFollowClick = (userId: number) => () => {
+  const handlePostFollowClick = (userId: number) => () =>
     postFollow(userId.toString(), {
-      onSuccess: () => {
-        QueryClient.invalidateQueries({
-          queryKey: ['profile', userId],
-        });
-        QueryClient.invalidateQueries({
-          queryKey: ['followees', userId],
-        });
-      },
+      onSuccess: () => invalidateFollowQueries(queryClient, userId.toString()),
     });
-  };
 
   const handleDeleteFollowClick = (userId: number) => () =>
     deleteFollow(userId.toString(), {
-      onSuccess: () => {
-        QueryClient.invalidateQueries({
-          queryKey: ['profile', userId],
-        });
-        QueryClient.invalidateQueries({
-          queryKey: ['followees', userId],
-        });
-      },
+      onSuccess: () => invalidateFollowQueries(queryClient, userId.toString()),
     });
 
   return (
