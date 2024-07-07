@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   description: '투표 플랫폼 픽키 - COPYRIGHT ©picky',
   manifest: '/manifest.json',
   icons: {
-    icon: '/app-Icon/icon.ico',
+    icon: '/app-Icon/icon-512x512.png',
   },
 };
 
@@ -30,7 +30,7 @@ const RootLayout = ({
 }>) => {
   return (
     <html lang='ko'>
-      <link rel='icon' href='/icon.ico' sizes='any' />
+      <link rel='icon' href='/icon-512x512.png' sizes='any' />
       <body className='font-sans'>
         <Providers>
           <MSWComponent>
