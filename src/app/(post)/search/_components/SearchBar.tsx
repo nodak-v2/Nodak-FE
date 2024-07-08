@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 
 import Icon from '@/src/components/Icon';
 import TextInput from '@/src/components/TextInput';
@@ -11,7 +11,7 @@ interface SearchBarProps {
 const SearchBar = ({ onClear, onSubmit }: SearchBarProps) => {
   const [input, setInput] = useState('');
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
   };
 

@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 
 import Link from 'next/link';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 
 import { useGetPostListAPI } from '@/src/apis/postList';
 import { CATEGORY_MAP } from '@/src/app/(main)/constants';
@@ -18,19 +18,16 @@ import SearchBar from './_components/SearchBar';
 
 const SearchPostPage = () => {
   const searchParams = useSearchParams();
-  const router = useRouter();
   const channel = (searchParams.get('channel') as ChannelType | null) ?? 'all';
   const [keyword, setKeyword] = useState('');
   const { content: posts } = useGetPostListAPI(keyword, CATEGORY_MAP[channel]);
 
   const handleRemoveClick = () => {
     setKeyword('');
-    router.push(`/search`);
   };
 
   const handleSubmit = (input: string) => {
     setKeyword(input);
-    router.push(`/search`);
   };
 
   return (
