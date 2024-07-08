@@ -125,7 +125,7 @@ const VoteForm = ({ onChange, error }: VoteFormProps) => {
             className='font-Pretendard ml-[32px] flex w-full items-center justify-center border border-gray-accent3 text-gray-accent4 enabled:active:bg-transparent'
             onClick={handleAddOption}
           >
-            <Icon id='plus' size={20} />
+            <Icon id='plus' />
             <span>항목 추가</span>
           </Button>
         </div>

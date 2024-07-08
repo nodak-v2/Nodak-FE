@@ -16,7 +16,7 @@ import useTerminateVote from '../../hooks/useTerminateVote';
 
 const VoteForm = () => {
   const [selectedOption, setSelectedOption] = useState<null | number>(null);
-  const [isShowModal, setIsShowModal] = useState<boolean>(false);
+  const [isShowModal, setIsShowModal] = useState(false);
   const { postId } = useParams() as { postId: string };
   const { voteOptions, voteTitle, totalNumber, voteId } =
     useGetVoteDetailAPI(postId);
@@ -84,7 +84,7 @@ const VoteForm = () => {
                     alt='투표이미지'
                     width={24}
                     height={24}
-                    className='absolute right-[10px] z-0 max-h-[24px] max-w-[24px] rounded-[4px]'
+                    className='absolute right-[10px] max-h-[24px] max-w-[24px] rounded-[4px]'
                   />
                 )}
               </label>

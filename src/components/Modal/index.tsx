@@ -18,7 +18,9 @@ const Modal = ({
   contentClassName,
   children,
 }: PropsWithChildren<ModalProps>) => {
-  if (!show) {
+  const modalRoot = document.getElementById('layout-Root');
+
+  if (!show || !modalRoot) {
     return null;
   }
 
@@ -40,7 +42,7 @@ const Modal = ({
         {children}
       </div>
     </div>,
-    document.getElementById('layout-Root')!,
+    modalRoot,
   );
 };
 

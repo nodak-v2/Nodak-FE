@@ -20,7 +20,9 @@ const FullScreenModal = ({
   backgroundClassName,
   children,
 }: PropsWithChildren<FullScreenModalProps>) => {
-  if (!show) {
+  const modalRoot = document.getElementById('layout-Root');
+
+  if (!show || !modalRoot) {
     return null;
   }
 
@@ -36,7 +38,7 @@ const FullScreenModal = ({
       </TopBar.Container>
       {children}
     </div>,
-    document.getElementById('layout-Root')!,
+    modalRoot,
   );
 };
 

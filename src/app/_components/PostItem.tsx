@@ -23,15 +23,10 @@ const generateVoteStatus = (options: string[], isTerminated: boolean) => {
   }
 
   const optionString = result.join(', ');
-  let suffix = remainingCount > 0 ? ` 외 ${remainingCount}개 ` : ' ';
 
-  if (isTerminated) {
-    suffix += '투표 종료';
-  } else {
-    suffix += '투표 진행 중';
-  }
+  const text = `${remainingCount > 0 ? ` 외 ${remainingCount}개` : ''} ${isTerminated ? '투표 종료' : '투표 진행중'}`;
 
-  return optionString + suffix;
+  return optionString + text;
 };
 
 const PostItem = ({ post, isNickname = true }: PostItemProps) => {
