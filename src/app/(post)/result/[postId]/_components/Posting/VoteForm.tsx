@@ -7,14 +7,25 @@ import { useParams } from 'next/navigation';
 
 import { useGetPostDetailAPI } from '@/src/apis/postDetail';
 import { useGetVoteDetailAPI } from '@/src/apis/vote';
+import FullImageModal from '@/src/components/FullImageModal';
 import Icon from '@/src/components/Icon';
+import ConfirmationModal from '@/src/components/Modal/ConfirmationModal';
 import { cn } from '@/src/utils/cn';
 
 import { useCreateVote } from '../../hooks/useCreateVote';
 import useTerminateVote from '../../hooks/useTerminateVote';
 
+type ImageModal = { isVisible: boolean; url: string };
+
 const VoteForm = () => {
   const [selectedOption, setSelectedOption] = useState<null | number>(null);
+
+  const [isShowTerminateModal, setIsShowTerminateModal] = useState(false);
+
+  const [imageModalState, setImageModalState] = useState<ImageModal>({
+    isVisible: false,
+    url: '',
+  });
 
   const { postId } = useParams() as { postId: string };
   const { voteOptions, voteTitle, totalNumber, voteId } =
@@ -37,6 +48,15 @@ const VoteForm = () => {
   const handleTerminateVote = () => {
     terminateVote();
   };
+
+  const handleTerminateModal = (isVisible: boolean) => () => {
+    setIsShowTerminateModal(isVisible);
+  };
+
+  const handleImageModal =
+    (state: { isVisible: boolean; url: string }) => () => {
+      setImageModalState(state);
+    };
 
   return (
     <div className='flex items-center justify-center rounded-[8px] bg-gray-accent1'>
@@ -62,11 +82,12 @@ const VoteForm = () => {
                   onChange={() => handleOptionChange(seq)}
                   className='hidden'
                 />
-                {selectedOption === seq ? (
-                  <Icon id='select-vote' size={24} />
-                ) : (
-                  <Icon id='select-default' size={24} />
-                )}
+                {!isAuthor &&
+                  (selectedOption === seq ? (
+                    <Icon id='select-vote' size={24} />
+                  ) : (
+                    <Icon id='select-default' size={24} />
+                  ))}
                 <span className='font-text-1-rg'>{voteOptionContent}</span>
                 {voteOptionImageUrl && (
                   <Image
@@ -74,7 +95,11 @@ const VoteForm = () => {
                     alt='투표이미지'
                     width={24}
                     height={24}
-                    className='absolute right-[10px] z-10 max-h-[24px] max-w-[24px] rounded-[4px]'
+                    className='absolute right-[10px] max-h-[24px] max-w-[24px] rounded-[4px]'
+                    onClick={handleImageModal({
+                      isVisible: true,
+                      url: voteOptionImageUrl,
+                    })}
                   />
                 )}
               </label>
@@ -84,7 +109,7 @@ const VoteForm = () => {
         {isAuthor ? (
           <button
             className='font-title-1-md w-full rounded-lg bg-sub py-3 text-primary'
-            onClick={() => handleTerminateVote()}
+            onClick={handleTerminateModal(true)}
           >
             투표 종료하기
           </button>
@@ -101,6 +126,18 @@ const VoteForm = () => {
           </button>
         )}
       </div>
+      <ConfirmationModal
+        isShow={isShowTerminateModal}
+        description='투표를 종료하시겠습니까?'
+        onClose={handleTerminateModal(false)}
+        onConfirm={handleTerminateVote}
+      />
+      <FullImageModal
+        isShow={imageModalState.isVisible}
+        onClose={handleImageModal({ isVisible: false, url: '' })}
+        imageUrl={imageModalState.url}
+        altText='항목 상세 이미지'
+      />
     </div>
   );
 };

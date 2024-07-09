@@ -4,20 +4,22 @@ import { createPortal } from 'react-dom';
 
 import { cn } from '@/src/utils/cn';
 
-interface ModalProps {
+import Icon from '../Icon';
+import TopBar from '../Topbar';
+
+interface FullModalProps {
   show: boolean;
   onClose: () => void;
   backgroundClassName?: string;
   contentClassName?: string;
 }
 
-const Modal = ({
+const FullModal = ({
   show,
   onClose,
   backgroundClassName,
-  contentClassName,
   children,
-}: PropsWithChildren<ModalProps>) => {
+}: PropsWithChildren<FullModalProps>) => {
   const modalRoot = document.getElementById('layout-Root');
 
   if (!show || !modalRoot) {
@@ -27,23 +29,17 @@ const Modal = ({
   return createPortal(
     <div
       className={cn(
-        'z-100 absolute bottom-0 left-0 right-0 top-0 flex w-full items-center justify-center bg-black bg-opacity-80',
+        'z-100 absolute flex h-full w-full flex-col bg-black',
         backgroundClassName,
       )}
-      onClick={onClose}
     >
-      <div
-        className={cn(
-          'flex w-[290px] flex-col gap-6 rounded-lg bg-gray-accent1 px-4 pb-4 pt-6 shadow-xl',
-          contentClassName,
-        )}
-        onClick={e => e.stopPropagation()}
-      >
-        {children}
-      </div>
+      <TopBar.Container>
+        <Icon id='close-x' onClick={onClose} />
+      </TopBar.Container>
+      {children}
     </div>,
     modalRoot,
   );
 };
 
-export default Modal;
+export default FullModal;

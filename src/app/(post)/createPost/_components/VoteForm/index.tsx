@@ -2,6 +2,7 @@ import React, { ChangeEvent, useRef, useState } from 'react';
 
 import Image from 'next/image';
 
+import Button from '@/src/components/Button/Button';
 import Icon from '@/src/components/Icon';
 import { cn } from '@/src/utils/cn';
 
@@ -118,21 +119,15 @@ const VoteForm = ({ onChange, error }: VoteFormProps) => {
         </div>
       ))}
       {options.length < MAX_LIMIT && (
-        <div className='bg-dark-accent1 relative flex w-full items-center justify-end gap-3 self-end'>
-          <Icon
-            id='add-circle'
-            className='cursor-pointer'
-            size={24}
+        <div className='flex w-full items-center'>
+          <Button
+            type='button'
+            className='font-Pretendard ml-[32px] flex w-full items-center justify-center border border-gray-accent3 text-gray-accent4 enabled:active:bg-transparent'
             onClick={handleAddOption}
-          />
-          <TextInput
-            className='border text-gray-accent1'
-            placeholder='항목 추가'
-            readOnly
-          />
-          <div className='absolute right-[10px] z-10 cursor-default'>
-            <Icon id='gallery' size={24} />
-          </div>
+          >
+            <Icon id='plus' />
+            <span>항목 추가</span>
+          </Button>
         </div>
       )}
       {error && <p className='text-sm text-error'>{error}</p>}

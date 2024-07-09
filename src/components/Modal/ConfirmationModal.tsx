@@ -19,7 +19,7 @@ const ConfirmationModal = ({
       <h2 className='font-h3-sm self-center text-white'>{description}</h2>
       <div className='flex gap-4'>
         <Button
-          className='font-title-1-md w-full bg-gray-accent1 py-3'
+          className='font-title-1-md w-full bg-gray-accent3 py-3'
           onClick={onClose}
         >
           취소
