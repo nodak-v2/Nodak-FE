@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from 'next';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import GoogleAnalytics from '@/src/components/GoogleAnalystics';
+
 import Introduction from '../components/Introduction';
 import { MSWComponent } from '../mocks/MSWComponent';
 import Providers from './Providers';
@@ -19,7 +21,7 @@ export const metadata: Metadata = {
   description: '투표 플랫폼 픽키 - COPYRIGHT ©picky',
   manifest: '/manifest.json',
   icons: {
-    icon: '/app-Icon/icon.ico',
+    icon: '/app-Icon/icon-512x512.png',
   },
 };
 
@@ -30,7 +32,10 @@ const RootLayout = ({
 }>) => {
   return (
     <html lang='ko'>
-      <link rel='icon' href='/icon.ico' sizes='any' />
+      <head>
+        <link rel='icon' href='/icon-512x512.png' sizes='any' />
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_MEASUREMENT_ID!} />
+      </head>
       <body className='font-sans'>
         <Providers>
           <MSWComponent>

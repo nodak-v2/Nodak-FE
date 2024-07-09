@@ -3,6 +3,7 @@ import Image from 'next/image';
 import type { Comment } from '@/src/apis/comments';
 import { useGetUserStatusAPI } from '@/src/apis/myInfo';
 import Icon from '@/src/components/Icon';
+import { formatDateCustom } from '@/src/utils/formatDate';
 
 import OwnCommentChip from './OwnCommentChip';
 
@@ -31,7 +32,9 @@ const CommentItem = ({ comment }: CommentItemProps) => {
       </div>
       <div className='flex flex-col gap-0.5'>
         <span className='font-text-1-rg'>{content}</span>
-        <span className='font-text-4-rg text-gray-accent4'>{createdAt}</span>
+        <span className='font-text-4-rg text-gray-accent4'>
+          {formatDateCustom(createdAt)}
+        </span>
       </div>
     </div>
   );
