@@ -7,19 +7,19 @@ import { cn } from '@/src/utils/cn';
 import Icon from '../Icon';
 import TopBar from '../Topbar';
 
-interface FullScreenModalProps {
+interface FullModalProps {
   show: boolean;
   onClose: () => void;
   backgroundClassName?: string;
   contentClassName?: string;
 }
 
-const FullScreenModal = ({
+const FullModal = ({
   show,
   onClose,
   backgroundClassName,
   children,
-}: PropsWithChildren<FullScreenModalProps>) => {
+}: PropsWithChildren<FullModalProps>) => {
   const modalRoot = document.getElementById('layout-Root');
 
   if (!show || !modalRoot) {
@@ -42,4 +42,4 @@ const FullScreenModal = ({
   );
 };
 
-export default FullScreenModal;
+export default FullModal;

@@ -7,9 +7,11 @@ import { useParams } from 'next/navigation';
 
 import { useGetPostDetailAPI } from '@/src/apis/postDetail';
 import { useGetVoteDetailAPI } from '@/src/apis/vote';
-import FullScreenModal from '@/src/components/FullScreenModal';
+import FullImageModal from '@/src/components/FullImageModal';
 import Icon from '@/src/components/Icon';
 import { cn } from '@/src/utils/cn';
+
+type ImageModal = { isVisible: boolean; url: string };
 
 const VoteResult = () => {
   const { postId } = useParams() as { postId: string };
@@ -22,18 +24,17 @@ const VoteResult = () => {
   } = useGetVoteDetailAPI(postId);
 
   const maxCount = Math.max(...voteOptions.map(({ count }) => count));
-  const [isShowModal, setIsShowModal] = useState<boolean>(false);
-  const [selectedImage, setSelectedImage] = useState<string>('');
   const { isAuthor } = useGetPostDetailAPI(postId);
 
-  const showImageModal = (url: string) => {
-    setIsShowModal(true);
-    setSelectedImage(url);
-  };
+  const [imageModalState, setImageModalState] = useState<ImageModal>({
+    isVisible: false,
+    url: '',
+  });
 
-  const handelCloseModal = () => {
-    setIsShowModal(false);
-  };
+  const handleImageModal =
+    (state: { isVisible: boolean; url: string }) => () => {
+      setImageModalState(state);
+    };
 
   return (
     <div className='flex items-center justify-center rounded-[8px] bg-gray-accent1'>
@@ -102,9 +103,10 @@ const VoteResult = () => {
                       width={24}
                       height={24}
                       className='absolute right-[10px] z-0 max-h-[24px] max-w-[24px] rounded-[4px]'
-                      onClick={() => {
-                        showImageModal(voteOptionImageUrl);
-                      }}
+                      onClick={handleImageModal({
+                        isVisible: true,
+                        url: voteOptionImageUrl,
+                      })}
                     />
                   )}
                 </div>
@@ -116,13 +118,12 @@ const VoteResult = () => {
           {isTerminated ? '종료된 투표입니다.' : '투표 완료'}
         </button>
       </div>
-      <FullScreenModal show={isShowModal} onClose={handelCloseModal}>
-        <div className='flex h-full w-full items-center'>
-          <div className='relative h-[260px] w-full'>
-            <Image src={selectedImage} alt='로고' fill />
-          </div>
-        </div>
-      </FullScreenModal>
+      <FullImageModal
+        isShow={imageModalState.isVisible}
+        onClose={handleImageModal({ isVisible: false, url: '' })}
+        imageUrl={imageModalState.url}
+        altText='항목 상세 이미지'
+      />
     </div>
   );
 };
