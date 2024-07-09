@@ -1,3 +1,5 @@
+import React from 'react';
+
 import Link from 'next/link';
 
 import Chip from '@/src/app/_components/Chip';
@@ -19,9 +21,13 @@ const channelData: { name: string; path: ChannelType }[] = [
 
 interface ChipContainerProps {
   currentChannel?: ChannelType;
+  defaultPath?: string;
 }
 
-const ChipContainer = ({ currentChannel = 'all' }: ChipContainerProps) => {
+const ChipContainer = ({
+  currentChannel = 'all',
+  defaultPath = '/',
+}: ChipContainerProps) => {
   return (
     <ul className='flex items-center gap-2 px-4 py-2'>
       {channelData.map(({ name, path }, index) => {
@@ -31,7 +37,7 @@ const ChipContainer = ({ currentChannel = 'all' }: ChipContainerProps) => {
           <li key={`${index}-${name}`}>
             <Link
               href={{
-                pathname: '/',
+                pathname: defaultPath,
                 query: path === 'all' ? {} : { channel: path },
               }}
             >

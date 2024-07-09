@@ -25,7 +25,7 @@ const PostingIcon = ({ icon, name, routingPath }: PostingIconProps) => {
       className='flex w-fit cursor-pointer items-center gap-3'
     >
       <Icon id={icon} size={16} />
-      <span className='font-h3-sm-bold'>{name}</span>
+      <span className='font-h3-sm'>{name}</span>
     </Link>
   );
 };

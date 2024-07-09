@@ -16,7 +16,6 @@ export type IconName =
   | 'search'
   | 'back'
   | 'subtract-circle'
-  | 'kakao'
   | 'close'
   | 'check'
   | 'add-box'
