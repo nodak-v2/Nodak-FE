@@ -19,17 +19,17 @@ const CategoryChip = ({ category }: { category: string }) => {
 const PostingButton = () => {
   const { postId } = useParams() as { postId: string };
   const {
-    starCount: initialStarCount,
+    starCount: initialLikeCount,
     commentSize,
-    checkStar: isInitialIsLike,
+    checkStar: isInitialIsLikeState,
     categoryName,
   } = useGetPostDetailAPI(postId);
 
   const { postLike, deleteLike } = usePostingLike(postId);
 
   const [star, setStar] = useState({
-    count: initialStarCount,
-    check: isInitialIsLike,
+    count: initialLikeCount,
+    check: isInitialIsLikeState,
   });
 
   const debouncedLikeUpdate = useCallback(
