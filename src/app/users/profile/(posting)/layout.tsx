@@ -1,9 +1,10 @@
 'use client';
 
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, Suspense } from 'react';
 
 import { usePathname } from 'next/navigation';
 
+import Spinner from '@/src/components/Spinner';
 import TopBar from '@/src/components/Topbar';
 
 const postingNavigation = {
@@ -27,9 +28,10 @@ const PostingLayout = ({ children }: PropsWithChildren) => {
       <TopBar.Container>
         <TopBar.BackButton href='/users/profile' />
         <TopBar.Title>{postingNavigation[pathname]}</TopBar.Title>
-        {/* <TopBar.NavMore /> */}
       </TopBar.Container>
-      {children}
+      <Suspense fallback={<Spinner text='게시글 목록을 불러오는 중 입니다.' />}>
+        {children}
+      </Suspense>
     </>
   );
 };
