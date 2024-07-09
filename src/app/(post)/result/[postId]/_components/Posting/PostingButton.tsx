@@ -1,3 +1,6 @@
+import { useCallback, useState } from 'react';
+
+import debounce from 'lodash/debounce';
 import { useParams } from 'next/navigation';
 
 import { useGetPostDetailAPI } from '@/src/apis/postDetail';
@@ -16,16 +19,32 @@ const CategoryChip = ({ category }: { category: string }) => {
 const PostingButton = () => {
   const { postId } = useParams() as { postId: string };
   const {
-    starCount,
+    starCount: initialLikeCount,
     commentSize,
-    checkStar: isLike,
+    checkStar: isInitialIsLikeState,
     categoryName,
   } = useGetPostDetailAPI(postId);
 
   const { postLike, deleteLike } = usePostingLike(postId);
 
+  const [star, setStar] = useState({
+    count: initialLikeCount,
+    check: isInitialIsLikeState,
+  });
+
+  const debouncedLikeUpdate = useCallback(
+    debounce((isLike: boolean) => {
+      isLike ? deleteLike() : postLike();
+    }, 1000),
+    [],
+  );
+
   const handleLike = () => {
-    isLike ? deleteLike() : postLike();
+    setStar(prevStar => ({
+      count: prevStar.check ? prevStar.count - 1 : prevStar.count + 1,
+      check: !prevStar.check,
+    }));
+    debouncedLikeUpdate(star.check);
   };
 
   return (
@@ -36,12 +55,12 @@ const PostingButton = () => {
           className='flex cursor-pointer items-center gap-2'
           onClick={handleLike}
         >
-          {isLike ? (
+          {star.check ? (
             <Icon id='heart-fill' size={24} />
           ) : (
             <Icon id='heart-line' size={24} />
           )}
-          <span className='font-text-1-rg'>{starCount}</span>
+          <span className='font-text-1-rg'>{star.count}</span>
         </div>
         <div className='flex items-center gap-2'>
           <Icon id='message' size={24} />
