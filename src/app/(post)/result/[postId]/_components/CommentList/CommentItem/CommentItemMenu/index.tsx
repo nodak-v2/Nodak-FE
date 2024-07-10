@@ -7,10 +7,8 @@ import Icon from '@/src/components/Icon';
 const CommentItemMenu = ({ children }: PropsWithChildren) => {
   return (
     <DropdownMenu.Root>
-      <DropdownMenu.Trigger asChild>
-        <button>
-          <Icon id='more-square' aria-label='댓글 더보기 메뉴' />
-        </button>
+      <DropdownMenu.Trigger>
+        <Icon id='more-square' aria-label='댓글 더보기 메뉴' />
       </DropdownMenu.Trigger>
       <DropdownMenu.Portal>
         <DropdownMenu.Content
