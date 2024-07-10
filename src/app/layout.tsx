@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from 'next';
+import type { Viewport } from 'next';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -6,23 +6,17 @@ import GoogleAnalytics from '@/src/components/GoogleAnalystics';
 
 import Introduction from '../components/Introduction';
 import { MSWComponent } from '../mocks/MSWComponent';
+import { getMetadata } from '../utils/getMetadata';
 import Providers from './Providers';
 import './globals.css';
+
+export const metadata = getMetadata();
 
 export const viewport: Viewport = {
   themeColor: '#ffffff',
   initialScale: 1,
   minimumScale: 1,
   viewportFit: 'cover',
-};
-
-export const metadata: Metadata = {
-  title: '픽키',
-  description: '투표 플랫폼 픽키 - COPYRIGHT ©picky',
-  manifest: '/manifest.json',
-  icons: {
-    icon: '/app-Icon/icon-512x512.png',
-  },
 };
 
 const RootLayout = ({
