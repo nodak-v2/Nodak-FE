@@ -12,6 +12,7 @@ import ChipContainer, {
 } from '@/src/app/_components/ChipContainer';
 import PostItem from '@/src/app/_components/PostItem';
 import EmptyPage from '@/src/components/EmptyPage';
+import useInfiniteScroll from '@/src/hooks/useInfiniteScroll';
 
 import TopBar from '../../../components/Topbar';
 import SearchBar from './_components/SearchBar';
@@ -19,8 +20,14 @@ import SearchBar from './_components/SearchBar';
 const SearchPostPage = () => {
   const searchParams = useSearchParams();
   const channel = (searchParams.get('channel') as ChannelType | null) ?? 'all';
+
   const [keyword, setKeyword] = useState('');
-  const { content: posts } = useGetPostListAPI(keyword, CATEGORY_MAP[channel]);
+  const { data: posts, fetchNextPage } = useGetPostListAPI(
+    keyword,
+    CATEGORY_MAP[channel],
+  );
+
+  const scrollRef = useInfiniteScroll(fetchNextPage);
 
   const handleRemoveClick = () => {
     setKeyword('');
@@ -53,6 +60,7 @@ const SearchPostPage = () => {
             ) : (
               <EmptyPage href='/createPost' text='작성 글이 없습니다.' />
             )}
+            <div ref={scrollRef} />
           </main>
         </>
       )}

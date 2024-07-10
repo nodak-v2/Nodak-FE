@@ -5,6 +5,7 @@ import { Controller, useForm } from 'react-hook-form';
 
 import { PostRequestBody } from '@/src/apis/createPost';
 import VoteForm from '@/src/app/(post)/createPost/_components/VoteForm';
+import { ChannelTypeOfKorean } from '@/src/app/_components/ChipContainer';
 import Button from '@/src/components/Button/Button';
 import FormField from '@/src/components/FormField';
 import Selector from '@/src/components/Selector';
@@ -16,7 +17,14 @@ import Toast from '@/src/components/Toast';
 import { formOptions } from './formSchema';
 import { useCreatePost } from './useCreatePost';
 
-const channels = ['잡담', '스포츠', '연예', '공부'];
+const channels: Array<ChannelTypeOfKorean> = [
+  '전체',
+  '일상',
+  '스포츠',
+  '연예',
+  '공부',
+  '여행',
+];
 
 const PostForm = () => {
   const {
