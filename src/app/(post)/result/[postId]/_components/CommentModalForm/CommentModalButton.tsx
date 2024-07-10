@@ -4,13 +4,13 @@ import { useRouter } from 'next/navigation';
 
 const CommentModalButton = () => {
   const router = useRouter();
-  const handleClick = () => {
+  const handleNavigateToCommentRoot = () => {
     router.push(`?method=create&target=root`);
   };
 
   return (
     <div
-      onClick={handleClick}
+      onClick={handleNavigateToCommentRoot}
       className='m-4 flex items-center gap-2 rounded-[8px] border border-gray-accent3 p-3'
     >
       <input
