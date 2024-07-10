@@ -28,7 +28,11 @@ const CommentReplyItem = ({ comment }: CommentReplyItemProps) => {
         isSelected && 'bg-gray-accent2',
       )}
     >
-      <Icon id='reply' className=' text-gray-accent3' />
+      <Icon
+        id='reply'
+        className=' text-gray-accent3'
+        aria-label='대댓글 표시'
+      />
       <CommentItem
         nickname={nickname}
         content={content}

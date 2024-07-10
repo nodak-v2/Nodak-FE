@@ -9,7 +9,7 @@ const CommentItemMenu = ({ children }: PropsWithChildren) => {
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
         <button>
-          <Icon id='more-square' />
+          <Icon id='more-square' aria-label='댓글 더보기 메뉴' />
         </button>
       </DropdownMenu.Trigger>
       <DropdownMenu.Portal>
