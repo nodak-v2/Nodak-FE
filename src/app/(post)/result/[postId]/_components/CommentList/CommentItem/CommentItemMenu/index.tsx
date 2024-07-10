@@ -14,6 +14,8 @@ const CommentItemMenu = ({ children }: PropsWithChildren) => {
       </DropdownMenu.Trigger>
       <DropdownMenu.Portal>
         <DropdownMenu.Content
+          collisionBoundary={document.querySelector('#layout-Root')}
+          collisionPadding={8}
           onCloseAutoFocus={e => e.preventDefault()}
           className=' font-text-3-rg flex flex-col gap-2 rounded-lg bg-[#2d3033] p-2 text-white'
         >
