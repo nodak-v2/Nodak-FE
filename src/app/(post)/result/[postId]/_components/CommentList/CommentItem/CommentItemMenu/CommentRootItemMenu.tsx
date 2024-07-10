@@ -42,20 +42,14 @@ const CommentRootItemMenu = ({
       <CommentItemMenu>
         {isOwnComment && (
           <>
-            <CommentItemMenu.Button
+            <CommentItemMenu.Item
               label='수정하기'
-              onClick={handleEditComment}
+              onSelect={handleEditComment}
             />
-            <CommentItemMenu.Button
-              label='삭제하기'
-              onClick={openDeleteModal}
-            />
+            <CommentItemMenu.Item label='삭제하기' onSelect={openDeleteModal} />
           </>
         )}
-        <CommentItemMenu.Button
-          label='답글 달기'
-          onClick={handleReplyComment}
-        />
+        <CommentItemMenu.Item label='답글 달기' onSelect={handleReplyComment} />
       </CommentItemMenu>
 
       <ConfirmationModal

@@ -32,7 +32,7 @@ const CommentReplyItemMenu = ({
     <>
       <CommentItemMenu>
         {isOwnComment && (
-          <CommentItemMenu.Button label='삭제하기' onClick={openDeleteModal} />
+          <CommentItemMenu.Item label='삭제하기' onSelect={openDeleteModal} />
         )}
       </CommentItemMenu>
       <ConfirmationModal

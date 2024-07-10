@@ -24,17 +24,14 @@ const CommentItemMenu = ({ children }: PropsWithChildren) => {
   );
 };
 
-interface CommentItemMenuButtonProps {
+interface CommentItemMenuItemProps {
   label: string;
-  onClick: () => void;
+  onSelect: () => void;
 }
 
-const CommentItemMenuButton = ({
-  label,
-  onClick,
-}: CommentItemMenuButtonProps) => {
-  return <DropdownMenu.Item onSelect={onClick}>{label}</DropdownMenu.Item>;
+const CommentItem = ({ label, onSelect }: CommentItemMenuItemProps) => {
+  return <DropdownMenu.Item onSelect={onSelect}>{label}</DropdownMenu.Item>;
 };
 
-CommentItemMenu.Button = CommentItemMenuButton;
+CommentItemMenu.Item = CommentItem;
 export default CommentItemMenu;
