@@ -34,7 +34,19 @@ const getFollowersByMe = () => {
 
 const getFolloweesByMe = () => {
   return api.get<FollowInfo[]>({
-    url: 'followees',
+    url: '/followees',
+  });
+};
+
+const getFollowersByUserId = (userId: string) => {
+  return api.get<FollowInfo[]>({
+    url: `/followers/${userId}`,
+  });
+};
+
+const getFolloweesByUserId = (userId: string) => {
+  return api.get<FollowInfo[]>({
+    url: `/followees/${userId}`,
   });
 };
 
@@ -43,7 +55,7 @@ export const useGetFollowersAPI = (userId?: string) => {
     queryKey: ['followers', userId],
     queryFn: () => {
       if (!userId) return getFollowersByMe();
-      else return getFollowersByMe(); // TODO: getFollowersByUserId 로 변경
+      else return getFollowersByUserId(userId);
     },
   });
 
@@ -55,7 +67,7 @@ export const useGetFolloweesAPI = (userId?: string) => {
     queryKey: ['followees', userId],
     queryFn: () => {
       if (!userId) return getFolloweesByMe();
-      else return getFolloweesByMe(); // TODO: getFolloweesByUserId 로 변경
+      else return getFolloweesByUserId(userId);
     },
   });
 
