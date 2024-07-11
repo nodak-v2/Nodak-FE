@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
+import PullToRefresh from 'react-simple-pull-to-refresh';
 
 import { useGetPostListAPI } from '@/src/apis/postList';
 import { CATEGORY_MAP } from '@/src/app/(main)/constants';
@@ -22,11 +23,16 @@ const Main = () => {
   const channel = (searchParams.get('channel') as ChannelType | null) ?? 'all';
   const keyword = searchParams.get('keyword') as string;
 
-  const { data: posts, fetchNextPage } = useGetPostListAPI(
-    keyword,
-    CATEGORY_MAP[channel],
-  );
+  const {
+    data: posts,
+    fetchNextPage,
+    refetch,
+  } = useGetPostListAPI(keyword, CATEGORY_MAP[channel]);
   const scrollRef = useInfiniteScroll(fetchNextPage);
+
+  const handleRefresh = async () => {
+    await refetch();
+  };
 
   return (
     <>
@@ -38,18 +44,22 @@ const Main = () => {
       </TopBar.Container>
       <ChipContainer currentChannel={channel} />
       <main className='flex h-full grow flex-col overflow-y-scroll'>
-        {posts.length ? (
-          posts.map((post, index) => (
-            <Link
-              href={`/result/${post.postId}`}
-              key={`${index}-${post.voteTitle}`}
-            >
-              <PostItem post={post} />
-            </Link>
-          ))
-        ) : (
-          <EmptyPage href='/createPost' text='작성 글이 없습니다.' />
-        )}
+        <PullToRefresh onRefresh={handleRefresh} pullingContent=''>
+          <ul>
+            {posts.length ? (
+              posts.map((post, index) => (
+                <Link
+                  href={`/result/${post.postId}`}
+                  key={`${index}-${post.voteTitle}`}
+                >
+                  <PostItem post={post} />
+                </Link>
+              ))
+            ) : (
+              <EmptyPage href='/createPost' text='작성 글이 없습니다.' />
+            )}
+          </ul>
+        </PullToRefresh>
 
         <div ref={scrollRef} />
       </main>

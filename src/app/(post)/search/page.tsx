@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
+import PullToRefresh from 'react-simple-pull-to-refresh';
 
 import { useGetPostListAPI } from '@/src/apis/postList';
 import { CATEGORY_MAP } from '@/src/app/(main)/constants';
@@ -22,10 +23,11 @@ const SearchPostPage = () => {
   const channel = (searchParams.get('channel') as ChannelType | null) ?? 'all';
 
   const [keyword, setKeyword] = useState('');
-  const { data: posts, fetchNextPage } = useGetPostListAPI(
-    keyword,
-    CATEGORY_MAP[channel],
-  );
+  const {
+    data: posts,
+    fetchNextPage,
+    refetch,
+  } = useGetPostListAPI(keyword, CATEGORY_MAP[channel]);
 
   const scrollRef = useInfiniteScroll(fetchNextPage);
 
@@ -35,6 +37,10 @@ const SearchPostPage = () => {
 
   const handleSubmit = (input: string) => {
     setKeyword(input);
+  };
+
+  const handleRefresh = async () => {
+    await refetch();
   };
 
   return (
@@ -48,19 +54,23 @@ const SearchPostPage = () => {
         <>
           <ChipContainer currentChannel={channel} defaultPath='/search' />
           <main className='flex h-full grow flex-col overflow-y-scroll'>
-            {posts.length ? (
-              posts.map((post, index) => (
-                <Link
-                  href={`/result/${post.postId}`}
-                  key={`${index}-${post.voteTitle}`}
-                >
-                  <PostItem post={post} />
-                </Link>
-              ))
-            ) : (
-              <EmptyPage href='/createPost' text='작성 글이 없습니다.' />
-            )}
-            <div ref={scrollRef} />
+            <PullToRefresh onRefresh={handleRefresh} pullingContent=''>
+              <ul>
+                {posts.length ? (
+                  posts.map((post, index) => (
+                    <Link
+                      href={`/result/${post.postId}`}
+                      key={`${index}-${post.voteTitle}`}
+                    >
+                      <PostItem post={post} />
+                    </Link>
+                  ))
+                ) : (
+                  <EmptyPage href='/createPost' text='작성 글이 없습니다.' />
+                )}
+                <div ref={scrollRef} />
+              </ul>
+            </PullToRefresh>
           </main>
         </>
       )}
