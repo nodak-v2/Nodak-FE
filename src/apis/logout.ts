@@ -1,4 +1,4 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { api } from './core';
 
@@ -9,8 +9,11 @@ const logout = () => {
 };
 
 export const useLogoutAPI = () => {
+  const queryClient = useQueryClient();
+
   const { mutateAsync } = useMutation({
     mutationFn: () => logout(),
+    onSuccess: () => queryClient.removeQueries(),
   });
 
   return mutateAsync;
