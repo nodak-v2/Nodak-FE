@@ -23,49 +23,31 @@ export interface FollowInfo {
   isFollowing: boolean;
 }
 
-const getFollowersByMe = () => {
-  return api.get<FollowInfo[]>({
-    url: '/followers',
-  });
-};
-
-const getFolloweesByMe = () => {
-  return api.get<FollowInfo[]>({
-    url: '/followees',
-  });
-};
-
-const getFollowersByUserId = (userId: string) => {
+const getFollowers = (userId: string) => {
   return api.get<FollowInfo[]>({
     url: `/followers/${userId}`,
   });
 };
 
-const getFolloweesByUserId = (userId: string) => {
+const getFollowees = (userId: string) => {
   return api.get<FollowInfo[]>({
     url: `/followees/${userId}`,
   });
 };
 
-export const useGetFollowersAPI = (userId?: string) => {
+export const useGetFollowersAPI = (userId: string) => {
   const { data } = useSuspenseQuery({
     queryKey: ['followers', userId],
-    queryFn: () => {
-      if (!userId) return getFollowersByMe();
-      else return getFollowersByUserId(userId);
-    },
+    queryFn: () => getFollowers(userId),
   });
 
   return data.body;
 };
 
-export const useGetFolloweesAPI = (userId?: string) => {
+export const useGetFolloweesAPI = (userId: string) => {
   const { data } = useSuspenseQuery({
     queryKey: ['followees', userId],
-    queryFn: () => {
-      if (!userId) return getFolloweesByMe();
-      else return getFolloweesByUserId(userId);
-    },
+    queryFn: () => getFollowees(userId),
   });
 
   return data.body;

@@ -1,10 +1,12 @@
 'use client';
 
 import { useGetFollowersAPI } from '@/src/apis/follow';
+import { useGetUserStatusAPI } from '@/src/apis/myInfo';
 import FollowList from '@/src/app/social/_components/FollowList';
 
 const FollowersPage = () => {
-  const followers = useGetFollowersAPI();
+  const { userId: myId } = useGetUserStatusAPI();
+  const followers = useGetFollowersAPI(myId.toString());
 
   return <FollowList users={followers} />;
 };
