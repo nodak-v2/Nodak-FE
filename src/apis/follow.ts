@@ -1,11 +1,8 @@
 import {
-  QueryClient,
   useMutation,
   useQueryClient,
   useSuspenseQuery,
 } from '@tanstack/react-query';
-
-import { NullableToString } from '@/src/utils/types';
 
 import { api } from './core';
 
@@ -86,48 +83,37 @@ const deleteFollow = (userId: string) => {
   });
 };
 
-export const invalidateFollowQueries = (
-  queryClient: QueryClient,
-  userId: string,
-) => {
-  queryClient.invalidateQueries({
-    queryKey: ['profile', userId],
-  });
-  queryClient.invalidateQueries({
-    queryKey: ['followees', userId],
-  });
-};
-
-// 제너릭으로 주지않으면 타입 추론이 안되어서 타입을 명시해줘야함.
-export const usePostFollowAPI = <
-  TUserId extends string | undefined = undefined,
->(
-  initialUserId?: TUserId,
-) => {
-  const QueryClient = useQueryClient();
+export const usePostFollowAPI = (userId: string) => {
+  const queryClient = useQueryClient();
 
   const { mutateAsync } = useMutation({
-    mutationFn: (userId: NullableToString<TUserId>) =>
-      postFollow((initialUserId ?? userId) as string),
-    onSuccess: () =>
-      invalidateFollowQueries(QueryClient, initialUserId as string),
+    mutationFn: () => postFollow(userId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['profile', userId],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ['followees', userId],
+      });
+    },
   });
 
   return mutateAsync;
 };
 
-export const useDeleteFollowAPI = <
-  TUserId extends string | undefined = undefined,
->(
-  initialUserId?: TUserId,
-) => {
-  const QueryClient = useQueryClient();
+export const useDeleteFollowAPI = (userId: string) => {
+  const queryClient = useQueryClient();
 
   const { mutateAsync } = useMutation({
-    mutationFn: (userId: NullableToString<TUserId>) =>
-      deleteFollow((initialUserId ?? userId) as string),
-    onSuccess: () =>
-      invalidateFollowQueries(QueryClient, initialUserId as string),
+    mutationFn: () => deleteFollow(userId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['profile', userId],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ['followees', userId],
+      });
+    },
   });
 
   return mutateAsync;
