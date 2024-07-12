@@ -13,7 +13,7 @@ const FollowButton = ({ userId }: FollowButtonProps) => {
   return (
     <Button
       className='font-title-1-md w-[90px]  py-2'
-      baseColor='primaryInverted'
+      baseColor='primary'
       onClick={handleFollow}
     >
       팔로우
