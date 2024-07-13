@@ -6,6 +6,8 @@ import { useParams } from 'next/navigation';
 
 import { useGetUserStatusAPI } from '@/src/apis/myInfo';
 import { useGetProfileAPI } from '@/src/apis/profile';
+import ConfirmationModal from '@/src/components/Modal/ConfirmationModal';
+import useModal from '@/src/hooks/useModal';
 
 import { useFollow } from '../[userId]/hooks/useFollow';
 
@@ -25,20 +27,25 @@ const UserPageButton = () => {
   const { postFollow, deleteFollow } = useFollow(userId);
   const { isFollowing } = useGetProfileAPI(userId);
 
-  const handleFollow = () => {
-    if (isFollowing) {
-      deleteFollow();
-    } else {
-      postFollow();
-    }
+  const handleFollow = () => postFollow();
+
+  const handleUnFollow = () => {
+    deleteFollow();
+    closeUnfollowModal();
   };
+
+  const {
+    isOpen: isOpenUnfollowModal,
+    open: openUnfollowModal,
+    close: closeUnfollowModal,
+  } = useModal();
 
   return (
     <div className='flex items-center gap-4'>
       {isFollowing ? (
         <button
           className='font-title-1-md w-full rounded-[8px] border border-primary py-2 text-primary'
-          onClick={handleFollow}
+          onClick={openUnfollowModal}
         >
           팔로잉
         </button>
@@ -50,6 +57,12 @@ const UserPageButton = () => {
           팔로우
         </button>
       )}
+      <ConfirmationModal
+        description='팔로우를 취소하시겠습니까?'
+        isShow={isOpenUnfollowModal}
+        onConfirm={handleUnFollow}
+        onClose={closeUnfollowModal}
+      />
       <Link
         className='font-title-1-md flex w-full items-center justify-center rounded-[8px] border border-primary py-2 text-primary'
         href={`/users/${userId}/message`}
