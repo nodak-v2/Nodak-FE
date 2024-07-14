@@ -6,6 +6,15 @@ import {
 
 import { api } from './core';
 
+export interface ReplyComment {
+  replyId: number;
+  profileImageUrl: string | null;
+  nickname: string;
+  content: string;
+  createdAt: string;
+  userId: number;
+}
+
 export interface Comment {
   commentId: number;
   profileImageUrl: string | null;
@@ -13,6 +22,7 @@ export interface Comment {
   content: string;
   createdAt: string;
   userId: number;
+  children: ReplyComment[];
 }
 
 const getComments = (postId: string) => {
@@ -41,8 +51,49 @@ export const useCreateCommentAPI = (postId: string) => {
   const QueryClient = useQueryClient();
   const { mutateAsync } = useMutation({
     mutationFn: (comment: string) => createComment(postId, comment),
+    onSuccess: () => {
+      QueryClient.invalidateQueries({ queryKey: ['comments', postId] });
+      QueryClient.invalidateQueries({ queryKey: ['posts', postId] });
+      QueryClient.invalidateQueries({ queryKey: ['postList'] });
+    },
+  });
+
+  return mutateAsync;
+};
+
+const updateComment = (postId: string, commentId: number, comment: string) => {
+  return api.patch({
+    url: `/posts/${postId}/comments/${commentId}`,
+    data: { content: comment },
+  });
+};
+
+export const useUpdateCommentAPI = (postId: string, commentId: number) => {
+  const QueryClient = useQueryClient();
+  const { mutateAsync } = useMutation({
+    mutationFn: (comment: string) => updateComment(postId, commentId, comment),
     onSuccess: () =>
       QueryClient.invalidateQueries({ queryKey: ['comments', postId] }),
+  });
+
+  return mutateAsync;
+};
+
+const deleteComment = (postId: string, commentId: number) => {
+  return api.delete({
+    url: `/posts/${postId}/comments/${commentId}`,
+  });
+};
+
+export const useDeleteCommentAPI = (postId: string, commentId: number) => {
+  const QueryClient = useQueryClient();
+  const { mutateAsync } = useMutation({
+    mutationFn: () => deleteComment(postId, commentId),
+    onSuccess: () => {
+      QueryClient.invalidateQueries({ queryKey: ['comments', postId] });
+      QueryClient.invalidateQueries({ queryKey: ['posts', postId] });
+      QueryClient.invalidateQueries({ queryKey: ['postList'] });
+    },
   });
 
   return mutateAsync;

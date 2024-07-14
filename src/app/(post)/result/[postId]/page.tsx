@@ -4,7 +4,9 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useParams } from 'next/navigation';
 import PullToRefresh from 'react-simple-pull-to-refresh';
 
-import CommentList from './_components/Comments/CommentList';
+import CommentFormModal from '@/src/app/(post)/result/[postId]/_components/CommentModalForm';
+
+import CommentList from './_components/CommentList';
 import PostingMain from './_components/Posting';
 import PostingButton from './_components/Posting/PostingButton';
 
@@ -19,15 +21,20 @@ const ResultPage = () => {
   };
 
   return (
-    <PullToRefresh onRefresh={handleRefresh} pullingContent=''>
-      <div className='flex h-full grow flex-col gap-4 overflow-y-auto'>
-        <div className='flex flex-col gap-[36px]'>
-          <PostingMain />
-          <PostingButton />
-        </div>
-        <CommentList />
-      </div>
-    </PullToRefresh>
+    <>
+      <PullToRefresh onRefresh={handleRefresh} pullingContent=''>
+        <>
+          <div className='flex h-full grow flex-col gap-4 overflow-y-auto'>
+            <div className='flex flex-col gap-[36px]'>
+              <PostingMain />
+              <PostingButton />
+            </div>
+            <CommentList />
+          </div>
+        </>
+      </PullToRefresh>
+      <CommentFormModal />
+    </>
   );
 };
 
