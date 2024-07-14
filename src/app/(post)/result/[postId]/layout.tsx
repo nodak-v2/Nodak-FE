@@ -1,10 +1,10 @@
-'use client';
-
 import { PropsWithChildren, Suspense } from 'react';
 
 import Spinner from '@/src/components/Spinner';
+import TopBar from '@/src/components/Topbar';
+import { getGenerateMetadata } from '@/src/utils/getGenerateMetadata';
 
-import TopBar from '../../../../components/Topbar';
+export const generateMetadata = getGenerateMetadata();
 
 const PostDetailLayout = ({ children }: PropsWithChildren) => {
   return (

@@ -24,7 +24,7 @@ export interface VoteContent {
   count: number;
 }
 
-const getVoteDetail = (postId: string) => {
+export const getVoteDetail = (postId: string) => {
   return api.get<VoteResultResponse>({
     url: `/votes/${postId}`,
   });
