@@ -1,4 +1,9 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
+import {
+  useMutation,
+  useQueryClient,
+  useSuspenseQuery,
+} from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
 
 import { api } from './core';
 
@@ -27,4 +32,26 @@ export const useGetPostDetailAPI = (postId: string) => {
   });
 
   return data.body;
+};
+
+const deletePostDetail = (postId: string) => {
+  return api.delete({
+    url: `/posts/${postId}`,
+  });
+};
+
+export const useDeletePostDetailAPI = (postId: string) => {
+  const queryClient = useQueryClient();
+  const router = useRouter();
+
+  return useMutation({
+    mutationFn: () => deletePostDetail(postId),
+    onMutate: async () => {
+      router.push('/');
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ['postList'] });
+      queryClient.invalidateQueries({ queryKey: ['posts', postId] });
+    },
+  });
 };
