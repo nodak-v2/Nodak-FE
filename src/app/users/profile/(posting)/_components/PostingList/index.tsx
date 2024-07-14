@@ -22,24 +22,22 @@ const PostingList = ({
   };
 
   return (
-    <div className='flex h-full flex-col'>
-      <PullToRefresh onRefresh={handleRefresh} pullingContent=''>
-        <ul>
-          {posts.length ? (
-            posts.map((post, index) => (
-              <Link
-                href={`/result/${post.postId}`}
-                key={`${index}-${post.voteTitle}`}
-              >
-                <PostItem post={post} isNickname={isNickname} />
-              </Link>
-            ))
-          ) : (
-            <EmptyPage text={text} />
-          )}
-        </ul>
-      </PullToRefresh>
-    </div>
+    <PullToRefresh onRefresh={handleRefresh} pullingContent=''>
+      <div className='flex h-full flex-col overflow-y-auto'>
+        {posts.length ? (
+          posts.map((post, index) => (
+            <Link
+              href={`/result/${post.postId}`}
+              key={`${index}-${post.voteTitle}`}
+            >
+              <PostItem post={post} isNickname={isNickname} />
+            </Link>
+          ))
+        ) : (
+          <EmptyPage text={text} />
+        )}
+      </div>
+    </PullToRefresh>
   );
 };
 

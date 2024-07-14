@@ -53,25 +53,23 @@ const SearchPostPage = () => {
       {keyword !== '' && (
         <>
           <ChipContainer currentChannel={channel} defaultPath='/search' />
-          <main className='flex h-full grow flex-col overflow-y-scroll'>
-            <PullToRefresh onRefresh={handleRefresh} pullingContent=''>
-              <ul>
-                {posts.length ? (
-                  posts.map((post, index) => (
-                    <Link
-                      href={`/result/${post.postId}`}
-                      key={`${index}-${post.voteTitle}`}
-                    >
-                      <PostItem post={post} />
-                    </Link>
-                  ))
-                ) : (
-                  <EmptyPage href='/createPost' text='작성 글이 없습니다.' />
-                )}
-                <div ref={scrollRef} />
-              </ul>
-            </PullToRefresh>
-          </main>
+          <PullToRefresh onRefresh={handleRefresh} pullingContent=''>
+            <main className='flex h-full grow flex-col overflow-y-auto'>
+              {posts.length ? (
+                posts.map((post, index) => (
+                  <Link
+                    href={`/result/${post.postId}`}
+                    key={`${index}-${post.voteTitle}`}
+                  >
+                    <PostItem post={post} />
+                  </Link>
+                ))
+              ) : (
+                <EmptyPage href='/createPost' text='작성 글이 없습니다.' />
+              )}
+              <div ref={scrollRef} />
+            </main>
+          </PullToRefresh>
         </>
       )}
     </>

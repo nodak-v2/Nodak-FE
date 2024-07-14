@@ -23,15 +23,13 @@ const ResultPage = () => {
   return (
     <>
       <PullToRefresh onRefresh={handleRefresh} pullingContent=''>
-        <>
-          <div className='flex h-full grow flex-col gap-4 overflow-y-auto'>
-            <div className='flex flex-col gap-[36px]'>
-              <PostingMain />
-              <PostingButton />
-            </div>
-            <CommentList />
+        <div className='flex h-full grow flex-col gap-4 overflow-y-auto'>
+          <div className='flex flex-col gap-[36px]'>
+            <PostingMain />
+            <PostingButton />
           </div>
-        </>
+          <CommentList />
+        </div>
       </PullToRefresh>
       <CommentFormModal />
     </>
