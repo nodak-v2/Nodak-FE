@@ -61,11 +61,7 @@ const PostItem = ({ post, isNickname = true }: PostItemProps) => {
             isTerminated && 'text-gray-accent3',
           )}
         >
-          <Icon
-            id='check'
-            size={16}
-            className={cn(!isTerminated && 'text-primary')}
-          />
+          <Icon id='check' className={cn(!isTerminated && 'text-primary')} />
           <span className='font-text-1-rg'>{`${generateVoteStatus(onGoingVote, isTerminated)}`}</span>
         </div>
         <div className='flex items-center gap-4'>

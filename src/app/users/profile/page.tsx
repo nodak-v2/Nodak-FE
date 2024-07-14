@@ -20,7 +20,7 @@ const ProfilePage = () => {
       <span className='font-h2-sm mb-1 p-4'>마이페이지</span>
       <div className='flex grow flex-col gap-8'>
         {isLogin ? <ProfileBlock /> : <LoginInfo />}
-        <BadgeBlock />
+        {isLogin ? <BadgeBlock /> : null}
         <MyVote />
         {isLogin && <Setting />}
       </div>

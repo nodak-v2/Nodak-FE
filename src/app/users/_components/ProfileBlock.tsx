@@ -44,7 +44,7 @@ const UserPageButton = () => {
         </button>
       ) : (
         <button
-          className='font-title-1-md w-full rounded-[8px] border border-sub bg-sub py-2 text-primary'
+          className='font-title-1-md w-full rounded-[8px] border border-sub bg-primary py-2'
           onClick={handleFollow}
         >
           팔로우

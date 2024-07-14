@@ -72,7 +72,7 @@ const VoteForm = () => {
             ({ voteOptionContent, voteOptionId, seq, voteOptionImageUrl }) => (
               <label
                 key={voteOptionId}
-                className='relative flex items-center gap-4 rounded-[8px] border border-gray-accent3 px-3 py-2'
+                className='relative flex items-center gap-2 rounded-[8px] border border-gray-accent3 px-3 py-2'
               >
                 <input
                   type='radio'

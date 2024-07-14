@@ -6,7 +6,6 @@ import { usePathname } from 'next/navigation';
 import Icon from '@/src/components/Icon';
 import { cn } from '@/src/utils/cn';
 
-// const userId = 1;
 const GNB = () => {
   const currentPage = usePathname();
 
@@ -50,7 +49,7 @@ const GNB = () => {
                     )}
                   >
                     {icon}
-                    <span className='block pb-2 text-xs'>{name}</span>
+                    <span className='pb-4 text-xs'>{name}</span>
                   </div>
                 </Link>
               </li>

@@ -44,13 +44,14 @@ const PostingButton = () => {
       count: prevStar.check ? prevStar.count - 1 : prevStar.count + 1,
       check: !prevStar.check,
     }));
-    debouncedLikeUpdate(star.check);
+
+    debouncedLikeUpdate(!star.check);
   };
 
   return (
     <div className='flex justify-between px-4'>
       <CategoryChip category={categoryName} />
-      <div className='flex items-center gap-2'>
+      <div className='flex items-center gap-3'>
         <div
           className='flex cursor-pointer items-center gap-2'
           onClick={handleLike}
