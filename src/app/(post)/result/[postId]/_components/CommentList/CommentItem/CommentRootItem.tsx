@@ -15,14 +15,14 @@ const CommentRootItem = ({
   isFirst = false,
   comment,
 }: CommentRootItemProps) => {
-  const { commentId, nickname, content, createdAt, userId } = comment;
+  const { commentId, nickname, content, createdAt, userId: authorId } = comment;
   const commentIdFromSearchParams = useSearchParams().get('commentId');
 
   const isSelected = Number(commentIdFromSearchParams) === commentId;
 
   const { userId: ownId } = useGetUserStatusAPI();
 
-  const isOwnComment = userId === ownId;
+  const isOwnComment = authorId === ownId;
 
   return (
     <div
@@ -37,6 +37,7 @@ const CommentRootItem = ({
         content={content}
         createdAt={createdAt}
         isOwnComment={isOwnComment}
+        authorId={authorId}
       >
         <CommentRootItemMenu
           commentId={commentId}

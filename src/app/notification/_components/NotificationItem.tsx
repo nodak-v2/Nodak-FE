@@ -1,10 +1,12 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 import timeOffset from '@/src/utils/timeOffset';
 
 type NotificationType = 'post' | 'comment' | 'follow';
 
 interface Notification {
+  userId: number;
   user: string;
   type: NotificationType;
   createdAt: string;
@@ -29,27 +31,34 @@ const getNotificationMessage = (type: NotificationType) => {
 const NotificationItem = ({ notifications }: NotificationItemProps) => {
   return (
     <ul>
-      {notifications.map(({ user, userImage, createdAt, type }, index) => {
-        return (
-          <li key={index} className='p-4 pt-3'>
-            <section className='flex items-center gap-2'>
-              <Image
-                src={userImage ? userImage : '/user-square.png'}
-                alt='유저아바타'
-                width={36}
-                height={36}
-              />
-              <div>
-                <span>{user}</span>
-                <span>{getNotificationMessage(type)}</span>
-                <p className='font-text-4-rg text-gray-accent4'>
-                  {timeOffset(createdAt)}
-                </p>
-              </div>
-            </section>
-          </li>
-        );
-      })}
+      {notifications.map(
+        ({ user, userImage, createdAt, type, userId }, index) => {
+          return (
+            <li key={index} className='p-4 pt-3'>
+              <section className='flex items-center gap-2'>
+                <Link href={`/users/${userId}`}>
+                  <Image
+                    src={userImage ? userImage : '/user-square.png'}
+                    alt='유저아바타'
+                    width={36}
+                    height={36}
+                  />
+                </Link>
+
+                <div>
+                  <Link href={`/users/${userId}`}>
+                    <span>{user}</span>
+                  </Link>
+                  <span>{getNotificationMessage(type)}</span>
+                  <p className='font-text-4-rg text-gray-accent4'>
+                    {timeOffset(createdAt)}
+                  </p>
+                </div>
+              </section>
+            </li>
+          );
+        },
+      )}
     </ul>
   );
 };

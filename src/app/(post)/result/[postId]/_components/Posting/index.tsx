@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { useParams } from 'next/navigation';
 
 import { useGetPostDetailAPI } from '@/src/apis/postDetail';
@@ -12,14 +13,23 @@ const PostingMain = () => {
   const { postId } = useParams() as { postId: string };
   const { hasVoted, terminated: isTerminated } = useGetVoteDetailAPI(postId);
 
-  const { content, createdAt, author } = useGetPostDetailAPI(postId);
+  const { content, createdAt, author, authorId } = useGetPostDetailAPI(postId);
 
   return (
     <div className='flex flex-col gap-5 px-4'>
       <div className='flex items-center gap-2'>
-        <Image src='/user-square.png' alt='유저프로필' width={36} height={36} />
+        <Link href={`/users/${authorId}`}>
+          <Image
+            src='/user-square.png'
+            alt='유저프로필'
+            width={36}
+            height={36}
+          />
+        </Link>
         <div className='flex flex-col'>
-          <span className='font-title-1-md'>{author}</span>
+          <Link href={`/users/${authorId}`}>
+            <span className='font-title-1-md'>{author}</span>
+          </Link>
           <span className='font-text-4-rg text-gray-accent4'>
             {formatDateCustom(createdAt)}
           </span>
