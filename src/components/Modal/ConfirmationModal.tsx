@@ -14,6 +14,11 @@ const ConfirmationModal = ({
   onClose,
   onConfirm,
 }: ConfirmationModalProps) => {
+  const handleConfirm = () => {
+    onConfirm();
+    onClose();
+  };
+
   return (
     <Modal
       show={isShow}
@@ -32,7 +37,7 @@ const ConfirmationModal = ({
         <Button
           className='font-title-1-md w-full py-3'
           baseColor='primary'
-          onClick={onConfirm}
+          onClick={handleConfirm}
         >
           확인
         </Button>

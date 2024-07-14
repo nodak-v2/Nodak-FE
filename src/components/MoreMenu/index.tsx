@@ -31,8 +31,16 @@ interface MoreMenuItemProps {
   onSelect?: () => void;
 }
 
-const MoreItem = ({ label, onSelect }: MoreMenuItemProps) => {
-  return <DropdownMenu.Item onSelect={onSelect}>{label}</DropdownMenu.Item>;
+const MoreItem = ({
+  label,
+  onSelect,
+  children,
+}: PropsWithChildren<MoreMenuItemProps>) => {
+  return (
+    <DropdownMenu.Item onSelect={onSelect}>
+      {children || label}
+    </DropdownMenu.Item>
+  );
 };
 
 MoreMenu.Item = MoreItem;

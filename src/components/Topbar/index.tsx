@@ -13,12 +13,13 @@ const Container = ({ children }: PropsWithChildren) => {
   );
 };
 
-// NavMore 컴포넌트는 MoreMenu 컴포넌트를 사용하여 구현합니다.
 const NavMore = ({ children }: PropsWithChildren) => (
   <MoreMenu Icon={<Icon id='nav-more' size={24} className='cursor-pointer' />}>
     {children}
   </MoreMenu>
 );
+
+NavMore.Item = MoreMenu.Item;
 
 const BackButton = ({ href }: { href: string }) => (
   <Link href={href}>
