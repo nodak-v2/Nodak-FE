@@ -1,7 +1,7 @@
 export const META = {
   title: 'picky',
   siteName: 'picky',
-  description: '까다로운 고민에 대한 해답을 pick!',
+  description: '투표를 통한 고민 해결 커뮤니티',
   url: 'https://picky-fe.vercel.app/',
   keyword: ['고민', 'picky', 'pick', '투표', '추천', '결정'],
   image: '/picky/thumbnail.png',

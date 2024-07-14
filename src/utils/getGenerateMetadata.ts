@@ -2,7 +2,7 @@ import { getVoteDetail } from '@/src/apis/vote';
 import { getMetadata } from '@/src/utils/getMetadata';
 
 const RESULT_MESSAGE = '투표 결과를 확인하세요.';
-const VOTE_MESSAGE = 'picky에서 투표해보세요!';
+const VOTE_MESSAGE = 'picky에서 투표해보세요';
 
 export const getGenerateMetadata =
   () =>
@@ -33,7 +33,7 @@ export const getGenerateMetadata =
       return getMetadata({
         title,
         description,
-        asPath: `/Result/${postId}`,
+        asPath: `/result/${postId}`,
         image: thumbnailImageUrl,
       });
     } catch (error) {
