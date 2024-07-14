@@ -12,12 +12,7 @@ const NotificationErrorFallBack = ({ error, reset }: ErrorFallBackProps) => {
 
   return (
     <div className='flex h-full w-full'>
-      <ErrorPage
-        errorMessage={error.message}
-        text='알림 데이터를 불러오는 데 실패했습니다.'
-        buttonContent='다시 시도하기'
-        onClick={() => reset()}
-      />
+      <ErrorPage showRetryButton onRetryButtonClick={() => reset()} />
     </div>
   );
 };
