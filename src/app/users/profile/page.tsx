@@ -7,6 +7,7 @@ import GNB from '@/src/components/GNB';
 import Spinner from '@/src/components/Spinner';
 
 import ProfileBlock from '../_components/ProfileBlock';
+import BadgeBlock from '../_components/badge';
 import LoginInfo from './_components/LoginInfo';
 import MyVote from './_components/MyVote';
 import Setting from './_components/Setting';
@@ -19,6 +20,7 @@ const ProfilePage = () => {
       <span className='font-h2-sm mb-1 p-4'>마이페이지</span>
       <div className='flex grow flex-col gap-8'>
         {isLogin ? <ProfileBlock /> : <LoginInfo />}
+        <BadgeBlock />
         <MyVote />
         {isLogin && <Setting />}
       </div>
