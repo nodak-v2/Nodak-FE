@@ -3,6 +3,7 @@ import { PropsWithChildren } from 'react';
 import Link from 'next/link';
 
 import Icon from '@/src/components/Icon';
+import MoreMenu from '@/src/components/MoreMenu';
 
 const Container = ({ children }: PropsWithChildren) => {
   return (
@@ -12,8 +13,11 @@ const Container = ({ children }: PropsWithChildren) => {
   );
 };
 
-const NavMore = () => (
-  <Icon id='nav-more' size={24} className='cursor-pointer' />
+// NavMore 컴포넌트는 MoreMenu 컴포넌트를 사용하여 구현합니다.
+const NavMore = ({ children }: PropsWithChildren) => (
+  <MoreMenu Icon={<Icon id='nav-more' size={24} className='cursor-pointer' />}>
+    {children}
+  </MoreMenu>
 );
 
 const BackButton = ({ href }: { href: string }) => (

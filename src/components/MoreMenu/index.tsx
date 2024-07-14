@@ -1,3 +1,5 @@
+'use client';
+
 import { PropsWithChildren } from 'react';
 
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
@@ -25,8 +27,8 @@ const MoreMenu = ({ Icon, children }: PropsWithChildren<MoreMenuProps>) => {
 };
 
 interface MoreMenuItemProps {
-  label: string;
-  onSelect: () => void;
+  label?: string;
+  onSelect?: () => void;
 }
 
 const MoreItem = ({ label, onSelect }: MoreMenuItemProps) => {
