@@ -21,6 +21,7 @@ const ImageUploader = ({ imageUrl, onChange }: ImageUploaderProps) => {
 
   const handleDeleteImageUrl = () => {
     setImageSrcUrl(null);
+    onChange(null);
   };
 
   const handleImageSelect = async () => {
