@@ -29,7 +29,7 @@ const CommentRootItem = ({
       className={cn(
         'px-4 py-2',
         isSelected && 'bg-gray-accent2',
-        isFirst && 'px-4 py-0 pb-2',
+        isFirst && 'px-4 pb-2',
       )}
     >
       <CommentItem
