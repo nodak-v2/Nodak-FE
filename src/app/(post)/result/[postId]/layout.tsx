@@ -32,12 +32,13 @@ const PostDetailLayout = ({ children }: PropsWithChildren) => {
         <TopBar.BackButton href='/' />
         <TopBar.Title>투표 글</TopBar.Title>
         <TopBar.NavMore>
-          <TopBar.NavMore.Item>
-            <Link href='/report'>신고하기</Link>
-          </TopBar.NavMore.Item>
-          {isAuthor && (
+          {isAuthor ? (
             <TopBar.NavMore.Item>
               <button onClick={open}>삭제하기</button>
+            </TopBar.NavMore.Item>
+          ) : (
+            <TopBar.NavMore.Item>
+              <Link href='/report'>신고하기</Link>
             </TopBar.NavMore.Item>
           )}
         </TopBar.NavMore>

@@ -1,3 +1,5 @@
+'use client';
+
 import { PropsWithChildren, Suspense } from 'react';
 
 import Link from 'next/link';
@@ -12,8 +14,9 @@ const UserPageLayout = ({ children }: PropsWithChildren) => {
         <TopBar.BackButton href='/' />
         <TopBar.Title>프로필</TopBar.Title>
         <TopBar.NavMore>
-          <Link href='/'>홈</Link>
-          <Link href='/report'>신고하기</Link>
+          <TopBar.NavMore.Item>
+            <Link href='/report'>신고하기</Link>
+          </TopBar.NavMore.Item>
         </TopBar.NavMore>
       </TopBar.Container>
       {children}
