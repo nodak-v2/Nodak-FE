@@ -17,6 +17,15 @@ export interface ProfileResponse {
   followeeCount: number;
   isFollowing: boolean;
   posts: PostListContent[];
+  badge: Badge;
+}
+
+export interface Badge {
+  posting: number;
+  follow: number;
+  voting: number;
+  comment: number;
+  like: number;
 }
 
 export interface ProfilePatchRequest {

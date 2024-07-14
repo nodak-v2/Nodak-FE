@@ -6,17 +6,27 @@ import Chip from '@/src/app/_components/Chip';
 
 export type ChannelType =
   | 'all'
-  | 'chatting'
+  | 'daily'
   | 'sports'
   | 'entertaining'
-  | 'study';
+  | 'study'
+  | 'travel';
 
-const channelData: { name: string; path: ChannelType }[] = [
+export type ChannelTypeOfKorean =
+  | '전체'
+  | '일상'
+  | '스포츠'
+  | '연예'
+  | '공부'
+  | '여행';
+
+const channelData: { name: ChannelTypeOfKorean; path: ChannelType }[] = [
   { name: '전체', path: 'all' },
-  { name: '잡담', path: 'chatting' },
+  { name: '일상', path: 'daily' },
   { name: '스포츠', path: 'sports' },
   { name: '연예', path: 'entertaining' },
   { name: '공부', path: 'study' },
+  { name: '여행', path: 'travel' },
 ];
 
 interface ChipContainerProps {

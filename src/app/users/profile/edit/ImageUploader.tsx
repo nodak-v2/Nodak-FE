@@ -12,13 +12,16 @@ interface ImageUploaderProps {
   onChange: (imageUrl: string | null) => void;
 }
 
-const DEFAULT_IMAGE_URL = '/default-image.png';
+const DEFAULT_IMAGE_URL = '/picky/user-square.svg';
 
 const ImageUploader = ({ imageUrl, onChange }: ImageUploaderProps) => {
   const [imageSrcUrl, setImageSrcUrl] = useState<string | null>(imageUrl);
-  console.log(imageSrcUrl);
   const inputElement = useRef<HTMLInputElement>(null);
   const imageUpload = useImageUpload();
+
+  const handleDeleteImageUrl = () => {
+    setImageSrcUrl(null);
+  };
 
   const handleImageSelect = async () => {
     const file = inputElement.current?.files?.[0];
@@ -31,7 +34,7 @@ const ImageUploader = ({ imageUrl, onChange }: ImageUploaderProps) => {
 
   return (
     <>
-      <div className='bg-gray-accent7 flex w-full justify-center p-10'>
+      <div className='bg-gray-accent7 flex w-full flex-col items-center justify-center gap-5 p-8'>
         <div className='relative'>
           <Image
             src={imageSrcUrl || DEFAULT_IMAGE_URL}
@@ -60,6 +63,16 @@ const ImageUploader = ({ imageUrl, onChange }: ImageUploaderProps) => {
             ref={inputElement}
           />
         </div>
+        {imageSrcUrl ? (
+          <span
+            className='cursor-pointer text-[14px] text-gray-accent3 underline'
+            onClick={handleDeleteImageUrl}
+          >
+            프로필 사진 삭제
+          </span>
+        ) : (
+          <span></span>
+        )}
       </div>
     </>
   );

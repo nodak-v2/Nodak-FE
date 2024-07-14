@@ -11,7 +11,8 @@ const button = cva(
     variants: {
       baseColor: {
         dark: 'enabled:active:text-dark-accent1 border-white',
-        primary: 'border-primary bg-primary enabled:active:text-primary',
+        primary: 'border border-primary bg-primary enabled:active:text-primary',
+        primaryInverted: 'border border-primary bg-transparent text-primary',
       },
     },
     defaultVariants: {
