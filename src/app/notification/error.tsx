@@ -12,7 +12,7 @@ const NotificationErrorFallBack = ({ error, reset }: ErrorFallBackProps) => {
 
   return (
     <div className='flex h-full w-full'>
-      <ErrorPage showRetryButton onRetryButtonClick={() => reset()} />
+      <ErrorPage showRetryButton onRetryButtonClick={reset} />
     </div>
   );
 };

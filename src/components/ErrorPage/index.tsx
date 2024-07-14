@@ -22,17 +22,19 @@ const ErrorPage = ({
   let errorText = 'ERROR';
   const router = useRouter();
 
-  if (errorMessage && errorMessage.includes('NetworkError')) {
-    errorText = 'NETWORK ERROR';
-  } else if (errorMessage && errorMessage.includes('404')) {
-    errorText = '404 ERROR';
-  } else if (errorMessage && errorMessage.includes('500')) {
-    errorText = 'SERVER ERROR';
+  if (errorMessage) {
+    if (errorMessage.includes('NetworkError')) {
+      errorText = 'NETWORK ERROR';
+    } else if (errorMessage.includes('404')) {
+      errorText = '404 ERROR';
+    } else if (errorMessage.includes('500')) {
+      errorText = 'SERVER ERROR';
+    }
   }
 
   return (
     <div className='font-h3-sm flex h-full grow flex-col items-center justify-center'>
-      <Icon id={'warning'} aria-label='오류 발생' size={64} />
+      <Icon id='warning' aria-label='오류 발생' size={64} />
       {errorMessage && (
         <span className='mt-3 text-4xl font-semibold text-gray-accent2'>
           {errorText}
