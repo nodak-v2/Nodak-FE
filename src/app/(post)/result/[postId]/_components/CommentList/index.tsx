@@ -1,7 +1,7 @@
 import { useParams } from 'next/navigation';
 
 import { useGetCommentsAPI } from '@/src/apis/comments';
-import { useGetPostDetailAPI } from '@/src/apis/post';
+import { useGetPostDetailAPI } from '@/src/apis/postDetail';
 import CommentReplyItem from '@/src/app/(post)/result/[postId]/_components/CommentList/CommentItem/CommentReplyItem';
 import CommentRootItem from '@/src/app/(post)/result/[postId]/_components/CommentList/CommentItem/CommentRootItem';
 
