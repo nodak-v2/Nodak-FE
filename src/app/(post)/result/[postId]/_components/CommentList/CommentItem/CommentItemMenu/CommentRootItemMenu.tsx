@@ -1,8 +1,9 @@
 import { useParams, useRouter } from 'next/navigation';
 
 import { useDeleteCommentAPI } from '@/src/apis/comments';
-import CommentItemMenu from '@/src/app/(post)/result/[postId]/_components/CommentList/CommentItem/CommentItemMenu';
+import Icon from '@/src/components/Icon';
 import ConfirmationModal from '@/src/components/Modal/ConfirmationModal';
+import MoreMenu from '@/src/components/MoreMenu';
 import useModal from '@/src/hooks/useModal';
 
 interface CommentRootItemMenuProps {
@@ -43,24 +44,18 @@ const CommentRootItemMenu = ({
 
   return (
     <>
-      <CommentItemMenu>
-        <CommentItemMenu.Item label='답글달기' onSelect={handleReplyComment} />
+      <MoreMenu Icon={<Icon id='more-square' aria-label='댓글 더보기 메뉴' />}>
+        <MoreMenu.Item label='답글달기' onSelect={handleReplyComment} />
         {isOwnComment && (
           <>
-            <CommentItemMenu.Item
-              label='수정하기'
-              onSelect={handleEditComment}
-            />
-            <CommentItemMenu.Item label='삭제하기' onSelect={openDeleteModal} />
+            <MoreMenu.Item label='수정하기' onSelect={handleEditComment} />
+            <MoreMenu.Item label='삭제하기' onSelect={openDeleteModal} />
           </>
         )}
         {!isOwnComment && (
-          <CommentItemMenu.Item
-            label='신고하기'
-            onSelect={handleReportComment}
-          />
+          <MoreMenu.Item label='신고하기' onSelect={handleReportComment} />
         )}
-      </CommentItemMenu>
+      </MoreMenu>
 
       <ConfirmationModal
         isShow={isDeleteModalOpen}

@@ -1,8 +1,9 @@
 import { useParams, useRouter } from 'next/navigation';
 
 import { useDeleteReplyCommentAPI } from '@/src/apis/reply';
-import CommentItemMenu from '@/src/app/(post)/result/[postId]/_components/CommentList/CommentItem/CommentItemMenu';
+import Icon from '@/src/components/Icon';
 import ConfirmationModal from '@/src/components/Modal/ConfirmationModal';
+import MoreMenu from '@/src/components/MoreMenu';
 import useModal from '@/src/hooks/useModal';
 
 interface CommentReplyItemMenuProps {
@@ -35,17 +36,14 @@ const CommentReplyItemMenu = ({
 
   return (
     <>
-      <CommentItemMenu>
+      <MoreMenu Icon={<Icon id='more-square' aria-label='댓글 더보기 메뉴' />}>
         {isOwnComment && (
-          <CommentItemMenu.Item label='삭제하기' onSelect={openDeleteModal} />
+          <MoreMenu.Item label='삭제하기' onSelect={openDeleteModal} />
         )}
         {!isOwnComment && (
-          <CommentItemMenu.Item
-            label='신고하기'
-            onSelect={handleReportComment}
-          />
+          <MoreMenu.Item label='신고하기' onSelect={handleReportComment} />
         )}
-      </CommentItemMenu>
+      </MoreMenu>
       <ConfirmationModal
         isShow={isDeleteModalOpen}
         description='삭제하시겠습니까?'
