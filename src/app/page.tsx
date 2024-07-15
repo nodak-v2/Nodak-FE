@@ -43,26 +43,24 @@ const Main = () => {
         </Link>
       </TopBar.Container>
       <ChipContainer currentChannel={channel} />
-      <main className='flex h-full grow flex-col overflow-y-scroll'>
-        <PullToRefresh onRefresh={handleRefresh} pullingContent=''>
-          <ul>
-            {posts.length ? (
-              posts.map((post, index) => (
-                <Link
-                  href={`/result/${post.postId}`}
-                  key={`${index}-${post.voteTitle}`}
-                >
-                  <PostItem post={post} />
-                </Link>
-              ))
-            ) : (
-              <EmptyPage href='/createPost' text='작성 글이 없습니다.' />
-            )}
-          </ul>
-        </PullToRefresh>
+      <PullToRefresh onRefresh={handleRefresh} pullingContent=''>
+        <main className='flex h-full grow flex-col overflow-y-auto'>
+          {posts.length ? (
+            posts.map((post, index) => (
+              <Link
+                href={`/result/${post.postId}`}
+                key={`${index}-${post.voteTitle}`}
+              >
+                <PostItem post={post} />
+              </Link>
+            ))
+          ) : (
+            <EmptyPage href='/createPost' text='작성 글이 없습니다.' />
+          )}
 
-        <div ref={scrollRef} />
-      </main>
+          <div ref={scrollRef} />
+        </main>
+      </PullToRefresh>
       <GNB />
     </>
   );
