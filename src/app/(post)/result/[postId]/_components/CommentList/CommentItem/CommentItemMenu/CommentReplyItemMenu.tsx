@@ -1,4 +1,4 @@
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 
 import { useDeleteReplyCommentAPI } from '@/src/apis/reply';
 import CommentItemMenu from '@/src/app/(post)/result/[postId]/_components/CommentList/CommentItem/CommentItemMenu';
@@ -15,6 +15,7 @@ const CommentReplyItemMenu = ({
   isOwnComment,
 }: CommentReplyItemMenuProps) => {
   const { postId } = useParams() as { postId: string };
+  const router = useRouter();
   const deleteComment = useDeleteReplyCommentAPI(postId, replyId);
 
   const {
@@ -28,11 +29,21 @@ const CommentReplyItemMenu = ({
     closeDeleteModal();
   };
 
+  const handleReportComment = () => {
+    router.push('/report');
+  };
+
   return (
     <>
       <CommentItemMenu>
         {isOwnComment && (
           <CommentItemMenu.Item label='삭제하기' onSelect={openDeleteModal} />
+        )}
+        {!isOwnComment && (
+          <CommentItemMenu.Item
+            label='신고하기'
+            onSelect={handleReportComment}
+          />
         )}
       </CommentItemMenu>
       <ConfirmationModal

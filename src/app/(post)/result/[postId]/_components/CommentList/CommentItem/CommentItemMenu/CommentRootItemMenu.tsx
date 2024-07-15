@@ -32,6 +32,10 @@ const CommentRootItemMenu = ({
     router.push(`?commentId=${commentId}&method=create&target=reply`);
   };
 
+  const handleReportComment = () => {
+    router.push('/report');
+  };
+
   const handleDeleteComment = async () => {
     await deleteComment();
     closeDeleteModal();
@@ -40,6 +44,7 @@ const CommentRootItemMenu = ({
   return (
     <>
       <CommentItemMenu>
+        <CommentItemMenu.Item label='답글달기' onSelect={handleReplyComment} />
         {isOwnComment && (
           <>
             <CommentItemMenu.Item
@@ -49,7 +54,12 @@ const CommentRootItemMenu = ({
             <CommentItemMenu.Item label='삭제하기' onSelect={openDeleteModal} />
           </>
         )}
-        <CommentItemMenu.Item label='답글 달기' onSelect={handleReplyComment} />
+        {!isOwnComment && (
+          <CommentItemMenu.Item
+            label='신고하기'
+            onSelect={handleReportComment}
+          />
+        )}
       </CommentItemMenu>
 
       <ConfirmationModal
