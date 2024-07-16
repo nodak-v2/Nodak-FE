@@ -1,6 +1,7 @@
 import { PropsWithChildren } from 'react';
 
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { formatDateCustom } from '@/src/utils/formatDate';
 
@@ -11,6 +12,7 @@ interface CommentItemProps {
   content: string;
   createdAt: string;
   isOwnComment: boolean;
+  authorId: number;
 }
 
 const CommentItem = ({
@@ -19,20 +21,23 @@ const CommentItem = ({
   createdAt,
   isOwnComment,
   children,
+  authorId,
 }: PropsWithChildren<CommentItemProps>) => {
   return (
     <div className='flex w-full flex-col gap-2'>
       <div className='flex items-center justify-between'>
-        <div className='flex items-center gap-1'>
-          <Image
-            src='/user-square.png'
-            alt='유저프로필'
-            width={24}
-            height={24}
-          />
-          <span className='font-title-1-md'>{nickname}</span>
-          {isOwnComment && <OwnCommentChip />}
-        </div>
+        <Link href={`/users/${authorId}`}>
+          <div className='flex items-center gap-1'>
+            <Image
+              src='/user-square.png'
+              alt='유저프로필'
+              width={24}
+              height={24}
+            />
+            <span className='font-title-1-md'>{nickname}</span>
+            {isOwnComment && <OwnCommentChip />}
+          </div>
+        </Link>
         {children}
       </div>
 

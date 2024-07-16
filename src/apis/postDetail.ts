@@ -8,6 +8,7 @@ import { api } from './core';
 
 interface PostDetailBody {
   author: string;
+  authorId: number;
   isAuthor: boolean;
   commentSize: number;
   profileImageUrl: string | null;

@@ -5,6 +5,7 @@ import TopBar from '@/src/components/Topbar';
 import NotificationItem from './_components/NotificationItem';
 
 interface Notification {
+  userId: number;
   user: string;
   type: 'post' | 'comment' | 'follow';
   createdAt: string;
@@ -14,6 +15,7 @@ interface Notification {
 
 const ALARM_DUMMY: Notification[] = [
   {
+    userId: 1,
     user: '유저 1',
     type: 'post',
     createdAt: '2024-06-19 14:26:00',
@@ -21,6 +23,7 @@ const ALARM_DUMMY: Notification[] = [
     isNew: true,
   },
   {
+    userId: 1,
     user: '유저 1',
     type: 'comment',
     createdAt: '2024-06-19 13:20:00',
@@ -28,6 +31,7 @@ const ALARM_DUMMY: Notification[] = [
     isNew: false,
   },
   {
+    userId: 1,
     user: '유저 5',
     type: 'follow',
     createdAt: '2024-06-18 13:26:00',

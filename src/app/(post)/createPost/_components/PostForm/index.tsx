@@ -39,7 +39,7 @@ const PostForm = () => {
 
   const onSubmitPost = (data: PostRequestBody) => {
     createPost(data);
-    Toast.default('등록되었습니다.');
+    Toast.default('검색 되었습니다.');
     router.push('/');
   };
 

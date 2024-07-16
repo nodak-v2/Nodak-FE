@@ -12,14 +12,14 @@ interface CommentReplyItemProps {
 }
 
 const CommentReplyItem = ({ comment }: CommentReplyItemProps) => {
-  const { replyId, nickname, content, createdAt, userId } = comment;
+  const { replyId, nickname, content, createdAt, userId: authorId } = comment;
   const commentIdFromSearchParams = useSearchParams().get('commentId');
 
   const isSelected = Number(commentIdFromSearchParams) === replyId;
 
   const { userId: ownId } = useGetUserStatusAPI();
 
-  const isOwnComment = userId === ownId;
+  const isOwnComment = authorId === ownId;
 
   return (
     <div
@@ -38,6 +38,7 @@ const CommentReplyItem = ({ comment }: CommentReplyItemProps) => {
         content={content}
         createdAt={createdAt}
         isOwnComment={isOwnComment}
+        authorId={authorId}
       >
         <CommentReplyItemMenu replyId={replyId} isOwnComment={isOwnComment} />
       </CommentItem>
