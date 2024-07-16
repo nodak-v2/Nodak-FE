@@ -12,7 +12,6 @@ import Selector from '@/src/components/Selector';
 import TextInput from '@/src/components/TextInput';
 import Textarea from '@/src/components/Textarea';
 import TimeInput from '@/src/components/TimeInput';
-import Toast from '@/src/components/Toast';
 
 import { formOptions } from './formSchema';
 import { useCreatePost } from './useCreatePost';
@@ -39,7 +38,6 @@ const PostForm = () => {
 
   const onSubmitPost = (data: PostRequestBody) => {
     createPost(data);
-    Toast.default('검색 되었습니다.');
     router.push('/');
   };
 

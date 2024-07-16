@@ -1,5 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
+import Toast from '@/src/components/Toast';
+
 import { api } from './core';
 
 const logout = () => {
@@ -13,7 +15,13 @@ export const useLogoutAPI = () => {
 
   const { mutateAsync } = useMutation({
     mutationFn: () => logout(),
-    onSuccess: () => queryClient.removeQueries(),
+    onSuccess: () => {
+      queryClient.removeQueries();
+      Toast.default('로그아웃 되었습니다.');
+    },
+    onError: () => {
+      Toast.default('로그아웃에 실패했습니다.');
+    },
   });
 
   return mutateAsync;
