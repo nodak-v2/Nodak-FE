@@ -9,6 +9,7 @@ import {
 } from '@/src/apis/postDetail';
 import ConfirmationModal from '@/src/components/Modal/ConfirmationModal';
 import Spinner from '@/src/components/Spinner';
+import Toast from '@/src/components/Toast';
 import TopBar from '@/src/components/Topbar';
 import useModal from '@/src/hooks/useModal';
 import { getGenerateMetadata } from '@/src/utils/getGenerateMetadata';
@@ -23,7 +24,8 @@ const PostDetailLayout = ({ children }: PropsWithChildren) => {
   const { isOpen, open, close } = useModal();
 
   const handleDeletePost = async () => {
-    deletePost();
+    await deletePost();
+    Toast.default('게시글이 삭제되었습니다.');
   };
 
   return (
