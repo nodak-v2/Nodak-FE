@@ -1,5 +1,6 @@
 import { PropsWithChildren, Suspense } from 'react';
 
+import PostDetailNavMore from '@/src/app/(post)/result/[postId]/_components/PostDetailNavMore';
 import Spinner from '@/src/components/Spinner';
 import TopBar from '@/src/components/Topbar';
 import { getGenerateMetadata } from '@/src/utils/getGenerateMetadata';
@@ -12,7 +13,7 @@ const PostDetailLayout = ({ children }: PropsWithChildren) => {
       <TopBar.Container>
         <TopBar.BackButton href='/' />
         <TopBar.Title>투표 글</TopBar.Title>
-        <TopBar.NavMore />
+        <PostDetailNavMore />
       </TopBar.Container>
       <Suspense fallback={<Spinner text='게시글 정보를 불러오는 중 입니다.' />}>
         {children}

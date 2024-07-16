@@ -3,6 +3,7 @@ import { PropsWithChildren } from 'react';
 import Link from 'next/link';
 
 import Icon from '@/src/components/Icon';
+import MoreMenu from '@/src/components/MoreMenu';
 
 const Container = ({ children }: PropsWithChildren) => {
   return (
@@ -12,9 +13,13 @@ const Container = ({ children }: PropsWithChildren) => {
   );
 };
 
-const NavMore = () => (
-  <Icon id='nav-more' size={24} className='cursor-pointer' />
+const NavMore = ({ children }: PropsWithChildren) => (
+  <MoreMenu Icon={<Icon id='nav-more' size={24} className='cursor-pointer' />}>
+    {children}
+  </MoreMenu>
 );
+
+NavMore.Item = MoreMenu.Item;
 
 const BackButton = ({ href }: { href: string }) => (
   <Link href={href}>

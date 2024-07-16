@@ -1,15 +1,17 @@
+'use client';
+
 import { PropsWithChildren } from 'react';
 
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 
-import Icon from '@/src/components/Icon';
+interface MoreMenuProps {
+  Icon: React.ReactNode;
+}
 
-const CommentItemMenu = ({ children }: PropsWithChildren) => {
+const MoreMenu = ({ Icon, children }: PropsWithChildren<MoreMenuProps>) => {
   return (
     <DropdownMenu.Root>
-      <DropdownMenu.Trigger>
-        <Icon id='more-square' aria-label='댓글 더보기 메뉴' />
-      </DropdownMenu.Trigger>
+      <DropdownMenu.Trigger>{Icon}</DropdownMenu.Trigger>
       <DropdownMenu.Portal>
         <DropdownMenu.Content
           collisionBoundary={document.querySelector('#layout-Root')}
@@ -24,14 +26,22 @@ const CommentItemMenu = ({ children }: PropsWithChildren) => {
   );
 };
 
-interface CommentItemMenuItemProps {
-  label: string;
-  onSelect: () => void;
+interface MoreMenuItemProps {
+  label?: string;
+  onSelect?: () => void;
 }
 
-const CommentItem = ({ label, onSelect }: CommentItemMenuItemProps) => {
-  return <DropdownMenu.Item onSelect={onSelect}>{label}</DropdownMenu.Item>;
+const MoreItem = ({
+  label,
+  onSelect,
+  children,
+}: PropsWithChildren<MoreMenuItemProps>) => {
+  return (
+    <DropdownMenu.Item onSelect={onSelect}>
+      {children || label}
+    </DropdownMenu.Item>
+  );
 };
 
-CommentItemMenu.Item = CommentItem;
-export default CommentItemMenu;
+MoreMenu.Item = MoreItem;
+export default MoreMenu;
