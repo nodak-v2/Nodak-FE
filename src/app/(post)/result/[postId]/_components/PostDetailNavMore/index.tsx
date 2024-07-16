@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 
 import {
   useDeletePostDetailAPI,
@@ -13,6 +13,7 @@ import TopBar from '@/src/components/Topbar';
 import useModal from '@/src/hooks/useModal';
 
 const PostDetailNavMore = () => {
+  const router = useRouter();
   const { postId } = useParams() as { postId: string };
   const { isAuthor } = useGetPostDetailAPI(postId);
   const { mutateAsync: deletePost } = useDeletePostDetailAPI(postId);
@@ -20,8 +21,12 @@ const PostDetailNavMore = () => {
   const { isOpen, open, close } = useModal();
 
   const handleDeletePost = async () => {
-    await deletePost();
-    Toast.default('게시글이 삭제되었습니다.');
+    await deletePost(undefined, {
+      onSuccess: () => {
+        router.push('/');
+        Toast.default('게시글이 삭제되었습니다.');
+      },
+    });
   };
 
   return (

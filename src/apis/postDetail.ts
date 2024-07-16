@@ -3,7 +3,6 @@ import {
   useQueryClient,
   useSuspenseQuery,
 } from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
 
 import { api } from './core';
 
@@ -42,13 +41,9 @@ const deletePostDetail = (postId: string) => {
 
 export const useDeletePostDetailAPI = (postId: string) => {
   const queryClient = useQueryClient();
-  const router = useRouter();
 
   return useMutation({
     mutationFn: () => deletePostDetail(postId),
-    onMutate: async () => {
-      router.push('/');
-    },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['postList'] });
       queryClient.invalidateQueries({ queryKey: ['posts', postId] });
