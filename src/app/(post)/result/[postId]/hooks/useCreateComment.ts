@@ -1,4 +1,4 @@
-'use';
+'use client';
 
 import { useRouter } from 'next/navigation';
 
@@ -15,7 +15,7 @@ export const useCreateComment = (postId: string) => {
     if (isLogin) {
       await createComment(comment);
     } else {
-      router.push('/signin');
+      setTimeout(() => router.push('/signin'), 0); // setTimeout 으로 우선순위를 높임
       Toast.default('로그인이 필요합니다.');
     }
   };
