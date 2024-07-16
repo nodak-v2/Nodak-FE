@@ -1,17 +1,11 @@
 'use client';
 
-import { useEffect } from 'react';
-
 export interface ErrorFallBackProps {
   error: Error & { digest?: string };
   reset: () => void;
 }
 
-const GlobalError = ({ error, reset }: ErrorFallBackProps) => {
-  useEffect(() => {
-    console.error(error);
-  }, [error]);
-
+const GlobalError = ({ reset }: ErrorFallBackProps) => {
   return (
     <html>
       <body>
