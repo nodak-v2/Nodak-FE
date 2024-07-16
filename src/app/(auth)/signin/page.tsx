@@ -18,7 +18,7 @@ const Signin = () => {
         <Image src='/picky/logo.svg' alt='logo' width={160} height={84} />
         <span className='font-h3-sm'>{SLOGAN}</span>
       </div>
-      <div className='px- sticky mb-[60px] h-[44px] min-w-full'>
+      <div className='sticky mb-[60px] h-[44px] min-w-full'>
         <Link href='https://api.nodak.link/oauth2/authorization/kakao'>
           <Image
             src='/picky/kakao.svg'
