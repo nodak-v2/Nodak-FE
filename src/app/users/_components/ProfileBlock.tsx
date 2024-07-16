@@ -75,12 +75,8 @@ const UserPageButton = () => {
 
 const ProfileBlock = () => {
   const { userId } = useParams() as { userId: string };
-  const {
-    userId: myId,
-    profileImage,
-    nickname: myName,
-  } = useGetUserStatusAPI();
-  const { followeeCount, followerCount, postCount, nickname } =
+  const { userId: myId, nickname: myName } = useGetUserStatusAPI();
+  const { followeeCount, followerCount, postCount, nickname, profileImageUrl } =
     useGetProfileAPI(!userId ? String(myId) : userId);
 
   const followersPath = userId
@@ -94,7 +90,7 @@ const ProfileBlock = () => {
     <div className='flex w-full flex-col gap-6 px-4 pt-4'>
       <div className='flex items-center gap-2'>
         <Image
-          src={profileImage || '/default-image.png'}
+          src={profileImageUrl || '/default-image.png'}
           alt='유저이미지'
           width={52}
           height={52}
