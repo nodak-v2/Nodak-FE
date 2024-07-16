@@ -9,7 +9,7 @@ const chipCSS = cva(
     variants: {
       variant: {
         default: 'bg-background text-gray-accent4',
-        selected: 'bg-sub text-primary',
+        selected: 'border-sub bg-sub text-primary',
       },
     },
     defaultVariants: {

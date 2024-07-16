@@ -12,7 +12,7 @@ const LoginInfo = () => {
             로그인 후 까다로운 고민을 해결해 보세요!
           </span>
         </div>
-        <Icon id='arrow-right' size={24}></Icon>
+        <Icon id='arrow-right' size={24} />
       </div>
     </Link>
   );

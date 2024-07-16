@@ -1,10 +1,12 @@
 import { useCallback, useState } from 'react';
 
 import debounce from 'lodash/debounce';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 
+import { useGetUserStatusAPI } from '@/src/apis/myInfo';
 import { useGetPostDetailAPI } from '@/src/apis/postDetail';
 import Icon from '@/src/components/Icon';
+import Toast from '@/src/components/Toast';
 
 import { usePostingLike } from '../../hooks/usePostingLike';
 
@@ -24,6 +26,8 @@ const PostingButton = () => {
     checkStar: isInitialIsLikeState,
     categoryName,
   } = useGetPostDetailAPI(postId);
+  const router = useRouter();
+  const { login: isLogin } = useGetUserStatusAPI();
 
   const { postLike, deleteLike } = usePostingLike(postId);
 
@@ -39,18 +43,23 @@ const PostingButton = () => {
     [],
   );
 
-  const handleLike = () => {
-    setStar(prevStar => ({
-      count: prevStar.check ? prevStar.count - 1 : prevStar.count + 1,
-      check: !prevStar.check,
-    }));
-    debouncedLikeUpdate(star.check);
+  const handleLike = async () => {
+    if (isLogin) {
+      debouncedLikeUpdate(star.check);
+      setStar(prevStar => ({
+        count: prevStar.check ? prevStar.count - 1 : prevStar.count + 1,
+        check: !prevStar.check,
+      }));
+    } else {
+      router.push('/signin');
+      Toast.default('로그인이 필요합니다.');
+    }
   };
 
   return (
     <div className='flex justify-between px-4'>
       <CategoryChip category={categoryName} />
-      <div className='flex items-center gap-2'>
+      <div className='flex items-center gap-3'>
         <div
           className='flex cursor-pointer items-center gap-2'
           onClick={handleLike}

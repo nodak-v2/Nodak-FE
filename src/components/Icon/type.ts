@@ -40,4 +40,5 @@ export type IconName =
   | 'arrow-right'
   | 'plus'
   | 'close-x'
+  | 'close-sign'
   | 'reply';
