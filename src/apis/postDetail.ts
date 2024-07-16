@@ -49,7 +49,7 @@ export const useDeletePostDetailAPI = (postId: string) => {
     onMutate: async () => {
       router.push('/');
     },
-    onSettled: () => {
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['postList'] });
       queryClient.invalidateQueries({ queryKey: ['posts', postId] });
     },
