@@ -14,12 +14,8 @@ const AuthenticatedRoute = () => {
   const router = useRouter();
   const { login: isLogin } = useGetUserStatusAPI();
 
-  if (isLogin || pathToRegexp(redirectUrl).test(pathname)) {
-    return null;
-  }
-
   if (!isLogin && matchers.some(path => pathToRegexp(path).test(pathname))) {
-    router.push('/signin');
+    router.push(redirectUrl);
   }
 
   return null;
