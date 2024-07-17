@@ -13,14 +13,15 @@ const PostingMain = () => {
   const { postId } = useParams() as { postId: string };
   const { hasVoted, terminated: isTerminated } = useGetVoteDetailAPI(postId);
 
-  const { content, createdAt, author, authorId } = useGetPostDetailAPI(postId);
+  const { content, createdAt, author, authorId, profileImageUrl } =
+    useGetPostDetailAPI(postId);
 
   return (
     <div className='flex flex-col gap-5 px-4'>
       <div className='flex items-center gap-2'>
         <Link href={`/users/${authorId}`}>
           <Image
-            src='/user-square.png'
+            src={profileImageUrl || '/default-image.png'}
             alt='유저프로필'
             width={36}
             height={36}
