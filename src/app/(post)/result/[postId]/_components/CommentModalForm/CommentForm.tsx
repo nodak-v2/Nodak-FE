@@ -35,8 +35,13 @@ const CommentForm = ({
     handleSubmit,
     setValue,
     setFocus,
-    formState: { isSubmitting },
-  } = useForm<CommentFormValues>();
+    reset,
+    formState: { isSubmitting, isValid },
+  } = useForm<CommentFormValues>({
+    defaultValues: {
+      comment: '',
+    },
+  });
 
   const isUpdateComment = method === 'update';
   const selectedComment = comments.find(
@@ -58,6 +63,7 @@ const CommentForm = ({
     const submitComment = submitCommentMap[method][target];
 
     await submitComment?.(comment);
+    reset();
     closeModal();
   };
 
@@ -66,10 +72,8 @@ const CommentForm = ({
   }, [isOpenModal, setFocus]);
 
   useEffect(() => {
-    if (isUpdateComment) {
-      setValue('comment', selectedComment?.content || '');
-    } else {
-      setValue('comment', '');
+    if (isUpdateComment && selectedComment) {
+      setValue('comment', selectedComment.content);
     }
   }, [isUpdateComment, selectedComment, setValue, setFocus]);
 
@@ -93,8 +97,8 @@ const CommentForm = ({
           </button>
           <button
             type='submit'
-            className='font-text-1-rg text-primary'
-            disabled={isSubmitting}
+            className='font-text-1-rg text-primary disabled:text-gray-accent3'
+            disabled={isSubmitting || !isValid}
           >
             등록
           </button>
