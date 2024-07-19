@@ -8,7 +8,6 @@ import { useCreateReplyCommentAPI } from '@/src/apis/reply';
 import { useCreateComment } from '@/src/app/(post)/result/[postId]/hooks/useCreateComment';
 
 interface CommentFormProps {
-  isOpenModal: boolean;
   onCloseModal: () => void;
 }
 
@@ -16,10 +15,7 @@ export type CommentFormValues = {
   comment: string;
 };
 
-const CommentForm = ({
-  isOpenModal,
-  onCloseModal: closeModal,
-}: CommentFormProps) => {
+const CommentForm = ({ onCloseModal: closeModal }: CommentFormProps) => {
   const { postId } = useParams() as { postId: string };
   const method = useSearchParams().get('method') as 'create' | 'update' | null;
   const target = useSearchParams().get('target') as 'root' | 'reply' | null;
@@ -34,7 +30,6 @@ const CommentForm = ({
     register,
     handleSubmit,
     setValue,
-    setFocus,
     reset,
     formState: { isSubmitting, isValid },
   } = useForm<CommentFormValues>({
@@ -68,14 +63,10 @@ const CommentForm = ({
   };
 
   useEffect(() => {
-    if (isOpenModal) setFocus('comment');
-  }, [isOpenModal, setFocus]);
-
-  useEffect(() => {
     if (isUpdateComment && selectedComment) {
       setValue('comment', selectedComment.content);
     }
-  }, [isUpdateComment, selectedComment, setValue, setFocus]);
+  }, [isUpdateComment, selectedComment, setValue]);
 
   return (
     <div className='p-4'>
@@ -86,6 +77,7 @@ const CommentForm = ({
         <input
           {...register('comment', { required: true })}
           className='font-text-1-rg grow border-none bg-transparent text-white placeholder-gray-accent3 focus:outline-none'
+          autoFocus
         />
         <div className='flex gap-2'>
           <button

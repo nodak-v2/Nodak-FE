@@ -31,7 +31,7 @@ const CommentFormModal = () => {
     <>
       {isClosed && <CommentModalButton />}
       <Modal show={isOpen}>
-        <CommentForm isOpenModal={isOpen} onCloseModal={close} />
+        <CommentForm onCloseModal={close} />
       </Modal>
     </>
   );
