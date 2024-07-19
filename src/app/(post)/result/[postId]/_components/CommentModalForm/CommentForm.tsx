@@ -31,12 +31,15 @@ const CommentForm = ({ onCloseModal: closeModal }: CommentFormProps) => {
     handleSubmit,
     setValue,
     reset,
+    setFocus,
     formState: { isSubmitting, isValid },
   } = useForm<CommentFormValues>({
     defaultValues: {
       comment: '',
     },
   });
+
+  const { ref, ...rest } = register('comment', { required: true });
 
   const isUpdateComment = method === 'update';
   const selectedComment = comments.find(
@@ -63,6 +66,10 @@ const CommentForm = ({ onCloseModal: closeModal }: CommentFormProps) => {
   };
 
   useEffect(() => {
+    setFocus('comment');
+  }, [setFocus]);
+
+  useEffect(() => {
     if (isUpdateComment && selectedComment) {
       setValue('comment', selectedComment.content);
     }
@@ -75,9 +82,12 @@ const CommentForm = ({ onCloseModal: closeModal }: CommentFormProps) => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <input
-          {...register('comment', { required: true })}
+          {...rest}
+          ref={e => {
+            ref(e);
+            e?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }}
           className='font-text-1-rg grow border-none bg-transparent text-white placeholder-gray-accent3 focus:outline-none'
-          autoFocus
         />
         <div className='flex gap-2'>
           <button
