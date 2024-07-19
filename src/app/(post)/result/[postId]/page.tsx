@@ -4,8 +4,6 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useParams } from 'next/navigation';
 import PullToRefresh from 'react-simple-pull-to-refresh';
 
-import CommentFormModal from '@/src/app/(post)/result/[postId]/_components/CommentModalForm';
-
 import CommentList from './_components/CommentList';
 import PostingMain from './_components/Posting';
 import PostingButton from './_components/Posting/PostingButton';
@@ -31,7 +29,6 @@ const ResultPage = () => {
           <CommentList />
         </div>
       </PullToRefresh>
-      <CommentFormModal />
     </>
   );
 };

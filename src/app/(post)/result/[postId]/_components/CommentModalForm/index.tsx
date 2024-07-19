@@ -1,3 +1,5 @@
+'use client';
+
 import { useCallback, useEffect } from 'react';
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
@@ -28,12 +30,12 @@ const CommentFormModal = () => {
   }, [isClosed, resetPath]);
 
   return (
-    <>
+    <div className='sticky bottom-0 bg-background'>
       {isClosed && <CommentModalButton />}
       <Modal show={isOpen}>
         <CommentForm onCloseModal={close} />
       </Modal>
-    </>
+    </div>
   );
 };
 

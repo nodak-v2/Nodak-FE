@@ -13,7 +13,7 @@ const CommentList = () => {
   const { commentSize } = useGetPostDetailAPI(postId);
 
   return (
-    <div>
+    <>
       <div className='font-h3-sm border-t border-gray-accent2 px-4 py-5'>
         댓글 {commentSize}
       </div>
@@ -35,7 +35,7 @@ const CommentList = () => {
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 };
 
