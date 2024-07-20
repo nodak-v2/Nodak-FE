@@ -1,7 +1,6 @@
 import { PropsWithChildren } from 'react';
 
-import Link from 'next/link';
-
+import BackButton from '@/src/components/Button/BackButton';
 import Icon from '@/src/components/Icon';
 import MoreMenu from '@/src/components/MoreMenu';
 
@@ -21,12 +20,6 @@ const NavMore = ({ children }: PropsWithChildren) => (
 
 NavMore.Item = MoreMenu.Item;
 
-const BackButton = ({ href }: { href: string }) => (
-  <Link href={href}>
-    <Icon id='arrow-left' size={24} className='cursor-pointer' />
-  </Link>
-);
-
 const Title = ({ children }: PropsWithChildren) => (
   <div className='flex grow cursor-default justify-center font-bold'>
     <span>{children}</span>
@@ -35,9 +28,9 @@ const Title = ({ children }: PropsWithChildren) => (
 
 const TopBar = {
   Container,
+  NavMore,
   BackButton,
   Title,
-  NavMore,
 };
 
 export default TopBar;
