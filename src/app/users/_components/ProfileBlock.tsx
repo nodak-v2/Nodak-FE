@@ -8,6 +8,7 @@ import { useGetUserStatusAPI } from '@/src/apis/myInfo';
 import { useGetProfileAPI } from '@/src/apis/profile';
 import ConfirmationModal from '@/src/components/Modal/ConfirmationModal';
 import useModal from '@/src/hooks/useModal';
+import { cn } from '@/src/utils/cn';
 
 import { useFollow } from '../[userId]/hooks/useFollow';
 
@@ -115,11 +116,23 @@ const ProfileBlock = () => {
               <span className='font-text-3-rg text-gray-accent4'>작성글</span>
               <span className='font-title-2-sm'>{postCount}</span>
             </div>
-            <Link className='flex items-center gap-1' href={followersPath}>
+            <Link
+              className={cn(
+                'flex items-center gap-1',
+                followerCount === 0 && 'pointer-events-none',
+              )}
+              href={followersPath}
+            >
               <span className='font-text-3-rg text-gray-accent4'>팔로워</span>
               <span className='font-title-2-sm'>{followerCount}</span>
             </Link>
-            <Link className='flex items-center gap-1' href={followeesPath}>
+            <Link
+              className={cn(
+                'flex items-center gap-1',
+                followeeCount === 0 && 'pointer-events-none',
+              )}
+              href={followeesPath}
+            >
               <span className='font-text-3-rg text-gray-accent4'>팔로잉</span>
               <span className='font-title-2-sm'>{followeeCount}</span>
             </Link>
