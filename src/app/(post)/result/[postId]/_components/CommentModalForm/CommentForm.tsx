@@ -8,7 +8,6 @@ import { useCreateReplyCommentAPI } from '@/src/apis/reply';
 import { useCreateComment } from '@/src/app/(post)/result/[postId]/hooks/useCreateComment';
 
 interface CommentFormProps {
-  isOpenModal: boolean;
   onCloseModal: () => void;
 }
 
@@ -16,10 +15,7 @@ export type CommentFormValues = {
   comment: string;
 };
 
-const CommentForm = ({
-  isOpenModal,
-  onCloseModal: closeModal,
-}: CommentFormProps) => {
+const CommentForm = ({ onCloseModal: closeModal }: CommentFormProps) => {
   const { postId } = useParams() as { postId: string };
   const method = useSearchParams().get('method') as 'create' | 'update' | null;
   const target = useSearchParams().get('target') as 'root' | 'reply' | null;
@@ -34,9 +30,16 @@ const CommentForm = ({
     register,
     handleSubmit,
     setValue,
+    reset,
     setFocus,
-    formState: { isSubmitting },
-  } = useForm<CommentFormValues>();
+    formState: { isSubmitting, isValid },
+  } = useForm<CommentFormValues>({
+    defaultValues: {
+      comment: '',
+    },
+  });
+
+  const { ref, ...rest } = register('comment', { required: true });
 
   const isUpdateComment = method === 'update';
   const selectedComment = comments.find(
@@ -58,20 +61,19 @@ const CommentForm = ({
     const submitComment = submitCommentMap[method][target];
 
     await submitComment?.(comment);
+    reset();
     closeModal();
   };
 
   useEffect(() => {
-    if (isOpenModal) setFocus('comment');
-  }, [isOpenModal, setFocus]);
+    setFocus('comment');
+  }, [setFocus]);
 
   useEffect(() => {
-    if (isUpdateComment) {
-      setValue('comment', selectedComment?.content || '');
-    } else {
-      setValue('comment', '');
+    if (isUpdateComment && selectedComment) {
+      setValue('comment', selectedComment.content);
     }
-  }, [isUpdateComment, selectedComment, setValue, setFocus]);
+  }, [isUpdateComment, selectedComment, setValue]);
 
   return (
     <div className='p-4'>
@@ -80,7 +82,11 @@ const CommentForm = ({
         onSubmit={handleSubmit(onSubmit)}
       >
         <input
-          {...register('comment', { required: true })}
+          {...rest}
+          ref={e => {
+            ref(e);
+            e?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }}
           className='font-text-1-rg grow border-none bg-transparent text-white placeholder-gray-accent3 focus:outline-none'
         />
         <div className='flex gap-2'>
@@ -93,8 +99,8 @@ const CommentForm = ({
           </button>
           <button
             type='submit'
-            className='font-text-1-rg text-primary'
-            disabled={isSubmitting}
+            className='font-text-1-rg text-primary disabled:text-gray-accent3'
+            disabled={isSubmitting || !isValid}
           >
             등록
           </button>

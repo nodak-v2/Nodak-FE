@@ -56,7 +56,7 @@ const BadgeBlock = () => {
               'font-text-2-md',
               comment < 10 && 'text-gray-accent3',
             )}
-          >{`댓글 ${posting}회`}</span>
+          >{`댓글 ${comment}회`}</span>
         </div>
         <div className='flex flex-col items-center gap-3'>
           <Image
