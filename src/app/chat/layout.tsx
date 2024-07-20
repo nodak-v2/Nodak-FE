@@ -8,7 +8,7 @@ const ChatLayout = ({ children }: PropsWithChildren) => {
   return (
     <>
       <TopBar.Container>
-        <TopBar.BackButton href='/' />
+        <TopBar.BackButton />
       </TopBar.Container>
       {children}
     </>
