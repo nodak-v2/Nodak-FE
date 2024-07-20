@@ -4,15 +4,15 @@ import { PropsWithChildren } from 'react';
 
 import TopBar from '@/src/components/Topbar';
 
-const ReportLayout = ({ children }: PropsWithChildren) => {
+const NotificationLayout = ({ children }: PropsWithChildren) => {
   return (
     <>
       <TopBar.Container>
-        <TopBar.BackButton />
+        <TopBar.BackButton href='/' />
       </TopBar.Container>
       {children}
     </>
   );
 };
 
-export default ReportLayout;
+export default NotificationLayout;

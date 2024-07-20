@@ -12,7 +12,14 @@ interface CommentReplyItemProps {
 }
 
 const CommentReplyItem = ({ comment }: CommentReplyItemProps) => {
-  const { replyId, nickname, content, createdAt, userId: authorId } = comment;
+  const {
+    replyId,
+    nickname,
+    content,
+    createdAt,
+    userId: authorId,
+    profileImageUrl,
+  } = comment;
   const commentIdFromSearchParams = useSearchParams().get('commentId');
 
   const isSelected = Number(commentIdFromSearchParams) === replyId;
@@ -39,6 +46,7 @@ const CommentReplyItem = ({ comment }: CommentReplyItemProps) => {
         createdAt={createdAt}
         isOwnComment={isOwnComment}
         authorId={authorId}
+        profileImageUrl={profileImageUrl}
       >
         <CommentReplyItemMenu replyId={replyId} isOwnComment={isOwnComment} />
       </CommentItem>

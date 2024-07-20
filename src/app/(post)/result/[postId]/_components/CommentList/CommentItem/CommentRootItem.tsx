@@ -15,7 +15,14 @@ const CommentRootItem = ({
   isFirst = false,
   comment,
 }: CommentRootItemProps) => {
-  const { commentId, nickname, content, createdAt, userId: authorId } = comment;
+  const {
+    commentId,
+    nickname,
+    content,
+    createdAt,
+    userId: authorId,
+    profileImageUrl,
+  } = comment;
   const commentIdFromSearchParams = useSearchParams().get('commentId');
 
   const isSelected = Number(commentIdFromSearchParams) === commentId;
@@ -38,6 +45,7 @@ const CommentRootItem = ({
         createdAt={createdAt}
         isOwnComment={isOwnComment}
         authorId={authorId}
+        profileImageUrl={profileImageUrl}
       >
         <CommentRootItemMenu
           commentId={commentId}

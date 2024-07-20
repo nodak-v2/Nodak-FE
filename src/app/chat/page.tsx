@@ -2,6 +2,6 @@
 
 import DevelopingPage from '@/src/components/DevelopingPage';
 
-const ReportPage = () => <DevelopingPage />;
+const Chat = () => <DevelopingPage />;
 
-export default ReportPage;
+export default Chat;

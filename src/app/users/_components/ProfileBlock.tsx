@@ -94,7 +94,7 @@ const ProfileBlock = () => {
     <div className='flex w-full flex-col gap-6 px-4 pt-4'>
       <div className='flex items-center gap-2'>
         <Image
-          src={profileImage || '/default-image.png'}
+          src={profileImage || '/picky/user-square.svg'}
           alt='유저이미지'
           width={52}
           height={52}
