@@ -35,7 +35,7 @@ const UserEditPage = () => {
   return (
     <>
       <TopBar.Container>
-        <TopBar.BackButton href='./' />
+        <TopBar.BackButton />
         <TopBar.Title>프로필 수정</TopBar.Title>
         <button
           className='font-title-1-md text-primary'

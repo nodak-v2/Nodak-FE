@@ -11,7 +11,7 @@ const UserPageLayout = ({ children }: PropsWithChildren) => {
   return (
     <Suspense fallback={<Spinner text='유저 정보를 불러오는 중 입니다.' />}>
       <TopBar.Container>
-        <TopBar.BackButton href='/' />
+        <TopBar.BackButton />
         <TopBar.Title>프로필</TopBar.Title>
         <TopBar.NavMore>
           <TopBar.NavMore.Item>

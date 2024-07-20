@@ -4,8 +4,8 @@ import { useRouter } from 'next/navigation';
 
 import { useGetUserStatusAPI } from '@/src/apis/myInfo';
 import Toast from '@/src/components/Toast';
+import TopBar from '@/src/components/Topbar';
 
-import TopBar from '../../../components/Topbar';
 import PostForm from './_components/PostForm';
 
 const CreatePostPage = () => {
@@ -20,7 +20,7 @@ const CreatePostPage = () => {
   return (
     <>
       <TopBar.Container>
-        <TopBar.BackButton href='/' />
+        <TopBar.BackButton />
         <TopBar.Title>투표 만들기</TopBar.Title>
       </TopBar.Container>
       <PostForm />

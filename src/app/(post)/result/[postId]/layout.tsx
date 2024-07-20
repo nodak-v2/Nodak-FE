@@ -11,7 +11,7 @@ const PostDetailLayout = ({ children }: PropsWithChildren) => {
   return (
     <>
       <TopBar.Container>
-        <TopBar.BackButton href='/' />
+        <TopBar.BackButton />
         <TopBar.Title>투표 글</TopBar.Title>
         <PostDetailNavMore />
       </TopBar.Container>

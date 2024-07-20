@@ -26,7 +26,7 @@ const PostingLayout = ({ children }: PropsWithChildren) => {
   return (
     <>
       <TopBar.Container>
-        <TopBar.BackButton href='/users/profile' />
+        <TopBar.BackButton />
         <TopBar.Title>{postingNavigation[pathname]}</TopBar.Title>
       </TopBar.Container>
       <Suspense fallback={<Spinner text='게시글 목록을 불러오는 중 입니다.' />}>
