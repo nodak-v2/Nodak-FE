@@ -21,7 +21,7 @@ const PostingMain = () => {
       <div className='flex items-center gap-2'>
         <Link href={`/users/${authorId}`}>
           <Image
-            src={profileImageUrl || '/default-image.png'}
+            src={profileImageUrl || '/picky/user-square.svg'}
             alt='유저프로필'
             width={36}
             height={36}

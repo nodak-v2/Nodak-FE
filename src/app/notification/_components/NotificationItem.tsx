@@ -38,7 +38,7 @@ const NotificationItem = ({ notifications }: NotificationItemProps) => {
               <section className='flex items-center gap-2'>
                 <Link href={`/users/${userId}`}>
                   <Image
-                    src={userImage ? userImage : '/user-square.png'}
+                    src={userImage ? userImage : '/picky/user-square.svg'}
                     alt='유저아바타'
                     width={36}
                     height={36}
