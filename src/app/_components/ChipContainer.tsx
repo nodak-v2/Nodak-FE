@@ -20,6 +20,15 @@ export type ChannelTypeOfKorean =
   | '공부'
   | '여행';
 
+export const channelToKoreanMap: Record<ChannelType, ChannelTypeOfKorean> = {
+  all: '전체',
+  daily: '일상',
+  sports: '스포츠',
+  entertaining: '연예',
+  study: '공부',
+  travel: '여행',
+};
+
 const channelData: { name: ChannelTypeOfKorean; path: ChannelType }[] = [
   { name: '전체', path: 'all' },
   { name: '일상', path: 'daily' },
