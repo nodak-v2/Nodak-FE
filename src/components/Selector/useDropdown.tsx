@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 const useDropdown = <T extends string | string[]>() => {
   const [isOpen, setIsOpen] = useState(false);
@@ -6,14 +6,14 @@ const useDropdown = <T extends string | string[]>() => {
 
   const dropdownRef = useRef<HTMLElement>(null);
 
-  const toggleDropdown = () => {
+  const toggleDropdown = useCallback(() => {
     setIsOpen(isOpen => !isOpen);
-  };
+  }, []);
 
-  const updateSelectedItem = (item: T) => {
+  const updateSelectedItem = useCallback((item: T) => {
     setSelectedItem(item);
     setIsOpen(false);
-  };
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
