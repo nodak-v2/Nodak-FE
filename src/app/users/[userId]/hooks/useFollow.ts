@@ -5,8 +5,9 @@ import { useGetUserStatusAPI } from '@/src/apis/myInfo';
 import Toast from '@/src/components/Toast';
 
 export const useFollow = (userId: string) => {
-  const postFollow = usePostFollowAPI(userId);
-  const deleteFollow = useDeleteFollowAPI(userId);
+  const { userId: myId } = useGetUserStatusAPI();
+  const postFollow = usePostFollowAPI(userId, myId.toString());
+  const deleteFollow = useDeleteFollowAPI(userId, myId.toString());
 
   const { login: isLogin } = useGetUserStatusAPI();
   const router = useRouter();

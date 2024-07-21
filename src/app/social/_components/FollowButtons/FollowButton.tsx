@@ -1,4 +1,5 @@
 import { usePostFollowAPI } from '@/src/apis/follow';
+import { useGetUserStatusAPI } from '@/src/apis/myInfo';
 import Button from '@/src/components/Button/Button';
 
 interface FollowButtonProps {
@@ -6,7 +7,8 @@ interface FollowButtonProps {
 }
 
 const FollowButton = ({ userId }: FollowButtonProps) => {
-  const postFollow = usePostFollowAPI(userId.toString());
+  const { userId: myId } = useGetUserStatusAPI();
+  const postFollow = usePostFollowAPI(userId.toString(), myId.toString());
 
   const handleFollow = () => postFollow();
 
