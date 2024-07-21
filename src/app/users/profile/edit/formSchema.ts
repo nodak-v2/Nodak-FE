@@ -1,4 +1,3 @@
-import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
 export const schema = yup.object({
@@ -14,14 +13,3 @@ export const schema = yup.object({
     .min(2, '최소 2글자 이상이어야 합니다.')
     .max(10, '최대 10글자까지 입력 가능합니다.'),
 });
-
-export const defaultValues = {
-  profileImageUrl: null,
-  nickname: '',
-};
-
-export const formOptions = {
-  mode: 'onSubmit',
-  defaultValues: defaultValues,
-  resolver: yupResolver(schema),
-} as const;
