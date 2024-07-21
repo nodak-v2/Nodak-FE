@@ -39,7 +39,7 @@ const ChipContainer = ({
   defaultPath = '/',
 }: ChipContainerProps) => {
   return (
-    <ul className='flex items-center gap-2 px-4 py-2'>
+    <ul className='flex items-center gap-2 overflow-x-auto overflow-y-hidden px-4 py-2'>
       {channelData.map(({ name, path }, index) => {
         const variant = path === currentChannel ? 'selected' : 'default';
 

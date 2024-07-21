@@ -26,7 +26,7 @@ const GNB = () => {
       icon: <Icon id='notification' />,
       name: '알림',
     },
-    { href: '/users/profile', icon: <Icon id='user' />, name: '프로필' },
+    { href: '/users/profile', icon: <Icon id='user' />, name: '마이페이지' },
   ];
 
   return (

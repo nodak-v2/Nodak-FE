@@ -33,7 +33,7 @@ const PostingIcon = ({ icon, name, routingPath }: PostingIconProps) => {
 const MyVote = () => {
   return (
     <div className='flex flex-col gap-4 px-4'>
-      <span className='font-h4-sm-bold text-gray-accent3'>나의 투표</span>
+      <span className='font-h4-sm text-gray-accent3'>나의 투표</span>
       {postingCategory.map(({ icon, name, routingPath }, index) => (
         <PostingIcon
           icon={icon}

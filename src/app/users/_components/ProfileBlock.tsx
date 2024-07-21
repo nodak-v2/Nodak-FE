@@ -80,8 +80,13 @@ const ProfileBlock = () => {
     profileImage,
     nickname: myName,
   } = useGetUserStatusAPI();
-  const { followeeCount, followerCount, postCount, nickname } =
-    useGetProfileAPI(!userId ? String(myId) : userId);
+  const {
+    followeeCount,
+    followerCount,
+    postCount,
+    nickname,
+    profileImageUrl: userProfileImage,
+  } = useGetProfileAPI(!userId ? String(myId) : userId);
 
   const followersPath = userId
     ? `/social/${userId}/followers`
@@ -94,7 +99,10 @@ const ProfileBlock = () => {
     <div className='flex w-full flex-col gap-6 px-4 pt-4'>
       <div className='flex items-center gap-2'>
         <Image
-          src={profileImage || '/picky/user-square.svg'}
+          src={
+            (userId ? userProfileImage : profileImage) ||
+            '/picky/user-square.svg'
+          }
           alt='유저이미지'
           width={52}
           height={52}
