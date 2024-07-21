@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
 
 import debounce from 'lodash/debounce';
+import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 
 import { useGetUserStatusAPI } from '@/src/apis/myInfo';
@@ -10,11 +11,23 @@ import Toast from '@/src/components/Toast';
 
 import { usePostingLike } from '../../hooks/usePostingLike';
 
-const CategoryChip = ({ category }: { category: string }) => {
+export type ChannelTypeOfKorean = '일상' | '스포츠' | '연예' | '공부' | '여행';
+
+const CHANNEL_DATA = {
+  일상: 'daily',
+  스포츠: 'sports',
+  연예: 'entertaining',
+  공부: 'study',
+  여행: 'travel',
+};
+
+const CategoryChip = ({ category }: { category: ChannelTypeOfKorean }) => {
   return (
-    <div className='font-text-2-md flex items-center rounded-[30px] border border-gray-accent2 px-3 py-0.5 text-gray-accent4'>
-      {category}
-    </div>
+    <Link href={`/?channel=${CHANNEL_DATA[category]}`}>
+      <div className='font-text-2-md flex items-center rounded-[30px] border border-gray-accent2 px-3 py-0.5 text-gray-accent4'>
+        {category}
+      </div>
+    </Link>
   );
 };
 
