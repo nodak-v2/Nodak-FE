@@ -18,7 +18,7 @@ const ProfilePage = () => {
   return (
     <Suspense fallback={<Spinner text='내 정보를 불러오고 있어요.' />}>
       <span className='font-h2-sm mb-1 p-4'>마이페이지</span>
-      <div className='flex grow flex-col gap-8'>
+      <div className='flex grow flex-col gap-9'>
         {isLogin ? (
           <>
             <ProfileBlock />
@@ -27,7 +27,6 @@ const ProfilePage = () => {
         ) : (
           <LoginInfo />
         )}
-
         <MyVote />
         {isLogin && <Setting />}
       </div>
