@@ -1,6 +1,6 @@
 'use client';
 
-import { RefObject } from 'react';
+import { RefObject, useEffect } from 'react';
 
 import { cva } from 'class-variance-authority';
 
@@ -34,9 +34,16 @@ interface SelectorProps {
   className?: string;
   variant?: 'default' | 'filled' | 'error';
   onChange?: (channel: string) => void;
+  defaultValue?: string;
 }
 
-const Selector = ({ items, placeholder, variant, onChange }: SelectorProps) => {
+const Selector = ({
+  items,
+  placeholder,
+  variant,
+  onChange,
+  defaultValue,
+}: SelectorProps) => {
   const {
     isOpen,
     toggleDropdown,
@@ -52,6 +59,13 @@ const Selector = ({ items, placeholder, variant, onChange }: SelectorProps) => {
     updateSelectedItem(item);
     toggleDropdown();
   };
+
+  useEffect(() => {
+    if (defaultValue) {
+      updateSelectedItem(defaultValue);
+      onChange?.(defaultValue);
+    }
+  }, [defaultValue, updateSelectedItem, onChange]);
 
   return (
     <div

@@ -55,7 +55,10 @@ const Main = () => {
               </Link>
             ))
           ) : (
-            <EmptyPage href='/createPost' text='작성 글이 없습니다.' />
+            <EmptyPage
+              href={`/createPost?channel=${channel}`}
+              text='작성 글이 없습니다.'
+            />
           )}
 
           <div ref={scrollRef} />
