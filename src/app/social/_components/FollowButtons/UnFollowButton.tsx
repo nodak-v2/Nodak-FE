@@ -1,4 +1,5 @@
 import { useDeleteFollowAPI } from '@/src/apis/follow';
+import { useGetUserStatusAPI } from '@/src/apis/myInfo';
 import Button from '@/src/components/Button/Button';
 import ConfirmationModal from '@/src/components/Modal/ConfirmationModal';
 import useModal from '@/src/hooks/useModal';
@@ -8,7 +9,8 @@ interface FollowButtonProps {
 }
 
 const UnFollowButton = ({ userId }: FollowButtonProps) => {
-  const deleteFollow = useDeleteFollowAPI(userId.toString());
+  const { userId: myId } = useGetUserStatusAPI();
+  const deleteFollow = useDeleteFollowAPI(userId.toString(), myId.toString());
   const { isOpen, open, close } = useModal();
 
   const handleUnFollow = () => {

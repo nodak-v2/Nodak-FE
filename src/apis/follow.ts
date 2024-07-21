@@ -65,7 +65,7 @@ const deleteFollow = (userId: string) => {
   });
 };
 
-export const usePostFollowAPI = (userId: string) => {
+export const usePostFollowAPI = (userId: string, myId: string) => {
   const queryClient = useQueryClient();
 
   const { mutateAsync } = useMutation({
@@ -75,10 +75,10 @@ export const usePostFollowAPI = (userId: string) => {
         queryKey: ['profile', userId],
       });
       queryClient.invalidateQueries({
-        queryKey: ['followees', userId],
+        queryKey: ['followees', myId],
       });
       queryClient.invalidateQueries({
-        queryKey: ['followers', userId],
+        queryKey: ['followers', myId],
       });
     },
   });
@@ -86,7 +86,7 @@ export const usePostFollowAPI = (userId: string) => {
   return mutateAsync;
 };
 
-export const useDeleteFollowAPI = (userId: string) => {
+export const useDeleteFollowAPI = (userId: string, myId: string) => {
   const queryClient = useQueryClient();
 
   const { mutateAsync } = useMutation({
@@ -96,10 +96,10 @@ export const useDeleteFollowAPI = (userId: string) => {
         queryKey: ['profile', userId],
       });
       queryClient.invalidateQueries({
-        queryKey: ['followees', userId],
+        queryKey: ['followees', myId],
       });
       queryClient.invalidateQueries({
-        queryKey: ['followers', userId],
+        queryKey: ['followers', myId],
       });
     },
   });
