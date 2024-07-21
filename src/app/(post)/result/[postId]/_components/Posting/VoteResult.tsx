@@ -89,9 +89,13 @@ const VoteResult = () => {
                             : 'text-gray-accent3',
                         )}
                       >
-                        <span>{count}표</span>
-                        {totalNumber !== 0 && (
-                          <span>{percentage.toFixed(0)}%</span>
+                        {count ? (
+                          <>
+                            <span>{count}표, </span>
+                            <span>{percentage.toFixed(0)}%</span>
+                          </>
+                        ) : (
+                          <span>{count}표</span>
                         )}
                       </div>
                     </div>

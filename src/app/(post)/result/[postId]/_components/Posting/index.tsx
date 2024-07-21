@@ -25,6 +25,7 @@ const PostingMain = () => {
             alt='유저프로필'
             width={36}
             height={36}
+            className='max-h-[36px] max-w-[36px]'
           />
         </Link>
         <div className='flex flex-col'>
