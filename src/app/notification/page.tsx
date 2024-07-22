@@ -1,7 +1,10 @@
 'use client';
 
-import DevelopingPage from '@/src/components/DevelopingPage';
+import { useGetNotificationsAPI } from '@/src/apis/notification';
 
-const Notification = () => <DevelopingPage />;
+const Notification = () => {
+  const data = useGetNotificationsAPI();
+  if (!data) return null;
+};
 
 export default Notification;
