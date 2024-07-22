@@ -75,6 +75,9 @@ export const usePostFollowAPI = (userId: string, myId: string) => {
         queryKey: ['profile', userId],
       });
       queryClient.invalidateQueries({
+        queryKey: ['profile', myId],
+      });
+      queryClient.invalidateQueries({
         queryKey: ['followees', myId],
       });
       queryClient.invalidateQueries({
@@ -94,6 +97,9 @@ export const useDeleteFollowAPI = (userId: string, myId: string) => {
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ['profile', userId],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ['profile', myId],
       });
       queryClient.invalidateQueries({
         queryKey: ['followees', myId],
