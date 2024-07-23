@@ -2,11 +2,9 @@ import type { Viewport } from 'next';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import AuthenticatedRoute from '@/src/app/AuthenticatedRoute';
 import GoogleAnalytics from '@/src/components/GoogleAnalystics';
 
 import Introduction from '../components/Introduction';
-import { MSWComponent } from '../mocks/MSWComponent';
 import { getMetadata } from '../utils/getMetadata';
 import Providers from './Providers';
 import './globals.css';
@@ -33,20 +31,18 @@ const RootLayout = ({
       </head>
       <body className='font-sans'>
         <Providers>
-          <MSWComponent>
-            <div className='flex h-screen w-screen items-center justify-center gap-10'>
-              <div className='hidden shrink sm:flex'>
-                <Introduction />
-              </div>
-              <div
-                id='layout-Root'
-                className='relative flex h-full max-h-[950px] min-h-[600px] w-full min-w-[350px] max-w-[450px] shrink-0 flex-col bg-background text-white shadow-xl'
-              >
-                <AuthenticatedRoute>{children}</AuthenticatedRoute>
-                <ToastContainer className='absolute bottom-[103px] flex flex-col items-center justify-center' />
-              </div>
+          <div className='flex h-screen w-screen items-center justify-center gap-10'>
+            <div className='hidden shrink sm:flex'>
+              <Introduction />
             </div>
-          </MSWComponent>
+            <div
+              id='layout-Root'
+              className='relative flex h-full max-h-[950px] min-h-[600px] w-full min-w-[350px] max-w-[450px] shrink-0 flex-col bg-background text-white shadow-xl'
+            >
+              {children}
+              <ToastContainer className='absolute bottom-[103px] flex flex-col items-center justify-center' />
+            </div>
+          </div>
         </Providers>
       </body>
     </html>
