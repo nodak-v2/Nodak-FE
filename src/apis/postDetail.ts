@@ -4,6 +4,7 @@ import {
   useSuspenseQuery,
 } from '@tanstack/react-query';
 
+import { ChannelTypeOfKorean } from '../app/(post)/result/[postId]/_components/Posting/PostingButton';
 import { api } from './core';
 
 interface PostDetailBody {
@@ -16,7 +17,7 @@ interface PostDetailBody {
   content: string;
   starCount: number;
   checkStar: boolean;
-  categoryName: string;
+  categoryName: ChannelTypeOfKorean;
 }
 
 const getPostDetail = (postId: string) => {

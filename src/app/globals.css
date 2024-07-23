@@ -70,3 +70,12 @@ ul > button:last-child {
 input[type='datetime-local']::-webkit-calendar-picker-indicator {
   filter: invert(1);
 }
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}

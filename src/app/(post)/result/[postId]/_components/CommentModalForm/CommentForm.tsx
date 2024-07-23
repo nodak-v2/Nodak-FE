@@ -6,6 +6,8 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useGetCommentsAPI, useUpdateCommentAPI } from '@/src/apis/comments';
 import { useCreateReplyCommentAPI } from '@/src/apis/reply';
 import { useCreateComment } from '@/src/app/(post)/result/[postId]/hooks/useCreateComment';
+import ConfirmationModal from '@/src/components/Modal/ConfirmationModal';
+import useModal from '@/src/hooks/useModal';
 
 interface CommentFormProps {
   onCloseModal: () => void;
@@ -15,7 +17,9 @@ export type CommentFormValues = {
   comment: string;
 };
 
-const CommentForm = ({ onCloseModal: closeModal }: CommentFormProps) => {
+const CommentForm = ({
+  onCloseModal: closeCommentFormModal,
+}: CommentFormProps) => {
   const { postId } = useParams() as { postId: string };
   const method = useSearchParams().get('method') as 'create' | 'update' | null;
   const target = useSearchParams().get('target') as 'root' | 'reply' | null;
@@ -26,13 +30,18 @@ const CommentForm = ({ onCloseModal: closeModal }: CommentFormProps) => {
   const updateRootComment = useUpdateCommentAPI(postId, +commentId!);
   const createReplyComment = useCreateReplyCommentAPI(postId, +commentId!);
 
+  const isUpdateComment = method === 'update';
+  const selectedComment = comments.find(
+    comment => comment.commentId === Number(commentId),
+  );
+
   const {
     register,
     handleSubmit,
     setValue,
     reset,
     setFocus,
-    formState: { isSubmitting, isValid },
+    formState: { isSubmitting, isValid, isDirty },
   } = useForm<CommentFormValues>({
     defaultValues: {
       comment: '',
@@ -41,10 +50,6 @@ const CommentForm = ({ onCloseModal: closeModal }: CommentFormProps) => {
 
   const { ref, ...rest } = register('comment', { required: true });
 
-  const isUpdateComment = method === 'update';
-  const selectedComment = comments.find(
-    comment => comment.commentId === Number(commentId),
-  );
   const submitCommentMap = {
     create: {
       root: createRootComment,
@@ -62,7 +67,19 @@ const CommentForm = ({ onCloseModal: closeModal }: CommentFormProps) => {
 
     await submitComment?.(comment);
     reset();
-    closeModal();
+    closeCommentFormModal();
+  };
+
+  const {
+    isOpen: isCancelModalOpen,
+    open: openCancelModal,
+    close: closeCancelModal,
+  } = useModal();
+
+  const handleCancel = () => {
+    reset();
+    closeCancelModal();
+    closeCommentFormModal();
   };
 
   useEffect(() => {
@@ -93,7 +110,7 @@ const CommentForm = ({ onCloseModal: closeModal }: CommentFormProps) => {
           <button
             type='button'
             className='font-text-1-rg text-gray-accent3'
-            onClick={closeModal}
+            onClick={isDirty ? openCancelModal : handleCancel}
           >
             취소
           </button>
@@ -106,6 +123,12 @@ const CommentForm = ({ onCloseModal: closeModal }: CommentFormProps) => {
           </button>
         </div>
       </form>
+      <ConfirmationModal
+        isShow={isCancelModalOpen}
+        description='작성중인 댓글 삭제하시겠습니까?'
+        onConfirm={handleCancel}
+        onClose={closeCancelModal}
+      />
     </div>
   );
 };

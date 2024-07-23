@@ -18,7 +18,7 @@ const UserPage = () => {
 
   return (
     <PullToRefresh onRefresh={handleRefresh} pullingContent=''>
-      <div className='flex h-full flex-col gap-6 overflow-y-auto'>
+      <div className='flex h-full flex-col gap-9 overflow-y-auto'>
         <ProfileBlock />
         <BadgeBlock />
         <Posting />

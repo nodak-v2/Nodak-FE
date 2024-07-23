@@ -14,7 +14,7 @@ const BadgeBlock = () => {
 
   return (
     <div className='flex flex-col gap-4 px-4'>
-      <span className='font-h4-sm-bold text-gray-accent3'>활동 배지</span>
+      <span className='font-h4-sm text-gray-accent3'>활동 배지</span>
       <div className='flex items-center justify-between'>
         <div className='flex flex-col items-center gap-3'>
           <Image

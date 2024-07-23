@@ -11,7 +11,7 @@ const HTTP_METHODS = {
   DELETE: 'delete',
 } as const;
 
-const TIME_OUT = 2000;
+const TIME_OUT = 5000;
 
 const axiosInstance = axios.create({
   baseURL: `${process.env.NEXT_PUBLIC_API_URL}`,
