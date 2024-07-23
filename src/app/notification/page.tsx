@@ -2,6 +2,7 @@
 
 import { useGetNotificationsAPI } from '@/src/apis/notification';
 import NotificationItem from '@/src/app/notification/_components/NotificationItem';
+import EmptyPage from '@/src/components/EmptyPage';
 
 const notificationMessageByType = {
   POST: ' 님이 게시글을 작성하였습니다.',
@@ -14,15 +15,15 @@ const Notification = () => {
 
   return (
     <div className='flex h-full grow flex-col overflow-y-auto'>
+      {data.length === 0 && (
+        <EmptyPage text='알림이 없습니다.' enableButton={false} />
+      )}
       {data.map(
         (
           { writerId, writerName, followerId, followerName, timestamp, type },
           index,
         ) => (
-          <li
-            key={`${index}-${type}`}
-            className='list-none p-4 pt-3 hover:bg-gray-accent1'
-          >
+          <li key={`${index}-${type}`} className='list-none'>
             {type === 'POST' && (
               <NotificationItem
                 user={writerName!}
