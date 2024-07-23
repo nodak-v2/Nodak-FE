@@ -28,7 +28,7 @@ const RootLayout = ({
   return (
     <html lang='ko'>
       <head>
-        <link rel='icon' href='/icon-512x512.png' sizes='any' />
+        <link rel='icon' href='/app-Icon/icon-512x512.png' sizes='any' />
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_MEASUREMENT_ID!} />
       </head>
       <body className='font-sans'>

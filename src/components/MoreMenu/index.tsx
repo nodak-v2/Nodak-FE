@@ -37,7 +37,7 @@ const MoreItem = ({
   children,
 }: PropsWithChildren<MoreMenuItemProps>) => {
   return (
-    <DropdownMenu.Item onSelect={onSelect}>
+    <DropdownMenu.Item onSelect={onSelect} className='cursor-pointer'>
       {children || label}
     </DropdownMenu.Item>
   );
