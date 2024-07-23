@@ -8,69 +8,21 @@ const notificationMessageByType = {
   FOLLOW: ' 님이 회원님을 팔로우하기 시작했습니다.',
 };
 
-const mockData = [
-  {
-    writerId: '1',
-    writerName: '김피키',
-    followerId: null,
-    followerName: null,
-    timestamp: '2021-07-07T12:00:00',
-    type: 'POST',
-  },
-  {
-    writerId: null,
-    writerName: null,
-    followerId: '2',
-    followerName: '김피키',
-    timestamp: '2021-07-07T12:00:00',
-    type: 'FOLLOW',
-  },
-  {
-    writerId: '3',
-    writerName: '김피키',
-    followerId: null,
-    followerName: null,
-    timestamp: '2021-07-07T12:00:00',
-    type: 'POST',
-  },
-  {
-    writerId: null,
-    writerName: null,
-    followerId: '4',
-    followerName: '김피키',
-    timestamp: '2021-07-07T12:00:00',
-    type: 'FOLLOW',
-  },
-  {
-    writerId: '5',
-    writerName: '김피키',
-    followerId: null,
-    followerName: null,
-    timestamp: '2021-07-07T12:00:00',
-    type: 'POST',
-  },
-  {
-    writerId: null,
-    writerName: null,
-    followerId: '6',
-    followerName: '김피키',
-    timestamp: '2021-07-07T12:00:00',
-    type: 'FOLLOW',
-  },
-];
-
 const Notification = () => {
   const data = useGetNotificationsAPI();
   if (!data) return null;
 
   return (
-    <div className='h-full'>
-      {[...data, ...mockData].map(
+    <div className='flex h-full grow flex-col overflow-y-auto'>
+      {data.map(
         (
           { writerId, writerName, followerId, followerName, timestamp, type },
           index,
         ) => (
-          <li key={`${index}-${type}`} className='list-none p-4 pt-3'>
+          <li
+            key={`${index}-${type}`}
+            className='list-none p-4 pt-3 hover:bg-gray-accent1'
+          >
             {type === 'POST' && (
               <NotificationItem
                 user={writerName!}

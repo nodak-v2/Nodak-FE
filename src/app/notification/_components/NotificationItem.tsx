@@ -19,26 +19,22 @@ const NotificationItem = ({
   content,
 }: NotificationItemProps) => {
   return (
-    <section className='flex items-center gap-2'>
-      <Link href={`/users/${userId}`}>
-        <Image
-          src={userImage ? userImage : '/picky/user-square.svg'}
-          alt='유저아바타'
-          width={36}
-          height={36}
-        />
-      </Link>
+    <Link href={`/users/${userId}`} className='flex items-center gap-2'>
+      <Image
+        src={userImage ? userImage : '/picky/user-square.svg'}
+        alt='유저아바타'
+        width={36}
+        height={36}
+      />
 
       <div>
-        <Link href={`/users/${userId}`}>
-          <span>{user}</span>
-        </Link>
-        <span>{content}</span>
+        <span className='font-title-1-md'>{user}</span>
+        <span className='font-title-1-md'>{content}</span>
         <p className='font-text-4-rg text-gray-accent4'>
           {timeOffset(new Date(timestamp))}
         </p>
       </div>
-    </section>
+    </Link>
   );
 };
 
