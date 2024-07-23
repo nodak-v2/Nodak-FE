@@ -117,7 +117,7 @@ const PostForm = () => {
               <Selector
                 items={channels}
                 placeholder='채널 선택'
-                defaultValue={koreanChannel}
+                defaultValue={koreanChannel || '전체'}
                 onChange={field.onChange}
                 variant={errors.channel ? 'error' : 'default'}
               />
