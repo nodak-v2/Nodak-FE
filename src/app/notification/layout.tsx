@@ -2,15 +2,14 @@
 
 import { PropsWithChildren } from 'react';
 
-import TopBar from '@/src/components/Topbar';
+import GNB from '@/src/components/GNB';
 
 const NotificationLayout = ({ children }: PropsWithChildren) => {
   return (
     <>
-      <TopBar.Container>
-        <TopBar.BackButton />
-      </TopBar.Container>
+      <span className='font-h2-sm mb-1 p-4'>알림</span>
       {children}
+      <GNB />
     </>
   );
 };
