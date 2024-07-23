@@ -42,6 +42,14 @@ const VoteForm = ({ onChange, error }: VoteFormProps) => {
     onChange(newOptions);
   };
 
+  const handleImageRemove = (index: number) => {
+    const newOptions = options.map((option, i) =>
+      i === index ? { ...option, imageUrl: null } : option,
+    );
+    setOptions(newOptions);
+    onChange(newOptions);
+  };
+
   const handleOptionChange = (
     index: number,
     event: ChangeEvent<HTMLInputElement>,
@@ -100,6 +108,10 @@ const VoteForm = ({ onChange, error }: VoteFormProps) => {
                   width={24}
                   height={24}
                   className='max-h-[24px] max-w-[24px] rounded-[4px]'
+                  onClick={event => {
+                    event.preventDefault();
+                    handleImageRemove(index);
+                  }}
                 />
               ) : (
                 <Icon id='gallery' size={24} className='cursor-pointer' />
