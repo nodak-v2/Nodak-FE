@@ -1,63 +1,51 @@
-import GNB from '@/src/components/GNB';
-import Icon from '@/src/components/Icon';
-import TopBar from '@/src/components/Topbar';
+'use client';
 
-import NotificationItem from './_components/NotificationItem';
+import { useGetNotificationsAPI } from '@/src/apis/notification';
+import NotificationItem from '@/src/app/notification/_components/NotificationItem';
+import EmptyPage from '@/src/components/EmptyPage';
 
-interface Notification {
-  userId: number;
-  user: string;
-  type: 'post' | 'comment' | 'follow';
-  createdAt: string;
-  userImage: string | null;
-  isNew: boolean;
-}
-
-const ALARM_DUMMY: Notification[] = [
-  {
-    userId: 1,
-    user: '유저 1',
-    type: 'post',
-    createdAt: '2024-06-19 14:26:00',
-    userImage: null,
-    isNew: true,
-  },
-  {
-    userId: 1,
-    user: '유저 1',
-    type: 'comment',
-    createdAt: '2024-06-19 13:20:00',
-    userImage: null,
-    isNew: false,
-  },
-  {
-    userId: 1,
-    user: '유저 5',
-    type: 'follow',
-    createdAt: '2024-06-18 13:26:00',
-    userImage: null,
-    isNew: false,
-  },
-];
+const notificationMessageByType = {
+  POST: ' 님이 게시글을 작성하였습니다.',
+  FOLLOW: ' 님이 회원님을 팔로우하기 시작했습니다.',
+};
 
 const Notification = () => {
+  const data = useGetNotificationsAPI();
+  if (!data) return null;
+
   return (
-    <>
-      <TopBar.Container>
-        <p className='font-h2-sm'>알림</p>
-      </TopBar.Container>
-      <main className='grow overflow-y-auto'>
-        {ALARM_DUMMY.length === 0 ? (
-          <div className='flex h-full flex-col items-center justify-center gap-2 text-white'>
-            <Icon id='warning' aria-label='알림이 없습니다.' size={64} />
-            <span className='font-semibold text-white'>알림이 없습니다.</span>
-          </div>
-        ) : (
-          <NotificationItem notifications={ALARM_DUMMY} />
-        )}
-      </main>
-      <GNB />
-    </>
+    <div className='flex h-full grow flex-col overflow-y-auto'>
+      {data.length === 0 && (
+        <EmptyPage text='알림이 없습니다.' enableButton={false} />
+      )}
+      {data.map(
+        (
+          { writerId, writerName, followerId, followerName, timestamp, type },
+          index,
+        ) => (
+          <li key={`${index}-${type}`} className='list-none'>
+            {type === 'POST' && (
+              <NotificationItem
+                user={writerName!}
+                userImage='/picky/user-square.svg'
+                timestamp={timestamp}
+                userId={writerId!}
+                content={notificationMessageByType.POST}
+              />
+            )}
+            {type === 'FOLLOW' && (
+              <NotificationItem
+                user={followerName!}
+                userImage='/picky/user-square.svg'
+                timestamp={timestamp}
+                userId={followerId!}
+                content={notificationMessageByType.FOLLOW}
+              />
+            )}
+          </li>
+        ),
+      )}
+    </div>
   );
 };
 

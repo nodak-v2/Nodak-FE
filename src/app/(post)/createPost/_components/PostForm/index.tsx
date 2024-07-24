@@ -1,11 +1,15 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Controller, useForm } from 'react-hook-form';
 
 import { PostRequestBody } from '@/src/apis/createPost';
 import VoteForm from '@/src/app/(post)/createPost/_components/VoteForm';
-import { ChannelTypeOfKorean } from '@/src/app/_components/ChipContainer';
+import {
+  ChannelType,
+  ChannelTypeOfKorean,
+  channelToKoreanMap,
+} from '@/src/app/_components/ChipContainer';
 import Button from '@/src/components/Button/Button';
 import FormField from '@/src/components/FormField';
 import Selector from '@/src/components/Selector';
@@ -26,6 +30,11 @@ const channels: Array<ChannelTypeOfKorean> = [
 ];
 
 const PostForm = () => {
+  const searchParams = useSearchParams();
+  const channel = searchParams.get('channel') as ChannelType;
+
+  const koreanChannel = channelToKoreanMap[channel];
+
   const {
     register,
     handleSubmit,
@@ -106,6 +115,7 @@ const PostForm = () => {
               <Selector
                 items={channels}
                 placeholder='채널 선택'
+                defaultValue={koreanChannel}
                 onChange={field.onChange}
                 variant={errors.channel ? 'error' : 'default'}
               />

@@ -2,7 +2,7 @@
 
 import { PropsWithChildren } from 'react';
 
-import { useParams, usePathname } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
 import TopBar from '@/src/components/Topbar';
 
@@ -16,14 +16,10 @@ const FollowersLayout = ({ children }: PropsWithChildren) => {
     ?.split('/')
     .pop() as keyof typeof pathDict;
 
-  const { userId } = useParams();
-
   return (
     <>
       <TopBar.Container>
-        <TopBar.BackButton
-          href={userId ? `/users/${userId}` : '/users/profile'}
-        />
+        <TopBar.BackButton />
         <TopBar.Title>{pathDict[socialPathname]}</TopBar.Title>
         <TopBar.NavMore />
       </TopBar.Container>

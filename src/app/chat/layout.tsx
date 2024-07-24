@@ -4,7 +4,7 @@ import { PropsWithChildren } from 'react';
 
 import TopBar from '@/src/components/Topbar';
 
-const ReportLayout = ({ children }: PropsWithChildren) => {
+const ChatLayout = ({ children }: PropsWithChildren) => {
   return (
     <>
       <TopBar.Container>
@@ -15,4 +15,4 @@ const ReportLayout = ({ children }: PropsWithChildren) => {
   );
 };
 
-export default ReportLayout;
+export default ChatLayout;

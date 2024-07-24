@@ -8,6 +8,7 @@ import { useGetUserStatusAPI } from '@/src/apis/myInfo';
 import { useGetProfileAPI } from '@/src/apis/profile';
 import ConfirmationModal from '@/src/components/Modal/ConfirmationModal';
 import useModal from '@/src/hooks/useModal';
+import { cn } from '@/src/utils/cn';
 
 import { useFollow } from '../[userId]/hooks/useFollow';
 
@@ -75,9 +76,18 @@ const UserPageButton = () => {
 
 const ProfileBlock = () => {
   const { userId } = useParams() as { userId: string };
-  const { userId: myId, nickname: myName } = useGetUserStatusAPI();
-  const { followeeCount, followerCount, postCount, nickname, profileImageUrl } =
-    useGetProfileAPI(!userId ? String(myId) : userId);
+  const {
+    userId: myId,
+    profileImage,
+    nickname: myName,
+  } = useGetUserStatusAPI();
+  const {
+    followeeCount,
+    followerCount,
+    postCount,
+    nickname,
+    profileImageUrl: userProfileImage,
+  } = useGetProfileAPI(!userId ? String(myId) : userId);
 
   const followersPath = userId
     ? `/social/${userId}/followers`
@@ -90,7 +100,10 @@ const ProfileBlock = () => {
     <div className='flex w-full flex-col gap-6 px-4 pt-4'>
       <div className='flex items-center gap-2'>
         <Image
-          src={profileImageUrl || '/default-image.png'}
+          src={
+            (userId ? userProfileImage : profileImage) ||
+            '/picky/user-square.svg'
+          }
           alt='유저이미지'
           width={52}
           height={52}
@@ -103,11 +116,23 @@ const ProfileBlock = () => {
               <span className='font-text-3-rg text-gray-accent4'>작성글</span>
               <span className='font-title-2-sm'>{postCount}</span>
             </div>
-            <Link className='flex items-center gap-1' href={followersPath}>
+            <Link
+              className={cn(
+                'flex items-center gap-1',
+                followerCount === 0 && 'pointer-events-none',
+              )}
+              href={followersPath}
+            >
               <span className='font-text-3-rg text-gray-accent4'>팔로워</span>
               <span className='font-title-2-sm'>{followerCount}</span>
             </Link>
-            <Link className='flex items-center gap-1' href={followeesPath}>
+            <Link
+              className={cn(
+                'flex items-center gap-1',
+                followeeCount === 0 && 'pointer-events-none',
+              )}
+              href={followeesPath}
+            >
               <span className='font-text-3-rg text-gray-accent4'>팔로잉</span>
               <span className='font-title-2-sm'>{followeeCount}</span>
             </Link>

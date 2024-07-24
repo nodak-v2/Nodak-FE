@@ -1,5 +1,6 @@
 'use client';
 
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/navigation';
 import { Controller, useForm } from 'react-hook-form';
 
@@ -10,10 +11,23 @@ import FormField from '@/src/components/FormField';
 import TextInput from '@/src/components/TextInput';
 import TopBar from '@/src/components/Topbar';
 
-import { formOptions } from './formSchema';
+import { schema } from './formSchema';
 import { usePatchUserProfile } from './usePatchUserProfile';
 
 const UserEditPage = () => {
+  const { profileImage, nickname } = useGetUserStatusAPI();
+
+  const defaultValues = {
+    profileImageUrl: null,
+    nickname,
+  };
+
+  const formOptions = {
+    mode: 'onSubmit',
+    defaultValues: defaultValues,
+    resolver: yupResolver(schema),
+  } as const;
+
   const {
     register,
     handleSubmit,
@@ -30,12 +44,10 @@ const UserEditPage = () => {
     patchProfile(data);
   };
 
-  const { profileImage } = useGetUserStatusAPI();
-
   return (
     <>
       <TopBar.Container>
-        <TopBar.BackButton href='./' />
+        <TopBar.BackButton />
         <TopBar.Title>프로필 수정</TopBar.Title>
         <button
           className='font-title-1-md text-primary'

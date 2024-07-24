@@ -1,10 +1,20 @@
 'use client';
 
+import EmptyPage from '@/src/components/EmptyPage';
+
 import PostingList from '../_components/PostingList';
 
-const NO_POSTING_TEXT = '작성한 게시글이 없습니다.';
+const EMPTY_TEXT = '작성 글이 없습니다.';
+const EMPTY_BUTTON_TEXT = '투표 글 작성하기';
+
 const MyPostingHistoryPage = () => (
-  <PostingList text={NO_POSTING_TEXT} isNickname={false} />
+  <PostingList>
+    <EmptyPage
+      text={EMPTY_TEXT}
+      buttonContent={EMPTY_BUTTON_TEXT}
+      href='/createPost'
+    />
+  </PostingList>
 );
 
 export default MyPostingHistoryPage;

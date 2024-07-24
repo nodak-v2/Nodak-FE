@@ -13,6 +13,7 @@ interface CommentItemProps {
   createdAt: string;
   isOwnComment: boolean;
   authorId: number;
+  profileImageUrl: string | null;
 }
 
 const CommentItem = ({
@@ -22,17 +23,19 @@ const CommentItem = ({
   isOwnComment,
   children,
   authorId,
+  profileImageUrl,
 }: PropsWithChildren<CommentItemProps>) => {
   return (
     <div className='flex w-full flex-col gap-2'>
       <div className='flex items-center justify-between'>
         <Link href={`/users/${authorId}`}>
-          <div className='flex items-center gap-1'>
+          <div className='flex items-center gap-2'>
             <Image
-              src='/user-square.png'
+              src={profileImageUrl || '/picky/user-square.svg'}
               alt='유저프로필'
               width={24}
               height={24}
+              className='h-[24px] w-[24px] rounded-[4px]'
             />
             <span className='font-title-1-md'>{nickname}</span>
             {isOwnComment && <OwnCommentChip />}

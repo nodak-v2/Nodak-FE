@@ -2,6 +2,7 @@ import type { Viewport } from 'next';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import AuthenticatedRoute from '@/src/app/AuthenticatedRoute';
 import GoogleAnalytics from '@/src/components/GoogleAnalystics';
 
 import Introduction from '../components/Introduction';
@@ -27,7 +28,7 @@ const RootLayout = ({
   return (
     <html lang='ko'>
       <head>
-        <link rel='icon' href='/icon-512x512.png' sizes='any' />
+        <link rel='icon' href='/app-Icon/icon-512x512.png' sizes='any' />
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_MEASUREMENT_ID!} />
       </head>
       <body className='font-sans'>
@@ -41,7 +42,7 @@ const RootLayout = ({
                 id='layout-Root'
                 className='relative flex h-full max-h-[950px] min-h-[600px] w-full min-w-[350px] max-w-[450px] shrink-0 flex-col bg-background text-white shadow-xl'
               >
-                {children}
+                <AuthenticatedRoute>{children}</AuthenticatedRoute>
                 <ToastContainer className='absolute bottom-[103px] flex flex-col items-center justify-center' />
               </div>
             </div>

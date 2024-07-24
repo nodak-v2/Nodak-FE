@@ -13,9 +13,9 @@ import ChipContainer, {
 } from '@/src/app/_components/ChipContainer';
 import PostItem from '@/src/app/_components/PostItem';
 import EmptyPage from '@/src/components/EmptyPage';
+import TopBar from '@/src/components/Topbar';
 import useInfiniteScroll from '@/src/hooks/useInfiniteScroll';
 
-import TopBar from '../../../components/Topbar';
 import SearchBar from './_components/SearchBar';
 
 const SearchPostPage = () => {
@@ -46,7 +46,7 @@ const SearchPostPage = () => {
   return (
     <>
       <TopBar.Container>
-        <TopBar.BackButton href='/' />
+        <TopBar.BackButton />
         <SearchBar onClear={handleRemoveClick} onSubmit={handleSubmit} />
       </TopBar.Container>
 
@@ -65,7 +65,10 @@ const SearchPostPage = () => {
                   </Link>
                 ))
               ) : (
-                <EmptyPage href='/createPost' text='작성 글이 없습니다.' />
+                <EmptyPage
+                  href={`/createPost?channel=${channel}`}
+                  text='작성 글이 없습니다.'
+                />
               )}
               <div ref={scrollRef} />
             </main>

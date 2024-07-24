@@ -1,8 +1,15 @@
 'use client';
 
+import EmptyPage from '@/src/components/EmptyPage';
+
 import PostingList from '../_components/PostingList';
 
-const NO_COMMENT_TEXT = '작성한 댓글이 없습니다.';
+const EMPTY_TEXT = '내 댓글이 없습니다.';
+const EMPTY_BUTTON_TEXT = '투표 둘러보기';
 
-const MyCommentHistoryPage = () => <PostingList text={NO_COMMENT_TEXT} />;
+const MyCommentHistoryPage = () => (
+  <PostingList>
+    <EmptyPage text={EMPTY_TEXT} buttonContent={EMPTY_BUTTON_TEXT} />
+  </PostingList>
+);
 export default MyCommentHistoryPage;

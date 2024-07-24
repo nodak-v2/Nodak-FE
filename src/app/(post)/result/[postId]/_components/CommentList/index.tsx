@@ -13,13 +13,13 @@ const CommentList = () => {
   const { commentSize } = useGetPostDetailAPI(postId);
 
   return (
-    <div>
-      <div className='font-h3-sm border-t border-gray-accent2 px-4 py-5'>
+    <>
+      <div className='font-h3-sm border-t border-gray-accent2 px-4 py-5 pb-0'>
         댓글 {commentSize}
       </div>
       <div className=' flex flex-col divide-y divide-gray-accent2'>
         {comments.length === 0 && (
-          <span className='font-text-2-md self-center whitespace-pre-line p-4 text-center text-gray-accent3'>
+          <span className='font-text-2-md self-center whitespace-pre-line p-4 pt-5 text-center text-gray-accent3'>
             {INITIAL_TEXT}
           </span>
         )}
@@ -35,7 +35,7 @@ const CommentList = () => {
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 };
 
