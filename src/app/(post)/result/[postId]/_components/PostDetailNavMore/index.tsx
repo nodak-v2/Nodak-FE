@@ -8,7 +8,6 @@ import {
   useGetPostDetailAPI,
 } from '@/src/apis/postDetail';
 import ConfirmationModal from '@/src/components/Modal/ConfirmationModal';
-import Toast from '@/src/components/Toast';
 import TopBar from '@/src/components/Topbar';
 import useModal from '@/src/hooks/useModal';
 
@@ -24,7 +23,6 @@ const PostDetailNavMore = () => {
     await deletePost(undefined, {
       onSuccess: () => {
         router.push('/');
-        Toast.default('게시글이 삭제되었습니다.');
       },
     });
   };

@@ -1,18 +1,15 @@
 import { useRouter } from 'next/navigation';
 
 import Icon from '@/src/components/Icon';
-import Toast from '@/src/components/Toast';
 
 import { useLogout } from '../hooks/useLogout';
 
 const Setting = () => {
   const logout = useLogout();
   const router = useRouter();
-
   const handleLogout = () => {
     logout();
     router.push('/');
-    Toast.default('로그아웃 되었습니다.');
   };
 
   return (

@@ -4,6 +4,7 @@ import {
   useSuspenseQuery,
 } from '@tanstack/react-query';
 
+import Toast from '../components/Toast';
 import { api } from './core';
 
 export interface ReplyComment {
@@ -93,6 +94,10 @@ export const useDeleteCommentAPI = (postId: string, commentId: number) => {
       QueryClient.invalidateQueries({ queryKey: ['comments', postId] });
       QueryClient.invalidateQueries({ queryKey: ['posts', postId] });
       QueryClient.invalidateQueries({ queryKey: ['postList'] });
+      Toast.default('삭제되었습니다.');
+    },
+    onError: () => {
+      Toast.default('삭제에 실패했습니다.');
     },
   });
 

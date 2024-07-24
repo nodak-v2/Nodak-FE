@@ -6,7 +6,7 @@ import { cn } from '@/src/utils/cn';
 
 const defaultToastOption: ToastOptions = {
   position: 'bottom-center',
-  autoClose: 100,
+  autoClose: 2000,
   hideProgressBar: true,
   closeOnClick: true,
   draggable: true,

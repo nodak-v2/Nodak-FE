@@ -4,6 +4,7 @@ import {
   useSuspenseQuery,
 } from '@tanstack/react-query';
 
+import Toast from '../components/Toast';
 import { api } from './core';
 import { PostListContent } from './postList';
 
@@ -60,6 +61,10 @@ export const usePatchUserProfileAPI = () => {
     mutationFn: (data: ProfilePatchRequest) => patchUserProfile(data),
     onSuccess: () => {
       QueryClient.invalidateQueries({ queryKey: ['status'] });
+      Toast.default('저장되었습니다.');
+    },
+    onError: () => {
+      Toast.default('저장에 실패했습니다.');
     },
   });
 
