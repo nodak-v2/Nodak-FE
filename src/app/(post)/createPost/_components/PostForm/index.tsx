@@ -48,7 +48,7 @@ const PostForm = () => {
 
   const onSubmitPost = (data: PostRequestBody) => {
     createPost(data);
-    Toast.default('검색 되었습니다.');
+    Toast.default('등록되었습니다.');
     router.push('/');
   };
 
@@ -96,7 +96,7 @@ const PostForm = () => {
           />
         </FormField>
         <FormField
-          labelText='투표마감일'
+          labelText='투표 종료일'
           isRequired
           error={errors.endDate?.message}
         >
@@ -117,7 +117,7 @@ const PostForm = () => {
               <Selector
                 items={channels}
                 placeholder='채널 선택'
-                defaultValue={koreanChannel}
+                defaultValue={koreanChannel || '전체'}
                 onChange={field.onChange}
                 variant={errors.channel ? 'error' : 'default'}
               />
@@ -126,7 +126,7 @@ const PostForm = () => {
         </FormField>
       </fieldset>
       <Button type='submit' baseColor='primary' className='mx-4 my-6'>
-        투표 생성하기
+        등록하기
       </Button>
     </form>
   );

@@ -25,9 +25,7 @@ type TimeInputProps = ComponentPropsWithoutRef<'input'> &
 const TimeInput = forwardRef<HTMLInputElement, TimeInputProps>(
   ({ variant, className, ...props }, ref) => {
     const now = new Date();
-    const minTime = new Date(now.getTime() + 24 * 60 * 60 * 1000)
-      .toISOString()
-      .slice(0, 16);
+    const minTime = now.toISOString().slice(0, 16);
     const maxTime = new Date(now.getTime() + 72 * 60 * 60 * 1000)
       .toISOString()
       .slice(0, 16);

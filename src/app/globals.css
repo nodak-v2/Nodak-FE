@@ -79,3 +79,8 @@ html {
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
+
+input[type='datetime-local']::-webkit-datetime-edit-year-field,
+input[type='datetime-local']::-webkit-datetime-edit-month-field {
+  color: white; /* 텍스트 색상 */
+}
