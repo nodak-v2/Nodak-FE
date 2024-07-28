@@ -27,23 +27,25 @@ const BadgeBlock = () => {
           />
           <span
             className={cn('font-text-2-md', posting < 4 && 'text-gray-accent3')}
-          >{`글 ${posting}회 작성`}</span>
+          >{`글 3회 작성`}</span>
         </div>
         <div className='flex flex-col items-center gap-3'>
           <Image
-            src={voting > 15 ? '/badge/vote-fill.svg' : '/badge/vote-line.svg'}
+            src={voting > 5 ? '/badge/vote-fill.svg' : '/badge/vote-line.svg'}
             alt='포스팅뱃지'
             width={55}
             height={55}
           />
           <span
-            className={cn('font-text-2-md', voting < 16 && 'text-gray-accent3')}
-          >{`투표 ${voting}회`}</span>
+            className={cn('font-text-2-md', voting < 6 && 'text-gray-accent3')}
+          >
+            투표 5회
+          </span>
         </div>
         <div className='flex flex-col items-center gap-3'>
           <Image
             src={
-              comment > 10
+              comment > 5
                 ? '/badge/comment-fill.svg'
                 : '/badge/comment-line.svg'
             }
@@ -52,22 +54,19 @@ const BadgeBlock = () => {
             height={55}
           />
           <span
-            className={cn(
-              'font-text-2-md',
-              comment < 10 && 'text-gray-accent3',
-            )}
-          >{`댓글 ${comment}회`}</span>
+            className={cn('font-text-2-md', comment < 6 && 'text-gray-accent3')}
+          >{`댓글 5회`}</span>
         </div>
         <div className='flex flex-col items-center gap-3'>
           <Image
-            src={like > 20 ? '/badge/like-fill.svg' : '/badge/like-line.svg'}
+            src={like > 10 ? '/badge/like-fill.svg' : '/badge/like-line.svg'}
             alt='포스팅뱃지'
             width={55}
             height={55}
           />
           <span
-            className={cn('font-text-2-md', like < 21 && 'text-gray-accent3')}
-          >{`좋아요 ${like}회`}</span>
+            className={cn('font-text-2-md', like < 11 && 'text-gray-accent3')}
+          >{`좋아요 11회`}</span>
         </div>
         <div className='flex flex-col items-center gap-3'>
           <Image
@@ -80,7 +79,7 @@ const BadgeBlock = () => {
           />
           <span
             className={cn('font-text-2-md', follow < 11 && 'text-gray-accent3')}
-          >{`팔로워 ${follow}명`}</span>
+          >{`팔로워 10명`}</span>
         </div>
       </div>
     </div>
