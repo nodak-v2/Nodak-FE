@@ -2,7 +2,9 @@ import { PropsWithChildren } from 'react';
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
 
+import { useGetPostDetailAPI } from '@/src/apis/postDetail';
 import { formatDateCustom } from '@/src/utils/formatDate';
 
 import OwnCommentChip from './OwnCommentChip';
@@ -20,11 +22,13 @@ const CommentItem = ({
   nickname,
   content,
   createdAt,
-  isOwnComment,
   children,
-  authorId,
   profileImageUrl,
+  authorId,
 }: PropsWithChildren<CommentItemProps>) => {
+  const { postId } = useParams() as { postId: string };
+  const { authorId: postAuthorId } = useGetPostDetailAPI(postId);
+
   return (
     <div className='flex w-full flex-col gap-2'>
       <div className='flex items-center justify-between'>
@@ -38,7 +42,7 @@ const CommentItem = ({
               className='h-[24px] w-[24px] rounded-[4px]'
             />
             <span className='font-title-1-md'>{nickname}</span>
-            {isOwnComment && <OwnCommentChip />}
+            {postAuthorId === authorId && <OwnCommentChip />}
           </div>
         </Link>
         {children}
