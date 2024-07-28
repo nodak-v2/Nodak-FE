@@ -2,8 +2,9 @@
 
 import { PropsWithChildren, Suspense } from 'react';
 
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
+import { useGetUserStatusAPI } from '@/src/apis/myInfo';
 import Spinner from '@/src/components/Spinner';
 import TopBar from '@/src/components/Topbar';
 
@@ -22,6 +23,13 @@ export type PostingNavigation =
 
 const PostingLayout = ({ children }: PropsWithChildren) => {
   const pathname = usePathname().split('/').pop() as PostingNavigation;
+  const router = useRouter();
+  const { login: isLogin } = useGetUserStatusAPI();
+
+  if (!isLogin) {
+    router.push('/signin');
+    return null;
+  }
 
   return (
     <>
